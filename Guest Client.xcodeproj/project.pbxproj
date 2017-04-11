@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BDD1E951B2000B21CE6 /* AppDelegate.swift */; };
-		91137BE01E951B2000B21CE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BDF1E951B2000B21CE6 /* ViewController.swift */; };
-		91137BE31E951B2000B21CE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE11E951B2000B21CE6 /* Main.storyboard */; };
 		91137BE51E951B2000B21CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE41E951B2000B21CE6 /* Assets.xcassets */; };
 		91137BE81E951B2000B21CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */; };
-		91137BF31E951B2000B21CE6 /* Guest_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BF21E951B2000B21CE6 /* Guest_ClientTests.swift */; };
-		91137BFE1E951B2000B21CE6 /* Guest_ClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BFD1E951B2000B21CE6 /* Guest_ClientUITests.swift */; };
+		91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F441E9D106100AE4672 /* OnboardingViewController.swift */; };
+		91860F471E9D131300AE4672 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91860F461E9D131300AE4672 /* Onboarding.storyboard */; };
+		91860F491E9D419700AE4672 /* OnboardingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F481E9D419700AE4672 /* OnboardingViewCell.swift */; };
+		91860F4D1E9D46C600AE4672 /* TitleTwoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F4C1E9D46C600AE4672 /* TitleTwoLabel.swift */; };
+		9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DC1E9B512100DFA856 /* Lato 300.ttf */; };
+		9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */; };
+		9189F6E21E9B512100DFA856 /* Lato regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DE1E9B512100DFA856 /* Lato regular.ttf */; };
+		9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */; };
+		91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */; };
+		91D301661E9D4B390024BE6E /* KHotelStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301651E9D4B390024BE6E /* KHotelStyles.swift */; };
+		91D301681E9D4BCC0024BE6E /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301671E9D4BCC0024BE6E /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,17 +43,24 @@
 /* Begin PBXFileReference section */
 		91137BDA1E951B2000B21CE6 /* Guest Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guest Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91137BDD1E951B2000B21CE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		91137BDF1E951B2000B21CE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		91137BE21E951B2000B21CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		91137BE41E951B2000B21CE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91137BE71E951B2000B21CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91137BE91E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91137BEE1E951B2000B21CE6 /* Guest ClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Guest ClientTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		91137BF21E951B2000B21CE6 /* Guest_ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest_ClientTests.swift; sourceTree = "<group>"; };
 		91137BF41E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91137BF91E951B2000B21CE6 /* Guest ClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Guest ClientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		91137BFD1E951B2000B21CE6 /* Guest_ClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest_ClientUITests.swift; sourceTree = "<group>"; };
 		91137BFF1E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91860F441E9D106100AE4672 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		91860F461E9D131300AE4672 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		91860F481E9D419700AE4672 /* OnboardingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewCell.swift; sourceTree = "<group>"; };
+		91860F4C1E9D46C600AE4672 /* TitleTwoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTwoLabel.swift; sourceTree = "<group>"; };
+		9189F6DC1E9B512100DFA856 /* Lato 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300.ttf"; sourceTree = "<group>"; };
+		9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300italic.ttf"; sourceTree = "<group>"; };
+		9189F6DE1E9B512100DFA856 /* Lato regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato regular.ttf"; sourceTree = "<group>"; };
+		9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald regular.ttf"; sourceTree = "<group>"; };
+		91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
+		91D301651E9D4B390024BE6E /* KHotelStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHotelStyles.swift; sourceTree = "<group>"; };
+		91D301671E9D4BCC0024BE6E /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +111,11 @@
 		91137BDC1E951B2000B21CE6 /* Guest Client */ = {
 			isa = PBXGroup;
 			children = (
+				91860F4B1E9D466A00AE4672 /* Theme */,
+				91860F4A1E9D465000AE4672 /* Onboarding */,
+				91B335211E9CEF8E0064AF75 /* Resources */,
 				91137BDD1E951B2000B21CE6 /* AppDelegate.swift */,
-				91137BDF1E951B2000B21CE6 /* ViewController.swift */,
-				91137BE11E951B2000B21CE6 /* Main.storyboard */,
-				91137BE41E951B2000B21CE6 /* Assets.xcassets */,
 				91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */,
-				91137BE91E951B2000B21CE6 /* Info.plist */,
 			);
 			path = "Guest Client";
 			sourceTree = "<group>";
@@ -110,8 +123,9 @@
 		91137BF11E951B2000B21CE6 /* Guest ClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				91137BF21E951B2000B21CE6 /* Guest_ClientTests.swift */,
-				91137BF41E951B2000B21CE6 /* Info.plist */,
+				91137C0D1E95281100B21CE6 /* Supporting Files */,
+				91137C0C1E95280B00B21CE6 /* Data */,
+				91137C0B1E95280600B21CE6 /* Cases */,
 			);
 			path = "Guest ClientTests";
 			sourceTree = "<group>";
@@ -119,10 +133,73 @@
 		91137BFC1E951B2000B21CE6 /* Guest ClientUITests */ = {
 			isa = PBXGroup;
 			children = (
-				91137BFD1E951B2000B21CE6 /* Guest_ClientUITests.swift */,
 				91137BFF1E951B2000B21CE6 /* Info.plist */,
 			);
 			path = "Guest ClientUITests";
+			sourceTree = "<group>";
+		};
+		91137C0B1E95280600B21CE6 /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cases;
+			sourceTree = "<group>";
+		};
+		91137C0C1E95280B00B21CE6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		91137C0D1E95281100B21CE6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				91137BF41E951B2000B21CE6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		91860F4A1E9D465000AE4672 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				91860F441E9D106100AE4672 /* OnboardingViewController.swift */,
+				91860F461E9D131300AE4672 /* Onboarding.storyboard */,
+				91860F481E9D419700AE4672 /* OnboardingViewCell.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		91860F4B1E9D466A00AE4672 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				91860F4C1E9D46C600AE4672 /* TitleTwoLabel.swift */,
+				91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */,
+				91D301651E9D4B390024BE6E /* KHotelStyles.swift */,
+				91D301671E9D4BCC0024BE6E /* ThemeManager.swift */,
+			);
+			name = Theme;
+			sourceTree = "<group>";
+		};
+		91B335211E9CEF8E0064AF75 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91137BE41E951B2000B21CE6 /* Assets.xcassets */,
+				91137BE91E951B2000B21CE6 /* Info.plist */,
+				91B335221E9CEF9D0064AF75 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		91B335221E9CEF9D0064AF75 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */,
+				9189F6DE1E9B512100DFA856 /* Lato regular.ttf */,
+				9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */,
+				9189F6DC1E9B512100DFA856 /* Lato 300.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +312,11 @@
 			files = (
 				91137BE81E951B2000B21CE6 /* LaunchScreen.storyboard in Resources */,
 				91137BE51E951B2000B21CE6 /* Assets.xcassets in Resources */,
-				91137BE31E951B2000B21CE6 /* Main.storyboard in Resources */,
+				9189F6E21E9B512100DFA856 /* Lato regular.ttf in Resources */,
+				9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */,
+				91860F471E9D131300AE4672 /* Onboarding.storyboard in Resources */,
+				9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */,
+				9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,8 +341,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91137BE01E951B2000B21CE6 /* ViewController.swift in Sources */,
 				91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */,
+				91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */,
+				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
+				91860F4D1E9D46C600AE4672 /* TitleTwoLabel.swift in Sources */,
+				91D301661E9D4B390024BE6E /* KHotelStyles.swift in Sources */,
+				91860F491E9D419700AE4672 /* OnboardingViewCell.swift in Sources */,
+				91D301681E9D4BCC0024BE6E /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91137BF31E951B2000B21CE6 /* Guest_ClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +362,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91137BFE1E951B2000B21CE6 /* Guest_ClientUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +381,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		91137BE11E951B2000B21CE6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				91137BE21E951B2000B21CE6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -514,6 +590,7 @@
 				91137C041E951B2000B21CE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		91137C051E951B2000B21CE6 /* Build configuration list for PBXNativeTarget "Guest ClientTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +599,7 @@
 				91137C071E951B2000B21CE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		91137C081E951B2000B21CE6 /* Build configuration list for PBXNativeTarget "Guest ClientUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +608,7 @@
 				91137C0A1E951B2000B21CE6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
