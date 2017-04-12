@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,26 +13,76 @@
         <scene sceneID="wcn-rL-IUi">
             <objects>
                 <tableViewController title="Categories" id="iag-Vb-MRo" customClass="RoomServiceCategoriesViewController" customModule="Guest_Client" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zqt-fj-Qft">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zqt-fj-Qft">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="33L-PX-l3I">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomServiceCategory" id="33L-PX-l3I" customClass="RoomServiceCategoryTableViewCell" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="33L-PX-l3I" id="c6F-K0-mGe">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQ1-2V-Y8a">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="96.5"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lbV-Wg-ogu" customClass="RoomServiceCategoryImageView" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="96.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rk-Sr-XMa" customClass="TitleOneLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="36" y="28" width="34" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey1-kV-HK8" customClass="SubtitleLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="36" y="44" width="88" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="lbV-Wg-ogu" secondAttribute="bottom" id="38q-Ss-EB8"/>
+                                                <constraint firstAttribute="trailing" secondItem="lbV-Wg-ogu" secondAttribute="trailing" id="H2u-MS-HUD"/>
+                                                <constraint firstItem="Ey1-kV-HK8" firstAttribute="top" secondItem="8rk-Sr-XMa" secondAttribute="bottom" constant="-5" id="TfI-d4-jeR"/>
+                                                <constraint firstItem="lbV-Wg-ogu" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leading" id="Tvd-QU-J0S"/>
+                                                <constraint firstItem="8rk-Sr-XMa" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leadingMargin" constant="28" id="XXh-jU-qu0"/>
+                                                <constraint firstItem="Ey1-kV-HK8" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leadingMargin" constant="28" id="l9X-Cs-I5i"/>
+                                                <constraint firstItem="lbV-Wg-ogu" firstAttribute="top" secondItem="gQ1-2V-Y8a" secondAttribute="top" id="mEt-Jb-puW"/>
+                                                <constraint firstItem="8rk-Sr-XMa" firstAttribute="centerY" secondItem="lbV-Wg-ogu" secondAttribute="centerY" constant="-10" id="n0y-8S-fGK"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="gQ1-2V-Y8a" secondAttribute="bottom" constant="3" id="Ai8-Ay-2AU"/>
+                                        <constraint firstItem="gQ1-2V-Y8a" firstAttribute="leading" secondItem="c6F-K0-mGe" secondAttribute="leading" id="Eug-hL-arD"/>
+                                        <constraint firstAttribute="trailing" secondItem="gQ1-2V-Y8a" secondAttribute="trailing" id="RmM-7q-nCw"/>
+                                        <constraint firstItem="gQ1-2V-Y8a" firstAttribute="top" secondItem="c6F-K0-mGe" secondAttribute="top" id="rZn-ve-puf"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="categoryDescription" destination="Ey1-kV-HK8" id="RJ9-wX-KVQ"/>
+                                    <outlet property="categoryImage" destination="lbV-Wg-ogu" id="1WC-CA-mB4"/>
+                                    <outlet property="categoryTitle" destination="8rk-Sr-XMa" id="PTM-X9-OJV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="iag-Vb-MRo" id="aCw-Qu-HIG"/>
+                            <outlet property="dataSource" destination="iag-Vb-MRo" id="8BK-Qr-vQQ"/>
                             <outlet property="delegate" destination="iag-Vb-MRo" id="aQf-JZ-0F0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Room Service" id="13X-VD-7zl"/>
+                    <navigationItem key="navigationItem" title="Room Service" id="13X-VD-7zl">
+                        <barButtonItem key="leftBarButtonItem" title="Info" id="nmZ-kr-BwK" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target"/>
+                        <barButtonItem key="rightBarButtonItem" title="My Orders" id="b0u-tv-IO7" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKw-AF-bga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -42,7 +93,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pJt-bQ-VTf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fde-e3-L7E" customClass="StyledNavigationBar" customModule="Guest_Client" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fde-e3-L7E" customClass="MainNavigationBar" customModule="Guest_Client" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

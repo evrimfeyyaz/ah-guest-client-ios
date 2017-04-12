@@ -69,6 +69,12 @@ extension OnboardingViewController: UICollectionViewDataSource {
     }
 }
 
+extension OnboardingViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
+}
+
 struct OnboardingInformation {
     var title: String
     var information: String

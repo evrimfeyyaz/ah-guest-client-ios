@@ -17,12 +17,13 @@ class Colors {
     
     static let navigationBarBackground = StyleHelpers.UIColorFromRgb(rgbValue: 0x8B2131)
     static let navigationBarTitle = UIColor.white
-    
 }
 
 class Fonts {
     
     static let titleTwo = UIFont(name: "Oswald", size: 24)
+    static let titleOne = UIFont(name: "Oswald", size: 36)
+    static let subtitle = UIFont(name: "Lato-LightItalic", size: 14)
     static let body = UIFont(name: "Lato-Light", size: 17)
     static let navigationButton = UIFont(name: "Lato-Light", size: 17)
     static let navigationBarTitle = UIFont(name: "Lato", size: 17)

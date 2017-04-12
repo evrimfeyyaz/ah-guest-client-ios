@@ -11,27 +11,39 @@ import UIKit
 class ThemeManager {
 
     static func applyTheme() {
-        let proxyTitleTwoLabel = TitleTwoLabel.appearance()
-        proxyTitleTwoLabel.font = Fonts.titleTwo
-        proxyTitleTwoLabel.textColor = Colors.titleText
+        applyStyleToLabel(appearanceProxy: TitleOneLabel.appearance(), font: Fonts.titleOne!, color: Colors.titleText)
+        applyStyleToLabel(appearanceProxy: TitleTwoLabel.appearance(), font: Fonts.titleTwo!, color: Colors.titleText)
+        applyStyleToLabel(appearanceProxy: SubtitleLabel.appearance(), font: Fonts.subtitle!, color: Colors.titleText)
+        applyStyleToLabel(appearanceProxy: BodyLabel.appearance(), font: Fonts.body!, color: Colors.bodyText)
         
-        let proxyBodyLabel = BodyLabel.appearance()
-        proxyBodyLabel.font = Fonts.body
-        proxyBodyLabel.textColor = Colors.bodyText
-        
-        let proxyStyledNavigationBar = StyledNavigationBar.appearance()
-        proxyStyledNavigationBar.barTintColor = Colors.navigationBarBackground
-        proxyStyledNavigationBar.isTranslucent = false
-        proxyStyledNavigationBar.titleTextAttributes = [
+        let proxyMainNavigationBar = MainNavigationBar.appearance()
+        proxyMainNavigationBar.barTintColor = Colors.navigationBarBackground
+        proxyMainNavigationBar.isTranslucent = false
+        proxyMainNavigationBar.titleTextAttributes = [
             NSFontAttributeName: Fonts.navigationBarTitle!,
             NSForegroundColorAttributeName: Colors.navigationBarTitle
         ]
         
         let proxyNavigationButton = NavigationButton.appearance()
-        proxyNavigationButton.titleLabelFont = Fonts.navigationButton
-        proxyNavigationButton.titleColorNormalState = Colors.navigationButtonColorNormalState
-        proxyNavigationButton.titleColorHighlightedState = Colors.navigationButtonColorHighlightedState
+        proxyNavigationButton.setTitleTextAttributes([
+            NSFontAttributeName: Fonts.navigationButton!,
+            NSForegroundColorAttributeName: Colors.navigationButtonColorNormalState
+            ], for: .normal)
+        proxyNavigationButton.setTitleTextAttributes([
+            NSFontAttributeName: Fonts.navigationButton!,
+            NSForegroundColorAttributeName: Colors.navigationButtonColorHighlightedState
+            ], for: .highlighted)
         
+        let proxyClearNavigationBar = ClearNavigationBar.appearance()
+        proxyClearNavigationBar.backgroundColor = .clear
+        proxyClearNavigationBar.isTranslucent = true
+        proxyClearNavigationBar.shadowImage = UIImage()
+        proxyClearNavigationBar.setBackgroundImage(UIImage(), for: .default)
+    }
+    
+    static func applyStyleToLabel(appearanceProxy proxy: UILabel, font: UIFont, color: UIColor) {
+        proxy.font = font
+        proxy.textColor = color
     }
     
 }

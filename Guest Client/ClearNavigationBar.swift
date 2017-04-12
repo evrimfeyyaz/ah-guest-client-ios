@@ -1,5 +1,5 @@
 //
-//  StyledNavigationBar.swift
+//  ClearNavigationBar.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/12/17.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class StyledNavigationBar: UINavigationBar {
+class ClearNavigationBar: UINavigationBar {
     
 }

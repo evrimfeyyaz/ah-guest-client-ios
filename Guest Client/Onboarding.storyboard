@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,13 +38,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTe-7l-Cuy" customClass="TitleTwoLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="416" width="317" height="36"/>
+                                                    <rect key="frame" x="30" y="424" width="317" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiW-lF-NVe" customClass="BodyLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="452" width="317" height="21"/>
+                                                    <rect key="frame" x="30" y="444.5" width="317" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -78,35 +77,38 @@
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oxc-8d-XP4">
                                 <rect key="frame" x="87" y="193" width="214" height="180"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnt-a9-wcC" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
-                                <rect key="frame" x="324" y="32" width="35" height="33"/>
-                                <state key="normal" title="Next"/>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="50Y-gs-eHf" customClass="ClearNavigationBar" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="SNJ-8O-P2n">
+                                        <barButtonItem key="leftBarButtonItem" title="Skip" id="bwC-ZX-sIs" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
+                                            <connections>
+                                                <segue destination="qtZ-Jv-37V" kind="show" identifier="ShowRoomService" id="EDa-kH-da3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Next" id="1kF-MO-hcH" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
+                                            <connections>
+                                                <action selector="goToNextPage:" destination="M56-RE-A5d" id="vJe-JJ-Gji"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
                                 <connections>
-                                    <action selector="goToNextPage:" destination="M56-RE-A5d" eventType="touchUpInside" id="dWD-Qg-VSp"/>
+                                    <outlet property="delegate" destination="M56-RE-A5d" id="DBP-ve-5H5"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hco-T0-aij" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
-                                <rect key="frame" x="16" y="32" width="31" height="33"/>
-                                <state key="normal" title="Skip"/>
-                                <connections>
-                                    <segue destination="qtZ-Jv-37V" kind="show" identifier="ShowRoomService" id="XcL-ZZ-95h"/>
-                                </connections>
-                            </button>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.090196078430000007" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Oxc-8d-XP4" firstAttribute="centerX" secondItem="8jq-PQ-w7z" secondAttribute="centerX" constant="7" id="5Fa-Me-k9Y"/>
-                            <constraint firstItem="rnt-a9-wcC" firstAttribute="trailing" secondItem="8jq-PQ-w7z" secondAttribute="trailingMargin" id="8AK-vs-TG1"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="top" secondItem="8jq-PQ-w7z" secondAttribute="top" id="8fS-SN-MU4"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="centerX" secondItem="6s3-BN-yzj" secondAttribute="centerX" id="AqY-ha-A3o"/>
-                            <constraint firstItem="hco-T0-aij" firstAttribute="leading" secondItem="8jq-PQ-w7z" secondAttribute="leading" constant="16" id="Cb8-Wb-Pap"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="leading" secondItem="8jq-PQ-w7z" secondAttribute="leading" id="DGh-1x-ga1"/>
-                            <constraint firstItem="rnt-a9-wcC" firstAttribute="top" secondItem="Z4z-YB-iGB" secondAttribute="bottom" constant="12" id="Nu0-Mb-eba"/>
                             <constraint firstAttribute="trailing" secondItem="YoD-71-16H" secondAttribute="trailing" id="TMF-4F-gVS"/>
                             <constraint firstItem="Oxc-8d-XP4" firstAttribute="centerY" secondItem="8jq-PQ-w7z" secondAttribute="centerY" constant="-50" id="TUU-Hb-3ND"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="bottom" secondItem="Tkm-je-ZcV" secondAttribute="top" id="Yqc-pn-7Ja"/>
                             <constraint firstItem="Tkm-je-ZcV" firstAttribute="top" secondItem="6s3-BN-yzj" secondAttribute="bottom" constant="8" symbolic="YES" id="dcA-Bo-TNl"/>
-                            <constraint firstItem="hco-T0-aij" firstAttribute="top" secondItem="Z4z-YB-iGB" secondAttribute="bottom" constant="12" id="oif-mX-vGQ"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
