@@ -19,8 +19,8 @@
 		9189F6E21E9B512100DFA856 /* Lato regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DE1E9B512100DFA856 /* Lato regular.ttf */; };
 		9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */; };
 		91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */; };
-		91D301661E9D4B390024BE6E /* KHotelStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301651E9D4B390024BE6E /* KHotelStyles.swift */; };
-		91D301681E9D4BCC0024BE6E /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301671E9D4BCC0024BE6E /* ThemeManager.swift */; };
+		91C71ACC1E9DF8F3009E1D9B /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */; };
+		91D301661E9D4B390024BE6E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301651E9D4B390024BE6E /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +59,8 @@
 		9189F6DE1E9B512100DFA856 /* Lato regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato regular.ttf"; sourceTree = "<group>"; };
 		9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald regular.ttf"; sourceTree = "<group>"; };
 		91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
-		91D301651E9D4B390024BE6E /* KHotelStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KHotelStyles.swift; sourceTree = "<group>"; };
-		91D301671E9D4BCC0024BE6E /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
+		91D301651E9D4B390024BE6E /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,10 +173,8 @@
 		91860F4B1E9D466A00AE4672 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				91860F4C1E9D46C600AE4672 /* TitleTwoLabel.swift */,
-				91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */,
-				91D301651E9D4B390024BE6E /* KHotelStyles.swift */,
-				91D301671E9D4BCC0024BE6E /* ThemeManager.swift */,
+				91C71ACA1E9DF56D009E1D9B /* Styled Elements */,
+				91D301651E9D4B390024BE6E /* Theme.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -200,6 +198,16 @@
 				9189F6DC1E9B512100DFA856 /* Lato 300.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		91C71ACA1E9DF56D009E1D9B /* Styled Elements */ = {
+			isa = PBXGroup;
+			children = (
+				91860F4C1E9D46C600AE4672 /* TitleTwoLabel.swift */,
+				91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */,
+				91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */,
+			);
+			name = "Styled Elements";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,9 +353,9 @@
 				91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
 				91860F4D1E9D46C600AE4672 /* TitleTwoLabel.swift in Sources */,
-				91D301661E9D4B390024BE6E /* KHotelStyles.swift in Sources */,
+				91D301661E9D4B390024BE6E /* Theme.swift in Sources */,
+				91C71ACC1E9DF8F3009E1D9B /* NavigationButton.swift in Sources */,
 				91860F491E9D419700AE4672 /* OnboardingViewCell.swift in Sources */,
-				91D301681E9D4BCC0024BE6E /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

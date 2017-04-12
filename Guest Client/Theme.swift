@@ -8,7 +8,15 @@
 
 import UIKit
 
-class KHotelStyles {
+class Theme {
+    
     static let titleTwoFont = UIFont(name: "Oswald", size: 24)
+    static let titleTwoTextColor = UIColor.white
+    
     static let bodyFont = UIFont(name: "Lato-Light", size: 17)
+    static let bodyTextColor = UIColor.white
+    
+    static let navigationButtonFont = UIFont(name: "Lato-Light", size: 17)
+    static let navigationButtonTextColorNormalState = UIColor.white
+    
 }

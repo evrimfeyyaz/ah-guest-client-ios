@@ -8,6 +8,25 @@
 
 import UIKit
 
-class BodyLabel: UILabel {
-
+@IBDesignable class BodyLabel: UILabel {
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        styleView()
+    }
+    
+    override func prepareForInterfaceBuilder() {
+        styleView()
+    }
+    
+    func styleView() {
+        self.font = Theme.bodyFont
+        self.textColor = Theme.bodyTextColor
+    }
+    
 }

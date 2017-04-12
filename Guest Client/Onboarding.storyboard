@@ -42,7 +42,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTe-7l-Cuy" customClass="TitleTwoLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="38" y="424" width="301" height="20"/>
+                                                    <rect key="frame" x="38" y="408" width="301" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -53,16 +53,28 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnt-a9-wcC" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="322" y="40" width="35" height="33"/>
+                                                    <state key="normal" title="Next"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hco-T0-aij" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="40" width="31" height="33"/>
+                                                    <state key="normal" title="Skip"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="QiW-lF-NVe" firstAttribute="top" secondItem="FTe-7l-Cuy" secondAttribute="bottom" id="F3f-Fq-HHV"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="QiW-lF-NVe" secondAttribute="trailing" constant="30" id="Np0-Mw-YJv"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="FTe-7l-Cuy" secondAttribute="trailing" constant="30" id="cf9-JV-ZAj"/>
-                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="centerY" secondItem="m1w-nt-DXH" secondAttribute="centerY" constant="100" id="inO-pt-aD7"/>
-                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leadingMargin" constant="30" id="qyU-di-T1i"/>
-                                            <constraint firstItem="QiW-lF-NVe" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leadingMargin" constant="30" id="spb-a8-oX5"/>
+                                            <constraint firstAttribute="bottom" secondItem="QiW-lF-NVe" secondAttribute="bottom" constant="202" id="A9V-6G-W3c"/>
+                                            <constraint firstItem="hco-T0-aij" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leadingMargin" constant="12" id="JDL-2A-fBI"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="rnt-a9-wcC" secondAttribute="trailing" constant="12" id="JNd-pD-qUI"/>
+                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leadingMargin" constant="30" id="UND-TA-T2L"/>
+                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="centerX" secondItem="m1w-nt-DXH" secondAttribute="centerX" id="ZjF-MT-nMw"/>
+                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="leading" secondItem="QiW-lF-NVe" secondAttribute="leading" id="hWp-Up-f5r"/>
+                                            <constraint firstItem="hco-T0-aij" firstAttribute="top" secondItem="m1w-nt-DXH" secondAttribute="topMargin" constant="32" id="jEq-ZM-FOj"/>
+                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="trailing" secondItem="QiW-lF-NVe" secondAttribute="trailing" id="mdi-a7-E2o"/>
+                                            <constraint firstItem="QiW-lF-NVe" firstAttribute="top" secondItem="FTe-7l-Cuy" secondAttribute="bottom" id="v5h-sx-Wok"/>
+                                            <constraint firstItem="rnt-a9-wcC" firstAttribute="top" secondItem="m1w-nt-DXH" secondAttribute="topMargin" constant="32" id="vib-it-biC"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="information" destination="QiW-lF-NVe" id="zLU-oH-gYj"/>
@@ -91,6 +103,7 @@
                             <constraint firstItem="Tkm-je-ZcV" firstAttribute="top" secondItem="6s3-BN-yzj" secondAttribute="bottom" constant="8" symbolic="YES" id="dcA-Bo-TNl"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="pageControl" destination="6s3-BN-yzj" id="nvG-vs-6V3"/>
                     </connections>

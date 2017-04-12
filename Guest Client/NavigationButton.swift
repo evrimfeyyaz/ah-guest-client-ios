@@ -1,14 +1,14 @@
 //
-//  TitleTwoLabel.swift
+//  NavigationButton.swift
 //  Guest Client
 //
-//  Created by Evrim Persembe on 4/11/17.
+//  Created by Evrim Persembe on 4/12/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import UIKit
 
-@IBDesignable class TitleTwoLabel: UILabel {
+@IBDesignable class NavigationButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,8 +25,8 @@ import UIKit
     }
     
     func styleView() {
-        self.font = Theme.titleTwoFont
-        self.textColor = Theme.titleTwoTextColor
+        self.titleLabel?.font = Theme.navigationButtonFont
+        self.setTitleColor(Theme.navigationButtonTextColorNormalState, for: UIControlState.normal)
     }
     
 }
