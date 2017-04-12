@@ -18,11 +18,13 @@
 		9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */; };
 		9189F6E21E9B512100DFA856 /* Lato regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DE1E9B512100DFA856 /* Lato regular.ttf */; };
 		9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */; };
+		919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A417D1E9E445300C4CB7C /* ThemeManager.swift */; };
 		91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */; };
 		91C71ACC1E9DF8F3009E1D9B /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */; };
-		91D301661E9D4B390024BE6E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301651E9D4B390024BE6E /* Theme.swift */; };
+		91D301661E9D4B390024BE6E /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301651E9D4B390024BE6E /* Styles.swift */; };
 		91F660B31E9E217000DE4D11 /* RoomService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91F660B21E9E217000DE4D11 /* RoomService.storyboard */; };
 		91F660B51E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */; };
+		91F660B71E9E2B2800DE4D11 /* StyledNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F660B61E9E2B2800DE4D11 /* StyledNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +62,13 @@
 		9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300italic.ttf"; sourceTree = "<group>"; };
 		9189F6DE1E9B512100DFA856 /* Lato regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato regular.ttf"; sourceTree = "<group>"; };
 		9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald regular.ttf"; sourceTree = "<group>"; };
+		919A417D1E9E445300C4CB7C /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
 		91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
-		91D301651E9D4B390024BE6E /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		91D301651E9D4B390024BE6E /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		91F660B21E9E217000DE4D11 /* RoomService.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RoomService.storyboard; sourceTree = "<group>"; };
 		91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoriesViewController.swift; sourceTree = "<group>"; };
+		91F660B61E9E2B2800DE4D11 /* StyledNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				91C71ACA1E9DF56D009E1D9B /* Styled Elements */,
-				91D301651E9D4B390024BE6E /* Theme.swift */,
+				91D301651E9D4B390024BE6E /* Styles.swift */,
+				919A417D1E9E445300C4CB7C /* ThemeManager.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				91860F4C1E9D46C600AE4672 /* TitleTwoLabel.swift */,
 				91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */,
 				91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */,
+				91F660B61E9E2B2800DE4D11 /* StyledNavigationBar.swift */,
 			);
 			name = "Styled Elements";
 			sourceTree = "<group>";
@@ -368,8 +374,10 @@
 				91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
 				91860F4D1E9D46C600AE4672 /* TitleTwoLabel.swift in Sources */,
-				91D301661E9D4B390024BE6E /* Theme.swift in Sources */,
+				91D301661E9D4B390024BE6E /* Styles.swift in Sources */,
+				91F660B71E9E2B2800DE4D11 /* StyledNavigationBar.swift in Sources */,
 				91C71ACC1E9DF8F3009E1D9B /* NavigationButton.swift in Sources */,
+				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91860F491E9D419700AE4672 /* OnboardingViewCell.swift in Sources */,
 				91F660B51E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift in Sources */,
 			);

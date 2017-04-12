@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceCategoriesViewController: UIViewController {
+class RoomServiceCategoriesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

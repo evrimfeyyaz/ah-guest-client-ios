@@ -39,13 +39,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTe-7l-Cuy" customClass="TitleTwoLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="415.5" width="317" height="36"/>
+                                                    <rect key="frame" x="30" y="416" width="317" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiW-lF-NVe" customClass="BodyLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="451.5" width="317" height="21"/>
+                                                    <rect key="frame" x="30" y="452" width="317" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -88,6 +88,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hco-T0-aij" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
                                 <rect key="frame" x="16" y="32" width="31" height="33"/>
                                 <state key="normal" title="Skip"/>
+                                <connections>
+                                    <segue destination="qtZ-Jv-37V" kind="show" identifier="ShowRoomService" id="XcL-ZZ-95h"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.090196078430000007" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,6 +118,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZ1-iB-Xg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="28" y="145.27736131934034"/>
+        </scene>
+        <!--RoomService-->
+        <scene sceneID="im8-rn-YlX">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="RoomService" storyboardName="RoomService" id="qtZ-Jv-37V" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X77-yO-dPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="921" y="142"/>
         </scene>
     </scenes>
     <resources>

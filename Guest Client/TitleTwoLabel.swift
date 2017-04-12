@@ -8,25 +8,6 @@
 
 import UIKit
 
-@IBDesignable class TitleTwoLabel: UILabel {
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        styleView()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        styleView()
-    }
-    
-    func styleView() {
-        self.font = Theme.titleTwoFont
-        self.textColor = Theme.titleTwoTextColor
-    }
+class TitleTwoLabel: UILabel {
     
 }

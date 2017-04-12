@@ -8,26 +8,21 @@
 
 import UIKit
 
-@IBDesignable class NavigationButton: UIButton {
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        styleView()
+class NavigationButton: UIButton {
+
+    dynamic var titleLabelFont: UIFont! {
+        get { return self.titleLabel?.font }
+        set { self.titleLabel?.font = newValue }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    dynamic var titleColorNormalState: UIColor! {
+        get { return self.titleColor(for: .normal) }
+        set { self.setTitleColor(newValue, for: .normal) }
     }
     
-    override func prepareForInterfaceBuilder() {
-        styleView()
-    }
-    
-    func styleView() {
-        self.titleLabel?.font = Theme.navigationButtonFont
-        self.setTitleColor(Theme.navigationButtonTextColorNormalState, for: .normal)
-        self.setTitleColor(Theme.navigationButtonTextColorHighlightedState, for: .highlighted)
+    dynamic var titleColorHighlightedState: UIColor! {
+        get { return self.titleColor(for: .highlighted) }
+        set { self.setTitleColor(newValue, for: .highlighted) }
     }
     
 }
