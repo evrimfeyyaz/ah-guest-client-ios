@@ -12,12 +12,12 @@ import UIKit
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        styleView()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        styleView()
     }
     
     override func prepareForInterfaceBuilder() {
@@ -26,7 +26,8 @@ import UIKit
     
     func styleView() {
         self.titleLabel?.font = Theme.navigationButtonFont
-        self.setTitleColor(Theme.navigationButtonTextColorNormalState, for: UIControlState.normal)
+        self.setTitleColor(Theme.navigationButtonTextColorNormalState, for: .normal)
+        self.setTitleColor(Theme.navigationButtonTextColorHighlightedState, for: .highlighted)
     }
     
 }

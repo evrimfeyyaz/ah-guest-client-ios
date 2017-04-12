@@ -12,12 +12,12 @@ import UIKit
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        styleView()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        styleView()
     }
     
     override func prepareForInterfaceBuilder() {
@@ -27,6 +27,7 @@ import UIKit
     func styleView() {
         self.font = Theme.bodyFont
         self.textColor = Theme.bodyTextColor
+        
     }
     
 }

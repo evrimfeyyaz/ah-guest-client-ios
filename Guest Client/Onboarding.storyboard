@@ -21,9 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oxc-8d-XP4">
-                                <rect key="frame" x="87.5" y="193.5" width="214" height="180"/>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YoD-71-16H">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -42,39 +39,27 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTe-7l-Cuy" customClass="TitleTwoLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="38" y="408" width="301" height="36"/>
+                                                    <rect key="frame" x="30" y="415.5" width="317" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiW-lF-NVe" customClass="BodyLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="38" y="444" width="301" height="21"/>
+                                                    <rect key="frame" x="30" y="451.5" width="317" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnt-a9-wcC" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="322" y="40" width="35" height="33"/>
-                                                    <state key="normal" title="Next"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hco-T0-aij" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="40" width="31" height="33"/>
-                                                    <state key="normal" title="Skip"/>
-                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="QiW-lF-NVe" secondAttribute="bottom" constant="202" id="A9V-6G-W3c"/>
-                                            <constraint firstItem="hco-T0-aij" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leadingMargin" constant="12" id="JDL-2A-fBI"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="rnt-a9-wcC" secondAttribute="trailing" constant="12" id="JNd-pD-qUI"/>
-                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leadingMargin" constant="30" id="UND-TA-T2L"/>
-                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="centerX" secondItem="m1w-nt-DXH" secondAttribute="centerX" id="ZjF-MT-nMw"/>
-                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="leading" secondItem="QiW-lF-NVe" secondAttribute="leading" id="hWp-Up-f5r"/>
-                                            <constraint firstItem="hco-T0-aij" firstAttribute="top" secondItem="m1w-nt-DXH" secondAttribute="topMargin" constant="32" id="jEq-ZM-FOj"/>
-                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="trailing" secondItem="QiW-lF-NVe" secondAttribute="trailing" id="mdi-a7-E2o"/>
-                                            <constraint firstItem="QiW-lF-NVe" firstAttribute="top" secondItem="FTe-7l-Cuy" secondAttribute="bottom" id="v5h-sx-Wok"/>
-                                            <constraint firstItem="rnt-a9-wcC" firstAttribute="top" secondItem="m1w-nt-DXH" secondAttribute="topMargin" constant="32" id="vib-it-biC"/>
+                                            <constraint firstItem="QiW-lF-NVe" firstAttribute="top" secondItem="FTe-7l-Cuy" secondAttribute="bottom" id="GGR-fW-NVD"/>
+                                            <constraint firstAttribute="trailing" secondItem="QiW-lF-NVe" secondAttribute="trailing" constant="30" id="GW8-hQ-2we"/>
+                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leading" constant="30" id="P1q-Hq-7zT"/>
+                                            <constraint firstItem="QiW-lF-NVe" firstAttribute="leading" secondItem="m1w-nt-DXH" secondAttribute="leading" constant="30" id="iR4-MV-vll"/>
+                                            <constraint firstAttribute="trailing" secondItem="FTe-7l-Cuy" secondAttribute="trailing" constant="30" id="rtB-Rs-cMs"/>
+                                            <constraint firstItem="FTe-7l-Cuy" firstAttribute="centerY" secondItem="m1w-nt-DXH" secondAttribute="centerY" constant="100" id="tHF-SP-7zo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="information" destination="QiW-lF-NVe" id="zLU-oH-gYj"/>
@@ -90,21 +75,40 @@
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="6s3-BN-yzj">
                                 <rect key="frame" x="168" y="622" width="39" height="37"/>
                             </pageControl>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Oxc-8d-XP4">
+                                <rect key="frame" x="87" y="193" width="214" height="180"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnt-a9-wcC" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="324" y="32" width="35" height="33"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="goToNextPage:" destination="M56-RE-A5d" eventType="touchUpInside" id="dWD-Qg-VSp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hco-T0-aij" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="16" y="32" width="31" height="33"/>
+                                <state key="normal" title="Skip"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.090196078430000007" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Oxc-8d-XP4" firstAttribute="centerX" secondItem="8jq-PQ-w7z" secondAttribute="centerX" constant="7" id="5Fa-Me-k9Y"/>
+                            <constraint firstItem="rnt-a9-wcC" firstAttribute="trailing" secondItem="8jq-PQ-w7z" secondAttribute="trailingMargin" id="8AK-vs-TG1"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="top" secondItem="8jq-PQ-w7z" secondAttribute="top" id="8fS-SN-MU4"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="centerX" secondItem="6s3-BN-yzj" secondAttribute="centerX" id="AqY-ha-A3o"/>
+                            <constraint firstItem="hco-T0-aij" firstAttribute="leading" secondItem="8jq-PQ-w7z" secondAttribute="leading" constant="16" id="Cb8-Wb-Pap"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="leading" secondItem="8jq-PQ-w7z" secondAttribute="leading" id="DGh-1x-ga1"/>
+                            <constraint firstItem="rnt-a9-wcC" firstAttribute="top" secondItem="Z4z-YB-iGB" secondAttribute="bottom" constant="12" id="Nu0-Mb-eba"/>
                             <constraint firstAttribute="trailing" secondItem="YoD-71-16H" secondAttribute="trailing" id="TMF-4F-gVS"/>
                             <constraint firstItem="Oxc-8d-XP4" firstAttribute="centerY" secondItem="8jq-PQ-w7z" secondAttribute="centerY" constant="-50" id="TUU-Hb-3ND"/>
                             <constraint firstItem="YoD-71-16H" firstAttribute="bottom" secondItem="Tkm-je-ZcV" secondAttribute="top" id="Yqc-pn-7Ja"/>
                             <constraint firstItem="Tkm-je-ZcV" firstAttribute="top" secondItem="6s3-BN-yzj" secondAttribute="bottom" constant="8" symbolic="YES" id="dcA-Bo-TNl"/>
+                            <constraint firstItem="hco-T0-aij" firstAttribute="top" secondItem="Z4z-YB-iGB" secondAttribute="bottom" constant="12" id="oif-mX-vGQ"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="onboardingPagesView" destination="YoD-71-16H" id="nYC-aD-piy"/>
                         <outlet property="pageControl" destination="6s3-BN-yzj" id="nvG-vs-6V3"/>
                     </connections>
                 </viewController>

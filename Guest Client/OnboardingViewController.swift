@@ -11,6 +11,7 @@ import UIKit
 class OnboardingViewController: UIViewController {
     
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var onboardingPagesView: UICollectionView!
     
     let onboardingInformation = [
         OnboardingInformation(title: "Welcome to The K Hotel",
@@ -26,6 +27,16 @@ class OnboardingViewController: UIViewController {
         
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         pageControl.numberOfPages = onboardingInformation.count
+    }
+    
+    @IBAction func goToNextPage(_ sender: Any) {
+        if let visibleItem = onboardingPagesView.indexPathsForVisibleItems.first {
+            let nextItem = IndexPath(row: visibleItem.row + 1, section: visibleItem.section)
+            
+            if (nextItem.row < onboardingPagesView.numberOfItems(inSection: 0)) {
+                onboardingPagesView.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
+            }
+        }
     }
 
 }
