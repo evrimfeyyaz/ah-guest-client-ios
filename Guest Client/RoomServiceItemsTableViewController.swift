@@ -9,9 +9,16 @@
 import UIKit
 
 class RoomServiceItemsTableViewController: UITableViewController {
+    
+    let roomServiceItemSections = RoomServiceItemSection.getAll()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
+        
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,26 +29,65 @@ class RoomServiceItemsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return roomServiceItemSections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return roomServiceItemSections[section].numberOfItems
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RoomServiceItem", for: indexPath) as! RoomServiceItemTableViewCell
 
-        // Configure the cell...
+        let section = indexPath.section
+        let row = indexPath.row
+        let item = roomServiceItemSections[section].items[row]
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.currencyCode = "BHD"
+        numberFormatter.numberStyle = .currency
+        let priceInLocale = numberFormatter.string(from: item.price as NSDecimalNumber)
+        
+        cell.itemTitle.text = item.title
+        cell.itemDescription.text = item.description
+        cell.itemPrice.text = priceInLocale
+        
+        cell.selectionStyle = .none
 
         return cell
     }
-    */
-
-
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let sectionTitleLabel = UILabel()
+        headerView.addSubview(sectionTitleLabel)
+        
+        sectionTitleLabel.text = roomServiceItemSections[section].title
+        sectionTitleLabel.sizeToFit()
+        sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        sectionTitleLabel.font = Fonts.section
+        sectionTitleLabel.textColor = Colors.bodyText
+        sectionTitleLabel.alpha = 0.5
+        
+        headerView.layoutMargins = UIEdgeInsets(top: 10, left: 9, bottom: 3, right: 10)
+        let headerMargins = headerView.layoutMarginsGuide
+        sectionTitleLabel.leadingAnchor.constraint(equalTo: headerMargins.leadingAnchor).isActive = true
+        sectionTitleLabel.bottomAnchor.constraint(equalTo: headerMargins.bottomAnchor).isActive = true
+        
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return roomServiceItemSections[section].title
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     /*
     // MARK: - Navigation

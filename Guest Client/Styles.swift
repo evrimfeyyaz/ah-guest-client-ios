@@ -25,6 +25,9 @@ class Fonts {
     static let titleOne = UIFont(name: "Oswald", size: 36)
     static let subtitle = UIFont(name: "Lato-LightItalic", size: 14)
     static let body = UIFont(name: "Lato-Light", size: 17)
+    static let cell = UIFont(name: "Lato", size: 17)
+    static let price = UIFont(name: "Oswald", size: 14)
+    static let section = UIFont(name: "Oswald", size: 15)
     static let navigationButton = UIFont(name: "Lato-Light", size: 17)
     static let navigationBarTitle = UIFont(name: "Lato", size: 17)
     

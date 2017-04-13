@@ -19,7 +19,9 @@ class RoomServiceCategoriesViewController: UITableViewController {
         
         tableView.rowHeight = 100
         tableView.separatorStyle = .none
-//        tableView.allowsSelection = false
+        
+        let backButton = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backButton
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,6 +31,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
         cell.categoryTitle.text = roomServiceCategory.title
         cell.categoryDescription.text = roomServiceCategory.description
         cell.categoryImage.image = roomServiceCategory.image
+        cell.selectionStyle = .none
             
         return cell
     }

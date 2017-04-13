@@ -93,18 +93,65 @@
         <scene sceneID="3bM-n2-ZKd">
             <objects>
                 <tableViewController title="Room Service Items" id="8s0-kB-buh" customClass="RoomServiceItemsTableViewController" customModule="Guest_Client" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="GdC-aN-PPc">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" id="GdC-aN-PPc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OZr-UG-AC7">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomServiceItem" rowHeight="80" id="OZr-UG-AC7" customClass="RoomServiceItemTableViewCell" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZr-UG-AC7" id="dQU-ZD-xC6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flF-ua-cqZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YY-yB-7wH" customClass="CellLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="34" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-bI-otI" customClass="SubtitleLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="29" width="88" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrV-2W-vYb" customClass="PriceLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="328" y="8" width="39" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.16862745098039217" green="0.18431372549019609" blue="0.23921568627450979" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="BrV-2W-vYb" firstAttribute="baseline" secondItem="5YY-yB-7wH" secondAttribute="baseline" id="1Rz-Yn-Aag"/>
+                                                <constraint firstItem="5YY-yB-7wH" firstAttribute="top" secondItem="flF-ua-cqZ" secondAttribute="topMargin" id="5tj-Az-7f9"/>
+                                                <constraint firstItem="5YY-yB-7wH" firstAttribute="leading" secondItem="SVa-bI-otI" secondAttribute="leading" id="A6o-sf-9dO"/>
+                                                <constraint firstItem="SVa-bI-otI" firstAttribute="top" secondItem="5YY-yB-7wH" secondAttribute="bottom" id="j3A-hI-e41"/>
+                                                <constraint firstItem="5YY-yB-7wH" firstAttribute="leading" secondItem="flF-ua-cqZ" secondAttribute="leadingMargin" id="qze-DT-atE"/>
+                                                <constraint firstItem="BrV-2W-vYb" firstAttribute="trailing" secondItem="flF-ua-cqZ" secondAttribute="trailingMargin" id="yqt-l1-0BW"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="flF-ua-cqZ" secondAttribute="trailing" id="GqQ-NF-ZJP"/>
+                                        <constraint firstItem="flF-ua-cqZ" firstAttribute="top" secondItem="dQU-ZD-xC6" secondAttribute="top" id="f6g-xt-r5H"/>
+                                        <constraint firstItem="flF-ua-cqZ" firstAttribute="leading" secondItem="dQU-ZD-xC6" secondAttribute="leading" id="kJD-ni-CNk"/>
+                                        <constraint firstAttribute="bottom" secondItem="flF-ua-cqZ" secondAttribute="bottom" constant="3" id="oBg-Ev-9ht"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="itemDescription" destination="SVa-bI-otI" id="d6W-fs-X4g"/>
+                                    <outlet property="itemPrice" destination="BrV-2W-vYb" id="n23-eP-HsS"/>
+                                    <outlet property="itemTitle" destination="5YY-yB-7wH" id="wjR-iN-Q3E"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -115,7 +162,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kV-Sg-Jr0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2121" y="101"/>
+            <point key="canvasLocation" x="2120.8000000000002" y="100.29985007496252"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JEi-QA-UCD">

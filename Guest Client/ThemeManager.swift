@@ -15,6 +15,10 @@ class ThemeManager {
         applyStyleToLabel(appearanceProxy: TitleTwoLabel.appearance(), font: Fonts.titleTwo!, color: Colors.titleText)
         applyStyleToLabel(appearanceProxy: SubtitleLabel.appearance(), font: Fonts.subtitle!, color: Colors.titleText)
         applyStyleToLabel(appearanceProxy: BodyLabel.appearance(), font: Fonts.body!, color: Colors.bodyText)
+        applyStyleToLabel(appearanceProxy: CellLabel.appearance(), font: Fonts.cell!, color: Colors.bodyText)
+        applyStyleToLabel(appearanceProxy: PriceLabel.appearance(), font: Fonts.price!, color: Colors.bodyText)
+        applyStyleToLabel(appearanceProxy: SectionLabel.appearance(), font: Fonts.section!, color: Colors.bodyText)
+        SectionLabel.appearance(whenContainedInInstancesOf: [UIView.self]).font = Fonts.section!
         
         let proxyMainNavigationBar = MainNavigationBar.appearance()
         proxyMainNavigationBar.barTintColor = Colors.navigationBarBackground
@@ -39,6 +43,9 @@ class ThemeManager {
             NSFontAttributeName: Fonts.navigationButton!,
             NSForegroundColorAttributeName: Colors.navigationButtonColorHighlightedState
             ], for: .highlighted)
+        
+        let navigationBarProxy = UINavigationBar.appearance()
+        navigationBarProxy.tintColor = .white
     }
     
     static func applyStyleToLabel(appearanceProxy proxy: UILabel, font: UIFont, color: UIColor) {

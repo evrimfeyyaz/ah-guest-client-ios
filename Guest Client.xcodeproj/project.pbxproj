@@ -26,6 +26,12 @@
 		91BDBECC1E9E8426009CABE8 /* RoomServiceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */; };
 		91BDBECE1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBECD1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift */; };
 		91BDBED11E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */; };
+		91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */; };
+		91BDBED51E9F9D7D009CABE8 /* CellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED41E9F9D7D009CABE8 /* CellLabel.swift */; };
+		91BDBED71E9F9DD8009CABE8 /* PriceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED61E9F9DD8009CABE8 /* PriceLabel.swift */; };
+		91BDBEDA1E9F9EEC009CABE8 /* RoomServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */; };
+		91BDBEDC1E9FA6C6009CABE8 /* RoomServiceItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */; };
+		91BDBEDE1E9FEE40009CABE8 /* SectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEDD1E9FEE40009CABE8 /* SectionLabel.swift */; };
 		91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */; };
 		91C71ACC1E9DF8F3009E1D9B /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */; };
 		91D301661E9D4B390024BE6E /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D301651E9D4B390024BE6E /* Styles.swift */; };
@@ -77,6 +83,12 @@
 		91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategory.swift; sourceTree = "<group>"; };
 		91BDBECD1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoryImageView.swift; sourceTree = "<group>"; };
 		91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemsTableViewController.swift; sourceTree = "<group>"; };
+		91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemTableViewCell.swift; sourceTree = "<group>"; };
+		91BDBED41E9F9D7D009CABE8 /* CellLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellLabel.swift; sourceTree = "<group>"; };
+		91BDBED61E9F9DD8009CABE8 /* PriceLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceLabel.swift; sourceTree = "<group>"; };
+		91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItem.swift; sourceTree = "<group>"; };
+		91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemSection.swift; sourceTree = "<group>"; };
+		91BDBEDD1E9FEE40009CABE8 /* SectionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionLabel.swift; sourceTree = "<group>"; };
 		91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
 		91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		91D301651E9D4B390024BE6E /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -235,16 +247,30 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		91BDBED81E9F9EB8009CABE8 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */,
+				91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */,
+				91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */,
+				91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
 		91C71ACA1E9DF56D009E1D9B /* Styled Elements */ = {
 			isa = PBXGroup;
 			children = (
 				91860F4C1E9D46C600AE4672 /* TitleTwoLabel.swift */,
 				91C71AC61E9D53D8009E1D9B /* BodyLabel.swift */,
+				91BDBEDD1E9FEE40009CABE8 /* SectionLabel.swift */,
 				91C71ACB1E9DF8F3009E1D9B /* NavigationButton.swift */,
 				91BDBEBF1E9E65A9009CABE8 /* ClearNavigationBar.swift */,
 				91F660B61E9E2B2800DE4D11 /* MainNavigationBar.swift */,
 				91BDBEC51E9E6BD7009CABE8 /* TitleOneLabel.swift */,
 				91BDBEC71E9E6D1B009CABE8 /* SubtitleLabel.swift */,
+				91BDBED41E9F9D7D009CABE8 /* CellLabel.swift */,
+				91BDBED61E9F9DD8009CABE8 /* PriceLabel.swift */,
 			);
 			name = "Styled Elements";
 			sourceTree = "<group>";
@@ -253,8 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				91BDBECF1E9EB46F009CABE8 /* Category */,
+				91BDBED81E9F9EB8009CABE8 /* Items */,
 				91F660B21E9E217000DE4D11 /* RoomService.storyboard */,
-				91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */,
 			);
 			name = "Room Service";
 			sourceTree = "<group>";
@@ -401,19 +427,25 @@
 			files = (
 				91BDBECC1E9E8426009CABE8 /* RoomServiceCategory.swift in Sources */,
 				91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */,
+				91BDBED71E9F9DD8009CABE8 /* PriceLabel.swift in Sources */,
 				91C71AC71E9D53D8009E1D9B /* BodyLabel.swift in Sources */,
 				91BDBECE1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift in Sources */,
 				91BDBEC81E9E6D1B009CABE8 /* SubtitleLabel.swift in Sources */,
+				91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */,
+				91BDBEDC1E9FA6C6009CABE8 /* RoomServiceItemSection.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
 				91BDBEC61E9E6BD7009CABE8 /* TitleOneLabel.swift in Sources */,
 				91860F4D1E9D46C600AE4672 /* TitleTwoLabel.swift in Sources */,
 				91BDBEC01E9E65A9009CABE8 /* ClearNavigationBar.swift in Sources */,
 				91D301661E9D4B390024BE6E /* Styles.swift in Sources */,
+				91BDBED51E9F9D7D009CABE8 /* CellLabel.swift in Sources */,
 				91F660B71E9E2B2800DE4D11 /* MainNavigationBar.swift in Sources */,
+				91BDBEDE1E9FEE40009CABE8 /* SectionLabel.swift in Sources */,
 				91C71ACC1E9DF8F3009E1D9B /* NavigationButton.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift in Sources */,
+				91BDBEDA1E9F9EEC009CABE8 /* RoomServiceItem.swift in Sources */,
 				91860F491E9D419700AE4672 /* OnboardingViewCell.swift in Sources */,
 				91F660B51E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift in Sources */,
 			);
