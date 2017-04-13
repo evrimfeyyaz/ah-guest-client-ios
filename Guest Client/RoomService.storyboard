@@ -47,11 +47,11 @@
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="lbV-Wg-ogu" secondAttribute="bottom" id="38q-Ss-EB8"/>
+                                                <constraint firstItem="Ey1-kV-HK8" firstAttribute="leading" secondItem="8rk-Sr-XMa" secondAttribute="leading" id="4M6-29-f27"/>
                                                 <constraint firstAttribute="trailing" secondItem="lbV-Wg-ogu" secondAttribute="trailing" id="H2u-MS-HUD"/>
                                                 <constraint firstItem="Ey1-kV-HK8" firstAttribute="top" secondItem="8rk-Sr-XMa" secondAttribute="bottom" constant="-5" id="TfI-d4-jeR"/>
                                                 <constraint firstItem="lbV-Wg-ogu" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leading" id="Tvd-QU-J0S"/>
                                                 <constraint firstItem="8rk-Sr-XMa" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leadingMargin" constant="28" id="XXh-jU-qu0"/>
-                                                <constraint firstItem="Ey1-kV-HK8" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leadingMargin" constant="28" id="l9X-Cs-I5i"/>
                                                 <constraint firstItem="lbV-Wg-ogu" firstAttribute="top" secondItem="gQ1-2V-Y8a" secondAttribute="top" id="mEt-Jb-puW"/>
                                                 <constraint firstItem="8rk-Sr-XMa" firstAttribute="centerY" secondItem="lbV-Wg-ogu" secondAttribute="centerY" constant="-10" id="n0y-8S-fGK"/>
                                             </constraints>
@@ -70,6 +70,7 @@
                                     <outlet property="categoryDescription" destination="Ey1-kV-HK8" id="RJ9-wX-KVQ"/>
                                     <outlet property="categoryImage" destination="lbV-Wg-ogu" id="1WC-CA-mB4"/>
                                     <outlet property="categoryTitle" destination="8rk-Sr-XMa" id="PTM-X9-OJV"/>
+                                    <segue destination="8s0-kB-buh" kind="show" identifier="ShowCategoryItems" id="9pC-S3-cpp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -87,6 +88,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKw-AF-bga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1191.2" y="101.19940029985008"/>
+        </scene>
+        <!--Room Service Items-->
+        <scene sceneID="3bM-n2-ZKd">
+            <objects>
+                <tableViewController title="Room Service Items" id="8s0-kB-buh" customClass="RoomServiceItemsTableViewController" customModule="Guest_Client" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="GdC-aN-PPc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OZr-UG-AC7">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZr-UG-AC7" id="dQU-ZD-xC6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8s0-kB-buh" id="iAh-Hh-Fol"/>
+                            <outlet property="delegate" destination="8s0-kB-buh" id="K02-rt-Joo"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9kV-Sg-Jr0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2121" y="101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JEi-QA-UCD">

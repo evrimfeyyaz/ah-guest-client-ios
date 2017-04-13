@@ -24,21 +24,21 @@ class ThemeManager {
             NSForegroundColorAttributeName: Colors.navigationBarTitle
         ]
         
-        let proxyNavigationButton = NavigationButton.appearance()
-        proxyNavigationButton.setTitleTextAttributes([
-            NSFontAttributeName: Fonts.navigationButton!,
-            NSForegroundColorAttributeName: Colors.navigationButtonColorNormalState
-            ], for: .normal)
-        proxyNavigationButton.setTitleTextAttributes([
-            NSFontAttributeName: Fonts.navigationButton!,
-            NSForegroundColorAttributeName: Colors.navigationButtonColorHighlightedState
-            ], for: .highlighted)
-        
         let proxyClearNavigationBar = ClearNavigationBar.appearance()
         proxyClearNavigationBar.backgroundColor = .clear
         proxyClearNavigationBar.isTranslucent = true
         proxyClearNavigationBar.shadowImage = UIImage()
         proxyClearNavigationBar.setBackgroundImage(UIImage(), for: .default)
+        
+        let testProxy = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
+        testProxy.setTitleTextAttributes([
+            NSFontAttributeName: Fonts.navigationButton!,
+            NSForegroundColorAttributeName: Colors.navigationButtonColorNormalState
+            ], for: .normal)
+        testProxy.setTitleTextAttributes([
+            NSFontAttributeName: Fonts.navigationButton!,
+            NSForegroundColorAttributeName: Colors.navigationButtonColorHighlightedState
+            ], for: .highlighted)
     }
     
     static func applyStyleToLabel(appearanceProxy proxy: UILabel, font: UIFont, color: UIColor) {

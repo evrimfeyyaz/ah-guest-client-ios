@@ -19,7 +19,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
         
         tableView.rowHeight = 100
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+//        tableView.allowsSelection = false
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,6 +35,16 @@ class RoomServiceCategoriesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return roomServiceCategories.count
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowCategoryItems") {
+            let destinationController = segue.destination as! RoomServiceItemsTableViewController
+            
+            if let categoryCell = sender as? RoomServiceCategoryTableViewCell {
+                destinationController.navigationItem.title = categoryCell.categoryTitle.text
+            }
+        }
     }
 
 }
