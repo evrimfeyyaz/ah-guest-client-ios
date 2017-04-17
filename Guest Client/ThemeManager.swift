@@ -46,6 +46,13 @@ class ThemeManager {
         
         let navigationBarProxy = UINavigationBar.appearance()
         navigationBarProxy.tintColor = .white
+        
+        let labelInAttributeView = UILabel.appearance(whenContainedInInstancesOf: [AttributeView.self])
+//        labelInAttributeView.font = Fonts.price
+        labelInAttributeView.textColor = Colors.darkBlue
+        
+        let attributeView = AttributeView.appearance()
+        attributeView.titleLabelFont = Fonts.price
     }
     
     static func applyStyleToLabel(appearanceProxy proxy: UILabel, font: UIFont, color: UIColor) {

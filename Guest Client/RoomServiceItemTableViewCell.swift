@@ -14,4 +14,6 @@ class RoomServiceItemTableViewCell: UITableViewCell {
     @IBOutlet weak var itemDescription: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
 
+    var itemId: Int?
+    
 }

@@ -51,6 +51,7 @@ class RoomServiceItemsTableViewController: UITableViewController {
         cell.itemTitle.text = item.title
         cell.itemDescription.text = item.description
         cell.itemPrice.text = priceInLocale
+        cell.itemId = item.id
         
         cell.selectionStyle = .none
 
@@ -89,14 +90,15 @@ class RoomServiceItemsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "ShowItemDetail") {
+            let destination = segue.destination as! RoomServiceItemViewController
+            let itemId = (sender as? RoomServiceItemTableViewCell)?.itemId
+    
+            destination.itemId = itemId
+        }
     }
-    */
 
 }

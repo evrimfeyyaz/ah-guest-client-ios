@@ -38,14 +38,14 @@ class RoomServiceItemSection {
     private func getAllItems() -> [RoomServiceItem] {
         if (self.id == 1) {
             return [
-                RoomServiceItem(title: "Starbucks Table-Side French Press", description: nil, price: 6.000, image: nil),
-                RoomServiceItem(title: "Freshly Brewed Coffee", description: nil, price: 7.250, image: nil),
-                RoomServiceItem(title: "Selection of Hot Teas", description: "Espresso, lattes and cappuccionos are also available.", price: 7.250, image: nil)
+                RoomServiceItem(title: "Starbucks Table-Side French Press", description: nil, price: 6.000, image: nil, attributes: []),
+                RoomServiceItem(title: "Freshly Brewed Coffee", description: nil, price: 7.250, image: nil, attributes: []),
+                RoomServiceItem(title: "Selection of Hot Teas", description: "Espresso, lattes and cappuccionos are also available.", price: 7.250, image: nil, attributes: [])
             ]
         } else {
             return [
-                RoomServiceItem(title: "Breakfast Smoothies", description: "Yogurt, honey and fruit puree", price: 5.250, image: nil),
-                RoomServiceItem(title: "Seasonal Fruits and Berries", description: nil, price: 9.000, image: #imageLiteral(resourceName: "breakfast"))
+                RoomServiceItem(title: "Breakfast Smoothies", description: "Yogurt, honey and fruit puree", price: 5.250, image: nil, attributes: []),
+                RoomServiceItem(title: "Seasonal Fruits and Berries", description: nil, price: 9.000, image: #imageLiteral(resourceName: "breakfast"), attributes: [])
             ]
         }
     }
