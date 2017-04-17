@@ -31,17 +31,23 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lbV-Wg-ogu" customClass="RoomServiceCategoryImageView" customModule="Guest_Client" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="96.5"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rk-Sr-XMa" customClass="TitleOneLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="36" y="28" width="34" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rk-Sr-XMa" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="36" y="38" width="34" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Title 1"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey1-kV-HK8" customClass="SubtitleLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="36" y="44" width="88" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey1-kV-HK8" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                    <rect key="frame" x="36" y="49" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Cell Description"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,11 +55,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="lbV-Wg-ogu" secondAttribute="bottom" id="38q-Ss-EB8"/>
                                                 <constraint firstItem="Ey1-kV-HK8" firstAttribute="leading" secondItem="8rk-Sr-XMa" secondAttribute="leading" id="4M6-29-f27"/>
                                                 <constraint firstAttribute="trailing" secondItem="lbV-Wg-ogu" secondAttribute="trailing" id="H2u-MS-HUD"/>
-                                                <constraint firstItem="Ey1-kV-HK8" firstAttribute="top" secondItem="8rk-Sr-XMa" secondAttribute="bottom" constant="-5" id="TfI-d4-jeR"/>
+                                                <constraint firstItem="Ey1-kV-HK8" firstAttribute="top" secondItem="8rk-Sr-XMa" secondAttribute="bottom" constant="-10" id="TfI-d4-jeR"/>
                                                 <constraint firstItem="lbV-Wg-ogu" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leading" id="Tvd-QU-J0S"/>
                                                 <constraint firstItem="8rk-Sr-XMa" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leadingMargin" constant="28" id="XXh-jU-qu0"/>
                                                 <constraint firstItem="lbV-Wg-ogu" firstAttribute="top" secondItem="gQ1-2V-Y8a" secondAttribute="top" id="mEt-Jb-puW"/>
-                                                <constraint firstItem="8rk-Sr-XMa" firstAttribute="centerY" secondItem="lbV-Wg-ogu" secondAttribute="centerY" constant="-10" id="n0y-8S-fGK"/>
+                                                <constraint firstItem="8rk-Sr-XMa" firstAttribute="centerY" secondItem="lbV-Wg-ogu" secondAttribute="centerY" id="n0y-8S-fGK"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -81,8 +87,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Room Service" id="13X-VD-7zl">
-                        <barButtonItem key="leftBarButtonItem" title="Info" id="nmZ-kr-BwK" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target"/>
-                        <barButtonItem key="rightBarButtonItem" title="My Orders" id="b0u-tv-IO7" customClass="NavigationButton" customModule="Guest_Client" customModuleProvider="target"/>
+                        <barButtonItem key="leftBarButtonItem" title="Info" id="nmZ-kr-BwK"/>
+                        <barButtonItem key="rightBarButtonItem" title="My Orders" id="b0u-tv-IO7"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKw-AF-bga" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -108,23 +114,32 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flF-ua-cqZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YY-yB-7wH" customClass="CellLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YY-yB-7wH" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="310" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Cell Title"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-bI-otI" customClass="SubtitleLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-bI-otI" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="29" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Cell Description"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrV-2W-vYb" customClass="PriceLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrV-2W-vYb" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
                                                     <rect key="frame" x="328" y="8" width="39" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Cell Price"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.16862745098039217" green="0.18431372549019609" blue="0.23921568627450979" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -178,20 +193,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLR-er-wwr" customClass="TitleOneLabel" customModule="Guest_Client" customModuleProvider="target">
-                                <rect key="frame" x="16" y="79" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="146.5" placeholderIntrinsicHeight="50" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R0w-7o-St5">
-                                <rect key="frame" x="16" y="107.5" width="146.5" height="50"/>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kns-jB-Lcb">
-                                <rect key="frame" x="317" y="122" width="39" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLR-er-wwr" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="16" y="79" width="343" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Title 1"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="146.5" placeholderIntrinsicHeight="50" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R0w-7o-St5">
+                                <rect key="frame" x="16" y="131" width="146.5" height="50"/>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kns-jB-Lcb" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="320" y="143" width="36" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Price"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -221,7 +242,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pJt-bQ-VTf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fde-e3-L7E" customClass="MainNavigationBar" customModule="Guest_Client" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fde-e3-L7E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

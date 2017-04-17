@@ -11,53 +11,54 @@ import UIKit
 class ThemeManager {
 
     static func applyTheme() {
-        applyStyleToLabel(appearanceProxy: TitleOneLabel.appearance(), font: Fonts.titleOne!, color: Colors.titleText)
-        applyStyleToLabel(appearanceProxy: TitleTwoLabel.appearance(), font: Fonts.titleTwo!, color: Colors.titleText)
-        applyStyleToLabel(appearanceProxy: SubtitleLabel.appearance(), font: Fonts.subtitle!, color: Colors.titleText)
-        applyStyleToLabel(appearanceProxy: BodyLabel.appearance(), font: Fonts.body!, color: Colors.bodyText)
-        applyStyleToLabel(appearanceProxy: CellLabel.appearance(), font: Fonts.cell!, color: Colors.bodyText)
-        applyStyleToLabel(appearanceProxy: PriceLabel.appearance(), font: Fonts.price!, color: Colors.bodyText)
-        applyStyleToLabel(appearanceProxy: SectionLabel.appearance(), font: Fonts.section!, color: Colors.bodyText)
-        SectionLabel.appearance(whenContainedInInstancesOf: [UIView.self]).font = Fonts.section!
-        
-        let proxyMainNavigationBar = MainNavigationBar.appearance()
-        proxyMainNavigationBar.barTintColor = Colors.navigationBarBackground
-        proxyMainNavigationBar.isTranslucent = false
-        proxyMainNavigationBar.titleTextAttributes = [
-            NSFontAttributeName: Fonts.navigationBarTitle!,
-            NSForegroundColorAttributeName: Colors.navigationBarTitle
+        let navigationBar = UINavigationBar.appearance()
+        navigationBar.barTintColor = Colors.maroon
+        navigationBar.isTranslucent = false
+        navigationBar.titleTextAttributes = [
+            NSFontAttributeName: Fonts.latoRegular.withSize(17),
+            NSForegroundColorAttributeName: Colors.white
         ]
+        navigationBar.tintColor = .white
         
-        let proxyClearNavigationBar = ClearNavigationBar.appearance()
-        proxyClearNavigationBar.backgroundColor = .clear
-        proxyClearNavigationBar.isTranslucent = true
-        proxyClearNavigationBar.shadowImage = UIImage()
-        proxyClearNavigationBar.setBackgroundImage(UIImage(), for: .default)
-        
-        let testProxy = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
-        testProxy.setTitleTextAttributes([
-            NSFontAttributeName: Fonts.navigationButton!,
-            NSForegroundColorAttributeName: Colors.navigationButtonColorNormalState
+        let navigationBarButton = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
+        navigationBarButton.setTitleTextAttributes([
+            NSFontAttributeName: Fonts.latoLight.withSize(17),
+            NSForegroundColorAttributeName: Colors.white
             ], for: .normal)
-        testProxy.setTitleTextAttributes([
-            NSFontAttributeName: Fonts.navigationButton!,
-            NSForegroundColorAttributeName: Colors.navigationButtonColorHighlightedState
+        navigationBarButton.setTitleTextAttributes([
+            NSFontAttributeName: Fonts.latoLight.withSize(17),
+            NSForegroundColorAttributeName: Colors.white
             ], for: .highlighted)
-        
-        let navigationBarProxy = UINavigationBar.appearance()
-        navigationBarProxy.tintColor = .white
-        
-        let labelInAttributeView = UILabel.appearance(whenContainedInInstancesOf: [AttributeView.self])
-//        labelInAttributeView.font = Fonts.price
-        labelInAttributeView.textColor = Colors.darkBlue
-        
-        let attributeView = AttributeView.appearance()
-        attributeView.titleLabelFont = Fonts.price
     }
     
-    static func applyStyleToLabel(appearanceProxy proxy: UILabel, font: UIFont, color: UIColor) {
-        proxy.font = font
-        proxy.textColor = color
+}
+
+class Colors {
+    
+    static let white = UIColor.white
+    static let darkBlue = uiColorFromRgb(rgbValue: 0x00171F)
+    static let maroon = uiColorFromRgb(rgbValue: 0x8B2131)
+    
+    static func uiColorFromRgb(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+}
+
+class Fonts {
+    
+    static let oswaldRegular = font(withName: "Oswald")
+    static let latoRegular = font(withName: "Lato")
+    static let latoLight = font(withName: "Lato-Light")
+    static let latoLightItalic = font(withName: "Lato-LightItalic")
+    
+    static func font(withName name: String, size: CGFloat = 13) -> UIFont {
+        return UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size)
     }
     
 }

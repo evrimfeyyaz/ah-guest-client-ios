@@ -10,7 +10,7 @@ import UIKit
 
 class RoomServiceItemViewController: UIViewController {
     
-    @IBOutlet weak var itemTitle: TitleOneLabel!
+    @IBOutlet weak var itemTitle: StyledLabel!
     @IBOutlet weak var attributesView: UIStackView!
     @IBOutlet weak var itemPrice: UILabel!
     
@@ -24,15 +24,8 @@ class RoomServiceItemViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
         
         item = RoomServiceItem.getItem(itemId: 0)
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 1.0
-        paragraphStyle.lineHeightMultiple = 0.8
-        
-        let attrString = NSMutableAttributedString(string: item!.title)
-        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-        
-        itemTitle.attributedText = attrString
+    
+        itemTitle.text = item!.title
         
         for attribute in (item?.attributes)! {
             let attributeView = AttributeView()
@@ -46,8 +39,6 @@ class RoomServiceItemViewController: UIViewController {
         numberFormatter.numberStyle = .currency
         let priceInLocale = numberFormatter.string(from: item!.price as NSDecimalNumber)
         itemPrice.text = priceInLocale
-        itemPrice.font = Fonts.price?.withSize(18)
-        itemPrice.textColor = Colors.bodyText
     }
 
     override func didReceiveMemoryWarning() {

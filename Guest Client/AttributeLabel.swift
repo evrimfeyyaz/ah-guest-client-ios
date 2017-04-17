@@ -8,45 +8,40 @@
 
 import UIKit
 
-@IBDesignable
 class AttributeView: UIView {
     
-    @IBInspectable var title: String? {
+    var title: String? {
         didSet {
             setUpTitleLabel()
         }
     }
     
-    var titleLabel: UILabel = UILabel()
-    
-    dynamic var titleLabelFont: UIFont! {
-        get { return self.titleLabel.font }
-        set { self.titleLabel.font = newValue }
-    }
+    var titleLabel: UILabel = {
+        let styledLabel = StyledLabel()
+        styledLabel.style = .attribute
+        
+        return styledLabel
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        initWithSetUp()
+        setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        initWithSetUp()
+        setUp()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        initWithSetUp()
+        setUp()
     }
     
-    override func prepareForInterfaceBuilder() {
-        setUpTitleLabel()
-    }
-    
-    func initWithSetUp() {
+    func setUp() {
         setUpView()
         setUpTitleLabel()
     }

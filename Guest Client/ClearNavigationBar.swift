@@ -10,4 +10,29 @@ import UIKit
 
 class ClearNavigationBar: UINavigationBar {
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        styleView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        styleView()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        styleView()
+    }
+    
+    func styleView() {
+        backgroundColor = .clear
+        isTranslucent = true
+        shadowImage = UIImage()
+        setBackgroundImage(UIImage(), for: .default)
+    }
+    
 }

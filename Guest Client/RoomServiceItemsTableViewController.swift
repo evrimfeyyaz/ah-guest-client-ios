@@ -60,17 +60,15 @@ class RoomServiceItemsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        let sectionTitleLabel = UILabel()
+        let sectionTitleLabel = StyledLabel()
+        sectionTitleLabel.style = .tableHeader
         headerView.addSubview(sectionTitleLabel)
         
         sectionTitleLabel.text = roomServiceItemSections[section].title
         sectionTitleLabel.sizeToFit()
         sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        sectionTitleLabel.font = Fonts.section
-        sectionTitleLabel.textColor = Colors.bodyText
-        sectionTitleLabel.alpha = 0.5
         
-        headerView.layoutMargins = UIEdgeInsets(top: 10, left: 9, bottom: 3, right: 10)
+        headerView.layoutMargins = UIEdgeInsets(top: 10, left: 8, bottom: 3, right: 10)
         let headerMargins = headerView.layoutMarginsGuide
         sectionTitleLabel.leadingAnchor.constraint(equalTo: headerMargins.leadingAnchor).isActive = true
         sectionTitleLabel.bottomAnchor.constraint(equalTo: headerMargins.bottomAnchor).isActive = true

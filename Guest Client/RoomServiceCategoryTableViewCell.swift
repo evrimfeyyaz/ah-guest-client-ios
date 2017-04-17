@@ -10,8 +10,8 @@ import UIKit
 
 class RoomServiceCategoryTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var categoryTitle: TitleOneLabel!
-    @IBOutlet weak var categoryDescription: SubtitleLabel!
+    @IBOutlet weak var categoryTitle: StyledLabel!
+    @IBOutlet weak var categoryDescription: StyledLabel!
     @IBOutlet weak var categoryImage: UIImageView!
 
 }
