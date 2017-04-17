@@ -74,25 +74,25 @@ class StyledLabel: UILabel {
             font = Fonts.oswaldRegular.withSize(24)
             textColor = Colors.white
         case .body:
-            font = Fonts.latoLight.withSize(17)
+            font = Fonts.dynamicEquivalent(ofFont: Fonts.latoLight, withSize: 17)
             textColor = Colors.white
         case .cellTitle:
-            font = Fonts.latoRegular.withSize(16)
+            font = Fonts.dynamicEquivalent(ofFont: Fonts.latoRegular, withSize: 16)
             textColor = Colors.white
         case .cellDescription:
-            font = Fonts.latoLightItalic.withSize(14)
+            font = Fonts.dynamicEquivalent(ofFont: Fonts.latoLightItalic, withSize: 14)
             textColor = Colors.white
         case .cellPrice:
-            font = Fonts.oswaldRegular.withSize(14)
+            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 14)
             textColor = Colors.white
         case .price:
-            font = Fonts.oswaldRegular.withSize(18)
+            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 18)
             textColor = Colors.white
         case .tableHeader:
-            font = Fonts.oswaldRegular.withSize(15)
+            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 15)
             textColor = Colors.white.withAlphaComponent(0.7)
         case .attribute:
-            font = Fonts.oswaldRegular.withSize(14)
+            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 14)
             textColor = Colors.darkBlue
         }
     }

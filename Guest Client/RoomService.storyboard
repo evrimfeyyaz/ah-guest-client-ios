@@ -40,7 +40,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Title 1"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey1-kV-HK8" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ey1-kV-HK8" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
                                                     <rect key="frame" x="36" y="49" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -59,6 +59,7 @@
                                                 <constraint firstItem="lbV-Wg-ogu" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leading" id="Tvd-QU-J0S"/>
                                                 <constraint firstItem="8rk-Sr-XMa" firstAttribute="leading" secondItem="gQ1-2V-Y8a" secondAttribute="leadingMargin" constant="28" id="XXh-jU-qu0"/>
                                                 <constraint firstItem="lbV-Wg-ogu" firstAttribute="top" secondItem="gQ1-2V-Y8a" secondAttribute="top" id="mEt-Jb-puW"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ey1-kV-HK8" secondAttribute="trailing" constant="28" id="msV-ds-dZ6"/>
                                                 <constraint firstItem="8rk-Sr-XMa" firstAttribute="centerY" secondItem="lbV-Wg-ogu" secondAttribute="centerY" id="n0y-8S-fGK"/>
                                             </constraints>
                                         </view>
@@ -115,7 +116,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YY-yB-7wH" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="8" width="310" height="21"/>
+                                                    <rect key="frame" x="8" y="8" width="33.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -123,7 +124,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Cell Title"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-bI-otI" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-bI-otI" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="29" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -147,9 +148,11 @@
                                                 <constraint firstItem="5YY-yB-7wH" firstAttribute="top" secondItem="flF-ua-cqZ" secondAttribute="topMargin" id="5tj-Az-7f9"/>
                                                 <constraint firstItem="5YY-yB-7wH" firstAttribute="leading" secondItem="SVa-bI-otI" secondAttribute="leading" id="A6o-sf-9dO"/>
                                                 <constraint firstItem="BrV-2W-vYb" firstAttribute="top" secondItem="5YY-yB-7wH" secondAttribute="top" id="BqU-mm-ikM"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="SVa-bI-otI" secondAttribute="trailing" id="Cif-Zz-ycK"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="SVa-bI-otI" secondAttribute="bottom" id="ibh-ip-xZ2"/>
                                                 <constraint firstItem="SVa-bI-otI" firstAttribute="top" secondItem="5YY-yB-7wH" secondAttribute="bottom" id="j3A-hI-e41"/>
                                                 <constraint firstItem="5YY-yB-7wH" firstAttribute="leading" secondItem="flF-ua-cqZ" secondAttribute="leadingMargin" id="qze-DT-atE"/>
-                                                <constraint firstItem="BrV-2W-vYb" firstAttribute="leading" secondItem="5YY-yB-7wH" secondAttribute="trailing" constant="10" id="tbX-xD-u1X"/>
+                                                <constraint firstItem="BrV-2W-vYb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5YY-yB-7wH" secondAttribute="trailing" constant="10" id="tbX-xD-u1X"/>
                                                 <constraint firstItem="BrV-2W-vYb" firstAttribute="trailing" secondItem="flF-ua-cqZ" secondAttribute="trailingMargin" id="yqt-l1-0BW"/>
                                             </constraints>
                                         </view>
