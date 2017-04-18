@@ -131,13 +131,15 @@
 		91137BDC1E951B2000B21CE6 /* Guest Client */ = {
 			isa = PBXGroup;
 			children = (
+				913D8FBE1EA6349E00B1B3CD /* View Controllers */,
+				913D8FBD1EA6348E00B1B3CD /* Models */,
 				913D8FBC1EA52FBB00B1B3CD /* Custom Elements */,
 				91860F4B1E9D466A00AE4672 /* Theme */,
-				91860F4A1E9D465000AE4672 /* Onboarding */,
-				91F660B11E9E215900DE4D11 /* Room Service */,
 				91B335211E9CEF8E0064AF75 /* Resources */,
 				91137BDD1E951B2000B21CE6 /* AppDelegate.swift */,
+				91F660B21E9E217000DE4D11 /* RoomService.storyboard */,
 				91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */,
+				91860F461E9D131300AE4672 /* Onboarding.storyboard */,
 			);
 			path = "Guest Client";
 			sourceTree = "<group>";
@@ -185,19 +187,42 @@
 		913D8FBC1EA52FBB00B1B3CD /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
+				913D8FBF1EA634B300B1B3CD /* Table View Cells */,
 				91724ED31EA292CD00FD7240 /* AttributeLabel.swift */,
+				91BDBECD1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift */,
 			);
 			name = "Custom Elements";
 			sourceTree = "<group>";
 		};
-		91860F4A1E9D465000AE4672 /* Onboarding */ = {
+		913D8FBD1EA6348E00B1B3CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */,
+				91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */,
+				91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		913D8FBE1EA6349E00B1B3CD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				91860F441E9D106100AE4672 /* OnboardingViewController.swift */,
-				91860F461E9D131300AE4672 /* Onboarding.storyboard */,
-				91860F481E9D419700AE4672 /* OnboardingViewCell.swift */,
+				91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */,
+				91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */,
+				9145A7431EA0E0C900D33911 /* RoomServiceItemViewController.swift */,
 			);
-			name = Onboarding;
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		913D8FBF1EA634B300B1B3CD /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */,
+				91860F481E9D419700AE4672 /* OnboardingViewCell.swift */,
+				91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */,
+			);
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		91860F4B1E9D466A00AE4672 /* Theme */ = {
@@ -212,9 +237,9 @@
 		91B335211E9CEF8E0064AF75 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				91B335221E9CEF9D0064AF75 /* Fonts */,
 				91137BE41E951B2000B21CE6 /* Assets.xcassets */,
 				91137BE91E951B2000B21CE6 /* Info.plist */,
-				91B335221E9CEF9D0064AF75 /* Fonts */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -230,29 +255,6 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		91BDBECF1E9EB46F009CABE8 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				91BDBECD1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift */,
-				91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */,
-				91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */,
-				91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
-		91BDBED81E9F9EB8009CABE8 /* Items */ = {
-			isa = PBXGroup;
-			children = (
-				91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */,
-				91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */,
-				91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */,
-				91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */,
-				9145A7431EA0E0C900D33911 /* RoomServiceItemViewController.swift */,
-			);
-			name = Items;
-			sourceTree = "<group>";
-		};
 		91C71ACA1E9DF56D009E1D9B /* Styling Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,16 +262,6 @@
 				91868F611EA51CE400B589BC /* StyledLabel.swift */,
 			);
 			name = "Styling Elements";
-			sourceTree = "<group>";
-		};
-		91F660B11E9E215900DE4D11 /* Room Service */ = {
-			isa = PBXGroup;
-			children = (
-				91BDBECF1E9EB46F009CABE8 /* Categories */,
-				91BDBED81E9F9EB8009CABE8 /* Items */,
-				91F660B21E9E217000DE4D11 /* RoomService.storyboard */,
-			);
-			name = "Room Service";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
