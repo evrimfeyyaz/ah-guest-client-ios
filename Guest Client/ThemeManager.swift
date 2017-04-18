@@ -83,8 +83,6 @@ class Fonts {
     }
     
     static func dynamicEquivalent(ofFont font: UIFont, withSize size: CGFloat) -> UIFont {
-        print("size \(size)")
-        print("dynamic size \(size * fontSizeMultiplier)")
         return font.withSize(fontSizeMultiplier * size)
     }
     

@@ -50,11 +50,6 @@ class StyledLabel: UILabel {
         }
     }
     
-    // MARK: - Interface Builder
-    override func prepareForInterfaceBuilder() {
-        styleLabel()
-    }
-    
     // MARK: - Private Functions
     private func styleLabel() {
         switch style {

@@ -206,15 +206,24 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="146.5" placeholderIntrinsicHeight="50" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R0w-7o-St5">
-                                <rect key="frame" x="16" y="131" width="146.5" height="50"/>
+                                <rect key="frame" x="16" y="133" width="146.5" height="50"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kns-jB-Lcb" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
-                                <rect key="frame" x="320" y="143" width="36" height="27"/>
+                                <rect key="frame" x="320" y="145" width="36" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Price"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQz-ji-o8Y" customClass="StyledLabel" customModule="Guest_Client" customModuleProvider="target">
+                                <rect key="frame" x="16" y="191" width="340" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleAsString" value="Body"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
@@ -226,12 +235,16 @@
                             <constraint firstItem="Kns-jB-Lcb" firstAttribute="centerY" secondItem="R0w-7o-St5" secondAttribute="centerY" id="Gsn-aE-41S"/>
                             <constraint firstItem="BLR-er-wwr" firstAttribute="top" secondItem="rpd-Wh-gM9" secondAttribute="bottom" constant="15" id="Rhh-x7-wCm"/>
                             <constraint firstItem="Kns-jB-Lcb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="R0w-7o-St5" secondAttribute="trailing" constant="15" id="T1E-rS-YPr"/>
-                            <constraint firstItem="R0w-7o-St5" firstAttribute="top" secondItem="BLR-er-wwr" secondAttribute="bottom" constant="8" id="e4g-Qp-EvG"/>
+                            <constraint firstItem="PQz-ji-o8Y" firstAttribute="top" secondItem="R0w-7o-St5" secondAttribute="bottom" constant="8" symbolic="YES" id="ZV4-2I-BXa"/>
+                            <constraint firstItem="R0w-7o-St5" firstAttribute="top" secondItem="BLR-er-wwr" secondAttribute="bottom" constant="10" id="e4g-Qp-EvG"/>
+                            <constraint firstItem="PQz-ji-o8Y" firstAttribute="trailing" secondItem="Kns-jB-Lcb" secondAttribute="trailing" id="eOw-9t-rID"/>
+                            <constraint firstItem="PQz-ji-o8Y" firstAttribute="leading" secondItem="R0w-7o-St5" secondAttribute="leading" id="hIe-2R-5Zp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Kns-jB-Lcb" secondAttribute="trailing" constant="3" id="rfb-Sb-W48"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="attributesView" destination="R0w-7o-St5" id="kv0-Gg-qso"/>
+                        <outlet property="itemDescription" destination="PQz-ji-o8Y" id="egb-KM-QxO"/>
                         <outlet property="itemPrice" destination="Kns-jB-Lcb" id="Tmc-Nn-0QA"/>
                         <outlet property="itemTitle" destination="BLR-er-wwr" id="frM-j9-EDB"/>
                     </connections>

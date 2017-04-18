@@ -13,6 +13,7 @@ class RoomServiceItemViewController: UIViewController {
     @IBOutlet weak var itemTitle: StyledLabel!
     @IBOutlet weak var attributesView: UIStackView!
     @IBOutlet weak var itemPrice: UILabel!
+    @IBOutlet weak var itemDescription: UILabel!
     
     var itemId: Int?
     var item: RoomServiceItem?
@@ -39,6 +40,8 @@ class RoomServiceItemViewController: UIViewController {
         numberFormatter.numberStyle = .currency
         let priceInLocale = numberFormatter.string(from: item!.price as NSDecimalNumber)
         itemPrice.text = priceInLocale
+        
+        itemDescription.text = item!.description
     }
 
     override func didReceiveMemoryWarning() {
