@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         ThemeManager.applyTheme()
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        let launchViewController = OnboardingViewController()
+        window?.rootViewController = launchViewController
+        
         return true
     }
 

@@ -50,46 +50,61 @@ class StyledLabel: UILabel {
         }
     }
     
-    // MARK: - Private Functions
+    // MARK: - Private methods
     private func styleLabel() {
         switch style {
         case .titleOne:
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 1.0
-            paragraphStyle.lineHeightMultiple = 0.8
+            attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8)
             
-            let attrString = NSMutableAttributedString(string: text ?? "")
-            attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
-            
-            attributedText = attrString
-            
-            font = Fonts.oswaldRegular.withSize(36)
-            textColor = Colors.white
+            font = ThemeFonts.oswaldRegular.withSize(36)
+            textColor = ThemeColors.white
         case .titleTwo:
-            font = Fonts.oswaldRegular.withSize(24)
-            textColor = Colors.white
+            attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .center)
+            
+            font = ThemeFonts.oswaldRegular.withSize(24)
+            textColor = ThemeColors.white
         case .body:
-            font = Fonts.dynamicEquivalent(ofFont: Fonts.latoLight, withSize: 17)
-            textColor = Colors.white
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 17)
+            textColor = ThemeColors.white
         case .cellTitle:
-            font = Fonts.dynamicEquivalent(ofFont: Fonts.latoRegular, withSize: 16)
-            textColor = Colors.white
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoRegular, withSize: 16)
+            textColor = ThemeColors.white
         case .cellDescription:
-            font = Fonts.dynamicEquivalent(ofFont: Fonts.latoLightItalic, withSize: 14)
-            textColor = Colors.white
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 14)
+            textColor = ThemeColors.white
         case .cellPrice:
-            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 14)
-            textColor = Colors.white
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
+            textColor = ThemeColors.white
         case .price:
-            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 18)
-            textColor = Colors.white
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 18)
+            textColor = ThemeColors.white
         case .tableHeader:
-            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 15)
-            textColor = Colors.white.withAlphaComponent(0.7)
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 15)
+            textColor = ThemeColors.white.withAlphaComponent(0.7)
         case .attribute:
-            font = Fonts.dynamicEquivalent(ofFont: Fonts.oswaldRegular, withSize: 14)
-            textColor = Colors.darkBlue
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
+            textColor = ThemeColors.darkBlue
         }
+    }
+    
+    private func getAttributedString(withLineSpacing lineSpacing: CGFloat,
+                                     withLineHeightMultiple lineHeightMultiple: CGFloat,
+                                     withTextAlignment textAlignment: NSTextAlignment? = nil) -> NSAttributedString {
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1.0
+        paragraphStyle.lineHeightMultiple = 0.8
+        
+        // If the user has set the alignment on the label,
+        // use this setting on the attributed string as well.
+        if let textAlignment = textAlignment {
+            paragraphStyle.alignment = textAlignment
+        }
+        
+        let attrString = NSMutableAttributedString(string: text ?? "")
+        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        
+        return attrString
     }
     
 }

@@ -10,11 +10,14 @@
 		91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BDD1E951B2000B21CE6 /* AppDelegate.swift */; };
 		91137BE51E951B2000B21CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE41E951B2000B21CE6 /* Assets.xcassets */; };
 		91137BE81E951B2000B21CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */; };
+		913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC01EA6446600B1B3CD /* ThemeImages.swift */; };
+		913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */; };
+		913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */; };
+		913D8FC71EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */; };
+		913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */; };
 		9145A7441EA0E0C900D33911 /* RoomServiceItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9145A7431EA0E0C900D33911 /* RoomServiceItemViewController.swift */; };
 		91724ED41EA292CD00FD7240 /* AttributeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* AttributeLabel.swift */; };
 		91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F441E9D106100AE4672 /* OnboardingViewController.swift */; };
-		91860F471E9D131300AE4672 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91860F461E9D131300AE4672 /* Onboarding.storyboard */; };
-		91860F491E9D419700AE4672 /* OnboardingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F481E9D419700AE4672 /* OnboardingViewCell.swift */; };
 		91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91868F611EA51CE400B589BC /* StyledLabel.swift */; };
 		9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DC1E9B512100DFA856 /* Lato 300.ttf */; };
 		9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */; };
@@ -60,11 +63,14 @@
 		91137BF41E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91137BF91E951B2000B21CE6 /* Guest ClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Guest ClientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91137BFF1E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		913D8FC01EA6446600B1B3CD /* ThemeImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImages.swift; sourceTree = "<group>"; };
+		913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeFonts.swift; sourceTree = "<group>"; };
+		913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelpers.swift"; sourceTree = "<group>"; };
+		913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingInformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		9145A7431EA0E0C900D33911 /* RoomServiceItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemViewController.swift; sourceTree = "<group>"; };
 		91724ED31EA292CD00FD7240 /* AttributeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeLabel.swift; sourceTree = "<group>"; };
 		91860F441E9D106100AE4672 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		91860F461E9D131300AE4672 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		91860F481E9D419700AE4672 /* OnboardingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewCell.swift; sourceTree = "<group>"; };
 		91868F611EA51CE400B589BC /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		9189F6DC1E9B512100DFA856 /* Lato 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300.ttf"; sourceTree = "<group>"; };
 		9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300italic.ttf"; sourceTree = "<group>"; };
@@ -139,7 +145,7 @@
 				91137BDD1E951B2000B21CE6 /* AppDelegate.swift */,
 				91F660B21E9E217000DE4D11 /* RoomService.storyboard */,
 				91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */,
-				91860F461E9D131300AE4672 /* Onboarding.storyboard */,
+				913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */,
 			);
 			path = "Guest Client";
 			sourceTree = "<group>";
@@ -187,6 +193,7 @@
 		913D8FBC1EA52FBB00B1B3CD /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
+				913D8FC81EA669BD00B1B3CD /* Collection View Cells */,
 				913D8FBF1EA634B300B1B3CD /* Table View Cells */,
 				91724ED31EA292CD00FD7240 /* AttributeLabel.swift */,
 				91BDBECD1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift */,
@@ -219,10 +226,17 @@
 			isa = PBXGroup;
 			children = (
 				91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */,
-				91860F481E9D419700AE4672 /* OnboardingViewCell.swift */,
 				91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */,
 			);
 			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		913D8FC81EA669BD00B1B3CD /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */,
+			);
+			name = "Collection View Cells";
 			sourceTree = "<group>";
 		};
 		91860F4B1E9D466A00AE4672 /* Theme */ = {
@@ -230,6 +244,9 @@
 			children = (
 				91C71ACA1E9DF56D009E1D9B /* Styling Elements */,
 				919A417D1E9E445300C4CB7C /* ThemeManager.swift */,
+				913D8FC01EA6446600B1B3CD /* ThemeImages.swift */,
+				913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */,
+				913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -377,7 +394,6 @@
 				9189F6E21E9B512100DFA856 /* Lato regular.ttf in Resources */,
 				91F660B31E9E217000DE4D11 /* RoomService.storyboard in Resources */,
 				9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */,
-				91860F471E9D131300AE4672 /* Onboarding.storyboard in Resources */,
 				9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */,
 				9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */,
 			);
@@ -405,20 +421,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				91BDBECC1E9E8426009CABE8 /* RoomServiceCategory.swift in Sources */,
+				913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */,
 				91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */,
 				91BDBECE1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift in Sources */,
 				91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */,
 				91BDBEDC1E9FA6C6009CABE8 /* RoomServiceItemSection.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
+				913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */,
 				9145A7441EA0E0C900D33911 /* RoomServiceItemViewController.swift in Sources */,
+				913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */,
 				91BDBEC01E9E65A9009CABE8 /* ClearNavigationBar.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift in Sources */,
 				91724ED41EA292CD00FD7240 /* AttributeLabel.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift in Sources */,
 				91BDBEDA1E9F9EEC009CABE8 /* RoomServiceItem.swift in Sources */,
+				913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */,
 				91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */,
-				91860F491E9D419700AE4672 /* OnboardingViewCell.swift in Sources */,
+				913D8FC71EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift in Sources */,
 				91F660B51E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
