@@ -21,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let launchViewController = OnboardingViewController()
+        let rootViewController = OnboardingViewController()
+//        let rootViewController = RoomServiceCategoriesViewController()
+        let launchViewController = UINavigationController(rootViewController: rootViewController)
+//        let launchViewController = UINavigationController()
         window?.rootViewController = launchViewController
         
         return true

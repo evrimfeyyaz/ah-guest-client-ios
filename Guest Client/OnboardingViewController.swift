@@ -46,7 +46,7 @@ class OnboardingViewController: UIViewController {
         // Set up the logo.
         let logoImageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
         view.addSubview(logoImageView)
-        logoImageView.alhCenter(toView: view, withXOffset: 5, withYOffset: -100)
+        logoImageView.alhCenter(toView: view, withXOffset: 8, withYOffset: -100)
         
         // Set up the onboarding information view.
         onboardingInformationCollectionView.backgroundColor = .clear
@@ -72,7 +72,6 @@ class OnboardingViewController: UIViewController {
             ])
         
         // Set up the navigation bar.
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: UIScreen.main.bounds.width, height: 44))
         let skipBarButton = UIBarButtonItem(title: "Skip", style: .plain,
                                             target: self, action: #selector(skipOnboarding))
         let nextBarButton = UIBarButtonItem(title: "Next", style: .plain,
@@ -80,14 +79,11 @@ class OnboardingViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = skipBarButton
         navigationItem.rightBarButtonItem = nextBarButton
-        navigationBar.items = [navigationItem]
-        navigationBar.delegate = self
-        navigationBar.backgroundColor = .clear
-        navigationBar.isTranslucent = true
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.isTranslucent = true
         // For some reason, needed to make the navigation bar background transparent.
-        navigationBar.shadowImage = UIImage()
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        view.addSubview(navigationBar)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
     
     @objc private func goToNextPage() {
@@ -112,7 +108,8 @@ class OnboardingViewController: UIViewController {
 // MARK: - Collection view flow layout delegate
 extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.bounds.size
     }
     
@@ -138,15 +135,6 @@ extension OnboardingViewController: UICollectionViewDataSource {
         
         return infoCell
     }
-}
-
-// MARK: - Navigation bar delegate
-extension OnboardingViewController: UINavigationBarDelegate {
-    
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
-    }
-    
 }
 
 struct OnboardingInformation {

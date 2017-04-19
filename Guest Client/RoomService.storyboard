@@ -89,7 +89,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Room Service" id="13X-VD-7zl">
                         <barButtonItem key="leftBarButtonItem" title="Info" id="nmZ-kr-BwK"/>
-                        <barButtonItem key="rightBarButtonItem" title="My Orders" id="b0u-tv-IO7"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKw-AF-bga" userLabel="First Responder" sceneMemberID="firstResponder"/>

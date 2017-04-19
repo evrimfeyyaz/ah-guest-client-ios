@@ -12,22 +12,35 @@ class RoomServiceCategoryImageView: UIImageView {
     
     let gradient = CAGradientLayer()
     
+    override init(image: UIImage?) {
+        super.init(image: image)
+        
+        setUpViews()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setUpViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        gradient.frame = self.bounds
+        setUpViews()
+    }
+    
+    func setUpViews() {
         gradient.colors = [UIColor.black.withAlphaComponent(0.85).cgColor, UIColor.clear.cgColor]
         gradient.locations = [0, 1]
         gradient.startPoint = CGPoint(x: 0.0,y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0,y: 0.5)
-        self.layer.insertSublayer(gradient, at: 0)
+        
+        layer.insertSublayer(gradient, at: 0)
     }
 
     override func layoutSubviews() {
+        // To fix issues with Auto Layout.
         gradient.frame = self.bounds
     }
 
