@@ -20,7 +20,7 @@ class OnboardingViewController: UIViewController {
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
     }()
     
-    // MARK: - Onboarding Information Data
+    // MARK: - Onboarding information data
     let onboardingInformationList = [
         OnboardingInformation(title: "Welcome to The K Hotel",
                               information: "You can use this app to order room service right from your phone."),
@@ -71,7 +71,7 @@ class OnboardingViewController: UIViewController {
             pageControl.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
             ])
         
-        // Set up the navigation bar
+        // Set up the navigation bar.
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: UIScreen.main.bounds.width, height: 44))
         let skipBarButton = UIBarButtonItem(title: "Skip", style: .plain,
                                             target: self, action: #selector(skipOnboarding))
@@ -82,6 +82,11 @@ class OnboardingViewController: UIViewController {
         navigationItem.rightBarButtonItem = nextBarButton
         navigationBar.items = [navigationItem]
         navigationBar.delegate = self
+        navigationBar.backgroundColor = .clear
+        navigationBar.isTranslucent = true
+        // For some reason, needed to make the navigation bar background transparent.
+        navigationBar.shadowImage = UIImage()
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
         view.addSubview(navigationBar)
     }
     

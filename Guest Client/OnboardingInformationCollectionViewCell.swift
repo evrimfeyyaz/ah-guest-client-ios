@@ -10,19 +10,8 @@ import UIKit
 
 class OnboardingInformationCollectionViewCell: UICollectionViewCell {
     
-    let informationTitleLabel: StyledLabel = {
-        let styledLabel = StyledLabel()
-        styledLabel.style = .titleTwo
-        
-        return styledLabel
-    }()
-    
-    let informationLabel: StyledLabel = {
-        let styledLabel = StyledLabel()
-        styledLabel.style = .body
-        
-        return styledLabel
-    }()
+    let informationTitleLabel = StyledLabel(withStyle: .titleTwo)
+    let informationLabel = StyledLabel(withStyle: .body)
     
     var informationTitle: String {
         get { return informationTitleLabel.text ?? "" }

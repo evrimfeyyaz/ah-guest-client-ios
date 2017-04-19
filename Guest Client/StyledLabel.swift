@@ -50,6 +50,21 @@ class StyledLabel: UILabel {
         }
     }
     
+    // MARK: Initializers
+    init(withStyle style: LabelStyle) {
+        super.init(frame: CGRect.zero)
+        
+        self.style = style
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     // MARK: - Private methods
     private func styleLabel() {
         switch style {
