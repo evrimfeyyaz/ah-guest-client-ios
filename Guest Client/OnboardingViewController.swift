@@ -11,8 +11,8 @@ import UIKit
 class OnboardingViewController: UIViewController {
     
     // MARK: - UI elements
-    let pageControl = UIPageControl()
-    let onboardingInformationCollectionView: UICollectionView = {
+    fileprivate let pageControl = UIPageControl()
+    private let onboardingInformationCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
@@ -40,7 +40,7 @@ class OnboardingViewController: UIViewController {
         setUpViews()
     }
     
-    func setUpViews() {
+    private func setUpViews() {
         view.backgroundColor = ThemeImages.backgroundImage
         
         // Set up the logo.
@@ -137,9 +137,11 @@ extension OnboardingViewController: UICollectionViewDataSource {
 
 // MARK: - Navigation bar delegate
 extension OnboardingViewController: UINavigationBarDelegate {
+    
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
+    
 }
 
 struct OnboardingInformation {
