@@ -34,7 +34,6 @@
 		91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */; };
 		91BDBEDA1E9F9EEC009CABE8 /* RoomServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */; };
 		91BDBEDC1E9FA6C6009CABE8 /* RoomServiceItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */; };
-		91F660B31E9E217000DE4D11 /* RoomService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91F660B21E9E217000DE4D11 /* RoomService.storyboard */; };
 		91F660B51E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +88,6 @@
 		91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItem.swift; sourceTree = "<group>"; };
 		91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemSection.swift; sourceTree = "<group>"; };
-		91F660B21E9E217000DE4D11 /* RoomService.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RoomService.storyboard; sourceTree = "<group>"; };
 		91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoriesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +146,6 @@
 				9152982A1EA87B1F005CB637 /* Extensions */,
 				91B335211E9CEF8E0064AF75 /* Resources */,
 				91137BDD1E951B2000B21CE6 /* AppDelegate.swift */,
-				91F660B21E9E217000DE4D11 /* RoomService.storyboard */,
 				91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */,
 			);
 			path = "Guest Client";
@@ -406,7 +403,6 @@
 				91137BE81E951B2000B21CE6 /* LaunchScreen.storyboard in Resources */,
 				91137BE51E951B2000B21CE6 /* Assets.xcassets in Resources */,
 				9189F6E21E9B512100DFA856 /* Lato regular.ttf in Resources */,
-				91F660B31E9E217000DE4D11 /* RoomService.storyboard in Resources */,
 				9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */,
 				9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */,
 				9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */,
