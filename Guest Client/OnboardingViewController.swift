@@ -97,10 +97,10 @@ class OnboardingViewController: UIViewController {
     }
     
     @objc private func skipOnboarding() {
-        let roomServiceStoryboard = UIStoryboard(name: "RoomService", bundle: nil)
-        if let roomServiceCategoriesVC = roomServiceStoryboard.instantiateInitialViewController() {
-            show(roomServiceCategoriesVC, sender: self)
-        }
+        let roomServiceCategoriesVC = RoomServiceCategoriesViewController()
+        let navigationController = UINavigationController(rootViewController: roomServiceCategoriesVC)
+        
+        show(navigationController, sender: self)
     }
 
 }
