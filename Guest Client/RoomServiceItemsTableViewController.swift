@@ -10,20 +10,41 @@ import UIKit
 
 class RoomServiceItemsTableViewController: UITableViewController {
     
-    let roomServiceItemSections = RoomServiceItemSection.getAll()
-
+    // MARK: - Properties
+    
+    let roomServiceItemSections: [RoomServiceItemSection] = {
+        RoomServiceItemSection.getAll()
+    }()
+    
+    // MARK: - Private properties
+    private let itemCellIdentifier = "itemCellIdentifier"
+    private let headerViewIdentifier = "headerViewIdentifier"
+    
+    init() {
+        super.init(style: .grouped)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
+        setUpViews()
+    }
+    
+    // MARK: - View setup
+    
+    func setUpViews() {
+        view.backgroundColor = ThemeImages.backgroundImage
         
+        // Set up the table view.
+        tableView.backgroundView = nil
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        tableView.register(RoomServiceItemTableViewCell.self, forCellReuseIdentifier: itemCellIdentifier)
+        tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
     }
 
     // MARK: - Table view data source
@@ -37,65 +58,39 @@ class RoomServiceItemsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RoomServiceItem", for: indexPath) as! RoomServiceItemTableViewCell
+        let itemCell = tableView.dequeueReusableCell(withIdentifier: itemCellIdentifier,
+                                                     for: indexPath) as! RoomServiceItemTableViewCell
 
         let section = indexPath.section
         let row = indexPath.row
         let item = roomServiceItemSections[section].items[row]
         
-        let numberFormatter = NumberFormatter()
-        numberFormatter.currencyCode = "BHD"
-        numberFormatter.numberStyle = .currency
-        let priceInLocale = numberFormatter.string(from: item.price as NSDecimalNumber)
+        itemCell.itemTitle = item.title
+        itemCell.itemDescription = item.description
+        itemCell.itemPrice = item.price.stringInDefaultCurrency ?? ""
+        itemCell.itemId = item.id
+        itemCell.backgroundColor = .clear
         
-        cell.itemTitle.text = item.title
-        cell.itemDescription.text = item.description
-        cell.itemPrice.text = priceInLocale
-        cell.itemId = item.id
-        
-        cell.selectionStyle = .none
+        itemCell.selectionStyle = .none
 
-        return cell
+        return itemCell
     }
     
+    // MARK: - Table view delegate
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        let sectionTitleLabel = StyledLabel()
-        sectionTitleLabel.style = .tableHeader
-        headerView.addSubview(sectionTitleLabel)
-        
-        sectionTitleLabel.text = roomServiceItemSections[section].title
-        sectionTitleLabel.sizeToFit()
-        sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        headerView.layoutMargins = UIEdgeInsets(top: 10, left: 8, bottom: 3, right: 10)
-        let headerMargins = headerView.layoutMarginsGuide
-        sectionTitleLabel.leadingAnchor.constraint(equalTo: headerMargins.leadingAnchor).isActive = true
-        sectionTitleLabel.bottomAnchor.constraint(equalTo: headerMargins.bottomAnchor).isActive = true
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerViewIdentifier) as! TableViewHeader
+        headerView.title = roomServiceItemSections[section].title
+        headerView.contentView.backgroundColor = .clear
         
         return headerView
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 35
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return roomServiceItemSections[section].title
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ShowItemDetail") {
-            let destination = segue.destination as! RoomServiceItemViewController
-            let itemId = (sender as? RoomServiceItemTableViewCell)?.itemId
-    
-            destination.itemId = itemId
+        if (section == 0) {
+            return 35
+        } else {
+            return 25
         }
     }
 

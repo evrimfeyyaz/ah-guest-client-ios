@@ -38,7 +38,7 @@ class RoomServiceItemSection {
     private func getAllItems() -> [RoomServiceItem] {
         if (self.id == 1) {
             return [
-                RoomServiceItem(title: "Starbucks Table-Side French Press", description: nil, price: 6.000, image: nil, attributes: []),
+                RoomServiceItem(title: "Starbucks Table-Side French Press", description: "Espresso, lattes and cappuccionos are also available. Espresso, lattes and cappuccionos are also available.", price: 6.000, image: nil, attributes: []),
                 RoomServiceItem(title: "Freshly Brewed Coffee", description: nil, price: 7.250, image: nil, attributes: []),
                 RoomServiceItem(title: "Selection of Hot Teas", description: "Espresso, lattes and cappuccionos are also available.", price: 7.250, image: nil, attributes: [])
             ]

@@ -16,6 +16,8 @@
 		913D8FC71EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */; };
 		913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */; };
 		9145A7441EA0E0C900D33911 /* RoomServiceItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9145A7431EA0E0C900D33911 /* RoomServiceItemViewController.swift */; };
+		9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */; };
+		9152982E1EA880F2005CB637 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152982D1EA880F2005CB637 /* TableViewHeader.swift */; };
 		91724ED41EA292CD00FD7240 /* AttributeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* AttributeLabel.swift */; };
 		91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F441E9D106100AE4672 /* OnboardingViewController.swift */; };
 		91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91868F611EA51CE400B589BC /* StyledLabel.swift */; };
@@ -69,6 +71,8 @@
 		913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelpers.swift"; sourceTree = "<group>"; };
 		913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingInformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		9145A7431EA0E0C900D33911 /* RoomServiceItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemViewController.swift; sourceTree = "<group>"; };
+		9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decimal+CurrencyHelpers.swift"; sourceTree = "<group>"; };
+		9152982D1EA880F2005CB637 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		91724ED31EA292CD00FD7240 /* AttributeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeLabel.swift; sourceTree = "<group>"; };
 		91860F441E9D106100AE4672 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		91868F611EA51CE400B589BC /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
@@ -81,7 +85,7 @@
 		91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategory.swift; sourceTree = "<group>"; };
 		91BDBECD1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoryImageView.swift; sourceTree = "<group>"; };
-		91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemsTableViewController.swift; sourceTree = "<group>"; };
+		91BDBED01E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemsTableViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBED91E9F9EEC009CABE8 /* RoomServiceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItem.swift; sourceTree = "<group>"; };
 		91BDBEDB1E9FA6C6009CABE8 /* RoomServiceItemSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemSection.swift; sourceTree = "<group>"; };
@@ -141,11 +145,11 @@
 				913D8FBD1EA6348E00B1B3CD /* Models */,
 				913D8FBC1EA52FBB00B1B3CD /* Custom Elements */,
 				91860F4B1E9D466A00AE4672 /* Theme */,
+				9152982A1EA87B1F005CB637 /* Extensions */,
 				91B335211E9CEF8E0064AF75 /* Resources */,
 				91137BDD1E951B2000B21CE6 /* AppDelegate.swift */,
 				91F660B21E9E217000DE4D11 /* RoomService.storyboard */,
 				91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */,
-				913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */,
 			);
 			path = "Guest Client";
 			sourceTree = "<group>";
@@ -227,6 +231,7 @@
 			children = (
 				91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */,
 				91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */,
+				9152982D1EA880F2005CB637 /* TableViewHeader.swift */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -237,6 +242,15 @@
 				913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */,
 			);
 			name = "Collection View Cells";
+			sourceTree = "<group>";
+		};
+		9152982A1EA87B1F005CB637 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */,
+				9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		91860F4B1E9D466A00AE4672 /* Theme */ = {
@@ -425,6 +439,7 @@
 				91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */,
 				91BDBECE1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift in Sources */,
 				91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */,
+				9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */,
 				91BDBEDC1E9FA6C6009CABE8 /* RoomServiceItemSection.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
 				913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */,
@@ -435,6 +450,7 @@
 				91724ED41EA292CD00FD7240 /* AttributeLabel.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift in Sources */,
+				9152982E1EA880F2005CB637 /* TableViewHeader.swift in Sources */,
 				91BDBEDA1E9F9EEC009CABE8 /* RoomServiceItem.swift in Sources */,
 				913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */,
 				91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */,

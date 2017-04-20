@@ -22,7 +22,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
     }
     
     private func setUpViews() {
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
+        view.backgroundColor = ThemeImages.backgroundImage
         
         // Set up the table view.
         tableView.rowHeight = 100
@@ -58,6 +58,16 @@ class RoomServiceCategoriesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return roomServiceCategories.count
+    }
+    
+    // MARK: - Table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let categoryCell = tableView.cellForRow(at: indexPath) as! RoomServiceCategoryTableViewCell
+        
+        let roomServiceItemsTableVC = RoomServiceItemsTableViewController()
+        roomServiceItemsTableVC.navigationItem.title = categoryCell.categoryTitle
+        
+        show(roomServiceItemsTableVC, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

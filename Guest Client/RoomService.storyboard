@@ -98,7 +98,7 @@
         <!--Room Service Items-->
         <scene sceneID="3bM-n2-ZKd">
             <objects>
-                <tableViewController title="Room Service Items" id="8s0-kB-buh" customClass="RoomServiceItemsTableViewController" customModule="Guest_Client" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Room Service Items" id="8s0-kB-buh" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" id="GdC-aN-PPc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

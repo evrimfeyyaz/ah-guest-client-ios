@@ -94,8 +94,8 @@ class StyledLabel: UILabel {
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 18)
             textColor = ThemeColors.white
         case .tableHeader:
-            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 15)
-            textColor = ThemeColors.white.withAlphaComponent(0.7)
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 13)
+            textColor = ThemeColors.white.withAlphaComponent(0.8)
         case .attribute:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
             textColor = ThemeColors.darkBlue
