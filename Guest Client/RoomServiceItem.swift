@@ -10,29 +10,49 @@ import UIKit
 
 class RoomServiceItem {
     
+    let id: Int
     let title: String
-    let description: String?
+    let shortDescription: String?
+    let longDescription: String?
     let price: Decimal
     let image: UIImage?
-    let id: Int
-    let attributes: [String]
+    let attributes: [RoomServiceItemAttribute]
+    let preferences: [RoomServiceItemPreference]
+    let sectionId: Int
     
-    init(title: String, description: String?, price: Decimal, image: UIImage?, attributes: [String]?) {
+    init(id: Int, title: String, shortDescription: String? = nil,
+         longDescription: String? = nil, price: Decimal, image: UIImage? = nil,
+         attributes: [RoomServiceItemAttribute], preferences: [RoomServiceItemPreference],
+         sectionId: Int) {
+        self.id = id
         self.title = title
-        self.description = description
+        self.shortDescription = shortDescription
+        self.longDescription = longDescription
         self.price = price
         self.image = image
-        self.attributes = attributes ?? []
-        
-        self.id = 0
+        self.attributes = attributes
+        self.preferences = preferences
+        self.sectionId = sectionId
     }
     
     static func getItem(itemId id: Int) -> RoomServiceItem? {
-        return RoomServiceItem(title: "Starbucks Table-Side French Press",
-                               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas laoreet quis lacus sed vestibulum. Sed auctor auctor ex eu ullamcorper.",
+        let porkAttribute = RoomServiceItemAttribute(id: 0, title: "Pork", rgbColorInHex: "EB6277", icon: UIImage())
+        let alcoholAttribute = RoomServiceItemAttribute(id: 1, title: "Alcohol", rgbColorInHex: "DEDEDE", icon: UIImage())
+        
+        let choice1 = RoomServiceItemPreferenceChoice(id: 0, title: "Regular")
+        let choice2 = RoomServiceItemPreferenceChoice(id: 1, title: "Large", price: 0.200)
+        
+        let preferences = RoomServiceItemPreference(id: 0, title: "Size", isOptional: false,
+                                                    allowsMultipleChoices: false, choices: [choice1, choice2],
+                                                    defaultChoiceId: 0)
+        
+        return RoomServiceItem(id: 0, title: "Starbucks Table-Side French Press",
+                               shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                               longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas laoreet quis lacus sed vestibulum. Sed auctor auctor ex eu ullamcorper.",
                                price: 6.000,
                                image: nil,
-                               attributes: ["Pork", "Alcholic"])
+                               attributes: [porkAttribute, alcoholAttribute],
+                               preferences: [preferences], sectionId: 0)
     }
     
 }

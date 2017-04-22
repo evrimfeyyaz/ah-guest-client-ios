@@ -66,7 +66,7 @@ class RoomServiceItemsTableViewController: UITableViewController {
         let item = roomServiceItemSections[section].items[row]
         
         itemCell.itemTitle = item.title
-        itemCell.itemDescription = item.description
+        itemCell.itemDescription = item.shortDescription
         itemCell.itemPrice = item.price.stringInDefaultCurrency ?? ""
         itemCell.itemId = item.id
         itemCell.backgroundColor = .clear

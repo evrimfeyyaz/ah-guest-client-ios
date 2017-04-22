@@ -8,12 +8,19 @@
 
 import UIKit
 
-class RoomServiceItemViewController: UIViewController {
+class RoomServiceItemViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: - Private properties
     
     private let itemTitleLabel = StyledLabel(withStyle: .titleOne)
     private let itemAttributesView = UIStackView()
     private let itemPriceLabel = StyledLabel(withStyle: .price)
     private let itemDescriptionLabel = StyledLabel(withStyle: .body)
+    private let itemChoicesTableView = UITableView(frame: CGRect.zero, style: .grouped)
+    
+    private let choiceBooleanCellIdentifier = "choiceBooleanCellIdentifier"
+    
+    // MARK: - Public properties
     
     var itemTitle: String {
         get { return itemTitleLabel.text ?? "" }
@@ -33,6 +40,8 @@ class RoomServiceItemViewController: UIViewController {
     let itemId: Int
     var item: RoomServiceItem?
 
+    // MARK: - Initializers
+    
     init(itemId: Int) {
         self.itemId = itemId
         
@@ -42,6 +51,8 @@ class RoomServiceItemViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,22 +101,81 @@ class RoomServiceItemViewController: UIViewController {
         NSLayoutConstraint.activate([
             itemDescriptionLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             itemDescriptionLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            itemDescriptionLabel.topAnchor.constraint(equalTo: itemAttributesView.bottomAnchor, constant: 6),
+            itemDescriptionLabel.topAnchor.constraint(equalTo: itemAttributesView.bottomAnchor, constant: 6)
             ])
+        
+        // Set up the item choices table view.
+        itemChoicesTableView.dataSource = self
+        itemChoicesTableView.delegate = self
+        itemChoicesTableView.register(ChoiceBooleanTableViewCell.self, forCellReuseIdentifier: choiceBooleanCellIdentifier)
+        itemChoicesTableView.rowHeight = 100
+        view.addSubview(itemChoicesTableView)
+        itemChoicesTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            itemChoicesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            itemChoicesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            itemChoicesTableView.topAnchor.constraint(equalTo: itemDescriptionLabel.bottomAnchor),
+//            itemChoicesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            itemChoicesTableView.heightAnchor.constraint(equalToConstant: itemChoicesTableView.rowHeight * CGFloat(itemChoicesTableView.numberOfRows(inSection: 0)))
+            ])
+        itemChoicesTableView.reloadData()
         
         if let item = RoomServiceItem.getItem(itemId: itemId) {
             itemTitle = item.title
             
             for attribute in item.attributes {
                 let attributeView = AttributeView()
-                attributeView.title = attribute
+                attributeView.title = attribute.title
                 
                 itemAttributesView.addArrangedSubview(attributeView)
             }
             
             itemPrice = item.price.stringInDefaultCurrency!
-            itemDescription = item.description
+            if let longDescription = item.longDescription, !longDescription.isEmpty {
+                itemDescription = longDescription
+            } else if let shortDescription = item.shortDescription, !shortDescription.isEmpty {
+                itemDescription = shortDescription
+            }
+            
         }
     }
-
+    
+    // MARK: - Table view data source
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let choiceCell = tableView.dequeueReusableCell(withIdentifier: choiceBooleanCellIdentifier) as! ChoiceBooleanTableViewCell
+        choiceCell.titleLabel.text = "Test"
+        print("hello")
+        
+        return choiceCell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    // MARK: - Table view delegate
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
