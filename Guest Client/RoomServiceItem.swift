@@ -10,10 +10,24 @@ import UIKit
 
 class RoomServiceItem {
     
+    private var _longDescription: String?
+    
     let id: Int
     let title: String
     let shortDescription: String?
-    let longDescription: String?
+    var longDescription: String? {
+        get {
+            if let longDescription = _longDescription {
+                return longDescription
+            } else {
+                return shortDescription
+            }
+        }
+        
+        set {
+            _longDescription = newValue
+        }
+    }
     let price: Decimal
     let image: UIImage?
     let attributes: [RoomServiceItemAttribute]
@@ -27,12 +41,12 @@ class RoomServiceItem {
         self.id = id
         self.title = title
         self.shortDescription = shortDescription
-        self.longDescription = longDescription
         self.price = price
         self.image = image
         self.attributes = attributes
         self.preferences = preferences
         self.sectionId = sectionId
+        self.longDescription = longDescription
     }
     
     static func getItem(itemId id: Int) -> RoomServiceItem? {

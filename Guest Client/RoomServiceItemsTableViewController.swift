@@ -95,8 +95,8 @@ class RoomServiceItemsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let itemId = (tableView.cellForRow(at: indexPath) as! RoomServiceItemTableViewCell).itemId
-        let itemVC = RoomServiceItemViewController(itemId: itemId!)
+        let item = roomServiceItemSections[indexPath.section].items[indexPath.row]
+        let itemVC = RoomServiceItemViewController(roomServiceItem: item)
         
         show(itemVC, sender: self)
     }

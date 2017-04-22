@@ -22,7 +22,8 @@
 		915298521EAAA4AD005CB637 /* RoomServiceItemAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298511EAAA4AD005CB637 /* RoomServiceItemAttribute.swift */; };
 		915298541EAAA6D0005CB637 /* RoomServiceItemPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298531EAAA6D0005CB637 /* RoomServiceItemPreference.swift */; };
 		915298561EAAA7AF005CB637 /* RoomServiceItemPreferenceChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298551EAAA7AF005CB637 /* RoomServiceItemPreferenceChoice.swift */; };
-		91724ED41EA292CD00FD7240 /* AttributeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* AttributeLabel.swift */; };
+		915298581EAB69CB005CB637 /* RoomServiceItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298571EAB69CB005CB637 /* RoomServiceItemDetailView.swift */; };
+		91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* AttributeView.swift */; };
 		91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F441E9D106100AE4672 /* OnboardingViewController.swift */; };
 		91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91868F611EA51CE400B589BC /* StyledLabel.swift */; };
 		9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DC1E9B512100DFA856 /* Lato 300.ttf */; };
@@ -80,7 +81,8 @@
 		915298511EAAA4AD005CB637 /* RoomServiceItemAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemAttribute.swift; sourceTree = "<group>"; };
 		915298531EAAA6D0005CB637 /* RoomServiceItemPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemPreference.swift; sourceTree = "<group>"; };
 		915298551EAAA7AF005CB637 /* RoomServiceItemPreferenceChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemPreferenceChoice.swift; sourceTree = "<group>"; };
-		91724ED31EA292CD00FD7240 /* AttributeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeLabel.swift; sourceTree = "<group>"; };
+		915298571EAB69CB005CB637 /* RoomServiceItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemDetailView.swift; sourceTree = "<group>"; };
+		91724ED31EA292CD00FD7240 /* AttributeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeView.swift; sourceTree = "<group>"; };
 		91860F441E9D106100AE4672 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		91868F611EA51CE400B589BC /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		9189F6DC1E9B512100DFA856 /* Lato 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300.ttf"; sourceTree = "<group>"; };
@@ -202,9 +204,9 @@
 		913D8FBC1EA52FBB00B1B3CD /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
-				913D8FC81EA669BD00B1B3CD /* Collection View Cells */,
-				913D8FBF1EA634B300B1B3CD /* Table View Cells */,
-				91724ED31EA292CD00FD7240 /* AttributeLabel.swift */,
+				913D8FC81EA669BD00B1B3CD /* Collection View */,
+				913D8FBF1EA634B300B1B3CD /* Table View */,
+				91724ED31EA292CD00FD7240 /* AttributeView.swift */,
 				91BDBECD1E9EAB89009CABE8 /* RoomServiceCategoryImageView.swift */,
 			);
 			name = "Custom Elements";
@@ -234,23 +236,24 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		913D8FBF1EA634B300B1B3CD /* Table View Cells */ = {
+		913D8FBF1EA634B300B1B3CD /* Table View */ = {
 			isa = PBXGroup;
 			children = (
 				91BDBED21E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift */,
 				91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */,
 				9152982D1EA880F2005CB637 /* TableViewHeader.swift */,
 				9152982F1EA906E9005CB637 /* ChoiceBooleanTableViewCell.swift */,
+				915298571EAB69CB005CB637 /* RoomServiceItemDetailView.swift */,
 			);
-			name = "Table View Cells";
+			name = "Table View";
 			sourceTree = "<group>";
 		};
-		913D8FC81EA669BD00B1B3CD /* Collection View Cells */ = {
+		913D8FC81EA669BD00B1B3CD /* Collection View */ = {
 			isa = PBXGroup;
 			children = (
 				913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */,
 			);
-			name = "Collection View Cells";
+			name = "Collection View";
 			sourceTree = "<group>";
 		};
 		9152982A1EA87B1F005CB637 /* Extensions */ = {
@@ -452,13 +455,14 @@
 				9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */,
 				91BDBEDC1E9FA6C6009CABE8 /* RoomServiceItemSection.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
+				915298581EAB69CB005CB637 /* RoomServiceItemDetailView.swift in Sources */,
 				915298541EAAA6D0005CB637 /* RoomServiceItemPreference.swift in Sources */,
 				913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */,
 				9145A7441EA0E0C900D33911 /* RoomServiceItemViewController.swift in Sources */,
 				913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */,
 				91BDBEC01E9E65A9009CABE8 /* ClearNavigationBar.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift in Sources */,
-				91724ED41EA292CD00FD7240 /* AttributeLabel.swift in Sources */,
+				91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RoomServiceItemsTableViewController.swift in Sources */,
 				9152982E1EA880F2005CB637 /* TableViewHeader.swift in Sources */,
