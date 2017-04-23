@@ -11,33 +11,6 @@ import UIKit
 class StyledLabel: UILabel {
 
     // MARK: - Properties
-    @IBInspectable var styleAsString: String = "" {
-        didSet {
-            switch styleAsString {
-            case "Title 1":
-                style = .titleOne
-            case "Title 2":
-                style = .titleTwo
-            case "Body":
-                style = .body
-            case "Cell Title":
-                style = .cellTitle
-            case "Cell Description":
-                style = .cellDescription
-            case "Cell Price":
-                style = .cellPrice
-            case "Price":
-                style = .price
-            case "Table Header":
-                style = .tableHeader
-            case "Attribute":
-                style = .attribute
-            default:
-                style = .body
-            }
-        }
-    }
-    
     var style: LabelStyle = .body {
         didSet {
             styleLabel()
@@ -87,6 +60,9 @@ class StyledLabel: UILabel {
         case .cellDescription:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 14)
             textColor = ThemeColors.white
+        case .cellDetail:
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 16)
+            textColor = ThemeColors.white.withAlphaComponent(0.7)
         case .cellPrice:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
             textColor = ThemeColors.white
@@ -95,7 +71,7 @@ class StyledLabel: UILabel {
             textColor = ThemeColors.white
         case .tableHeader:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 13)
-            textColor = ThemeColors.white.withAlphaComponent(0.8)
+            textColor = ThemeColors.white.withAlphaComponent(0.4)
         case .attribute:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
             textColor = ThemeColors.darkBlue
@@ -130,6 +106,7 @@ enum LabelStyle {
     case body
     case cellTitle
     case cellDescription
+    case cellDetail
     case cellPrice
     case price
     case tableHeader

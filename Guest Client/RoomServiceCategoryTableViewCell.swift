@@ -68,7 +68,8 @@ class RoomServiceCategoryTableViewCell: UITableViewCell {
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3)
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                  constant: -ThemeMeasurements.tableViewCellBottomMargin)
             ])
         
         // Set up the image view.

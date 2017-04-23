@@ -22,23 +22,16 @@ class AttributeView: UIView {
         
         return styledLabel
     }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    init(title: String) {
+        self.title = title
         
+        super.init(frame: CGRect.zero)
         setUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        setUp()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        setUp()
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setUp() {

@@ -31,8 +31,8 @@ class RoomServiceItemDetailView: UIView {
         itemTitleLabel.numberOfLines = 0
         itemTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemTitleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            itemTitleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            itemTitleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
+            itemTitleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
             itemTitleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 15)
             ])
         
@@ -43,7 +43,7 @@ class RoomServiceItemDetailView: UIView {
         itemAttributesView.distribution = .equalSpacing
         itemAttributesView.spacing = 10
         NSLayoutConstraint.activate([
-            itemAttributesView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            itemAttributesView.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
             itemAttributesView.topAnchor.constraint(equalTo: itemTitleLabel.bottomAnchor, constant: 2)
             ])
         
@@ -51,7 +51,7 @@ class RoomServiceItemDetailView: UIView {
         addSubview(itemPriceLabel)
         itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemPriceLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            itemPriceLabel.trailingAnchor.constraint(equalTo: itemTitleLabel.trailingAnchor),
             itemPriceLabel.centerYAnchor.constraint(equalTo: itemAttributesView.centerYAnchor),
             itemPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: itemAttributesView.trailingAnchor, constant: 15)
             ])
@@ -61,11 +61,11 @@ class RoomServiceItemDetailView: UIView {
         itemDescriptionLabel.numberOfLines = 0
         itemDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemDescriptionLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            itemDescriptionLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            itemDescriptionLabel.topAnchor.constraint(equalTo: itemAttributesView.bottomAnchor, constant: 6)
+            itemDescriptionLabel.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
+            itemDescriptionLabel.trailingAnchor.constraint(equalTo: itemTitleLabel.trailingAnchor),
+            itemDescriptionLabel.topAnchor.constraint(equalTo: itemAttributesView.bottomAnchor, constant: 6),
+            itemDescriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor, constant: -15)
             ])
-
     }
     
 }

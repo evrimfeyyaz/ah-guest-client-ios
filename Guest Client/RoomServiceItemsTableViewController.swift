@@ -42,7 +42,7 @@ class RoomServiceItemsTableViewController: UITableViewController {
         // Set up the table view.
         tableView.backgroundView = nil
         tableView.rowHeight = 80
-        tableView.separatorStyle = .none
+        tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
         tableView.register(RoomServiceItemTableViewCell.self, forCellReuseIdentifier: itemCellIdentifier)
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
     }
@@ -69,7 +69,7 @@ class RoomServiceItemsTableViewController: UITableViewController {
         itemCell.itemDescription = item.shortDescription
         itemCell.itemPrice = item.price.stringInDefaultCurrency ?? ""
         itemCell.itemId = item.id
-        itemCell.backgroundColor = .clear
+        itemCell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
         itemCell.selectionStyle = .none
 
@@ -96,7 +96,7 @@ class RoomServiceItemsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = roomServiceItemSections[indexPath.section].items[indexPath.row]
-        let itemVC = RoomServiceItemViewController(roomServiceItem: item)
+        let itemVC = RoomServiceItemTableViewController(roomServiceItem: item)
         
         show(itemVC, sender: self)
     }
