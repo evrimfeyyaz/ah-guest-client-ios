@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RoomServiceItemOptionChoice {
+class RoomServiceItemOptionChoice: Equatable {
     
     let id: Int
     let title: String
@@ -18,6 +18,10 @@ class RoomServiceItemOptionChoice {
         self.id = id
         self.title = title
         self.price = price
+    }
+    
+    static func == (lhs: RoomServiceItemOptionChoice, rhs: RoomServiceItemOptionChoice) -> Bool {
+        return lhs.id == rhs.id
     }
     
 }

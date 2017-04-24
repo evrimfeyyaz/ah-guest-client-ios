@@ -8,23 +8,27 @@
 
 import Foundation
 
-class RoomServiceItemOption {
+class RoomServiceItemOption: Equatable {
     
     let id: Int
     let title: String
     let isOptional: Bool
     let allowsMultipleChoices: Bool
     let choices: [RoomServiceItemOptionChoice]
-    let defaultChoiceId: Int?
+    let defaultChoice: RoomServiceItemOptionChoice?
     
     init(id: Int, title: String, isOptional: Bool, allowsMultipleChoices: Bool,
-         choices: [RoomServiceItemOptionChoice], defaultChoiceId: Int? = nil) {
+         choices: [RoomServiceItemOptionChoice], defaultChoice: RoomServiceItemOptionChoice? = nil) {
         self.id = id
         self.title = title
         self.isOptional = isOptional
         self.allowsMultipleChoices = allowsMultipleChoices
         self.choices = choices
-        self.defaultChoiceId = defaultChoiceId
+        self.defaultChoice = defaultChoice
+    }
+    
+    static func == (lhs: RoomServiceItemOption, rhs: RoomServiceItemOption) -> Bool {
+        return lhs.id == rhs.id
     }
     
 }

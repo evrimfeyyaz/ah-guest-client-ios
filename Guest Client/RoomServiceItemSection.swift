@@ -44,9 +44,14 @@ class RoomServiceItemSection {
         let choice1 = RoomServiceItemOptionChoice(id: 0, title: "Regular")
         let choice2 = RoomServiceItemOptionChoice(id: 1, title: "Large", price: 0.200)
         
-        let options = RoomServiceItemOption(id: 0, title: "Size", isOptional: false,
+        let multipleChoice1 = RoomServiceItemOptionChoice(id: 0, title: "Extra cheese")
+        let multipleChoice2 = RoomServiceItemOptionChoice(id: 1, title: "Extra pickles", price: 0.200)
+        
+        let option1 = RoomServiceItemOption(id: 0, title: "Size", isOptional: false,
                                                     allowsMultipleChoices: false, choices: [choice1, choice2],
-                                                    defaultChoiceId: 0)
+                                                    defaultChoice: choice1)
+        let option2 = RoomServiceItemOption(id: 1, title: "Extra items", isOptional: true, allowsMultipleChoices: true,
+                                            choices: [multipleChoice1, multipleChoice2])
         
         if (self.id == 1) {
             return [
@@ -56,7 +61,7 @@ class RoomServiceItemSection {
                                 price: 6.000,
                                 image: nil,
                                 attributes: [porkAttribute, alcoholAttribute],
-                                options: [options], sectionId: 0),
+                                options: [option1, option2], sectionId: 0),
                 RoomServiceItem(id: 1, title: "Freshly Brewed Coffee", price: 7.250,
                                 image: nil, attributes: [], options: [], sectionId: 0),
                 RoomServiceItem(id: 2, title: "Selection of Hot Teas",

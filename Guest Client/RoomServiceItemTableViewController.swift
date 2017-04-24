@@ -12,17 +12,16 @@ class RoomServiceItemTableViewController: UITableViewController {
     
     // MARK: - Private properties
     
-    private let multipleChoiceOptionCellIdentifier = "multipleChoiceOptionCellIdentifier"
-    private let singleChoiceOptionCellIdentifier = "singleChoiceOptionCellIdentifier"
+    private let tableViewCellIdentifier = "tableViewCellIdentifier"
     
     // MARK: - Public properties
     
-    var item: RoomServiceItem
+    let cartItem: RoomServiceCartItem
 
     // MARK: - Initializers
     
     init(roomServiceItem: RoomServiceItem) {
-        self.item = roomServiceItem
+        self.cartItem = RoomServiceCartItem(roomServiceItem: roomServiceItem)
         
         super.init(style: .grouped)
     }
@@ -47,18 +46,16 @@ class RoomServiceItemTableViewController: UITableViewController {
         tableView.backgroundView = nil
         tableView.estimatedRowHeight = 50
         tableView.separatorColor = ThemeColors.white.withAlphaComponent(0.1)
-        tableView.register(RoomServiceItemMultipleChoiceOptionTableViewCell.self,
-                           forCellReuseIdentifier: multipleChoiceOptionCellIdentifier)
-        tableView.register(RoomServiceItemSingleChoiceOptionTableViewCell.self,
-                           forCellReuseIdentifier: singleChoiceOptionCellIdentifier)
+        tableView.register(TableViewCell.self,
+                           forCellReuseIdentifier: tableViewCellIdentifier)
         
         // Set up the table header view.
         let itemDetailView = RoomServiceItemDetailView()
-        itemDetailView.itemTitleLabel.text = item.title
-        itemDetailView.itemDescriptionLabel.text = item.longDescription
-        itemDetailView.itemPriceLabel.text = item.price.stringInDefaultCurrency
+        itemDetailView.itemTitleLabel.text = cartItem.roomServiceItem.title
+        itemDetailView.itemDescriptionLabel.text = cartItem.roomServiceItem.longDescription
+        itemDetailView.itemPriceLabel.text = cartItem.roomServiceItem.price.stringInDefaultCurrency
         
-        for attribute in item.attributes {
+        for attribute in cartItem.roomServiceItem.attributes {
             let attributeView = AttributeView(title: attribute.title)
             
             itemDetailView.itemAttributesView.addArrangedSubview(attributeView)
@@ -71,38 +68,37 @@ class RoomServiceItemTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let option = item.options[indexPath.row]
+        let choicesForOption = cartItem.choices[indexPath.row]
         
-        let cell: RoomServiceItemOptionTableViewCell
-        if option.allowsMultipleChoices {
-            cell = tableView.dequeueReusableCell(withIdentifier: multipleChoiceOptionCellIdentifier) as! RoomServiceItemMultipleChoiceOptionTableViewCell
-            
-        } else {
-            let singleChoiceCell = tableView.dequeueReusableCell(withIdentifier: singleChoiceOptionCellIdentifier) as! RoomServiceItemSingleChoiceOptionTableViewCell
-            
-            if let defaultChoiceId = option.defaultChoiceId {
-                let defaultChoiceTitle = option.choices.first(where: { $0.id == defaultChoiceId })?.title
-                singleChoiceCell.choiceLabel.text = defaultChoiceTitle
-            }
-            
-            cell = singleChoiceCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
+        cell.accessoryType = .disclosureIndicator
+        cell.titleLabel.text = choicesForOption.option.title
+        
+        if !choicesForOption.option.allowsMultipleChoices {
+            cell.detailLabel.text = choicesForOption.selectedChoices.first?.title
         }
         
-        cell.titleLabel.text = option.title
+        cell.titleLabel.text = choicesForOption.option.title
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return item.options.count
+        return cartItem.roomServiceItem.options.count
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let option = item.options[indexPath.row]
-        let optionVC = RoomServiceItemOptionChoicesTableViewController(option: option)
+        let option = cartItem.roomServiceItem.options[indexPath.row]
+        
+        let optionVC: RoomServiceItemOptionChoicesTableViewController
+        if let choicesForOption = cartItem.choices(for: option) {
+            optionVC = RoomServiceItemOptionChoicesTableViewController(choicesForOption: choicesForOption)
+        } else {
+            optionVC = RoomServiceItemOptionChoicesTableViewController(choicesForOption: RoomServiceItemChoicesForOption(option: option))
+        }
         
         show(optionVC, sender: self)
     }

@@ -58,7 +58,7 @@ class RoomServiceItem {
         
         let options = RoomServiceItemOption(id: 0, title: "Size", isOptional: false,
                                                     allowsMultipleChoices: false, choices: [choice1, choice2],
-                                                    defaultChoiceId: 0)
+                                                    defaultChoice: choice1)
         
         return RoomServiceItem(id: 0, title: "Starbucks Table-Side French Press",
                                shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
