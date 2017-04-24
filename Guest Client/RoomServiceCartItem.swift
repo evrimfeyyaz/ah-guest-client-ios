@@ -25,7 +25,11 @@ class RoomServiceCartItem {
         self.specialRequest = specialRequest
         
         for option in roomServiceItem.options {
-            self.choices.append(RoomServiceItemChoicesForOption(option: option))
+            if (option.allowsMultipleChoices) {
+                self.choices.append(RoomServiceItemChoicesForMultipleChoiceOption(option: option))
+            } else {
+                self.choices.append(RoomServiceItemChoicesForSingleChoiceOption(option: option))
+            }
         }
     }
     

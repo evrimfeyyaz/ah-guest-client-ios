@@ -68,6 +68,11 @@ class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
         }
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
+        if choicesForOption.isSelected(choice: choice) {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            cell.accessoryType = .checkmark
+        }
+        
         return cell
     }
     
@@ -87,10 +92,26 @@ class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let choice = choicesForOption.option.choices[indexPath.row]
+        
+        if (choicesForOption.option.allowsMultipleChoices) {
+            let choicesForMultipleChoiceOption = choicesForOption as! RoomServiceItemChoicesForMultipleChoiceOption
+            choicesForMultipleChoiceOption.addSelectedChoice(choice: choice)
+        } else {
+            let choicesForSingleChoiceOption = choicesForOption as! RoomServiceItemChoicesForSingleChoiceOption
+            choicesForSingleChoiceOption.makeSelectedChoice(choice: choice)
+        }
+        
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if (choicesForOption.option.allowsMultipleChoices) {
+            let choice = choicesForOption.option.choices[indexPath.row]
+            let choicesForMultipleChoiceOption = choicesForOption as! RoomServiceItemChoicesForMultipleChoiceOption
+            choicesForMultipleChoiceOption.removeSelectedChoice(choice: choice)
+        }
+        
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
     

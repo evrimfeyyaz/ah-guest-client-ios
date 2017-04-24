@@ -30,6 +30,10 @@ class RoomServiceItemChoicesForOption: Equatable {
         return lhs.option == rhs.option
     }
     
+    func isSelected(choice: RoomServiceItemOptionChoice) -> Bool {
+        return selectedChoices.contains(choice)
+    }
+    
 }
 
 class RoomServiceItemChoicesForMultipleChoiceOption: RoomServiceItemChoicesForOption {

@@ -96,11 +96,8 @@ class RoomServiceItemTableViewController: UITableViewController {
         let optionVC: RoomServiceItemOptionChoicesTableViewController
         if let choicesForOption = cartItem.choices(for: option) {
             optionVC = RoomServiceItemOptionChoicesTableViewController(choicesForOption: choicesForOption)
-        } else {
-            optionVC = RoomServiceItemOptionChoicesTableViewController(choicesForOption: RoomServiceItemChoicesForOption(option: option))
+            show(optionVC, sender: self)
         }
-        
-        show(optionVC, sender: self)
     }
     
 }
