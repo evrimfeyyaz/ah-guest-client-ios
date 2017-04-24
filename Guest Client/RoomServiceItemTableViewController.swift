@@ -12,8 +12,8 @@ class RoomServiceItemTableViewController: UITableViewController {
     
     // MARK: - Private properties
     
-    private let multipleChoicePreferenceCellIdentifier = "multipleChoicePreferenceCellIdentifier"
-    private let singleChoicePreferenceCellIdentifier = "singleChoicePreferenceCellIdentifier"
+    private let multipleChoiceOptionCellIdentifier = "multipleChoiceOptionCellIdentifier"
+    private let singleChoiceOptionCellIdentifier = "singleChoiceOptionCellIdentifier"
     
     // MARK: - Public properties
     
@@ -47,10 +47,10 @@ class RoomServiceItemTableViewController: UITableViewController {
         tableView.backgroundView = nil
         tableView.estimatedRowHeight = 50
         tableView.separatorColor = ThemeColors.white.withAlphaComponent(0.1)
-        tableView.register(RoomServiceItemMultipleChoicePreferenceTableViewCell.self,
-                           forCellReuseIdentifier: multipleChoicePreferenceCellIdentifier)
-        tableView.register(RoomServiceItemSingleChoicePreferenceTableViewCell.self,
-                           forCellReuseIdentifier: singleChoicePreferenceCellIdentifier)
+        tableView.register(RoomServiceItemMultipleChoiceOptionTableViewCell.self,
+                           forCellReuseIdentifier: multipleChoiceOptionCellIdentifier)
+        tableView.register(RoomServiceItemSingleChoiceOptionTableViewCell.self,
+                           forCellReuseIdentifier: singleChoiceOptionCellIdentifier)
         
         // Set up the table header view.
         let itemDetailView = RoomServiceItemDetailView()
@@ -71,35 +71,41 @@ class RoomServiceItemTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let preference = item.preferences[indexPath.row]
+        let option = item.options[indexPath.row]
         
-        let cell: RoomServiceItemPreferenceTableViewCell
-        if preference.allowsMultipleChoices {
-            cell = tableView.dequeueReusableCell(withIdentifier: multipleChoicePreferenceCellIdentifier) as! RoomServiceItemMultipleChoicePreferenceTableViewCell
+        let cell: RoomServiceItemOptionTableViewCell
+        if option.allowsMultipleChoices {
+            cell = tableView.dequeueReusableCell(withIdentifier: multipleChoiceOptionCellIdentifier) as! RoomServiceItemMultipleChoiceOptionTableViewCell
             
         } else {
-            let singleChoiceCell = tableView.dequeueReusableCell(withIdentifier: singleChoicePreferenceCellIdentifier) as! RoomServiceItemSingleChoicePreferenceTableViewCell
+            let singleChoiceCell = tableView.dequeueReusableCell(withIdentifier: singleChoiceOptionCellIdentifier) as! RoomServiceItemSingleChoiceOptionTableViewCell
             
-            if let defaultChoiceId = preference.defaultChoiceId {
-                let defaultChoiceTitle = preference.choices.first(where: { $0.id == defaultChoiceId })?.title
+            if let defaultChoiceId = option.defaultChoiceId {
+                let defaultChoiceTitle = option.choices.first(where: { $0.id == defaultChoiceId })?.title
                 singleChoiceCell.choiceLabel.text = defaultChoiceTitle
             }
             
             cell = singleChoiceCell
         }
         
-        cell.titleLabel.text = preference.title
-        cell.accessoryType = .disclosureIndicator
+        cell.titleLabel.text = option.title
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return item.preferences.count
+        return item.options.count
     }
     
     // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let option = item.options[indexPath.row]
+        let optionVC = RoomServiceItemOptionChoicesTableViewController(option: option)
+        
+        show(optionVC, sender: self)
+    }
     
 }
 

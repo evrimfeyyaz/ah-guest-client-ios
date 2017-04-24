@@ -8,17 +8,17 @@
 
 import Foundation
 
-class RoomServiceItemPreference {
+class RoomServiceItemOption {
     
     let id: Int
     let title: String
     let isOptional: Bool
     let allowsMultipleChoices: Bool
-    let choices: [RoomServiceItemPreferenceChoice]
+    let choices: [RoomServiceItemOptionChoice]
     let defaultChoiceId: Int?
     
     init(id: Int, title: String, isOptional: Bool, allowsMultipleChoices: Bool,
-         choices: [RoomServiceItemPreferenceChoice], defaultChoiceId: Int? = nil) {
+         choices: [RoomServiceItemOptionChoice], defaultChoiceId: Int? = nil) {
         self.id = id
         self.title = title
         self.isOptional = isOptional

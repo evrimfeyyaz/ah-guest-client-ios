@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceItemPreferenceTableViewCell: UITableViewCell {
+class RoomServiceItemOptionTableViewCell: UITableViewCell {
     
     let titleLabel = StyledLabel(withStyle: .cellTitle)
     
@@ -23,6 +23,9 @@ class RoomServiceItemPreferenceTableViewCell: UITableViewCell {
     }
     
     func setUpViews() {
+        accessoryType = .disclosureIndicator
+        selectionStyle = .none
+        
         // Set up the title label.
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +38,7 @@ class RoomServiceItemPreferenceTableViewCell: UITableViewCell {
 
 }
 
-class RoomServiceItemMultipleChoicePreferenceTableViewCell: RoomServiceItemPreferenceTableViewCell {
+class RoomServiceItemMultipleChoiceOptionTableViewCell: RoomServiceItemOptionTableViewCell {
     
     let choiceLabel = StyledLabel(withStyle: .cellDescription)
     
@@ -64,7 +67,7 @@ class RoomServiceItemMultipleChoicePreferenceTableViewCell: RoomServiceItemPrefe
     
 }
 
-class RoomServiceItemSingleChoicePreferenceTableViewCell: RoomServiceItemPreferenceTableViewCell {
+class RoomServiceItemSingleChoiceOptionTableViewCell: RoomServiceItemOptionTableViewCell {
     
     let choiceLabel = StyledLabel(withStyle: .cellDetail)
     

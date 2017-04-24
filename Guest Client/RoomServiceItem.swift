@@ -31,12 +31,12 @@ class RoomServiceItem {
     let price: Decimal
     let image: UIImage?
     let attributes: [RoomServiceItemAttribute]
-    let preferences: [RoomServiceItemPreference]
+    let options: [RoomServiceItemOption]
     let sectionId: Int
     
     init(id: Int, title: String, shortDescription: String? = nil,
          longDescription: String? = nil, price: Decimal, image: UIImage? = nil,
-         attributes: [RoomServiceItemAttribute], preferences: [RoomServiceItemPreference],
+         attributes: [RoomServiceItemAttribute], options: [RoomServiceItemOption],
          sectionId: Int) {
         self.id = id
         self.title = title
@@ -44,7 +44,7 @@ class RoomServiceItem {
         self.price = price
         self.image = image
         self.attributes = attributes
-        self.preferences = preferences
+        self.options = options
         self.sectionId = sectionId
         self.longDescription = longDescription
     }
@@ -53,10 +53,10 @@ class RoomServiceItem {
         let porkAttribute = RoomServiceItemAttribute(id: 0, title: "Pork", rgbColorInHex: "EB6277", icon: UIImage())
         let alcoholAttribute = RoomServiceItemAttribute(id: 1, title: "Alcohol", rgbColorInHex: "DEDEDE", icon: UIImage())
         
-        let choice1 = RoomServiceItemPreferenceChoice(id: 0, title: "Regular")
-        let choice2 = RoomServiceItemPreferenceChoice(id: 1, title: "Large", price: 0.200)
+        let choice1 = RoomServiceItemOptionChoice(id: 0, title: "Regular")
+        let choice2 = RoomServiceItemOptionChoice(id: 1, title: "Large", price: 0.200)
         
-        let preferences = RoomServiceItemPreference(id: 0, title: "Size", isOptional: false,
+        let options = RoomServiceItemOption(id: 0, title: "Size", isOptional: false,
                                                     allowsMultipleChoices: false, choices: [choice1, choice2],
                                                     defaultChoiceId: 0)
         
@@ -66,7 +66,7 @@ class RoomServiceItem {
                                price: 6.000,
                                image: nil,
                                attributes: [porkAttribute, alcoholAttribute],
-                               preferences: [preferences], sectionId: 0)
+                               options: [options], sectionId: 0)
     }
     
 }

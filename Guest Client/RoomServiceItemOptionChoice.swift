@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RoomServiceItemPreferenceChoice {
+class RoomServiceItemOptionChoice {
     
     let id: Int
     let title: String

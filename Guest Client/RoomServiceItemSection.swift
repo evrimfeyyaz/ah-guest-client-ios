@@ -41,10 +41,10 @@ class RoomServiceItemSection {
         let porkAttribute = RoomServiceItemAttribute(id: 0, title: "Pork", rgbColorInHex: "EB6277", icon: UIImage())
         let alcoholAttribute = RoomServiceItemAttribute(id: 1, title: "Alcohol", rgbColorInHex: "DEDEDE", icon: UIImage())
         
-        let choice1 = RoomServiceItemPreferenceChoice(id: 0, title: "Regular")
-        let choice2 = RoomServiceItemPreferenceChoice(id: 1, title: "Large", price: 0.200)
+        let choice1 = RoomServiceItemOptionChoice(id: 0, title: "Regular")
+        let choice2 = RoomServiceItemOptionChoice(id: 1, title: "Large", price: 0.200)
         
-        let preferences = RoomServiceItemPreference(id: 0, title: "Size", isOptional: false,
+        let options = RoomServiceItemOption(id: 0, title: "Size", isOptional: false,
                                                     allowsMultipleChoices: false, choices: [choice1, choice2],
                                                     defaultChoiceId: 0)
         
@@ -56,20 +56,20 @@ class RoomServiceItemSection {
                                 price: 6.000,
                                 image: nil,
                                 attributes: [porkAttribute, alcoholAttribute],
-                                preferences: [preferences], sectionId: 0),
+                                options: [options], sectionId: 0),
                 RoomServiceItem(id: 1, title: "Freshly Brewed Coffee", price: 7.250,
-                                image: nil, attributes: [], preferences: [], sectionId: 0),
+                                image: nil, attributes: [], options: [], sectionId: 0),
                 RoomServiceItem(id: 2, title: "Selection of Hot Teas",
                                 shortDescription: "Espresso, lattes and cappuccionos are also available.",
-                                price: 7.250, image: nil, attributes: [], preferences: [], sectionId: 0)
+                                price: 7.250, image: nil, attributes: [], options: [], sectionId: 0)
             ]
         } else {
             return [
                 RoomServiceItem(id: 3, title: "Breakfast Smoothies",
                                 shortDescription: "Yogurt, honey and fruit puree",
-                                price: 5.250, image: nil, attributes: [], preferences: [], sectionId: 0),
+                                price: 5.250, image: nil, attributes: [], options: [], sectionId: 0),
                 RoomServiceItem(id: 4, title: "Seasonal Fruits and Berries", price: 9.000,
-                                image: #imageLiteral(resourceName: "breakfast"), attributes: [], preferences: [], sectionId: 0)
+                                image: #imageLiteral(resourceName: "breakfast"), attributes: [], options: [], sectionId: 0)
             ]
         }
     }
