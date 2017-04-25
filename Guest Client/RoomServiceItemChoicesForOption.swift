@@ -34,6 +34,10 @@ class RoomServiceItemChoicesForOption: Equatable {
         return selectedChoices.contains(choice)
     }
     
+    func selectedChoicesAsString() -> String {
+        return selectedChoices.map({ $0.title }).joined(separator: " / ")
+    }
+    
 }
 
 class RoomServiceItemChoicesForMultipleChoiceOption: RoomServiceItemChoicesForOption {

@@ -12,6 +12,8 @@ class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
 
     let choicesForOption: RoomServiceItemChoicesForOption
     
+    var itemViewController: RoomServiceItemTableViewController?
+    
     private let tableViewCellIdentifier = "tableViewCellIdentifier"
     private let tableViewHeaderIdentifier = "tableViewHeaderIdentifier"
     
@@ -27,11 +29,6 @@ class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        
-//        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(finishChoosing))
-//        doneButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
-//        doneButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .highlighted)
-//        navigationItem.rightBarButtonItem = doneButton
         
         setUpViews()
     }
@@ -117,6 +114,14 @@ class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
+    }
+    
+    // MARK: - Navigation
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        itemViewController?.reloadChangedRow()
     }
 
 }
