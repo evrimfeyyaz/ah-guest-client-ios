@@ -8,11 +8,12 @@
 
 import UIKit
 
-class RoomServiceItemTableViewController: UITableViewController {
+class RoomServiceItemTableViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Private properties
     
     private let tableViewCellIdentifier = "tableViewCellIdentifier"
+    private let textEntryTableViewCellIdentifier = "textEntryTableViewCellIdentifier"
     
     // MARK: - Public properties
     
@@ -45,9 +46,11 @@ class RoomServiceItemTableViewController: UITableViewController {
         // Set up the table view.
         tableView.backgroundView = nil
         tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorColor = ThemeColors.white.withAlphaComponent(0.1)
         tableView.register(TableViewCell.self,
                            forCellReuseIdentifier: tableViewCellIdentifier)
+        tableView.register(TextEntryTableViewCell.self, forCellReuseIdentifier: textEntryTableViewCellIdentifier)
         
         // Set up the table header view.
         let itemDetailView = RoomServiceItemDetailView()
@@ -71,36 +74,58 @@ class RoomServiceItemTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let choicesForOption = cartItem.choices[indexPath.row]
+        if indexPath.section == 0 {
+            let choicesForOption = cartItem.choices[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
-        cell.accessoryType = .disclosureIndicator
+            let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
+            cell.accessoryType = .disclosureIndicator
         
-        var optionTitle = choicesForOption.option.title
-        if choicesForOption.option.isOptional {
-            optionTitle += " (optional)"
-        }
-        cell.titleLabel.text = optionTitle
+            var optionTitle = choicesForOption.option.title
+            if choicesForOption.option.isOptional {
+                optionTitle += " (optional)"
+            }
+            cell.titleLabel.text = optionTitle
         
-        if choicesForOption.option.allowsMultipleChoices {
-            cell.descriptionLabel.text = choicesForOption.selectedChoicesAsString()
+            if choicesForOption.option.allowsMultipleChoices {
+                cell.descriptionLabel.text = choicesForOption.selectedChoicesAsString()
+            } else {
+                cell.detailLabel.text = choicesForOption.selectedChoicesAsString()
+            }
+        
+            cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
+        
+            return cell
         } else {
-            cell.detailLabel.text = choicesForOption.selectedChoicesAsString()
+            let cell = tableView.dequeueReusableCell(withIdentifier: textEntryTableViewCellIdentifier) as! TextEntryTableViewCell
+            
+            cell.titleLabel.text = "Special request (optional)"
+            cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
+            cell.textView.delegate = self
+            
+            return cell
         }
-        
-        cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
-        
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cartItem.roomServiceItem.options.count
+        if section == 0 {
+            return cartItem.roomServiceItem.options.count
+        } else {
+            return 1
+        }
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section != 0 {
+            return
+        }
+        
         let option = cartItem.roomServiceItem.options[indexPath.row]
         
         let optionVC: RoomServiceItemOptionChoicesTableViewController
@@ -109,6 +134,18 @@ class RoomServiceItemTableViewController: UITableViewController {
             optionVC.itemViewController = self
             show(optionVC, sender: nil)
         }
+    }
+    
+    // MARK: - Text view delegate
+    
+    func textViewDidChange(_ textView: UITextView) {
+        // From: http://candycode.io/self-sizing-uitextview-in-a-uitableview-using-auto-layout-like-reminders-app/
+        let currentOffset = tableView.contentOffset
+        UIView.setAnimationsEnabled(false)
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        UIView.setAnimationsEnabled(true)
+        tableView.setContentOffset(currentOffset, animated: false)
     }
     
 }
