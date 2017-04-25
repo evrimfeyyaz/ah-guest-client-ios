@@ -37,4 +37,29 @@ extension UITableView {
         headerView.translatesAutoresizingMaskIntoConstraints = true
     }
     
+    func layoutTableFooterView() {
+        guard let footerView = self.tableFooterView else { return }
+        footerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let footerWidth = footerView.bounds.size.width;
+        let temporaryWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "[footerView(width)]", options: NSLayoutFormatOptions(rawValue: UInt(0)), metrics: ["width": footerWidth], views: ["footerView": footerView])
+        
+        footerView.addConstraints(temporaryWidthConstraints)
+        
+        footerView.setNeedsLayout()
+        footerView.layoutIfNeeded()
+        
+        let footerSize = footerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        let height = footerSize.height
+        var frame = footerView.frame
+        
+        frame.size.height = height
+        footerView.frame = frame
+        
+        self.tableFooterView = footerView
+        
+        footerView.removeConstraints(temporaryWidthConstraints)
+        footerView.translatesAutoresizingMaskIntoConstraints = true
+    }
+    
 }

@@ -54,6 +54,9 @@ class StyledLabel: UILabel {
         case .body:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 17)
             textColor = ThemeColors.white
+        case .bodySmall:
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 14)
+            textColor = ThemeColors.white
         case .cellTitle:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoRegular, withSize: 16)
             textColor = ThemeColors.white
@@ -104,6 +107,7 @@ enum LabelStyle {
     case titleOne
     case titleTwo
     case body
+    case bodySmall
     case cellTitle
     case cellDescription
     case cellDetail

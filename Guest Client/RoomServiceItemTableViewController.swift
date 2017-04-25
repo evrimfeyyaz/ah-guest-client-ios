@@ -16,6 +16,7 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     private let textEntryTableViewCellIdentifier = "textEntryTableViewCellIdentifier"
     private let quantityTableViewCellIdentifier = "quantityTableViewCellIdentifier"
     private let itemDetailView = RoomServiceItemDetailView()
+    private let footerView = RoomServiceCartItemFooterView()
     
     // MARK: - Public properties
     
@@ -77,6 +78,11 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
         
         tableView.tableHeaderView = itemDetailView
         tableView.layoutTableHeaderView()
+        
+        footerView.totalPriceLabel.text = cartItem.totalPrice.stringInDefaultCurrency
+        footerView.addToCartButton.addTarget(self, action: #selector(addItemToCartAndDismiss), for: .touchUpInside)
+        tableView.tableFooterView = footerView
+        tableView.layoutTableFooterView()
     }
     
     func reloadChangedRow() {
@@ -149,7 +155,9 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     }
     
     func updatePriceInItemDetail() {
-        itemDetailView.itemPriceLabel.text = cartItem.totalPrice.stringInDefaultCurrency
+        let priceString = cartItem.totalPrice.stringInDefaultCurrency
+        itemDetailView.itemPriceLabel.text = priceString
+        footerView.totalPriceLabel.text = priceString
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
