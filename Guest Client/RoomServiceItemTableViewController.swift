@@ -39,7 +39,7 @@ class RoomServiceItemTableViewController: UITableViewController {
         setUpViews()
     }
 
-    func setUpViews() {
+    private func setUpViews() {
         view.backgroundColor = ThemeImages.backgroundImage
         
         // Set up the table view.
@@ -65,6 +65,10 @@ class RoomServiceItemTableViewController: UITableViewController {
         tableView.layoutTableHeaderView()
     }
     
+    func reloadChangedRow() {
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,13 +76,19 @@ class RoomServiceItemTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
         cell.accessoryType = .disclosureIndicator
-        cell.titleLabel.text = choicesForOption.option.title
         
-        if !choicesForOption.option.allowsMultipleChoices {
-            cell.detailLabel.text = choicesForOption.selectedChoices.first?.title
+        var optionTitle = choicesForOption.option.title
+        if choicesForOption.option.isOptional {
+            optionTitle += " (optional)"
+        }
+        cell.titleLabel.text = optionTitle
+        
+        if choicesForOption.option.allowsMultipleChoices {
+            cell.descriptionLabel.text = choicesForOption.selectedChoicesAsString()
+        } else {
+            cell.detailLabel.text = choicesForOption.selectedChoicesAsString()
         }
         
-        cell.titleLabel.text = choicesForOption.option.title
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
         return cell
@@ -96,7 +106,8 @@ class RoomServiceItemTableViewController: UITableViewController {
         let optionVC: RoomServiceItemOptionChoicesTableViewController
         if let choicesForOption = cartItem.choices(for: option) {
             optionVC = RoomServiceItemOptionChoicesTableViewController(choicesForOption: choicesForOption)
-            show(optionVC, sender: self)
+            optionVC.itemViewController = self
+            show(optionVC, sender: nil)
         }
     }
     
