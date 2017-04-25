@@ -14,6 +14,8 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     
     private let tableViewCellIdentifier = "tableViewCellIdentifier"
     private let textEntryTableViewCellIdentifier = "textEntryTableViewCellIdentifier"
+    private let quantityTableViewCellIdentifier = "quantityTableViewCellIdentifier"
+    private let itemDetailView = RoomServiceItemDetailView()
     
     // MARK: - Public properties
     
@@ -57,10 +59,12 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
         tableView.separatorColor = ThemeColors.white.withAlphaComponent(0.1)
         tableView.register(TableViewCell.self,
                            forCellReuseIdentifier: tableViewCellIdentifier)
-        tableView.register(TextEntryTableViewCell.self, forCellReuseIdentifier: textEntryTableViewCellIdentifier)
+        tableView.register(TextEntryTableViewCell.self,
+                           forCellReuseIdentifier: textEntryTableViewCellIdentifier)
+        tableView.register(QuantityTableViewCell.self,
+                           forCellReuseIdentifier: quantityTableViewCellIdentifier)
         
         // Set up the table header view.
-        let itemDetailView = RoomServiceItemDetailView()
         itemDetailView.itemTitleLabel.text = cartItem.roomServiceItem.title
         itemDetailView.itemDescriptionLabel.text = cartItem.roomServiceItem.longDescription
         itemDetailView.itemPriceLabel.text = cartItem.roomServiceItem.price.stringInDefaultCurrency
@@ -77,6 +81,7 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     
     func reloadChangedRow() {
         tableView.reloadData()
+        updatePriceInItemDetail()
     }
     
     func cancelAddItemAndDismiss() {
@@ -91,7 +96,7 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,7 +121,7 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
             cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
             return cell
-        } else {
+        } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: textEntryTableViewCellIdentifier) as! TextEntryTableViewCell
             
             cell.titleLabel.text = "Special request (optional)"
@@ -124,7 +129,27 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
             cell.textView.delegate = self
             
             return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: quantityTableViewCellIdentifier) as! QuantityTableViewCell
+            
+            cell.quantityStepper.value = Double(cartItem.quantity)
+            cell.quantityStepper.addTarget(self, action: #selector(quantityChanged(sender:)), for: .valueChanged)
+            
+            cell.titleLabel.text = "Quantity"
+            cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
+            
+            return cell
         }
+    }
+    
+    func quantityChanged(sender: UIStepper) {
+        cartItem.quantity = Int(sender.value)
+        
+        updatePriceInItemDetail()
+    }
+    
+    func updatePriceInItemDetail() {
+        itemDetailView.itemPriceLabel.text = cartItem.totalPrice.stringInDefaultCurrency
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

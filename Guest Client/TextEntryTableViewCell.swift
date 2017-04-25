@@ -24,6 +24,8 @@ class TextEntryTableViewCell: UITableViewCell {
     }
     
     func setUpViews() {
+        selectionStyle = .none
+        
         // Set up the title label.
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

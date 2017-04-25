@@ -12,9 +12,21 @@ class RoomServiceCartItem {
     
     var id: Int?
     let roomServiceItem: RoomServiceItem
-    let quantity: Int
+    var quantity: Int
     var choices: [RoomServiceItemChoicesForOption]
-    let specialRequest: String?
+    var specialRequest: String?
+    
+    var totalPrice: Decimal {
+        get {
+            let totalPriceForOneItem = choices.flatMap({ choicesForOption in
+                choicesForOption.selectedChoices
+            }).reduce(roomServiceItem.price, { sum, choice in
+                sum + choice.price
+            })
+            
+            return totalPriceForOneItem * Decimal(quantity)
+        }
+    }
     
     init(id: Int? = nil, roomServiceItem: RoomServiceItem, quantity: Int = 1,
          choices: [RoomServiceItemChoicesForOption] = [],
