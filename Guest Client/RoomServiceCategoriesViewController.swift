@@ -69,15 +69,5 @@ class RoomServiceCategoriesViewController: UITableViewController {
         
         show(roomServiceItemsTableVC, sender: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "ShowCategoryItems") {
-//            let destinationController = segue.destination as! RoomServiceItemsTableViewController
-//            
-//            if let categoryCell = sender as? RoomServiceCategoryTableViewCell {
-////                destinationController.navigationItem.title = categoryCell.categoryTitle.text
-//            }
-//        }
-    }
 
 }
