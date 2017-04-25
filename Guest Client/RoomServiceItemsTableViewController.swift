@@ -97,8 +97,9 @@ class RoomServiceItemsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = roomServiceItemSections[indexPath.section].items[indexPath.row]
         let itemVC = RoomServiceItemTableViewController(roomServiceItem: item)
+        let navigationVC = UINavigationController(rootViewController: itemVC)
         
-        show(itemVC, sender: self)
+        present(navigationVC, animated: true, completion: nil)
     }
 
 }

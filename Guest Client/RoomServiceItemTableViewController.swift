@@ -43,6 +43,13 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     private func setUpViews() {
         view.backgroundColor = ThemeImages.backgroundImage
         
+        // Set up the navigation items.
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAddItemAndDismiss))
+        let addToCartButton = UIBarButtonItem(title: "Add to Cart", style: .done, target: self, action: #selector(addItemToCartAndDismiss))
+        addToCartButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = addToCartButton
+        
         // Set up the table view.
         tableView.backgroundView = nil
         tableView.estimatedRowHeight = 50
@@ -70,6 +77,15 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     
     func reloadChangedRow() {
         tableView.reloadData()
+    }
+    
+    func cancelAddItemAndDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func addItemToCartAndDismiss() {
+        RoomServiceCart.shared.add(item: cartItem)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source

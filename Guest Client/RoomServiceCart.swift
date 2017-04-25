@@ -12,6 +12,10 @@ class RoomServiceCart {
     
     static let shared = RoomServiceCart()
     
-    let cartItems: [RoomServiceCartItem] = []
+    private(set) public var cartItems: [RoomServiceCartItem] = []
+    
+    func add(item: RoomServiceCartItem) {
+        cartItems.append(item)
+    }
     
 }
