@@ -10,6 +10,8 @@ import UIKit
 
 class ThemeViewFactory {
     
+    // MARK: - Buttons
+    
     static func filledButton() -> UIButton {
         return RoundedButton(cornerRadius: 5, borderWidth: 0,
                              backgroundColor: ThemeColors.maroon,
@@ -22,6 +24,8 @@ class ThemeViewFactory {
                              borderColor: .white, tintColor: .white)
     }
     
+    // MARK: - Text
+    
     static func textView() -> UITextView {
         let textView = UITextView()
         
@@ -31,6 +35,15 @@ class ThemeViewFactory {
         textView.tintColor = ThemeColors.maroon
         
         return textView
+    }
+    
+    // MARK: - Navigation Bar
+    
+    static func doneStyleBarButton(title: String?, target: Any?, action: Selector?) -> UIBarButtonItem {
+        let barButton = UIBarButtonItem(title: title, style: .done, target: target, action: action)
+        barButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
+        
+        return barButton
     }
     
 }

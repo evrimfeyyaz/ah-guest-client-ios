@@ -16,7 +16,7 @@ class ThemeManager {
         navigationBar.isTranslucent = false
         navigationBar.titleTextAttributes = [
             NSFontAttributeName: ThemeFonts.latoRegular.withSize(17),
-            NSForegroundColorAttributeName: UIColor.white
+            NSForegroundColorAttributeName: ThemeColors.lightPink
         ]
         navigationBar.tintColor = .white
         
@@ -25,10 +25,6 @@ class ThemeManager {
             NSFontAttributeName: ThemeFonts.latoLight.withSize(17),
             NSForegroundColorAttributeName: UIColor.white
             ], for: .normal)
-        navigationBarButton.setTitleTextAttributes([
-            NSFontAttributeName: ThemeFonts.latoLight.withSize(17),
-            NSForegroundColorAttributeName: UIColor.white
-            ], for: .highlighted)
     }
     
 }

@@ -10,7 +10,8 @@ import UIKit
 
 class StyledLabel: UILabel {
 
-    // MARK: - Properties
+    // MARK: - Public properties
+    
     var style: LabelStyle = .body {
         didSet {
             styleLabel()
@@ -23,7 +24,14 @@ class StyledLabel: UILabel {
         }
     }
     
+    override var textAlignment: NSTextAlignment {
+        didSet {
+            styleLabel()
+        }
+    }
+    
     // MARK: Initializers
+    
     init(withStyle style: LabelStyle) {
         super.init(frame: CGRect.zero)
         
@@ -35,20 +43,19 @@ class StyledLabel: UILabel {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Private methods
+    
     private func styleLabel() {
         switch style {
-        case .titleOne:
+        case .title1:
             attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8)
-        
             font = ThemeFonts.oswaldRegular.withSize(36)
             textColor = .white
-        case .titleTwo:
+        case .title2:
             attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .center)
-            
             font = ThemeFonts.oswaldRegular.withSize(24)
             textColor = .white
         case .body:
@@ -89,10 +96,12 @@ class StyledLabel: UILabel {
         paragraphStyle.lineSpacing = 1.0
         paragraphStyle.lineHeightMultiple = 0.8
         
-        // If the user has set the alignment on the label,
-        // use this setting on the attributed string as well.
         if let textAlignment = textAlignment {
             paragraphStyle.alignment = textAlignment
+        } else {
+            // If the user has set the alignment on the label,
+            // use this setting on the attributed string as well.
+            paragraphStyle.alignment = self.textAlignment
         }
         
         let attrString = NSMutableAttributedString(string: text ?? "")
@@ -104,8 +113,8 @@ class StyledLabel: UILabel {
 }
 
 enum LabelStyle {
-    case titleOne
-    case titleTwo
+    case title1
+    case title2
     case body
     case bodySmall
     case cellTitle

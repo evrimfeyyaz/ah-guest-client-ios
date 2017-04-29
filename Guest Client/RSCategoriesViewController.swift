@@ -10,54 +10,63 @@ import UIKit
 
 class RSCategoriesViewController: UITableViewController {
     
-    let rsCategories = RSCategory.getAll()
-    
     // MARK: - Private properties
-    let categoryCellIdentifier = "categoryCellIdentifier"
+    
+    private let rsCategories = RSCategory.getAll()
+    
+    private let categoryCellIdentifier = "category"
 
+    // MARK: - View configuration
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       configureView()
+        configureView()
     }
     
     private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
-        // Set up the table view.
+        configureTableView()
+        configureNavigationBar()
+    }
+    
+    private func configureTableView() {
         tableView.rowHeight = 100
         tableView.separatorStyle = .none
         tableView.register(RSCategoryTableViewCell.self, forCellReuseIdentifier: categoryCellIdentifier)
-        
-        // Set up the navigation bar.
-        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(goToOrders))
-        
-        let cartBarButton = UIBarButtonItem(title: "Cart", style: .plain, target: self, action: #selector(goToCart))
-        cartBarButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
+    }
+    
+    private func configureNavigationBar() {
+        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(ordersBarButtonTapped))
+        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Go to Cart", target: self, action: #selector(cartBarButtonTapped))
         
         navigationItem.title = "Room Service"
         navigationItem.leftBarButtonItem = ordersBarButton
         navigationItem.rightBarButtonItem = cartBarButton
         
         let backButton = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backButton
+        navigationItem.backBarButtonItem = backButton
     }
     
-    @objc private func goToOrders() {
+    // MARK: - Actions
+    
+    @objc private func ordersBarButtonTapped() {
         print("Go to orders")
     }
     
-    @objc private func goToCart() {
+    @objc private func cartBarButtonTapped() {
         print("Go to cart")
     }
     
     // MARK: - Table view data source
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier) as! RSCategoryTableViewCell
         let rsCategory = rsCategories[indexPath.row]
         
-        categoryCell.categoryTitle = rsCategory.title
-        categoryCell.categoryDescription = rsCategory.description
+        categoryCell.categoryTitleLabel.text = rsCategory.title
+        categoryCell.categoryDescriptionLabel.text = rsCategory.description
         categoryCell.categoryImage = rsCategory.image
             
         return categoryCell
@@ -68,11 +77,12 @@ class RSCategoriesViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
         let rsItemsTableVC = RSItemsViewController()
-        rsItemsTableVC.navigationItem.title = categoryCell.categoryTitle
+        rsItemsTableVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         
         show(rsItemsTableVC, sender: self)
     }

@@ -10,7 +10,7 @@ import UIKit
 
 class RSItemDetailView: UIView {
 
-    let itemTitleLabel = StyledLabel(withStyle: .titleOne)
+    let itemTitleLabel = StyledLabel(withStyle: .title1)
     let itemAttributesView = UIStackView()
     let itemPriceLabel = StyledLabel(withStyle: .price)
     let itemDescriptionLabel = StyledLabel(withStyle: .body)

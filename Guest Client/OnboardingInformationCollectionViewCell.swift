@@ -10,7 +10,7 @@ import UIKit
 
 class OnboardingInformationCollectionViewCell: UICollectionViewCell {
     
-    let informationTitleLabel = StyledLabel(withStyle: .titleTwo)
+    let informationTitleLabel = StyledLabel(withStyle: .title2)
     let informationLabel = StyledLabel(withStyle: .body)
     
     var informationTitle: String {
