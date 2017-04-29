@@ -68,7 +68,7 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
         // Set up the table header view.
         itemDetailView.itemTitleLabel.text = cartItem.rsItem.title
         itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription
-        itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInDefaultCurrency
+        itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInBahrainiDinars
         
         for attribute in cartItem.rsItem.attributes {
             let attributeView = AttributeView(title: attribute.title)
@@ -79,7 +79,7 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
         tableView.tableHeaderView = itemDetailView
         tableView.layoutTableHeaderView()
         
-        footerView.totalPriceLabel.text = cartItem.totalPrice.stringInDefaultCurrency
+        footerView.totalPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
         footerView.addToCartButton.addTarget(self, action: #selector(addItemToCartAndDismiss), for: .touchUpInside)
         tableView.tableFooterView = footerView
         tableView.layoutTableFooterView()
@@ -155,7 +155,7 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
     }
     
     func updatePriceInItemDetail() {
-        let priceString = cartItem.totalPrice.stringInDefaultCurrency
+        let priceString = cartItem.totalPrice.stringInBahrainiDinars
         itemDetailView.itemPriceLabel.text = priceString
         footerView.totalPriceLabel.text = priceString
     }

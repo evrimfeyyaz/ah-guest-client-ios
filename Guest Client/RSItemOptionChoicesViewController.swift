@@ -61,7 +61,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
         cell.titleLabel.text = choice.title
         
         if choice.price > 0 {
-            cell.detailLabel.text = choice.price.stringInDefaultCurrency
+            cell.detailLabel.text = choice.price.stringInBahrainiDinars
         }
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         

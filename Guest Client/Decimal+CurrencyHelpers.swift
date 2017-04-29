@@ -18,7 +18,7 @@ extension Decimal {
         return numberFormatter
     }()
     
-    var stringInDefaultCurrency: String? {
+    var stringInBahrainiDinars: String? {
         get { return Decimal.chNumberFormatter.string(from: self as NSDecimalNumber) }
     }
     

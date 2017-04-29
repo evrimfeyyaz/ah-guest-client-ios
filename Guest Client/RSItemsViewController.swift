@@ -67,7 +67,7 @@ class RSItemsViewController: UITableViewController {
         
         itemCell.itemTitle = item.title
         itemCell.itemDescription = item.shortDescription
-        itemCell.itemPrice = item.price.stringInDefaultCurrency ?? ""
+        itemCell.itemPrice = item.price.stringInBahrainiDinars ?? ""
         itemCell.itemId = item.id
         itemCell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
