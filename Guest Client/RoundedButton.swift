@@ -10,39 +10,29 @@ import UIKit
 
 class RoundedButton: UIButton {
     
-    // MARK: - Properties
+    // MARK: - Public properties
     
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                backgroundColor = customBackgroundColor.withAlphaComponent(0.5)
-                titleLabel?.textColor = customTextColor.withAlphaComponent(0.5)
-                layer.borderColor = borderColor.withAlphaComponent(0.5).cgColor
+                layer.opacity = 0.5
             } else {
-                backgroundColor = customBackgroundColor
-                titleLabel?.textColor = customTextColor
-                layer.borderColor = borderColor.cgColor
+                layer.opacity = 1
             }
         }
     }
     
-    var cornerRadius: CGFloat = 5
-    var borderThickness: CGFloat = 0
-    var customBackgroundColor = UIColor.white
-    var borderColor = UIColor.clear
-    var customTextColor = UIColor.white
-    
     // MARK: - Initializers
     
-    init(cornerRadius: CGFloat, borderThickness: CGFloat,
-         backgroundColor: UIColor, borderColor: UIColor, textColor: UIColor) {
+    init(cornerRadius: CGFloat, borderWidth: CGFloat,
+         backgroundColor: UIColor, borderColor: UIColor, tintColor: UIColor) {
         super.init(frame: CGRect.zero)
         
-        self.cornerRadius = cornerRadius
-        self.borderThickness = borderThickness
-        self.customBackgroundColor = backgroundColor
-        self.borderColor = borderColor
-        self.customTextColor = textColor
+        layer.cornerRadius = cornerRadius
+        layer.borderWidth = borderWidth
+        self.backgroundColor = backgroundColor
+        layer.borderColor = borderColor.cgColor
+        self.tintColor = tintColor
         
         configureView()
     }
@@ -60,11 +50,8 @@ class RoundedButton: UIButton {
     // MARK: - View configuration
     
     func configureView() {
-        backgroundColor = customBackgroundColor
-        layer.cornerRadius = cornerRadius
         contentEdgeInsets = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25)
         titleLabel?.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 17)
-        titleLabel?.textColor = customTextColor
     }
     
     override func setTitle(_ title: String?, for state: UIControlState) {

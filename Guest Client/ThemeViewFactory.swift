@@ -11,15 +11,15 @@ import UIKit
 class ThemeViewFactory {
     
     static func filledButton() -> UIButton {
-        return RoundedButton(cornerRadius: 5, borderThickness: 0,
+        return RoundedButton(cornerRadius: 5, borderWidth: 0,
                              backgroundColor: ThemeColors.maroon,
-                             borderColor: .clear, textColor: .white)
+                             borderColor: .clear, tintColor: .white)
     }
     
     static func hollowButton() -> UIButton {
-        return RoundedButton(cornerRadius: 5, borderThickness: 2,
+        return RoundedButton(cornerRadius: 5, borderWidth: 2,
                              backgroundColor: .clear,
-                             borderColor: .white, textColor: .white)
+                             borderColor: .white, tintColor: .white)
     }
     
     static func textView() -> UITextView {

@@ -10,7 +10,7 @@ import UIKit
 
 class AttributeView: UIView {
     
-    // MARK: - Properties
+    // MARK: - Public properties
     
     var title: String? {
         didSet {
@@ -18,7 +18,7 @@ class AttributeView: UIView {
         }
     }
     
-    // MARK: - Private variables
+    // MARK: - Private properties
     
     private var titleLabel = UILabel()
     
