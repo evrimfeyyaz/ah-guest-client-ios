@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RSCartTableViewController: UITableViewController {
+class RSCartViewController: UITableViewController {
 
     
 

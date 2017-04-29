@@ -8,11 +8,11 @@
 
 import UIKit
 
-class RSItemOptionChoicesTableViewController: UITableViewController {
+class RSItemOptionChoicesViewController: UITableViewController {
 
     let choicesForOption: RSItemChoicesForOption
     
-    var itemViewController: RSItemTableViewController?
+    var itemViewController: RSItemDetailViewController?
     
     private let tableViewCellIdentifier = "tableViewCellIdentifier"
     private let tableViewHeaderIdentifier = "tableViewHeaderIdentifier"

@@ -96,7 +96,7 @@ class RSItemsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = rsItemSections[indexPath.section].items[indexPath.row]
-        let itemVC = RSItemTableViewController(rsItem: item)
+        let itemVC = RSItemDetailViewController(rsItem: item)
         let navigationVC = UINavigationController(rootViewController: itemVC)
         
         present(navigationVC, animated: true, completion: nil)

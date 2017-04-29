@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RSItemTableViewController: UITableViewController, UITextViewDelegate {
+class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Private properties
     
@@ -177,9 +177,9 @@ class RSItemTableViewController: UITableViewController, UITextViewDelegate {
         
         let option = cartItem.rsItem.options[indexPath.row]
         
-        let optionVC: RSItemOptionChoicesTableViewController
+        let optionVC: RSItemOptionChoicesViewController
         if let choicesForOption = cartItem.choices(for: option) {
-            optionVC = RSItemOptionChoicesTableViewController(choicesForOption: choicesForOption)
+            optionVC = RSItemOptionChoicesViewController(choicesForOption: choicesForOption)
             optionVC.itemViewController = self
             show(optionVC, sender: nil)
         }
