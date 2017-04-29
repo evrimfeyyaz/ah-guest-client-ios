@@ -8,31 +8,27 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
+class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+
+    // MARK: - Private properties
     
-    fileprivate let pageControl = UIPageControl()
-    private let onboardingInformationCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        
-        return UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-    }()
-    
-    // MARK: - Onboarding information data
-    let onboardingInformationList = [
+    private let onboardingInformationList = [
         OnboardingInformation(title: "Welcome to The K Hotel",
                               information: "You can use this app to order room service right from your phone."),
         OnboardingInformation(title: "More Coming Soon",
                               information: "Soon, you will be able to earn loyalty points, ask for a massage, get a taxi, and much more using this app."),
         OnboardingInformation(title: "Enjoy Your Stay",
                               information: "We hope you will enjoy your stay with us. Please do not hesitate to get in touch if there is anything we can help you with.")
-        ]
+    ]
     
-    // MARK: - Private properties
-    fileprivate let infoCellIdentifier = "info"
+    private let pageControl = UIPageControl()
+    private let onboardingInformationCollectionView = UICollectionView(frame: CGRect.zero,
+                                                                       collectionViewLayout: UICollectionViewFlowLayout())
+    
+    private let infoCellIdentifier = "info"
 
-    // MARK: View setup
+    // MARK: - View configuration
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,70 +38,103 @@ class OnboardingViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
-        // Set up the logo.
+        configureLogoImageView()
+        configureOnboardingInformationCollectionView()
+        configurePageControl()
+        configureNavigationBar()
+    }
+    
+    private func configureLogoImageView() {
         let logoImageView = UIImageView(image: #imageLiteral(resourceName: "logo"))
-        view.addSubview(logoImageView)
-        logoImageView.alhCenter(toView: view, withXOffset: 8, withYOffset: -100)
         
-        // Set up the onboarding information view.
+        view.addSubview(logoImageView)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 8),
+            logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100)
+            ])
+    }
+    
+    private func configureOnboardingInformationCollectionView() {
+        if let layout = onboardingInformationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 0
+        }
+        
         onboardingInformationCollectionView.backgroundColor = .clear
         onboardingInformationCollectionView.isPagingEnabled = true
         onboardingInformationCollectionView.dataSource = self
         onboardingInformationCollectionView.delegate = self
-        view.addSubview(onboardingInformationCollectionView)
-        onboardingInformationCollectionView.alhAnchor(toTopAnchor: view.topAnchor,
-                                                      toRightAnchor: view.rightAnchor,
-                                                      toBottomAnchor: view.bottomAnchor,
-                                                      toLeftAnchor: view.leftAnchor)
         onboardingInformationCollectionView.register(OnboardingInformationCollectionViewCell.self,
                                                      forCellWithReuseIdentifier: infoCellIdentifier)
         
-        // Set up the page control.
+        view.addSubview(onboardingInformationCollectionView)
+        onboardingInformationCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            onboardingInformationCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            onboardingInformationCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            onboardingInformationCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            onboardingInformationCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+    }
+    
+    private func configurePageControl() {
         pageControl.numberOfPages = onboardingInformationList.count
-        view.addSubview(pageControl)
         
+        view.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
             ])
-        
-        // Set up the navigation bar.
+    }
+    
+    private func configureNavigationBar() {
         let skipBarButton = UIBarButtonItem(title: "Skip", style: .plain,
-                                            target: self, action: #selector(skipOnboarding))
+                                            target: self, action: #selector(skipBarButtonTapped))
         let nextBarButton = UIBarButtonItem(title: "Next", style: .plain,
-                                            target: self, action: #selector(goToNextPage))
+                                            target: self, action: #selector(nextBarButtonTapped))
         
         navigationItem.leftBarButtonItem = skipBarButton
         navigationItem.rightBarButtonItem = nextBarButton
+        
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isTranslucent = true
-        // For some reason, needed to make the navigation bar background transparent.
+        // For some reason, these are needed to make the navigation bar background transparent:
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
     
-    @objc private func goToNextPage() {
-        if let visibleItem = onboardingInformationCollectionView.indexPathsForVisibleItems.first {
-            let nextItem = IndexPath(row: visibleItem.row + 1, section: visibleItem.section)
+    // MARK: - Actions
+    
+    @objc private func nextBarButtonTapped() {
+        showNextInfoPage()
+    }
+    
+    @objc private func skipBarButtonTapped() {
+        finishOnboarding()
+    }
+    
+    // MARK: - Private methods
+    
+    private func showNextInfoPage() {
+        if let currentItem = onboardingInformationCollectionView.indexPathsForVisibleItems.first {
+            let nextItemIndexPath = IndexPath(row: currentItem.row + 1, section: currentItem.section)
             
-            if (nextItem.row < onboardingInformationCollectionView.numberOfItems(inSection: 0)) {
-                onboardingInformationCollectionView.scrollToItem(at: nextItem, at: .centeredHorizontally, animated: true)
+            if (nextItemIndexPath.row < onboardingInformationCollectionView.numberOfItems(inSection: 0)) {
+                onboardingInformationCollectionView.scrollToItem(at: nextItemIndexPath, at: .centeredHorizontally, animated: true)
             }
         }
     }
     
-    @objc private func skipOnboarding() {
+    private func finishOnboarding() {
         let rsCategoriesVC = RSCategoriesViewController()
         let navigationController = UINavigationController(rootViewController: rsCategoriesVC)
         
         show(navigationController, sender: self)
     }
-
-}
-
-// MARK: - Collection view flow layout delegate
-extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
+    
+    // MARK: - Collection view flow layout delegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -116,10 +145,7 @@ extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
         pageControl.currentPage = indexPath.row
     }
     
-}
-
-// MARK: - Collection view data source
-extension OnboardingViewController: UICollectionViewDataSource {
+    // MARK: - Collection view data source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onboardingInformationList.count
@@ -134,7 +160,10 @@ extension OnboardingViewController: UICollectionViewDataSource {
         
         return infoCell
     }
+
 }
+
+// MARK: -
 
 struct OnboardingInformation {
     var title: String

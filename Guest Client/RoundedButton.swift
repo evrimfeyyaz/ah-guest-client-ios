@@ -49,7 +49,7 @@ class RoundedButton: UIButton {
 
     // MARK: - View configuration
     
-    func configureView() {
+    private func configureView() {
         contentEdgeInsets = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25)
         titleLabel?.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 17)
     }
