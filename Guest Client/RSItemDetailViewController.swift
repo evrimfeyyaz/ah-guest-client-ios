@@ -77,12 +77,12 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
         }
         
         tableView.tableHeaderView = itemDetailView
-        tableView.layoutTableHeaderView()
+        tableView.layoutTableHeaderOrFooterView(location: .header)
         
         footerView.totalPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
         footerView.addToCartButton.addTarget(self, action: #selector(addItemToCartAndDismiss), for: .touchUpInside)
         tableView.tableFooterView = footerView
-        tableView.layoutTableFooterView()
+        tableView.layoutTableHeaderOrFooterView(location: .footer)
     }
     
     func reloadChangedRow() {

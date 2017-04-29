@@ -32,7 +32,7 @@
 		9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */; };
 		9189F6E21E9B512100DFA856 /* Lato regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DE1E9B512100DFA856 /* Lato regular.ttf */; };
 		9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */; };
-		918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderViewAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderViewAutoLayout.swift */; };
+		918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */; };
 		918FC97E1EACB4F800CFC01C /* ThemeMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC97D1EACB4F800CFC01C /* ThemeMeasurements.swift */; };
 		918FC9801EACF55900CFC01C /* RSItemOptionChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */; };
 		918FC9821EADEF4600CFC01C /* RSCartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9811EADEF4600CFC01C /* RSCartItem.swift */; };
@@ -103,7 +103,7 @@
 		9189F6DD1E9B512100DFA856 /* Lato 300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300italic.ttf"; sourceTree = "<group>"; };
 		9189F6DE1E9B512100DFA856 /* Lato regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato regular.ttf"; sourceTree = "<group>"; };
 		9189F6DF1E9B512100DFA856 /* Oswald regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald regular.ttf"; sourceTree = "<group>"; };
-		918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderViewAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+TableHeaderViewAutoLayout.swift"; sourceTree = "<group>"; };
+		918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+TableHeaderFooterViewAutoLayout.swift"; sourceTree = "<group>"; };
 		918FC97D1EACB4F800CFC01C /* ThemeMeasurements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeMeasurements.swift; sourceTree = "<group>"; };
 		918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemOptionChoicesViewController.swift; sourceTree = "<group>"; };
 		918FC9811EADEF4600CFC01C /* RSCartItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartItem.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 			children = (
 				913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */,
 				9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */,
-				918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderViewAutoLayout.swift */,
+				918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 				918FC9801EACF55900CFC01C /* RSItemOptionChoicesViewController.swift in Sources */,
 				91BDBECE1E9EAB89009CABE8 /* RSCategoryImageView.swift in Sources */,
 				918FC9901EAFDCA900CFC01C /* FilledButton.swift in Sources */,
-				918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderViewAutoLayout.swift in Sources */,
+				918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift in Sources */,
 				91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */,
 				918FC9881EAF39D700CFC01C /* TextEntryTableViewCell.swift in Sources */,
 				918FC9861EADF4D600CFC01C /* RSCart.swift in Sources */,
