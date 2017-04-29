@@ -27,10 +27,10 @@ class HollowButton: UIButton {
     func configureView() {
         layer.cornerRadius = 5
         layer.borderWidth = 2
-        layer.borderColor = ThemeColors.white.cgColor
+        layer.borderColor = UIColor.white.cgColor
         contentEdgeInsets = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25)
         titleLabel?.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 17)
-        titleLabel?.textColor = ThemeColors.white
+        titleLabel?.textColor = .white
     }
 
 }

@@ -48,7 +48,7 @@ class QuantityTableViewCell: UITableViewCell {
         // Set up the quantity stepper.
         contentView.addSubview(quantityStepper)
         quantityStepper.addTarget(self, action: #selector(updateQuantityLabel), for: .valueChanged)
-        quantityStepper.tintColor = ThemeColors.white
+        quantityStepper.tintColor = .white
         quantityStepper.minimumValue = 1
         quantityStepper.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

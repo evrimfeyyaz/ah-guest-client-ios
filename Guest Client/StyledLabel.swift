@@ -45,36 +45,36 @@ class StyledLabel: UILabel {
             attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8)
         
             font = ThemeFonts.oswaldRegular.withSize(36)
-            textColor = ThemeColors.white
+            textColor = .white
         case .titleTwo:
             attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .center)
             
             font = ThemeFonts.oswaldRegular.withSize(24)
-            textColor = ThemeColors.white
+            textColor = .white
         case .body:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 17)
-            textColor = ThemeColors.white
+            textColor = .white
         case .bodySmall:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 14)
-            textColor = ThemeColors.white
+            textColor = .white
         case .cellTitle:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoRegular, withSize: 16)
-            textColor = ThemeColors.white
+            textColor = .white
         case .cellDescription:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 14)
-            textColor = ThemeColors.white
+            textColor = .white
         case .cellDetail:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 16)
-            textColor = ThemeColors.white.withAlphaComponent(0.7)
+            textColor = UIColor.white.withAlphaComponent(0.7)
         case .cellPrice:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
-            textColor = ThemeColors.white
+            textColor = .white
         case .price:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 18)
-            textColor = ThemeColors.white
+            textColor = .white
         case .tableHeader:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 13)
-            textColor = ThemeColors.white.withAlphaComponent(0.4)
+            textColor = UIColor.white.withAlphaComponent(0.4)
         case .attribute:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
             textColor = ThemeColors.darkBlue

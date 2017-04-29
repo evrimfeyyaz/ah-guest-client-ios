@@ -16,18 +16,18 @@ class ThemeManager {
         navigationBar.isTranslucent = false
         navigationBar.titleTextAttributes = [
             NSFontAttributeName: ThemeFonts.latoRegular.withSize(17),
-            NSForegroundColorAttributeName: ThemeColors.white
+            NSForegroundColorAttributeName: UIColor.white
         ]
         navigationBar.tintColor = .white
         
         let navigationBarButton = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
         navigationBarButton.setTitleTextAttributes([
             NSFontAttributeName: ThemeFonts.latoLight.withSize(17),
-            NSForegroundColorAttributeName: ThemeColors.white
+            NSForegroundColorAttributeName: UIColor.white
             ], for: .normal)
         navigationBarButton.setTitleTextAttributes([
             NSFontAttributeName: ThemeFonts.latoLight.withSize(17),
-            NSForegroundColorAttributeName: ThemeColors.white
+            NSForegroundColorAttributeName: UIColor.white
             ], for: .highlighted)
     }
     

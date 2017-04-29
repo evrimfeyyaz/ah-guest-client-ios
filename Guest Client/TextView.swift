@@ -24,7 +24,7 @@ class TextView: UITextView {
         backgroundColor = UIColor.white.withAlphaComponent(0.08)
         
         font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 17)
-        textColor = ThemeColors.white
+        textColor = .white
         tintColor = ThemeColors.maroon
     }
 

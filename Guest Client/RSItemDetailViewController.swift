@@ -57,7 +57,7 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
         tableView.backgroundView = nil
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorColor = ThemeColors.white.withAlphaComponent(0.1)
+        tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
         tableView.register(TableViewCell.self,
                            forCellReuseIdentifier: tableViewCellIdentifier)
         tableView.register(TextEntryTableViewCell.self,

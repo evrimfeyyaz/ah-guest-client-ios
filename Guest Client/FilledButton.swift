@@ -29,7 +29,7 @@ class FilledButton: UIButton {
         layer.cornerRadius = 5
         contentEdgeInsets = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25)
         titleLabel?.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 17)
-        titleLabel?.textColor = ThemeColors.white
+        titleLabel?.textColor = .white
     }
 
 }

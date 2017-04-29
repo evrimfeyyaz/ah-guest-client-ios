@@ -35,7 +35,7 @@ class TableViewCell: UITableViewCell {
     
     func setUpViews() {
         selectionStyle = .none
-        tintColor = ThemeColors.white
+        tintColor = .white
         
         // Set up the title label.
         contentView.addSubview(titleLabel)
