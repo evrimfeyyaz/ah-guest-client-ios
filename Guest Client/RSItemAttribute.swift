@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemAttribute.swift
+//  RSItemAttribute.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/21/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceItemAttribute {
+class RSItemAttribute {
     
     let id: Int
     let title: String

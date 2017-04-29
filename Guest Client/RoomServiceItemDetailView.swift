@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemDetailView.swift
+//  RSItemDetailView.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/22/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceItemDetailView: UIView {
+class RSItemDetailView: UIView {
 
     let itemTitleLabel = StyledLabel(withStyle: .titleOne)
     let itemAttributesView = UIStackView()

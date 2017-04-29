@@ -1,5 +1,5 @@
 //
-//  RoomServiceCart.swift
+//  RSCart.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/24/17.
@@ -8,17 +8,17 @@
 
 import Foundation
 
-class RoomServiceCart {
+class RSCart {
     
-    static let shared = RoomServiceCart()
+    static let shared = RSCart()
     
-    private(set) public var cartItems: [RoomServiceCartItem] = []
+    private(set) public var cartItems: [RSCartItem] = []
     
     var total: Decimal {
         get { return cartItems.reduce(0, { result, cartItem in result + cartItem.totalPrice }) }
     }
     
-    func add(item: RoomServiceCartItem) {
+    func add(item: RSCartItem) {
         cartItems.append(item)
     }
     

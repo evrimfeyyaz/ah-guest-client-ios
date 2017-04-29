@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemPreferenceChoice.swift
+//  RSItemPreferenceChoice.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/21/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RoomServiceItemOptionChoice: Equatable {
+class RSItemOptionChoice: Equatable {
     
     let id: Int
     let title: String
@@ -20,7 +20,7 @@ class RoomServiceItemOptionChoice: Equatable {
         self.price = price
     }
     
-    static func == (lhs: RoomServiceItemOptionChoice, rhs: RoomServiceItemOptionChoice) -> Bool {
+    static func == (lhs: RSItemOptionChoice, rhs: RSItemOptionChoice) -> Bool {
         return lhs.id == rhs.id
     }
     

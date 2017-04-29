@@ -1,5 +1,5 @@
 //
-//  RoomServiceCartTableViewController.swift
+//  RSCartTableViewController.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/29/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceCartTableViewController: UITableViewController {
+class RSCartTableViewController: UITableViewController {
 
     
 

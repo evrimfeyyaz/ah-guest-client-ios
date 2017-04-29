@@ -1,5 +1,5 @@
 //
-//  RoomServiceCartItemFooter.swift
+//  RSCartItemFooter.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/25/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceCartItemFooterView: UIView {
+class RSCartItemFooterView: UIView {
 
     let addToCartButton = FilledButton()
     let totalPriceLabel = StyledLabel(withStyle: .bodySmall)

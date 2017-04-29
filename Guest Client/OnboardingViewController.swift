@@ -97,8 +97,8 @@ class OnboardingViewController: UIViewController {
     }
     
     @objc private func skipOnboarding() {
-        let roomServiceCategoriesVC = RoomServiceCategoriesViewController()
-        let navigationController = UINavigationController(rootViewController: roomServiceCategoriesVC)
+        let rsCategoriesVC = RSCategoriesViewController()
+        let navigationController = UINavigationController(rootViewController: rsCategoriesVC)
         
         show(navigationController, sender: self)
     }

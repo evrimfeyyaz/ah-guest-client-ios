@@ -1,5 +1,5 @@
 //
-//  RoomServiceCategoriesViewController.swift
+//  RSCategoriesViewController.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/12/17.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class RoomServiceCategoriesViewController: UITableViewController {
+class RSCategoriesViewController: UITableViewController {
     
-    let roomServiceCategories = RoomServiceCategory.getAll()
+    let rsCategories = RSCategory.getAll()
     
     // MARK: - Private properties
     let categoryCellIdentifier = "categoryCellIdentifier"
@@ -27,7 +27,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
         // Set up the table view.
         tableView.rowHeight = 100
         tableView.separatorStyle = .none
-        tableView.register(RoomServiceCategoryTableViewCell.self, forCellReuseIdentifier: categoryCellIdentifier)
+        tableView.register(RSCategoryTableViewCell.self, forCellReuseIdentifier: categoryCellIdentifier)
         
         // Set up the navigation bar.
         let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(goToOrders))
@@ -53,28 +53,28 @@ class RoomServiceCategoriesViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let categoryCell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier) as! RoomServiceCategoryTableViewCell
-        let roomServiceCategory = roomServiceCategories[indexPath.row]
+        let categoryCell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier) as! RSCategoryTableViewCell
+        let rsCategory = rsCategories[indexPath.row]
         
-        categoryCell.categoryTitle = roomServiceCategory.title
-        categoryCell.categoryDescription = roomServiceCategory.description
-        categoryCell.categoryImage = roomServiceCategory.image
+        categoryCell.categoryTitle = rsCategory.title
+        categoryCell.categoryDescription = rsCategory.description
+        categoryCell.categoryImage = rsCategory.image
             
         return categoryCell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return roomServiceCategories.count
+        return rsCategories.count
     }
     
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let categoryCell = tableView.cellForRow(at: indexPath) as! RoomServiceCategoryTableViewCell
+        let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
-        let roomServiceItemsTableVC = RoomServiceItemsTableViewController()
-        roomServiceItemsTableVC.navigationItem.title = categoryCell.categoryTitle
+        let rsItemsTableVC = RSItemsViewController()
+        rsItemsTableVC.navigationItem.title = categoryCell.categoryTitle
         
-        show(roomServiceItemsTableVC, sender: self)
+        show(rsItemsTableVC, sender: self)
     }
 
 }

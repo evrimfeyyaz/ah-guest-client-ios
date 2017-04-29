@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let rootViewController = OnboardingViewController()
-//        let rootViewController = RoomServiceCategoriesViewController()
+//        let rootViewController = RSCategoriesViewController()
         let launchViewController = UINavigationController(rootViewController: rootViewController)
 //        let launchViewController = UINavigationController()
         window?.rootViewController = launchViewController

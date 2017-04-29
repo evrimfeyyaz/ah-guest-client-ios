@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemTableViewCell.swift
+//  RSItemTableViewCell.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/13/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceItemTableViewCell: UITableViewCell {
+class RSItemTableViewCell: UITableViewCell {
     
     private let itemTitleLabel = StyledLabel(withStyle: .cellTitle)
     private let itemDescriptionLabel = StyledLabel(withStyle: .cellDescription)

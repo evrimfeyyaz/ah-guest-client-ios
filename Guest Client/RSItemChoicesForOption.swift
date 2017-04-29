@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemChoicesForOption.swift
+//  RSItemChoicesForOption.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/24/17.
@@ -8,17 +8,17 @@
 
 import Foundation
 
-class RoomServiceItemChoicesForOption: Equatable {
+class RSItemChoicesForOption: Equatable {
     
-    let option: RoomServiceItemOption
+    let option: RSItemOption
     
-    fileprivate(set) public var selectedChoices: [RoomServiceItemOptionChoice] = []
+    fileprivate(set) public var selectedChoices: [RSItemOptionChoice] = []
     
     var numberOfPossibleChoices: Int {
         get { return option.choices.count }
     }
     
-    init(option: RoomServiceItemOption) {
+    init(option: RSItemOption) {
         self.option = option
         
         if let defaultChoice = option.defaultChoice {
@@ -26,11 +26,11 @@ class RoomServiceItemChoicesForOption: Equatable {
         }
     }
     
-    static func == (lhs: RoomServiceItemChoicesForOption, rhs: RoomServiceItemChoicesForOption) -> Bool {
+    static func == (lhs: RSItemChoicesForOption, rhs: RSItemChoicesForOption) -> Bool {
         return lhs.option == rhs.option
     }
     
-    func isSelected(choice: RoomServiceItemOptionChoice) -> Bool {
+    func isSelected(choice: RSItemOptionChoice) -> Bool {
         return selectedChoices.contains(choice)
     }
     
@@ -40,9 +40,9 @@ class RoomServiceItemChoicesForOption: Equatable {
     
 }
 
-class RoomServiceItemChoicesForMultipleChoiceOption: RoomServiceItemChoicesForOption {
+class RSItemChoicesForMultipleChoiceOption: RSItemChoicesForOption {
     
-    func addSelectedChoice(choice: RoomServiceItemOptionChoice) {
+    func addSelectedChoice(choice: RSItemOptionChoice) {
         if (selectedChoices.contains(choice)) {
             return
         }
@@ -50,7 +50,7 @@ class RoomServiceItemChoicesForMultipleChoiceOption: RoomServiceItemChoicesForOp
         selectedChoices.append(choice)
     }
     
-    func removeSelectedChoice(choice: RoomServiceItemOptionChoice) {
+    func removeSelectedChoice(choice: RSItemOptionChoice) {
         if let index = selectedChoices.index(of: choice) {
             selectedChoices.remove(at: index)
         }
@@ -58,9 +58,9 @@ class RoomServiceItemChoicesForMultipleChoiceOption: RoomServiceItemChoicesForOp
     
 }
 
-class RoomServiceItemChoicesForSingleChoiceOption: RoomServiceItemChoicesForOption {
+class RSItemChoicesForSingleChoiceOption: RSItemChoicesForOption {
     
-    func makeSelectedChoice(choice: RoomServiceItemOptionChoice) {
+    func makeSelectedChoice(choice: RSItemOptionChoice) {
         selectedChoices.removeAll()
         selectedChoices.append(choice)
     }

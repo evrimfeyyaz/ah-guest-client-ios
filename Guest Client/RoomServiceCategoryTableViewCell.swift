@@ -1,5 +1,5 @@
 //
-//  RoomServiceCategoryTableViewCell.swift
+//  RSCategoryTableViewCell.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/12/17.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class RoomServiceCategoryTableViewCell: UITableViewCell {
+class RSCategoryTableViewCell: UITableViewCell {
     
     private let containerView = UIView()
     private let categoryTitleLabel = StyledLabel(withStyle: .titleOne)
     private let categoryDescriptionLabel = StyledLabel(withStyle: .cellDescription)
-    private var categoryImageView: RoomServiceCategoryImageView? = nil
+    private var categoryImageView: RSCategoryImageView? = nil
     
     var categoryTitle: String {
         get { return categoryTitleLabel.text ?? "" }
@@ -36,7 +36,7 @@ class RoomServiceCategoryTableViewCell: UITableViewCell {
             }
             
             if (categoryImageView == nil) {
-                categoryImageView = RoomServiceCategoryImageView(image: newValue)
+                categoryImageView = RSCategoryImageView(image: newValue)
                 setUpImageView()
             } else {
                 categoryImageView?.image = newValue

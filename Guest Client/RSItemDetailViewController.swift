@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemViewController.swift
+//  RSItemViewController.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/14/17.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-class RoomServiceItemTableViewController: UITableViewController, UITextViewDelegate {
+class RSItemTableViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Private properties
     
     private let tableViewCellIdentifier = "tableViewCellIdentifier"
     private let textEntryTableViewCellIdentifier = "textEntryTableViewCellIdentifier"
     private let quantityTableViewCellIdentifier = "quantityTableViewCellIdentifier"
-    private let itemDetailView = RoomServiceItemDetailView()
-    private let footerView = RoomServiceCartItemFooterView()
+    private let itemDetailView = RSItemDetailView()
+    private let footerView = RSCartItemFooterView()
     
     // MARK: - Public properties
     
-    let cartItem: RoomServiceCartItem
+    let cartItem: RSCartItem
 
     // MARK: - Initializers
     
-    init(roomServiceItem: RoomServiceItem) {
-        self.cartItem = RoomServiceCartItem(roomServiceItem: roomServiceItem)
+    init(rsItem: RSItem) {
+        self.cartItem = RSCartItem(rsItem: rsItem)
         
         super.init(style: .grouped)
     }
@@ -66,11 +66,11 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
                            forCellReuseIdentifier: quantityTableViewCellIdentifier)
         
         // Set up the table header view.
-        itemDetailView.itemTitleLabel.text = cartItem.roomServiceItem.title
-        itemDetailView.itemDescriptionLabel.text = cartItem.roomServiceItem.longDescription
-        itemDetailView.itemPriceLabel.text = cartItem.roomServiceItem.price.stringInDefaultCurrency
+        itemDetailView.itemTitleLabel.text = cartItem.rsItem.title
+        itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription
+        itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInDefaultCurrency
         
-        for attribute in cartItem.roomServiceItem.attributes {
+        for attribute in cartItem.rsItem.attributes {
             let attributeView = AttributeView(title: attribute.title)
             
             itemDetailView.itemAttributesView.addArrangedSubview(attributeView)
@@ -95,7 +95,7 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     }
     
     func addItemToCartAndDismiss() {
-        RoomServiceCart.shared.add(item: cartItem)
+        RSCart.shared.add(item: cartItem)
         dismiss(animated: true, completion: nil)
     }
     
@@ -162,7 +162,7 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return cartItem.roomServiceItem.options.count
+            return cartItem.rsItem.options.count
         } else {
             return 1
         }
@@ -175,11 +175,11 @@ class RoomServiceItemTableViewController: UITableViewController, UITextViewDeleg
             return
         }
         
-        let option = cartItem.roomServiceItem.options[indexPath.row]
+        let option = cartItem.rsItem.options[indexPath.row]
         
-        let optionVC: RoomServiceItemOptionChoicesTableViewController
+        let optionVC: RSItemOptionChoicesTableViewController
         if let choicesForOption = cartItem.choices(for: option) {
-            optionVC = RoomServiceItemOptionChoicesTableViewController(choicesForOption: choicesForOption)
+            optionVC = RSItemOptionChoicesTableViewController(choicesForOption: choicesForOption)
             optionVC.itemViewController = self
             show(optionVC, sender: nil)
         }

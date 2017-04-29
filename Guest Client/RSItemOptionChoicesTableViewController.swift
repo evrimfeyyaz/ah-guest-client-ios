@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemPreferenceChoicesTableViewController.swift
+//  RSItemPreferenceChoicesTableViewController.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/23/17.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
+class RSItemOptionChoicesTableViewController: UITableViewController {
 
-    let choicesForOption: RoomServiceItemChoicesForOption
+    let choicesForOption: RSItemChoicesForOption
     
-    var itemViewController: RoomServiceItemTableViewController?
+    var itemViewController: RSItemTableViewController?
     
     private let tableViewCellIdentifier = "tableViewCellIdentifier"
     private let tableViewHeaderIdentifier = "tableViewHeaderIdentifier"
     
-    init(choicesForOption: RoomServiceItemChoicesForOption) {
+    init(choicesForOption: RSItemChoicesForOption) {
         self.choicesForOption = choicesForOption
         
         super.init(style: .grouped)
@@ -92,10 +92,10 @@ class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
         let choice = choicesForOption.option.choices[indexPath.row]
         
         if (choicesForOption.option.allowsMultipleChoices) {
-            let choicesForMultipleChoiceOption = choicesForOption as! RoomServiceItemChoicesForMultipleChoiceOption
+            let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
             choicesForMultipleChoiceOption.addSelectedChoice(choice: choice)
         } else {
-            let choicesForSingleChoiceOption = choicesForOption as! RoomServiceItemChoicesForSingleChoiceOption
+            let choicesForSingleChoiceOption = choicesForOption as! RSItemChoicesForSingleChoiceOption
             choicesForSingleChoiceOption.makeSelectedChoice(choice: choice)
         }
         
@@ -105,7 +105,7 @@ class RoomServiceItemOptionChoicesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if (choicesForOption.option.allowsMultipleChoices) {
             let choice = choicesForOption.option.choices[indexPath.row]
-            let choicesForMultipleChoiceOption = choicesForOption as! RoomServiceItemChoicesForMultipleChoiceOption
+            let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
             choicesForMultipleChoiceOption.removeSelectedChoice(choice: choice)
         }
         

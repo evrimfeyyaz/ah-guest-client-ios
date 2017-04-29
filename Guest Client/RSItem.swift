@@ -1,5 +1,5 @@
 //
-//  RoomServiceItem.swift
+//  RSItem.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/13/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceItem {
+class RSItem {
     
     private var _longDescription: String?
     
@@ -30,13 +30,13 @@ class RoomServiceItem {
     }
     let price: Decimal
     let image: UIImage?
-    let attributes: [RoomServiceItemAttribute]
-    let options: [RoomServiceItemOption]
+    let attributes: [RSItemAttribute]
+    let options: [RSItemOption]
     let sectionId: Int
     
     init(id: Int, title: String, shortDescription: String? = nil,
          longDescription: String? = nil, price: Decimal, image: UIImage? = nil,
-         attributes: [RoomServiceItemAttribute], options: [RoomServiceItemOption],
+         attributes: [RSItemAttribute], options: [RSItemOption],
          sectionId: Int) {
         self.id = id
         self.title = title
@@ -49,18 +49,18 @@ class RoomServiceItem {
         self.longDescription = longDescription
     }
     
-    static func getItem(itemId id: Int) -> RoomServiceItem? {
-        let porkAttribute = RoomServiceItemAttribute(id: 0, title: "Pork", rgbColorInHex: "EB6277", icon: UIImage())
-        let alcoholAttribute = RoomServiceItemAttribute(id: 1, title: "Alcohol", rgbColorInHex: "DEDEDE", icon: UIImage())
+    static func getItem(itemId id: Int) -> RSItem? {
+        let porkAttribute = RSItemAttribute(id: 0, title: "Pork", rgbColorInHex: "EB6277", icon: UIImage())
+        let alcoholAttribute = RSItemAttribute(id: 1, title: "Alcohol", rgbColorInHex: "DEDEDE", icon: UIImage())
         
-        let choice1 = RoomServiceItemOptionChoice(id: 0, title: "Regular")
-        let choice2 = RoomServiceItemOptionChoice(id: 1, title: "Large", price: 0.200)
+        let choice1 = RSItemOptionChoice(id: 0, title: "Regular")
+        let choice2 = RSItemOptionChoice(id: 1, title: "Large", price: 0.200)
         
-        let options = RoomServiceItemOption(id: 0, title: "Size", isOptional: false,
+        let options = RSItemOption(id: 0, title: "Size", isOptional: false,
                                                     allowsMultipleChoices: false, choices: [choice1, choice2],
                                                     defaultChoice: choice1)
         
-        return RoomServiceItem(id: 0, title: "Starbucks Table-Side French Press",
+        return RSItem(id: 0, title: "Starbucks Table-Side French Press",
                                shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas laoreet quis lacus sed vestibulum. Sed auctor auctor ex eu ullamcorper.",
                                price: 6.000,

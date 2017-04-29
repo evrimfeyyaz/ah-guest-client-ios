@@ -1,5 +1,5 @@
 //
-//  RoomServiceCategoryImageView.swift
+//  RSCategoryImageView.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/12/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoomServiceCategoryImageView: UIImageView {
+class RSCategoryImageView: UIImageView {
     
     let gradient = CAGradientLayer()
     

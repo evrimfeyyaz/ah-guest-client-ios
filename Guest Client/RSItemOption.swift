@@ -1,5 +1,5 @@
 //
-//  RoomServiceItemPreference.swift
+//  RSItemPreference.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/21/17.
@@ -8,17 +8,17 @@
 
 import Foundation
 
-class RoomServiceItemOption: Equatable {
+class RSItemOption: Equatable {
     
     let id: Int
     let title: String
     let isOptional: Bool
     let allowsMultipleChoices: Bool
-    let choices: [RoomServiceItemOptionChoice]
-    let defaultChoice: RoomServiceItemOptionChoice?
+    let choices: [RSItemOptionChoice]
+    let defaultChoice: RSItemOptionChoice?
     
     init(id: Int, title: String, isOptional: Bool, allowsMultipleChoices: Bool,
-         choices: [RoomServiceItemOptionChoice], defaultChoice: RoomServiceItemOptionChoice? = nil) {
+         choices: [RSItemOptionChoice], defaultChoice: RSItemOptionChoice? = nil) {
         self.id = id
         self.title = title
         self.isOptional = isOptional
@@ -27,7 +27,7 @@ class RoomServiceItemOption: Equatable {
         self.defaultChoice = defaultChoice
     }
     
-    static func == (lhs: RoomServiceItemOption, rhs: RoomServiceItemOption) -> Bool {
+    static func == (lhs: RSItemOption, rhs: RSItemOption) -> Bool {
         return lhs.id == rhs.id
     }
     
