@@ -10,49 +10,48 @@ import UIKit
 
 class OnboardingInformationCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Public properties
+    
     let informationTitleLabel = StyledLabel(withStyle: .title2)
     let informationLabel = StyledLabel(withStyle: .body)
     
-    var informationTitle: String {
-        get { return informationTitleLabel.text ?? "" }
-        set { informationTitleLabel.text = newValue }
-    }
-    
-    var information: String {
-        get { return informationLabel.text ?? "" }
-        set { informationLabel.text = newValue }
-    }
+    // MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUpViews()
+        configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        setUpViews()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpViews() {
-        // Set up the title label.
+    // MARK: - View configuration
+    
+    private func configureView() {
+        configureTitleLabel()
+        configureInformationLabel()
+    }
+    
+    private func configureTitleLabel() {
         informationTitleLabel.textAlignment = .center
         informationTitleLabel.numberOfLines = 0
-        addSubview(informationTitleLabel)
         
+        addSubview(informationTitleLabel)
         informationTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             informationTitleLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 50),
             informationTitleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 22),
             informationTitleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -22),
             ])
-        
-        // Set up the information label.
+    }
+    
+    private func configureInformationLabel() {
         informationLabel.textAlignment = .center
         informationLabel.numberOfLines = 0
-        addSubview(informationLabel)
         
+        addSubview(informationLabel)
         informationLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             informationLabel.topAnchor.constraint(equalTo: informationTitleLabel.bottomAnchor, constant: -5),

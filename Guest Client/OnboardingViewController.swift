@@ -155,8 +155,8 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLa
         let infoCell = collectionView.dequeueReusableCell(withReuseIdentifier: infoCellIdentifier,
                                                           for: indexPath) as! OnboardingInformationCollectionViewCell
         
-        infoCell.informationTitle = onboardingInformationList[indexPath.row].title
-        infoCell.information = onboardingInformationList[indexPath.row].information
+        infoCell.informationTitleLabel.text = onboardingInformationList[indexPath.row].title
+        infoCell.informationLabel.text = onboardingInformationList[indexPath.row].information
         
         return infoCell
     }

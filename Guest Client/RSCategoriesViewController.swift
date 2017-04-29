@@ -81,10 +81,10 @@ class RSCategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
-        let rsItemsTableVC = RSItemsViewController()
-        rsItemsTableVC.navigationItem.title = categoryCell.categoryTitleLabel.text
+        let rsItemsVC = RSItemsViewController()
+        rsItemsVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         
-        show(rsItemsTableVC, sender: self)
+        show(rsItemsVC, sender: self)
     }
 
 }

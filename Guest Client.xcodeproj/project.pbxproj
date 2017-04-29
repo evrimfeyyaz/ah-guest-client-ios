@@ -230,8 +230,8 @@
 		913D8FBC1EA52FBB00B1B3CD /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
+				913D8FC81EA669BD00B1B3CD /* Onboarding */,
 				910F726C1EB521BA003286D9 /* Room Service */,
-				913D8FC81EA669BD00B1B3CD /* Collection View */,
 				913D8FBF1EA634B300B1B3CD /* Table View */,
 				91868F611EA51CE400B589BC /* StyledLabel.swift */,
 				918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */,
@@ -283,12 +283,12 @@
 			name = "Table View";
 			sourceTree = "<group>";
 		};
-		913D8FC81EA669BD00B1B3CD /* Collection View */ = {
+		913D8FC81EA669BD00B1B3CD /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */,
 			);
-			name = "Collection View";
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		9152982A1EA87B1F005CB637 /* Extensions */ = {
