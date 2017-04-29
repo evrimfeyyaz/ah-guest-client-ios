@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		910F72611EB3B7BF003286D9 /* HollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910F72601EB3B7BF003286D9 /* HollowButton.swift */; };
 		910F72671EB4C15C003286D9 /* RSCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910F72661EB4C15C003286D9 /* RSCartViewController.swift */; };
+		910F726B1EB4D93D003286D9 /* ThemeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910F726A1EB4D93D003286D9 /* ThemeViewFactory.swift */; };
 		91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BDD1E951B2000B21CE6 /* AppDelegate.swift */; };
 		91137BE51E951B2000B21CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE41E951B2000B21CE6 /* Assets.xcassets */; };
 		91137BE81E951B2000B21CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */; };
@@ -39,7 +40,6 @@
 		918FC9841EADF2E700CFC01C /* RSItemChoicesForOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9831EADF2E700CFC01C /* RSItemChoicesForOption.swift */; };
 		918FC9861EADF4D600CFC01C /* RSCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9851EADF4D600CFC01C /* RSCart.swift */; };
 		918FC9881EAF39D700CFC01C /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */; };
-		918FC98A1EAF52BE00CFC01C /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9891EAF52BE00CFC01C /* TextView.swift */; };
 		918FC98C1EAF69FC00CFC01C /* QuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */; };
 		918FC98E1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98D1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift */; };
 		918FC9901EAFDCA900CFC01C /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98F1EAFDCA900CFC01C /* FilledButton.swift */; };
@@ -74,6 +74,7 @@
 /* Begin PBXFileReference section */
 		910F72601EB3B7BF003286D9 /* HollowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HollowButton.swift; sourceTree = "<group>"; };
 		910F72661EB4C15C003286D9 /* RSCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartViewController.swift; sourceTree = "<group>"; };
+		910F726A1EB4D93D003286D9 /* ThemeViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewFactory.swift; sourceTree = "<group>"; };
 		91137BDA1E951B2000B21CE6 /* Guest Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guest Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91137BDD1E951B2000B21CE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91137BE41E951B2000B21CE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		918FC9831EADF2E700CFC01C /* RSItemChoicesForOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemChoicesForOption.swift; sourceTree = "<group>"; };
 		918FC9851EADF4D600CFC01C /* RSCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCart.swift; sourceTree = "<group>"; };
 		918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
-		918FC9891EAF52BE00CFC01C /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityTableViewCell.swift; sourceTree = "<group>"; };
 		918FC98D1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCartItemFooterView.swift; sourceTree = "<group>"; };
 		918FC98F1EAFDCA900CFC01C /* FilledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -173,9 +173,9 @@
 		91137BDC1E951B2000B21CE6 /* Guest Client */ = {
 			isa = PBXGroup;
 			children = (
-				913D8FBE1EA6349E00B1B3CD /* View Controllers */,
 				913D8FBD1EA6348E00B1B3CD /* Models */,
-				913D8FBC1EA52FBB00B1B3CD /* Custom Elements */,
+				913D8FBE1EA6349E00B1B3CD /* View Controllers */,
+				913D8FBC1EA52FBB00B1B3CD /* UI Elements */,
 				91860F4B1E9D466A00AE4672 /* Theme */,
 				9152982A1EA87B1F005CB637 /* Extensions */,
 				91B335211E9CEF8E0064AF75 /* Resources */,
@@ -225,7 +225,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		913D8FBC1EA52FBB00B1B3CD /* Custom Elements */ = {
+		913D8FBC1EA52FBB00B1B3CD /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
 				913D8FC81EA669BD00B1B3CD /* Collection View */,
@@ -234,9 +234,8 @@
 				910F72601EB3B7BF003286D9 /* HollowButton.swift */,
 				91724ED31EA292CD00FD7240 /* AttributeView.swift */,
 				91BDBECD1E9EAB89009CABE8 /* RSCategoryImageView.swift */,
-				918FC9891EAF52BE00CFC01C /* TextView.swift */,
 			);
-			name = "Custom Elements";
+			name = "UI Elements";
 			sourceTree = "<group>";
 		};
 		913D8FBD1EA6348E00B1B3CD /* Models */ = {
@@ -305,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				91C71ACA1E9DF56D009E1D9B /* Styling Elements */,
+				910F726A1EB4D93D003286D9 /* ThemeViewFactory.swift */,
 				918FC97D1EACB4F800CFC01C /* ThemeMeasurements.swift */,
 				919A417D1E9E445300C4CB7C /* ThemeManager.swift */,
 				913D8FC01EA6446600B1B3CD /* ThemeImages.swift */,
@@ -489,12 +489,12 @@
 				91BDBECE1E9EAB89009CABE8 /* RSCategoryImageView.swift in Sources */,
 				918FC9901EAFDCA900CFC01C /* FilledButton.swift in Sources */,
 				918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift in Sources */,
+				910F726B1EB4D93D003286D9 /* ThemeViewFactory.swift in Sources */,
 				91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */,
 				918FC9881EAF39D700CFC01C /* TextEntryTableViewCell.swift in Sources */,
 				918FC9861EADF4D600CFC01C /* RSCart.swift in Sources */,
 				915298301EA906E9005CB637 /* TableViewCell.swift in Sources */,
 				918FC98C1EAF69FC00CFC01C /* QuantityTableViewCell.swift in Sources */,
-				918FC98A1EAF52BE00CFC01C /* TextView.swift in Sources */,
 				918FC9821EADEF4600CFC01C /* RSCartItem.swift in Sources */,
 				918FC9841EADF2E700CFC01C /* RSItemChoicesForOption.swift in Sources */,
 				9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */,

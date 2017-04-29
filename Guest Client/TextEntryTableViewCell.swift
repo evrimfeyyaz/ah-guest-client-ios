@@ -11,7 +11,7 @@ import UIKit
 class TextEntryTableViewCell: UITableViewCell {
 
     let titleLabel = StyledLabel(withStyle: .cellTitle)
-    let textView = TextView()
+    let textView = ThemeViewFactory.textView()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
