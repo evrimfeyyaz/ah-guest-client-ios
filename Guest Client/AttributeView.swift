@@ -23,6 +23,12 @@ class AttributeView: UIView {
         return styledLabel
     }()
     
+    init() {
+        super.init(frame: CGRect.zero)
+        
+        setUp()
+    }
+    
     init(title: String) {
         self.title = title
         

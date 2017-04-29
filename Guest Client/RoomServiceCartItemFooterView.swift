@@ -10,7 +10,7 @@ import UIKit
 
 class RoomServiceCartItemFooterView: UIView {
 
-    let addToCartButton = Button()
+    let addToCartButton = FilledButton()
     let totalPriceLabel = StyledLabel(withStyle: .bodySmall)
     
     override init(frame: CGRect) {

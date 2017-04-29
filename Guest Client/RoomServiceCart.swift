@@ -14,6 +14,10 @@ class RoomServiceCart {
     
     private(set) public var cartItems: [RoomServiceCartItem] = []
     
+    var total: Decimal {
+        get { return cartItems.reduce(0, { result, cartItem in result + cartItem.totalPrice }) }
+    }
+    
     func add(item: RoomServiceCartItem) {
         cartItems.append(item)
     }

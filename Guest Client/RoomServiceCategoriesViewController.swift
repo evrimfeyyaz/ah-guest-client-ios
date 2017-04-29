@@ -18,10 +18,10 @@ class RoomServiceCategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       setUpViews()
+       configureView()
     }
     
-    private func setUpViews() {
+    private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
         // Set up the table view.
@@ -30,18 +30,25 @@ class RoomServiceCategoriesViewController: UITableViewController {
         tableView.register(RoomServiceCategoryTableViewCell.self, forCellReuseIdentifier: categoryCellIdentifier)
         
         // Set up the navigation bar.
-        let infoBarButton = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(showOnboarding))
-//        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(showOrders))
+        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(goToOrders))
+        
+        let cartBarButton = UIBarButtonItem(title: "Cart", style: .plain, target: self, action: #selector(goToCart))
+        cartBarButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
         
         navigationItem.title = "Room Service"
-        navigationItem.leftBarButtonItem = infoBarButton
+        navigationItem.leftBarButtonItem = ordersBarButton
+        navigationItem.rightBarButtonItem = cartBarButton
         
         let backButton = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backButton
     }
     
-    @objc private func showOnboarding() {
-        dismiss(animated: true, completion: nil)
+    @objc private func goToOrders() {
+        print("Go to orders")
+    }
+    
+    @objc private func goToCart() {
+        print("Go to cart")
     }
     
     // MARK: - Table view data source

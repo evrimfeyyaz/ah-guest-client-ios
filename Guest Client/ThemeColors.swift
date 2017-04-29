@@ -14,6 +14,7 @@ class ThemeColors {
     static let darkBlue = uiColorFromRgb(rgbValue: 0x00171F)
     static let blackRock = uiColorFromRgb(rgbValue: 0x2B2F3D)
     static let maroon = uiColorFromRgb(rgbValue: 0x8B2131)
+    static let bilbao = uiColorFromRgb(rgbValue: 0x387E1E)
     
     static func uiColorFromRgb(rgbValue: UInt) -> UIColor {
         return UIColor(

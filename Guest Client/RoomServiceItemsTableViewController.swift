@@ -20,31 +20,31 @@ class RoomServiceItemsTableViewController: UITableViewController {
     private let itemCellIdentifier = "itemCellIdentifier"
     private let headerViewIdentifier = "headerViewIdentifier"
     
-    init() {
-        super.init(style: .grouped)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpViews()
+        configureView()
     }
     
     // MARK: - View setup
     
-    func setUpViews() {
-        view.backgroundColor = ThemeImages.backgroundImage
-        
+    func configureView() {
         // Set up the table view.
         tableView.backgroundView = nil
+        tableView.backgroundColor = ThemeImages.backgroundImage
         tableView.rowHeight = 80
         tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
         tableView.register(RoomServiceItemTableViewCell.self, forCellReuseIdentifier: itemCellIdentifier)
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
+        
+        let cartBarButton = UIBarButtonItem(title: "Cart", style: .plain, target: self, action: #selector(goToCart))
+        cartBarButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
+        
+        navigationItem.rightBarButtonItem = cartBarButton
+    }
+    
+    @objc private func goToCart() {
+        print("Go to cart")
     }
 
     // MARK: - Table view data source
