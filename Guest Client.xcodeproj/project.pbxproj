@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		910F72611EB3B7BF003286D9 /* HollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910F72601EB3B7BF003286D9 /* HollowButton.swift */; };
 		910F72671EB4C15C003286D9 /* RSCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910F72661EB4C15C003286D9 /* RSCartViewController.swift */; };
 		910F726B1EB4D93D003286D9 /* ThemeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910F726A1EB4D93D003286D9 /* ThemeViewFactory.swift */; };
 		91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BDD1E951B2000B21CE6 /* AppDelegate.swift */; };
@@ -42,7 +41,7 @@
 		918FC9881EAF39D700CFC01C /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */; };
 		918FC98C1EAF69FC00CFC01C /* QuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */; };
 		918FC98E1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98D1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift */; };
-		918FC9901EAFDCA900CFC01C /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98F1EAFDCA900CFC01C /* FilledButton.swift */; };
+		918FC9901EAFDCA900CFC01C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */; };
 		919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A417D1E9E445300C4CB7C /* ThemeManager.swift */; };
 		91BDBEC41E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */; };
 		91BDBECC1E9E8426009CABE8 /* RSCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBECB1E9E8426009CABE8 /* RSCategory.swift */; };
@@ -72,7 +71,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		910F72601EB3B7BF003286D9 /* HollowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HollowButton.swift; sourceTree = "<group>"; };
 		910F72661EB4C15C003286D9 /* RSCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartViewController.swift; sourceTree = "<group>"; };
 		910F726A1EB4D93D003286D9 /* ThemeViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewFactory.swift; sourceTree = "<group>"; };
 		91137BDA1E951B2000B21CE6 /* Guest Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guest Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +111,7 @@
 		918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
 		918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityTableViewCell.swift; sourceTree = "<group>"; };
 		918FC98D1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCartItemFooterView.swift; sourceTree = "<group>"; };
-		918FC98F1EAFDCA900CFC01C /* FilledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
+		918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		919A417D1E9E445300C4CB7C /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		91BDBEC31E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBECB1E9E8426009CABE8 /* RSCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCategory.swift; sourceTree = "<group>"; };
@@ -230,8 +228,7 @@
 			children = (
 				913D8FC81EA669BD00B1B3CD /* Collection View */,
 				913D8FBF1EA634B300B1B3CD /* Table View */,
-				918FC98F1EAFDCA900CFC01C /* FilledButton.swift */,
-				910F72601EB3B7BF003286D9 /* HollowButton.swift */,
+				918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */,
 				91724ED31EA292CD00FD7240 /* AttributeView.swift */,
 				91BDBECD1E9EAB89009CABE8 /* RSCategoryImageView.swift */,
 			);
@@ -487,7 +484,7 @@
 				91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */,
 				918FC9801EACF55900CFC01C /* RSItemOptionChoicesViewController.swift in Sources */,
 				91BDBECE1E9EAB89009CABE8 /* RSCategoryImageView.swift in Sources */,
-				918FC9901EAFDCA900CFC01C /* FilledButton.swift in Sources */,
+				918FC9901EAFDCA900CFC01C /* RoundedButton.swift in Sources */,
 				918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift in Sources */,
 				910F726B1EB4D93D003286D9 /* ThemeViewFactory.swift in Sources */,
 				91BDBED31E9F96D1009CABE8 /* RoomServiceItemTableViewCell.swift in Sources */,
@@ -507,7 +504,6 @@
 				9145A7441EA0E0C900D33911 /* RSItemDetailViewController.swift in Sources */,
 				913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RoomServiceCategoryTableViewCell.swift in Sources */,
-				910F72611EB3B7BF003286D9 /* HollowButton.swift in Sources */,
 				91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RSItemsViewController.swift in Sources */,

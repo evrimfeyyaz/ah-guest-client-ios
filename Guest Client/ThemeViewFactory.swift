@@ -10,6 +10,18 @@ import UIKit
 
 class ThemeViewFactory {
     
+    static func filledButton() -> UIButton {
+        return RoundedButton(cornerRadius: 5, borderThickness: 0,
+                             backgroundColor: ThemeColors.maroon,
+                             borderColor: .clear, textColor: .white)
+    }
+    
+    static func hollowButton() -> UIButton {
+        return RoundedButton(cornerRadius: 5, borderThickness: 2,
+                             backgroundColor: .clear,
+                             borderColor: .white, textColor: .white)
+    }
+    
     static func textView() -> UITextView {
         let textView = UITextView()
         

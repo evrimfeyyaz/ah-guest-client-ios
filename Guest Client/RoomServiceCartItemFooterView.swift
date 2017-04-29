@@ -10,7 +10,7 @@ import UIKit
 
 class RSCartItemFooterView: UIView {
 
-    let addToCartButton = FilledButton()
+    let addToCartButton = ThemeViewFactory.filledButton()
     let totalPriceLabel = StyledLabel(withStyle: .bodySmall)
     
     override init(frame: CGRect) {
