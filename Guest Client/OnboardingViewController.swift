@@ -10,7 +10,6 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
     
-    // MARK: - UI elements
     fileprivate let pageControl = UIPageControl()
     private let onboardingInformationCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,16 +30,16 @@ class OnboardingViewController: UIViewController {
         ]
     
     // MARK: - Private properties
-    fileprivate let infoCellIdentifier = "infoCellIdentifier"
+    fileprivate let infoCellIdentifier = "info"
 
     // MARK: View setup
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpViews()
+        configureView()
     }
     
-    private func setUpViews() {
+    private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
         // Set up the logo.

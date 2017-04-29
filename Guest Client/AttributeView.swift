@@ -10,55 +10,64 @@ import UIKit
 
 class AttributeView: UIView {
     
+    // MARK: - Properties
+    
     var title: String? {
         didSet {
-            setUpTitleLabel()
+            updateTitleLabelText()
         }
     }
     
-    var titleLabel: UILabel = {
-        let styledLabel = StyledLabel()
-        styledLabel.style = .attribute
-        
-        return styledLabel
-    }()
+    // MARK: - Private variables
+    
+    private var titleLabel = UILabel()
+    
+    // MARK: - Initializers
     
     init() {
         super.init(frame: CGRect.zero)
         
-        setUp()
+        configureView()
     }
     
     init(title: String) {
         self.title = title
         
         super.init(frame: CGRect.zero)
-        setUp()
+        configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUp() {
-        setUpView()
-        setUpTitleLabel()
+    // MARK: - View configuration
+    
+    private func configureView() {
+        backgroundColor = .white
+        
+        configureTitleLabel()
+        updateTitleLabelText()
     }
     
-    func setUpView() {
-        backgroundColor = .white
-        layer.cornerRadius = 10
+    private func configureTitleLabel() {
+        titleLabel.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
+        titleLabel.textColor = ThemeColors.darkBlue
+        titleLabel.textAlignment = .center
         
         addSubview(titleLabel)
-        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+            ])
     }
     
-    func setUpTitleLabel() {
+    private func updateTitleLabelText() {
+        layer.cornerRadius = titleLabel.font.pointSize / 1.5
+        
         titleLabel.text = title?.uppercased()
         titleLabel.accessibilityLabel = title
         titleLabel.textAlignment = .center

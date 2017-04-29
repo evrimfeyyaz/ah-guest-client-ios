@@ -43,7 +43,7 @@ class StyledLabel: UILabel {
         switch style {
         case .titleOne:
             attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8)
-            
+        
             font = ThemeFonts.oswaldRegular.withSize(36)
             textColor = ThemeColors.white
         case .titleTwo:
