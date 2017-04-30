@@ -66,7 +66,7 @@ class RSItemDetailView: UIView {
             outerStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
             outerStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
             outerStackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 15),
-            outerStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -15)
+            outerStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -30)
             ])
     }
     
