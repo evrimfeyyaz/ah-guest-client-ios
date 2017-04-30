@@ -19,9 +19,8 @@ extension UITableView {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         let width = view.bounds.size.width;
-        let temporaryWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "[view(width)]", options: NSLayoutFormatOptions(rawValue: UInt(0)), metrics: ["width": width], views: ["view": view])
-        
-        view.addConstraints(temporaryWidthConstraints)
+        let widthAnchor = view.widthAnchor.constraint(equalToConstant: width)
+        widthAnchor.isActive = true
         
         view.setNeedsLayout()
         view.layoutIfNeeded()
@@ -31,6 +30,8 @@ extension UITableView {
         var frame = view.frame
         
         frame.size.height = height
+        frame.origin.x = 0
+        frame.origin.y = 0
         view.frame = frame
         
         if (location == .header) {
@@ -39,7 +40,7 @@ extension UITableView {
             self.tableFooterView = view
         }
         
-        view.removeConstraints(temporaryWidthConstraints)
+        widthAnchor.isActive = false
         view.translatesAutoresizingMaskIntoConstraints = true
     }
     

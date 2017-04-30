@@ -46,7 +46,7 @@ class RSCartItemFooterView: UIView {
             stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 10),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor, constant: -15)
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor, constant: -30)
             ])
     }
     

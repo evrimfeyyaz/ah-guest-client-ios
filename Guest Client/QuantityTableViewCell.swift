@@ -33,6 +33,8 @@ class QuantityTableViewCell: UITableViewCell {
     private func configureView() {
         selectionStyle = .none
         
+//        let stackView = UIStackView(arrangedSubviews: [titleLabel, quantityLabel, quantityStepper])
+        
         configureTitleLabel()
         configureQuantityLabel()
         configureQuantityStepper()

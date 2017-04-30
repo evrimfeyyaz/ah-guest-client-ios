@@ -15,7 +15,6 @@
 		913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC01EA6446600B1B3CD /* ThemeImages.swift */; };
 		913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */; };
 		913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */; };
-		913D8FC71EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */; };
 		913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */; };
 		9145A7441EA0E0C900D33911 /* RSItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9145A7431EA0E0C900D33911 /* RSItemDetailViewController.swift */; };
 		9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */; };
@@ -83,7 +82,6 @@
 		913D8FC01EA6446600B1B3CD /* ThemeImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImages.swift; sourceTree = "<group>"; };
 		913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeFonts.swift; sourceTree = "<group>"; };
 		913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
-		913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelpers.swift"; sourceTree = "<group>"; };
 		913D8FC91EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingInformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		9145A7431EA0E0C900D33911 /* RSItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemDetailViewController.swift; sourceTree = "<group>"; };
 		9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decimal+CurrencyHelpers.swift"; sourceTree = "<group>"; };
@@ -318,7 +316,6 @@
 		9152982A1EA87B1F005CB637 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				913D8FC61EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift */,
 				9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */,
 				918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */,
 			);
@@ -530,7 +527,6 @@
 				918FC98E1EAF907F00CFC01C /* RSCartItemFooterView.swift in Sources */,
 				910F72671EB4C15C003286D9 /* RSCartViewController.swift in Sources */,
 				91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */,
-				913D8FC71EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift in Sources */,
 				91F660B51E9E218700DE4D11 /* RSCategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
