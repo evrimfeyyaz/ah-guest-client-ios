@@ -9,63 +9,73 @@
 import UIKit
 
 class RSItemDetailView: UIView {
+    
+    // MARK: - Public properties
 
     let itemTitleLabel = StyledLabel(withStyle: .title1)
     let itemAttributesStackView = UIStackView()
     let itemPriceLabel = StyledLabel(withStyle: .price)
     let itemDescriptionLabel = StyledLabel(withStyle: .body)
     
+    // MARK: - Private properties
+    
+    private let centerStackView = UIStackView()
+    
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUpViews()
+        configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - View configuration
 
-    func setUpViews() {
-        // Set up the item title label.
-        addSubview(itemTitleLabel)
-        itemTitleLabel.numberOfLines = 0
-        itemTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            itemTitleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
-            itemTitleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
-            itemTitleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 15)
-            ])
-        
-        // Set up the item attributes 
-        addSubview(itemAttributesStackView)
-        itemAttributesStackView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureView() {
+        configureItemAttributesStackView()
+        configureCenterStackView()
+        configureOuterStackView()
+        configureTitleLabel()
+        configureDescriptionLabel()
+    }
+    
+    private func configureItemAttributesStackView() {
         itemAttributesStackView.alignment = .center
         itemAttributesStackView.distribution = .equalSpacing
         itemAttributesStackView.spacing = 10
-        NSLayoutConstraint.activate([
-            itemAttributesStackView.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
-            itemAttributesStackView.topAnchor.constraint(equalTo: itemTitleLabel.bottomAnchor, constant: 2)
-            ])
+    }
+    
+    private func configureCenterStackView() {
+        centerStackView.addArrangedSubview(itemAttributesStackView)
+        centerStackView.addArrangedSubview(itemPriceLabel)
+        centerStackView.distribution = .equalSpacing
+    }
+    
+    private func configureOuterStackView() {
+        let outerStackView = UIStackView(arrangedSubviews: [itemTitleLabel, centerStackView, itemDescriptionLabel])
+        outerStackView.axis = .vertical
+        outerStackView.spacing = 6
         
-        // Set up the item price label.
-        addSubview(itemPriceLabel)
-        itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(outerStackView)
+        outerStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemPriceLabel.trailingAnchor.constraint(equalTo: itemTitleLabel.trailingAnchor),
-            itemPriceLabel.centerYAnchor.constraint(equalTo: itemAttributesStackView.centerYAnchor),
-            itemPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: itemAttributesStackView.trailingAnchor, constant: 15)
+            outerStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
+            outerStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
+            outerStackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 15),
+            outerStackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -15)
             ])
-        
-        // Set up the item description label.
-        addSubview(itemDescriptionLabel)
+    }
+    
+    private func configureTitleLabel() {
+        itemTitleLabel.numberOfLines = 0
+    }
+    
+    private func configureDescriptionLabel() {
         itemDescriptionLabel.numberOfLines = 0
-        itemDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            itemDescriptionLabel.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
-            itemDescriptionLabel.trailingAnchor.constraint(equalTo: itemTitleLabel.trailingAnchor),
-            itemDescriptionLabel.topAnchor.constraint(equalTo: itemAttributesStackView.bottomAnchor, constant: 6),
-            itemDescriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor, constant: -15)
-            ])
     }
     
 }
