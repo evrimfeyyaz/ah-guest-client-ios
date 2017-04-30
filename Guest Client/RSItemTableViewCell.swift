@@ -16,6 +16,10 @@ class RSItemTableViewCell: UITableViewCell {
     let itemDescriptionLabel = StyledLabel(withStyle: .cellDescription)
     let itemPriceLabel = StyledLabel(withStyle: .cellPrice)
     
+    // MARK: - Private properties
+    
+    var innerStackView = UIStackView()
+    
     // MARK: - Initializers
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -33,38 +37,39 @@ class RSItemTableViewCell: UITableViewCell {
     private func configureView() {
         configureTitleLabel()
         configurePriceLabel()
-        configureDescriptionLabel()
+        configureInnerStackView()
+        configureOuterStackView()
     }
     
     private func configureTitleLabel() {
         itemTitleLabel.numberOfLines = 0
-        
-        contentView.addSubview(itemTitleLabel)
-        itemTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            itemTitleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            itemTitleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor)
-            ])
+        // I have absolutely no idea why, but the following is the only way to make this work.
+        itemTitleLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
     }
     
     private func configurePriceLabel() {
-        contentView.addSubview(itemPriceLabel)
-        itemPriceLabel.setContentCompressionResistancePriority(751, for: .horizontal)
-        itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            itemPriceLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            itemPriceLabel.firstBaselineAnchor.constraint(equalTo: itemTitleLabel.firstBaselineAnchor),
-            itemPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: itemTitleLabel.trailingAnchor, constant: 15)
-            ])
+        itemPriceLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
     }
     
-    private func configureDescriptionLabel() {
-        contentView.addSubview(itemDescriptionLabel)
-        itemDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureInnerStackView() {
+        innerStackView.addArrangedSubview(itemTitleLabel)
+        innerStackView.addArrangedSubview(itemPriceLabel)
+        innerStackView.distribution = .fill
+        innerStackView.alignment = .firstBaseline
+    }
+    
+    private func configureOuterStackView() {
+        let outerStackView = UIStackView(arrangedSubviews: [innerStackView, itemDescriptionLabel])
+        outerStackView.axis = .vertical
+        outerStackView.distribution = .equalSpacing
+        
+        contentView.addSubview(outerStackView)
+        outerStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            itemDescriptionLabel.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
-            itemDescriptionLabel.topAnchor.constraint(equalTo: itemTitleLabel.bottomAnchor),
-            itemDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
+            outerStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            outerStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            outerStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            outerStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor)
             ])
     }
     
