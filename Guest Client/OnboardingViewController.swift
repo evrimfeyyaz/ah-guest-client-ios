@@ -115,7 +115,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLa
         finishOnboarding()
     }
     
-    // MARK: - Private methods
+    // MARK: - Private instance methods
     
     private func showNextInfoPage() {
         if let currentItem = onboardingInformationCollectionView.indexPathsForVisibleItems.first {

@@ -12,15 +12,18 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Private properties
     
-    private let tableViewCellIdentifier = "tableViewCellIdentifier"
-    private let textEntryTableViewCellIdentifier = "textEntryTableViewCellIdentifier"
-    private let quantityTableViewCellIdentifier = "quantityTableViewCellIdentifier"
     private let itemDetailView = RSItemDetailView()
     private let footerView = RSCartItemFooterView()
     
-    // MARK: - Public properties
+    private let tableViewCellIdentifier = "tableViewCell"
+    private let textEntryTableViewCellIdentifier = "textEntry"
+    private let quantityTableViewCellIdentifier = "quantity"
     
-    let cartItem: RSCartItem
+    private let cartItem: RSCartItem
+    
+    private let itemOptionsSectionIndex = 0
+    private let specialRequestSectionIndex = 1
+    private let quantitySectionIndex = 2
 
     // MARK: - Initializers
     
@@ -34,26 +37,31 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - View setup
+    // MARK: - View configuration
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        setUpViews()
+        configureView()
     }
 
-    private func setUpViews() {
+    private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
-        // Set up the navigation items.
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAddItemAndDismiss))
-        let addToCartButton = UIBarButtonItem(title: "Add to Cart", style: .done, target: self, action: #selector(addItemToCartAndDismiss))
-        addToCartButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
+        configureNavigationBar()
+        configureTableView()
+        configureItemDetailView()
+        configureTableFooterView()
+    }
+    
+    private func configureNavigationBar() {
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped))
+        let addToCartButton = ThemeViewFactory.doneStyleBarButton(title: "Add to Cart", target: self, action: #selector(addToCartButtonTapped))
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = addToCartButton
-        
-        // Set up the table view.
+    }
+    
+    private func configureTableView() {
         tableView.backgroundView = nil
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -64,8 +72,9 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
                            forCellReuseIdentifier: textEntryTableViewCellIdentifier)
         tableView.register(QuantityTableViewCell.self,
                            forCellReuseIdentifier: quantityTableViewCellIdentifier)
-        
-        // Set up the table header view.
+    }
+    
+    private func configureItemDetailView() {
         itemDetailView.itemTitleLabel.text = cartItem.rsItem.title
         itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription
         itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInBahrainiDinars
@@ -73,30 +82,42 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
         for attribute in cartItem.rsItem.attributes {
             let attributeView = AttributeView(title: attribute.title)
             
-            itemDetailView.itemAttributesView.addArrangedSubview(attributeView)
+            itemDetailView.itemAttributesStackView.addArrangedSubview(attributeView)
         }
         
         tableView.tableHeaderView = itemDetailView
         tableView.layoutTableHeaderOrFooterView(location: .header)
-        
+    }
+    
+    private func configureTableFooterView() {
         footerView.totalPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
-        footerView.addToCartButton.addTarget(self, action: #selector(addItemToCartAndDismiss), for: .touchUpInside)
+        footerView.addToCartButton.addTarget(self, action: #selector(addToCartButtonTapped), for: .touchUpInside)
         tableView.tableFooterView = footerView
         tableView.layoutTableHeaderOrFooterView(location: .footer)
     }
     
-    func reloadChangedRow() {
-        tableView.reloadData()
-        updatePriceInItemDetail()
-    }
+    // MARK: - Actions
     
-    func cancelAddItemAndDismiss() {
+    @objc private func cancelButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
     
-    func addItemToCartAndDismiss() {
+    @objc private func addToCartButtonTapped() {
         RSCart.shared.add(item: cartItem)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func quantityStepperValueChanged(sender: UIStepper) {
+        cartItem.quantity = Int(sender.value)
+        
+        updatePriceLabels()
+    }
+    
+    // MARK: - Public instance methods
+    
+    func optionChanged() {
+        tableView.reloadData()
+        updatePriceLabels()
     }
     
     // MARK: - Table view data source
@@ -106,28 +127,28 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let choicesForOption = cartItem.choices[indexPath.row]
-        
+        if indexPath.section == itemOptionsSectionIndex {
+            let choicesForOption = cartItem.choicesForOptions[indexPath.row]
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
             cell.accessoryType = .disclosureIndicator
-        
+            
             var optionTitle = choicesForOption.option.title
             if choicesForOption.option.isOptional {
                 optionTitle += " (optional)"
             }
             cell.titleLabel.text = optionTitle
-        
+            
             if choicesForOption.option.allowsMultipleChoices {
                 cell.descriptionLabel.text = choicesForOption.selectedChoicesAsString()
             } else {
                 cell.detailLabel.text = choicesForOption.selectedChoicesAsString()
             }
-        
+            
             cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
-        
+            
             return cell
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == specialRequestSectionIndex {
             let cell = tableView.dequeueReusableCell(withIdentifier: textEntryTableViewCellIdentifier) as! TextEntryTableViewCell
             
             cell.titleLabel.text = "Special request (optional)"
@@ -135,11 +156,11 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
             cell.textView.delegate = self
             
             return cell
-        } else {
+        } else { // Quantity section
             let cell = tableView.dequeueReusableCell(withIdentifier: quantityTableViewCellIdentifier) as! QuantityTableViewCell
             
             cell.quantityStepper.value = Double(cartItem.quantity)
-            cell.quantityStepper.addTarget(self, action: #selector(quantityChanged(sender:)), for: .valueChanged)
+            cell.quantityStepper.addTarget(self, action: #selector(quantityStepperValueChanged(sender:)), for: .valueChanged)
             
             cell.titleLabel.text = "Quantity"
             cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
@@ -148,13 +169,7 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
-    func quantityChanged(sender: UIStepper) {
-        cartItem.quantity = Int(sender.value)
-        
-        updatePriceInItemDetail()
-    }
-    
-    func updatePriceInItemDetail() {
+    private func updatePriceLabels() {
         let priceString = cartItem.totalPrice.stringInBahrainiDinars
         itemDetailView.itemPriceLabel.text = priceString
         footerView.totalPriceLabel.text = priceString
@@ -171,7 +186,7 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section != 0 {
+        if indexPath.section == specialRequestSectionIndex || indexPath.section == quantitySectionIndex {
             return
         }
         
@@ -198,7 +213,6 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
     }
     
 }
-
 
 
 

@@ -24,7 +24,7 @@
 		915298521EAAA4AD005CB637 /* RSItemAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298511EAAA4AD005CB637 /* RSItemAttribute.swift */; };
 		915298541EAAA6D0005CB637 /* RSItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298531EAAA6D0005CB637 /* RSItemOption.swift */; };
 		915298561EAAA7AF005CB637 /* RSItemOptionChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298551EAAA7AF005CB637 /* RSItemOptionChoice.swift */; };
-		915298581EAB69CB005CB637 /* RoomServiceItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298571EAB69CB005CB637 /* RoomServiceItemDetailView.swift */; };
+		915298581EAB69CB005CB637 /* RSItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298571EAB69CB005CB637 /* RSItemDetailView.swift */; };
 		91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* AttributeView.swift */; };
 		91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F441E9D106100AE4672 /* OnboardingViewController.swift */; };
 		91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91868F611EA51CE400B589BC /* StyledLabel.swift */; };
@@ -39,7 +39,7 @@
 		918FC9861EADF4D600CFC01C /* RSCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9851EADF4D600CFC01C /* RSCart.swift */; };
 		918FC9881EAF39D700CFC01C /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */; };
 		918FC98C1EAF69FC00CFC01C /* QuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */; };
-		918FC98E1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98D1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift */; };
+		918FC98E1EAF907F00CFC01C /* RSCartItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98D1EAF907F00CFC01C /* RSCartItemFooterView.swift */; };
 		918FC9901EAFDCA900CFC01C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */; };
 		919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A417D1E9E445300C4CB7C /* ThemeManager.swift */; };
 		91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */; };
@@ -92,7 +92,7 @@
 		915298511EAAA4AD005CB637 /* RSItemAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemAttribute.swift; sourceTree = "<group>"; };
 		915298531EAAA6D0005CB637 /* RSItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemOption.swift; sourceTree = "<group>"; };
 		915298551EAAA7AF005CB637 /* RSItemOptionChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemOptionChoice.swift; sourceTree = "<group>"; };
-		915298571EAB69CB005CB637 /* RoomServiceItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemDetailView.swift; sourceTree = "<group>"; };
+		915298571EAB69CB005CB637 /* RSItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemDetailView.swift; sourceTree = "<group>"; };
 		91724ED31EA292CD00FD7240 /* AttributeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeView.swift; sourceTree = "<group>"; };
 		91860F441E9D106100AE4672 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		91868F611EA51CE400B589BC /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		918FC9851EADF4D600CFC01C /* RSCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCart.swift; sourceTree = "<group>"; };
 		918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
 		918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityTableViewCell.swift; sourceTree = "<group>"; };
-		918FC98D1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCartItemFooterView.swift; sourceTree = "<group>"; };
+		918FC98D1EAF907F00CFC01C /* RSCartItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartItemFooterView.swift; sourceTree = "<group>"; };
 		918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		919A417D1E9E445300C4CB7C /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -149,8 +149,24 @@
 			children = (
 				91BDBED21E9F96D1009CABE8 /* RSItemTableViewCell.swift */,
 				91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */,
+				915298571EAB69CB005CB637 /* RSItemDetailView.swift */,
+				918FC98D1EAF907F00CFC01C /* RSCartItemFooterView.swift */,
 			);
 			name = "Room Service";
+			sourceTree = "<group>";
+		};
+		910F726D1EB5F0FB003286D9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */,
+				918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */,
+				9152982F1EA906E9005CB637 /* TableViewCell.swift */,
+				9152982D1EA880F2005CB637 /* TableViewHeader.swift */,
+				91868F611EA51CE400B589BC /* StyledLabel.swift */,
+				918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */,
+				91724ED31EA292CD00FD7240 /* AttributeView.swift */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		91137BD11E951B2000B21CE6 = {
@@ -233,11 +249,7 @@
 			children = (
 				913D8FC81EA669BD00B1B3CD /* Onboarding */,
 				910F726C1EB521BA003286D9 /* Room Service */,
-				913D8FBF1EA634B300B1B3CD /* Table View */,
-				9152982D1EA880F2005CB637 /* TableViewHeader.swift */,
-				91868F611EA51CE400B589BC /* StyledLabel.swift */,
-				918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */,
-				91724ED31EA292CD00FD7240 /* AttributeView.swift */,
+				910F726D1EB5F0FB003286D9 /* Common */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -269,18 +281,6 @@
 				910F72661EB4C15C003286D9 /* RSCartViewController.swift */,
 			);
 			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-		913D8FBF1EA634B300B1B3CD /* Table View */ = {
-			isa = PBXGroup;
-			children = (
-				918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */,
-				9152982F1EA906E9005CB637 /* TableViewCell.swift */,
-				915298571EAB69CB005CB637 /* RoomServiceItemDetailView.swift */,
-				918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */,
-				918FC98D1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift */,
-			);
-			name = "Table View";
 			sourceTree = "<group>";
 		};
 		913D8FC81EA669BD00B1B3CD /* Onboarding */ = {
@@ -490,7 +490,7 @@
 				9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */,
 				91BDBEDC1E9FA6C6009CABE8 /* RSItemSection.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
-				915298581EAB69CB005CB637 /* RoomServiceItemDetailView.swift in Sources */,
+				915298581EAB69CB005CB637 /* RSItemDetailView.swift in Sources */,
 				915298541EAAA6D0005CB637 /* RSItemOption.swift in Sources */,
 				913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */,
 				9145A7441EA0E0C900D33911 /* RSItemDetailViewController.swift in Sources */,
@@ -503,7 +503,7 @@
 				915298521EAAA4AD005CB637 /* RSItemAttribute.swift in Sources */,
 				91BDBEDA1E9F9EEC009CABE8 /* RSItem.swift in Sources */,
 				913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */,
-				918FC98E1EAF907F00CFC01C /* RoomServiceCartItemFooterView.swift in Sources */,
+				918FC98E1EAF907F00CFC01C /* RSCartItemFooterView.swift in Sources */,
 				910F72671EB4C15C003286D9 /* RSCartViewController.swift in Sources */,
 				91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */,
 				913D8FC71EA65B4A00B1B3CD /* UIView+AutoLayoutHelpers.swift in Sources */,

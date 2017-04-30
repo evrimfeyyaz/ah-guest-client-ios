@@ -81,7 +81,7 @@ class RSCategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
-        let rsItemsVC = RSItemsViewController()
+        let rsItemsVC = RSItemsViewController(style: .grouped)
         rsItemsVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         
         show(rsItemsVC, sender: self)

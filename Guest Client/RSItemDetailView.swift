@@ -11,7 +11,7 @@ import UIKit
 class RSItemDetailView: UIView {
 
     let itemTitleLabel = StyledLabel(withStyle: .title1)
-    let itemAttributesView = UIStackView()
+    let itemAttributesStackView = UIStackView()
     let itemPriceLabel = StyledLabel(withStyle: .price)
     let itemDescriptionLabel = StyledLabel(withStyle: .body)
     
@@ -37,14 +37,14 @@ class RSItemDetailView: UIView {
             ])
         
         // Set up the item attributes 
-        addSubview(itemAttributesView)
-        itemAttributesView.translatesAutoresizingMaskIntoConstraints = false
-        itemAttributesView.alignment = .center
-        itemAttributesView.distribution = .equalSpacing
-        itemAttributesView.spacing = 10
+        addSubview(itemAttributesStackView)
+        itemAttributesStackView.translatesAutoresizingMaskIntoConstraints = false
+        itemAttributesStackView.alignment = .center
+        itemAttributesStackView.distribution = .equalSpacing
+        itemAttributesStackView.spacing = 10
         NSLayoutConstraint.activate([
-            itemAttributesView.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
-            itemAttributesView.topAnchor.constraint(equalTo: itemTitleLabel.bottomAnchor, constant: 2)
+            itemAttributesStackView.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
+            itemAttributesStackView.topAnchor.constraint(equalTo: itemTitleLabel.bottomAnchor, constant: 2)
             ])
         
         // Set up the item price label.
@@ -52,8 +52,8 @@ class RSItemDetailView: UIView {
         itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             itemPriceLabel.trailingAnchor.constraint(equalTo: itemTitleLabel.trailingAnchor),
-            itemPriceLabel.centerYAnchor.constraint(equalTo: itemAttributesView.centerYAnchor),
-            itemPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: itemAttributesView.trailingAnchor, constant: 15)
+            itemPriceLabel.centerYAnchor.constraint(equalTo: itemAttributesStackView.centerYAnchor),
+            itemPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: itemAttributesStackView.trailingAnchor, constant: 15)
             ])
         
         // Set up the item description label.
@@ -63,7 +63,7 @@ class RSItemDetailView: UIView {
         NSLayoutConstraint.activate([
             itemDescriptionLabel.leadingAnchor.constraint(equalTo: itemTitleLabel.leadingAnchor),
             itemDescriptionLabel.trailingAnchor.constraint(equalTo: itemTitleLabel.trailingAnchor),
-            itemDescriptionLabel.topAnchor.constraint(equalTo: itemAttributesView.bottomAnchor, constant: 6),
+            itemDescriptionLabel.topAnchor.constraint(equalTo: itemAttributesStackView.bottomAnchor, constant: 6),
             itemDescriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor, constant: -15)
             ])
     }

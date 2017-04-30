@@ -10,23 +10,33 @@ import UIKit
 
 class TextEntryTableViewCell: UITableViewCell {
 
+    // MARK: - Public properties
+    
     let titleLabel = StyledLabel(withStyle: .cellTitle)
     let textView = ThemeViewFactory.textView()
+    
+    // MARK: - Initializers
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setUpViews()
+        configureVuew()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpViews() {
+    // MARK: - View configuration
+    
+    private func configureVuew() {
         selectionStyle = .none
         
-        // Set up the title label.
+        configureTitleLabel()
+        configureTextView()
+    }
+    
+    private func configureTitleLabel() {
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -34,8 +44,9 @@ class TextEntryTableViewCell: UITableViewCell {
             titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor)
             ])
-        
-        // Set up the text view.
+    }
+    
+    private func configureTextView() {
         contentView.addSubview(textView)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isEditable = true

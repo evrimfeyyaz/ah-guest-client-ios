@@ -10,12 +10,11 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
+    // MARK: - Public properties
+    
     let titleLabel = StyledLabel(withStyle: .cellTitle)
     let descriptionLabel = StyledLabel(withStyle: .cellDescription)
     let detailLabel = StyledLabel(withStyle: .cellDetail)
-    
-    private var detailLabelTrailingConstraintWithoutAccessory: NSLayoutConstraint?
-    private var detailLabelTrailingConstraintWithAccessory: NSLayoutConstraint?
     
     override var accessoryType: UITableViewCellAccessoryType {
         didSet {
@@ -23,21 +22,35 @@ class TableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - Private properties
+    
+    private var detailLabelTrailingConstraintWithoutAccessory: NSLayoutConstraint?
+    private var detailLabelTrailingConstraintWithAccessory: NSLayoutConstraint?
+    
+    // MARK: - Initializers
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setUpViews()
+        configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpViews() {
+    // MARK: - View configuration
+    
+    private func configureView() {
         selectionStyle = .none
         tintColor = .white
         
-        // Set up the title label.
+        configureTitleLabel()
+        configureDetailLabel()
+        configureDescriptionLabel()
+    }
+    
+    private func configureTitleLabel() {
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -45,22 +58,23 @@ class TableViewCell: UITableViewCell {
             titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: -1), // -1 is needed to make the font size match with the vertical center of the accessory.
             titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor)
             ])
-        
-        // Set up the detail label.
+    }
+    
+    private func configureDetailLabel() {
         contentView.addSubview(detailLabel)
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        detailLabelTrailingConstraintWithoutAccessory = detailLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
-        detailLabelTrailingConstraintWithAccessory = detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        toggleAppropriateTrailingConstraintForDetailLabel()
-        
         NSLayoutConstraint.activate([
             detailLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.leadingAnchor, constant: 15),
             detailLabel.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),
-//            detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
         
-        // Set up the description label.
+        // This is so that when there is an accessory, the detail label is not too far from it.
+        detailLabelTrailingConstraintWithoutAccessory = detailLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
+        detailLabelTrailingConstraintWithAccessory = detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        toggleAppropriateTrailingConstraintForDetailLabel()
+    }
+    
+    private func configureDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -70,7 +84,7 @@ class TableViewCell: UITableViewCell {
             ])
     }
     
-    func toggleAppropriateTrailingConstraintForDetailLabel() {
+    private func toggleAppropriateTrailingConstraintForDetailLabel() {
         if accessoryType == .none {
             detailLabelTrailingConstraintWithAccessory?.isActive = false
             detailLabelTrailingConstraintWithoutAccessory?.isActive = true

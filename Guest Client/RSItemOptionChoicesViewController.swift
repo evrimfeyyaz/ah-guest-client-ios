@@ -121,7 +121,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        itemViewController?.reloadChangedRow()
+        itemViewController?.optionChanged()
     }
 
 }

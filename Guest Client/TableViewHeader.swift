@@ -32,6 +32,8 @@ class TableViewHeader: UITableViewHeaderFooterView {
         // This is needed to make the background transparent.
         backgroundView = UIView(frame: bounds)
         backgroundView?.backgroundColor = .clear
+        
+        configureTitleLabel()
     }
     
     private func configureTitleLabel() {
