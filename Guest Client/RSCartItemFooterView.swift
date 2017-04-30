@@ -30,28 +30,28 @@ class RSCartItemFooterView: UIView {
     // MARK: - View configuration
     
     private func configureView() {
-        configureTotalPriceLabel()
+        configureStackView()
         configureAddToCartButton()
     }
     
-    private func configureTotalPriceLabel() {
-        addSubview(totalPriceLabel)
-        totalPriceLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureStackView() {
+        let stackView = UIStackView(arrangedSubviews: [totalPriceLabel, addToCartButton])
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 5
+        
+        addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            totalPriceLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            totalPriceLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 10),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor, constant: -15)
             ])
     }
     
     private func configureAddToCartButton() {
-        addSubview(addToCartButton)
         addToCartButton.setTitle("Add to Cart", for: .normal)
-        addToCartButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addToCartButton.topAnchor.constraint(equalTo: totalPriceLabel.bottomAnchor, constant: 5),
-            addToCartButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            addToCartButton.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor, constant: -15)
-            ])
     }
 
 }
