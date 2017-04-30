@@ -14,16 +14,16 @@ class RSItemOption: Equatable {
     let title: String
     let isOptional: Bool
     let allowsMultipleChoices: Bool
-    let choices: [RSItemOptionChoice]
+    let possibleChoices: [RSItemOptionChoice]
     let defaultChoice: RSItemOptionChoice?
     
     init(id: Int, title: String, isOptional: Bool, allowsMultipleChoices: Bool,
-         choices: [RSItemOptionChoice], defaultChoice: RSItemOptionChoice? = nil) {
+         possibleChoices: [RSItemOptionChoice], defaultChoice: RSItemOptionChoice? = nil) {
         self.id = id
         self.title = title
         self.isOptional = isOptional
         self.allowsMultipleChoices = allowsMultipleChoices
-        self.choices = choices
+        self.possibleChoices = possibleChoices
         self.defaultChoice = defaultChoice
     }
     

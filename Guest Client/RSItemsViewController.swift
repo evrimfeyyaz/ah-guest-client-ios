@@ -19,7 +19,7 @@ class RSItemsViewController: UITableViewController {
     // MARK: - Private properties
     
     private let itemCellIdentifier = "item"
-    private let headerViewIdentifier = "header"
+    private let tableViewHeaderViewIdentifier = "tableViewHeader"
     
     // MARK: - View configuration
     
@@ -40,7 +40,7 @@ class RSItemsViewController: UITableViewController {
         tableView.rowHeight = 80
         tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
         tableView.register(RSItemTableViewCell.self, forCellReuseIdentifier: itemCellIdentifier)
-        tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
+        tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: tableViewHeaderViewIdentifier)
     }
     
     private func configureNavigationBar() {
@@ -88,7 +88,7 @@ class RSItemsViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerViewIdentifier) as! TableViewHeader
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: tableViewHeaderViewIdentifier) as! TableViewHeader
         headerView.titleLabel.text = sections[section].title
         // TODO: Find a way to set this globally.
         headerView.contentView.backgroundColor = .clear

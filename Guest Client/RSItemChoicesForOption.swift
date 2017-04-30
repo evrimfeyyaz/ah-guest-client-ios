@@ -15,7 +15,7 @@ class RSItemChoicesForOption: Equatable {
     fileprivate(set) public var selectedChoices: [RSItemOptionChoice] = []
     
     var numberOfPossibleChoices: Int {
-        get { return option.choices.count }
+        get { return option.possibleChoices.count }
     }
     
     init(option: RSItemOption) {

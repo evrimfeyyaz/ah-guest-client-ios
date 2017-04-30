@@ -48,10 +48,10 @@ class RSItemSection {
         let multipleChoice2 = RSItemOptionChoice(id: 1, title: "Extra pickles", price: 0.200)
         
         let option1 = RSItemOption(id: 0, title: "Size", isOptional: false,
-                                                    allowsMultipleChoices: false, choices: [choice1, choice2],
-                                                    defaultChoice: choice1)
+                                   allowsMultipleChoices: false, possibleChoices: [choice1, choice2],
+                                   defaultChoice: choice1)
         let option2 = RSItemOption(id: 1, title: "Extra items", isOptional: true, allowsMultipleChoices: true,
-                                            choices: [multipleChoice1, multipleChoice2])
+                                   possibleChoices: [multipleChoice1, multipleChoice2])
         
         if (self.id == 1) {
             return [

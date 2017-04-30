@@ -57,7 +57,7 @@ class RSItem {
         let choice2 = RSItemOptionChoice(id: 1, title: "Large", price: 0.200)
         
         let options = RSItemOption(id: 0, title: "Size", isOptional: false,
-                                                    allowsMultipleChoices: false, choices: [choice1, choice2],
+                                                    allowsMultipleChoices: false, possibleChoices: [choice1, choice2],
                                                     defaultChoice: choice1)
         
         return RSItem(id: 0, title: "Starbucks Table-Side French Press",

@@ -9,13 +9,19 @@
 import UIKit
 
 class RSItemOptionChoicesViewController: UITableViewController {
-
-    let choicesForOption: RSItemChoicesForOption
+    
+    // MARK: - Public properties
     
     var itemViewController: RSItemDetailViewController?
     
-    private let tableViewCellIdentifier = "tableViewCellIdentifier"
-    private let tableViewHeaderIdentifier = "tableViewHeaderIdentifier"
+    // MARK: - Private properties
+
+    private let choicesForOption: RSItemChoicesForOption
+    
+    private let tableViewCellIdentifier = "tableViewCell"
+    private let tableViewHeaderIdentifier = "tableViewHeader"
+    
+    // MARK: - Initializers
     
     init(choicesForOption: RSItemChoicesForOption) {
         self.choicesForOption = choicesForOption
@@ -27,16 +33,21 @@ class RSItemOptionChoicesViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - View configuration
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpViews()
+        configureView()
     }
     
-    func setUpViews() {
+    private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
-        // Set up the table view.
+        configureTableView()
+    }
+    
+    private func configureTableView() {
         tableView.backgroundView = nil
         tableView.estimatedRowHeight = 50
         tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
@@ -47,6 +58,12 @@ class RSItemOptionChoicesViewController: UITableViewController {
             tableView.allowsMultipleSelection = true
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        itemViewController?.optionChanged()
+    }
 
     // MARK: - Table view data source
 
@@ -56,16 +73,16 @@ class RSItemOptionChoicesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
-        let choice = choicesForOption.option.choices[indexPath.row]
+        let possibleChoice = choicesForOption.option.possibleChoices[indexPath.row]
         
-        cell.titleLabel.text = choice.title
+        cell.titleLabel.text = possibleChoice.title
         
-        if choice.price > 0 {
-            cell.detailLabel.text = choice.price.stringInBahrainiDinars
+        if possibleChoice.price > 0 {
+            cell.detailLabel.text = possibleChoice.price.stringInBahrainiDinars
         }
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
-        if choicesForOption.isSelected(choice: choice) {
+        if choicesForOption.isSelected(choice: possibleChoice) {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
             cell.accessoryType = .checkmark
         }
@@ -89,7 +106,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let choice = choicesForOption.option.choices[indexPath.row]
+        let choice = choicesForOption.option.possibleChoices[indexPath.row]
         
         if (choicesForOption.option.allowsMultipleChoices) {
             let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
@@ -104,7 +121,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if (choicesForOption.option.allowsMultipleChoices) {
-            let choice = choicesForOption.option.choices[indexPath.row]
+            let choice = choicesForOption.option.possibleChoices[indexPath.row]
             let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
             choicesForMultipleChoiceOption.removeSelectedChoice(choice: choice)
         }
@@ -114,14 +131,6 @@ class RSItemOptionChoicesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
-    }
-    
-    // MARK: - Navigation
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        itemViewController?.optionChanged()
     }
 
 }
