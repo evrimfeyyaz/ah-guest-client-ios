@@ -59,8 +59,7 @@ class RSCategoryTableViewCell: UITableViewCell {
         
         configureContainerView()
         configureImageView()
-        configureTitleLabel()
-        configureDescriptionLabel()
+        configureTitleStackView()
     }
     
     private func configureContainerView() {
@@ -91,22 +90,18 @@ class RSCategoryTableViewCell: UITableViewCell {
         }
     }
     
-    private func configureTitleLabel() {
-        containerView.addSubview(categoryTitleLabel)
-        categoryTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureTitleStackView() {
+        let titleStackView = UIStackView(arrangedSubviews: [categoryTitleLabel, categoryDescriptionLabel])
+        titleStackView.axis = .vertical
+        titleStackView.distribution = .fillProportionally
+        titleStackView.spacing = -10
+        
+        contentView.addSubview(titleStackView)
+        titleStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            categoryTitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 28),
-            categoryTitleLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
-            ])
-    }
-    
-    private func configureDescriptionLabel() {
-        containerView.addSubview(categoryDescriptionLabel)
-        categoryDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            categoryDescriptionLabel.topAnchor.constraint(equalTo: categoryTitleLabel.bottomAnchor, constant: -10),
-            categoryDescriptionLabel.leadingAnchor.constraint(equalTo: categoryTitleLabel.leadingAnchor),
-            categoryDescriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: containerView.trailingAnchor, constant: -28)
+            titleStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            titleStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             ])
     }
     
