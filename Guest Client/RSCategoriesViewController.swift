@@ -39,7 +39,7 @@ class RSCategoriesViewController: UITableViewController {
     
     private func configureNavigationBar() {
         let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(ordersBarButtonTapped))
-        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Go to Cart", target: self, action: #selector(cartBarButtonTapped))
+        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Cart", target: self, action: #selector(cartBarButtonTapped))
         
         navigationItem.title = "Room Service"
         navigationItem.leftBarButtonItem = ordersBarButton

@@ -10,34 +10,37 @@ import UIKit
 
 class TableViewHeader: UITableViewHeaderFooterView {
     
+    // MARK: - Public properties
+    
     let titleLabel = StyledLabel(withStyle: .tableHeader)
     
-    var title: String? {
-        get { return titleLabel.text }
-        set { titleLabel.text = newValue }
-    }
+    // MARK: - Initializers
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        setUpViews()
+        configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        setUpViews()
+        fatalError("init(coder:) has not been implemented")
     }
 
-    func setUpViews() {
+    // MARK: - View configuration
+    
+    private func configureView() {
         // This is needed to make the background transparent.
         backgroundView = UIView(frame: bounds)
         backgroundView?.backgroundColor = .clear
-        
+    }
+    
+    private func configureTitleLabel() {
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            ])
     }
 
 }

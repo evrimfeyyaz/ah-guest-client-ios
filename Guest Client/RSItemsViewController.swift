@@ -10,15 +10,18 @@ import UIKit
 
 class RSItemsViewController: UITableViewController {
     
-    // MARK: - Properties
+    // MARK: - Public properties
     
-    let rsItemSections: [RSItemSection] = {
+    let sections: [RSItemSection] = {
         RSItemSection.getAll()
     }()
     
     // MARK: - Private properties
-    private let itemCellIdentifier = "itemCellIdentifier"
-    private let headerViewIdentifier = "headerViewIdentifier"
+    
+    private let itemCellIdentifier = "item"
+    private let headerViewIdentifier = "header"
+    
+    // MARK: - View configuration
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,35 +29,41 @@ class RSItemsViewController: UITableViewController {
         configureView()
     }
     
-    // MARK: - View setup
+    private func configureView() {
+        configureTableView()
+        configureNavigationBar()
+    }
     
-    func configureView() {
-        // Set up the table view.
+    private func configureTableView() {
         tableView.backgroundView = nil
         tableView.backgroundColor = ThemeImages.backgroundImage
         tableView.rowHeight = 80
         tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
         tableView.register(RSItemTableViewCell.self, forCellReuseIdentifier: itemCellIdentifier)
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
-        
-        let cartBarButton = UIBarButtonItem(title: "Cart", style: .plain, target: self, action: #selector(goToCart))
-        cartBarButton.setTitleTextAttributes([NSFontAttributeName: ThemeFonts.latoRegular.withSize(17)], for: .normal)
+    }
+    
+    private func configureNavigationBar() {
+        // TODO: This is used in RSCategoriesViewController as well. Find a way to refactor this.
+        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Cart", target: self, action: #selector(cartBarButtonTapped))
         
         navigationItem.rightBarButtonItem = cartBarButton
     }
     
-    @objc private func goToCart() {
+    // MARK: - Actions
+    
+    @objc private func cartBarButtonTapped() {
         print("Go to cart")
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return rsItemSections.count
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rsItemSections[section].numberOfItems
+        return sections[section].numberOfItems
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,16 +72,16 @@ class RSItemsViewController: UITableViewController {
 
         let section = indexPath.section
         let row = indexPath.row
-        let item = rsItemSections[section].items[row]
+        let item = sections[section].items[row]
         
-        itemCell.itemTitle = item.title
-        itemCell.itemDescription = item.shortDescription
-        itemCell.itemPrice = item.price.stringInBahrainiDinars ?? ""
-        itemCell.itemId = item.id
+        itemCell.itemTitleLabel.text = item.title
+        itemCell.itemDescriptionLabel.text = item.shortDescription
+        itemCell.itemPriceLabel.text = item.price.stringInBahrainiDinars ?? ""
+        // TODO: Find a way to set this globally.
         itemCell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
         itemCell.selectionStyle = .none
-
+        
         return itemCell
     }
     
@@ -80,7 +89,8 @@ class RSItemsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerViewIdentifier) as! TableViewHeader
-        headerView.title = rsItemSections[section].title
+        headerView.titleLabel.text = sections[section].title
+        // TODO: Find a way to set this globally.
         headerView.contentView.backgroundColor = .clear
         
         return headerView
@@ -95,9 +105,9 @@ class RSItemsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = rsItemSections[indexPath.section].items[indexPath.row]
-        let itemVC = RSItemDetailViewController(rsItem: item)
-        let navigationVC = UINavigationController(rootViewController: itemVC)
+        let item = sections[indexPath.section].items[indexPath.row]
+        let itemDetailVC = RSItemDetailViewController(rsItem: item)
+        let navigationVC = UINavigationController(rootViewController: itemDetailVC)
         
         present(navigationVC, animated: true, completion: nil)
     }

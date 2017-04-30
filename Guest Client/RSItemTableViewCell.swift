@@ -10,50 +10,44 @@ import UIKit
 
 class RSItemTableViewCell: UITableViewCell {
     
-    private let itemTitleLabel = StyledLabel(withStyle: .cellTitle)
-    private let itemDescriptionLabel = StyledLabel(withStyle: .cellDescription)
-    private let itemPriceLabel = StyledLabel(withStyle: .cellPrice)
-
-    var itemTitle: String {
-        get { return itemTitleLabel.text ?? "" }
-        set { itemTitleLabel.text = newValue }
-    }
+    // MARK: - Public properties
     
-    var itemDescription: String? {
-        get { return itemDescriptionLabel.text }
-        set { itemDescriptionLabel.text = newValue }
-    }
+    let itemTitleLabel = StyledLabel(withStyle: .cellTitle)
+    let itemDescriptionLabel = StyledLabel(withStyle: .cellDescription)
+    let itemPriceLabel = StyledLabel(withStyle: .cellPrice)
     
-    var itemPrice: String {
-        get { return itemPriceLabel.text ?? "" }
-        set { itemPriceLabel.text = newValue }
-    }
-    
-    var itemId: Int?
+    // MARK: - Initializers
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setUpViews()
+        configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        setUpViews()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpViews() {
-        // Set up the item title label.
-        contentView.addSubview(itemTitleLabel)
+    // MARK: - View configuration
+    
+    private func configureView() {
+        configureTitleLabel()
+        configurePriceLabel()
+        configureDescriptionLabel()
+    }
+    
+    private func configureTitleLabel() {
         itemTitleLabel.numberOfLines = 0
+        
+        contentView.addSubview(itemTitleLabel)
         itemTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             itemTitleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
             itemTitleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor)
             ])
-        
-        // Set up the item price label.
+    }
+    
+    private func configurePriceLabel() {
         contentView.addSubview(itemPriceLabel)
         itemPriceLabel.setContentCompressionResistancePriority(751, for: .horizontal)
         itemPriceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -62,8 +56,9 @@ class RSItemTableViewCell: UITableViewCell {
             itemPriceLabel.firstBaselineAnchor.constraint(equalTo: itemTitleLabel.firstBaselineAnchor),
             itemPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: itemTitleLabel.trailingAnchor, constant: 15)
             ])
-        
-        // Set up the item description label.
+    }
+    
+    private func configureDescriptionLabel() {
         contentView.addSubview(itemDescriptionLabel)
         itemDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
