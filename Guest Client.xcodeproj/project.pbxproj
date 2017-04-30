@@ -169,6 +169,42 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		910F726E1EB63430003286D9 /* Room Service */ = {
+			isa = PBXGroup;
+			children = (
+				91BDBECB1E9E8426009CABE8 /* RSCategory.swift */,
+				91BDBED91E9F9EEC009CABE8 /* RSItem.swift */,
+				91BDBEDB1E9FA6C6009CABE8 /* RSItemSection.swift */,
+				915298511EAAA4AD005CB637 /* RSItemAttribute.swift */,
+				915298531EAAA6D0005CB637 /* RSItemOption.swift */,
+				915298551EAAA7AF005CB637 /* RSItemOptionChoice.swift */,
+				918FC9811EADEF4600CFC01C /* RSCartItem.swift */,
+				918FC9831EADF2E700CFC01C /* RSItemChoicesForOption.swift */,
+				918FC9851EADF4D600CFC01C /* RSCart.swift */,
+			);
+			name = "Room Service";
+			sourceTree = "<group>";
+		};
+		910F726F1EB63442003286D9 /* Room Service */ = {
+			isa = PBXGroup;
+			children = (
+				91F660B41E9E218700DE4D11 /* RSCategoriesViewController.swift */,
+				91BDBED01E9EB607009CABE8 /* RSItemsViewController.swift */,
+				9145A7431EA0E0C900D33911 /* RSItemDetailViewController.swift */,
+				918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */,
+				910F72661EB4C15C003286D9 /* RSCartViewController.swift */,
+			);
+			name = "Room Service";
+			sourceTree = "<group>";
+		};
+		910F72701EB63449003286D9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				91860F441E9D106100AE4672 /* OnboardingViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		91137BD11E951B2000B21CE6 = {
 			isa = PBXGroup;
 			children = (
@@ -257,15 +293,7 @@
 		913D8FBD1EA6348E00B1B3CD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				91BDBECB1E9E8426009CABE8 /* RSCategory.swift */,
-				91BDBED91E9F9EEC009CABE8 /* RSItem.swift */,
-				91BDBEDB1E9FA6C6009CABE8 /* RSItemSection.swift */,
-				915298511EAAA4AD005CB637 /* RSItemAttribute.swift */,
-				915298531EAAA6D0005CB637 /* RSItemOption.swift */,
-				915298551EAAA7AF005CB637 /* RSItemOptionChoice.swift */,
-				918FC9811EADEF4600CFC01C /* RSCartItem.swift */,
-				918FC9831EADF2E700CFC01C /* RSItemChoicesForOption.swift */,
-				918FC9851EADF4D600CFC01C /* RSCart.swift */,
+				910F726E1EB63430003286D9 /* Room Service */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -273,12 +301,8 @@
 		913D8FBE1EA6349E00B1B3CD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				91860F441E9D106100AE4672 /* OnboardingViewController.swift */,
-				91F660B41E9E218700DE4D11 /* RSCategoriesViewController.swift */,
-				91BDBED01E9EB607009CABE8 /* RSItemsViewController.swift */,
-				9145A7431EA0E0C900D33911 /* RSItemDetailViewController.swift */,
-				918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */,
-				910F72661EB4C15C003286D9 /* RSCartViewController.swift */,
+				910F72701EB63449003286D9 /* Onboarding */,
+				910F726F1EB63442003286D9 /* Room Service */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

@@ -32,32 +32,31 @@ class OnboardingInformationCollectionViewCell: UICollectionViewCell {
     private func configureView() {
         configureTitleLabel()
         configureInformationLabel()
+        configureOuterStackView()
     }
     
     private func configureTitleLabel() {
         informationTitleLabel.textAlignment = .center
         informationTitleLabel.numberOfLines = 0
-        
-        addSubview(informationTitleLabel)
-        informationTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            informationTitleLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 50),
-            informationTitleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 22),
-            informationTitleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -22),
-            ])
     }
     
     private func configureInformationLabel() {
         informationLabel.textAlignment = .center
         informationLabel.numberOfLines = 0
+    }
+    
+    private func configureOuterStackView() {
+        let outerStackView = UIStackView(arrangedSubviews: [informationTitleLabel, informationLabel])
+        outerStackView.axis = .vertical
+        outerStackView.distribution = .equalSpacing
         
-        addSubview(informationLabel)
-        informationLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(outerStackView)
+        outerStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            informationLabel.topAnchor.constraint(equalTo: informationTitleLabel.bottomAnchor, constant: -5),
-            informationLabel.leadingAnchor.constraint(equalTo: informationTitleLabel.leadingAnchor),
-            informationLabel.trailingAnchor.constraint(equalTo: informationTitleLabel.trailingAnchor),
-            informationLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -12)
+            outerStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 10),
+            outerStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -10),
+            outerStackView.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 50),
+            outerStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -12)
             ])
     }
     
