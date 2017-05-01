@@ -36,11 +36,11 @@ class RSItemDetailView: UIView {
     // MARK: - View configuration
 
     private func configureView() {
+        configureTitleLabel()
+        configureDescriptionLabel()
         configureItemAttributesStackView()
         configureCenterStackView()
         configureOuterStackView()
-        configureTitleLabel()
-        configureDescriptionLabel()
     }
     
     private func configureItemAttributesStackView() {
