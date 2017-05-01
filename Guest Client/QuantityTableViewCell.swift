@@ -33,44 +33,33 @@ class QuantityTableViewCell: UITableViewCell {
     private func configureView() {
         selectionStyle = .none
         
-//        let stackView = UIStackView(arrangedSubviews: [titleLabel, quantityLabel, quantityStepper])
-        
-        configureTitleLabel()
+        configureStackView()
         configureQuantityLabel()
         configureQuantityStepper()
     }
     
-    private func configureTitleLabel() {
-        contentView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureStackView() {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, quantityLabel, quantityStepper])
+        stackView.spacing = 10
+        
+        contentView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
+            stackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
             ])
     }
     
     private func configureQuantityLabel() {
-        contentView.addSubview(quantityLabel)
         quantityLabel.text = String(1)
-        quantityLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            quantityLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor),
-            quantityLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ])
     }
     
     private func configureQuantityStepper() {
-        contentView.addSubview(quantityStepper)
         quantityStepper.addTarget(self, action: #selector(quantityStepperValueChanged), for: .valueChanged)
         quantityStepper.tintColor = .white
         quantityStepper.minimumValue = 1
-        quantityStepper.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            quantityStepper.leadingAnchor.constraint(equalTo: quantityLabel.trailingAnchor, constant: 10),
-            quantityStepper.centerYAnchor.constraint(greaterThanOrEqualTo: quantityLabel.centerYAnchor),
-            quantityStepper.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
-            ])
     }
     
     // MARK: - Actions
