@@ -18,14 +18,16 @@ class TableViewCell: UITableViewCell {
     
     override var accessoryType: UITableViewCellAccessoryType {
         didSet {
-            toggleAppropriateTrailingConstraintForDetailLabel()
+            toggleAppropriateTrailingConstraint()
         }
     }
     
     // MARK: - Private properties
     
-    private var detailLabelTrailingConstraintWithoutAccessory: NSLayoutConstraint?
-    private var detailLabelTrailingConstraintWithAccessory: NSLayoutConstraint?
+    private var trailingConstraintWithoutAccessory: NSLayoutConstraint?
+    private var trailingConstraintWithAccessory: NSLayoutConstraint?
+    
+    private let upperStackView = UIStackView()
     
     // MARK: - Initializers
     
@@ -45,52 +47,41 @@ class TableViewCell: UITableViewCell {
         selectionStyle = .none
         tintColor = .white
         
-        configureTitleLabel()
-        configureDetailLabel()
-        configureDescriptionLabel()
+        configureUpperStackView()
+        configureOuterStackView()
+    }
+
+    private func configureUpperStackView() {
+        upperStackView.addArrangedSubview(titleLabel)
+        upperStackView.addArrangedSubview(detailLabel)
     }
     
-    private func configureTitleLabel() {
-        contentView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func configureOuterStackView() {
+        let outerStackView = UIStackView(arrangedSubviews: [upperStackView, descriptionLabel])
+        outerStackView.axis = .vertical
+        
+        contentView.addSubview(outerStackView)
+        outerStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: -1), // -1 is needed to make the font size match with the vertical center of the accessory.
-            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor)
-            ])
-    }
-    
-    private func configureDetailLabel() {
-        contentView.addSubview(detailLabel)
-        detailLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            detailLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.leadingAnchor, constant: 15),
-            detailLabel.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),
+            outerStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            // The -1 below is to adjust the baseline to match with the center of the accessory.
+            outerStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: -1),
+            outerStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
             ])
         
-        // This is so that when there is an accessory, the detail label is not too far from it.
-        detailLabelTrailingConstraintWithoutAccessory = detailLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
-        detailLabelTrailingConstraintWithAccessory = detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        toggleAppropriateTrailingConstraintForDetailLabel()
+        // This is so that when there is an accessory, there isn't a big gap between it and the detail label.
+        trailingConstraintWithoutAccessory = outerStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor)
+        trailingConstraintWithAccessory = outerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        toggleAppropriateTrailingConstraint()
     }
     
-    private func configureDescriptionLabel() {
-        contentView.addSubview(descriptionLabel)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor)
-            ])
-    }
-    
-    private func toggleAppropriateTrailingConstraintForDetailLabel() {
+    private func toggleAppropriateTrailingConstraint() {
         if accessoryType == .none {
-            detailLabelTrailingConstraintWithAccessory?.isActive = false
-            detailLabelTrailingConstraintWithoutAccessory?.isActive = true
+            trailingConstraintWithAccessory?.isActive = false
+            trailingConstraintWithoutAccessory?.isActive = true
         } else {
-            detailLabelTrailingConstraintWithoutAccessory?.isActive = false
-            detailLabelTrailingConstraintWithAccessory?.isActive = true
+            trailingConstraintWithoutAccessory?.isActive = false
+            trailingConstraintWithAccessory?.isActive = true
         }
     }
 
