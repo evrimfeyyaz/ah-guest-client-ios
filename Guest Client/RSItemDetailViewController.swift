@@ -204,12 +204,8 @@ class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         // From: http://candycode.io/self-sizing-uitextview-in-a-uitableview-using-auto-layout-like-reminders-app/
-        let currentOffset = tableView.contentOffset
-        UIView.setAnimationsEnabled(false)
         tableView.beginUpdates()
         tableView.endUpdates()
-        UIView.setAnimationsEnabled(true)
-        tableView.setContentOffset(currentOffset, animated: false)
     }
     
 }

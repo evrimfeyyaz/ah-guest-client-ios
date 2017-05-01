@@ -20,7 +20,7 @@ class TextEntryTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        configureVuew()
+        configureView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,33 +29,30 @@ class TextEntryTableViewCell: UITableViewCell {
     
     // MARK: - View configuration
     
-    private func configureVuew() {
+    private func configureView() {
         selectionStyle = .none
         
-        configureTitleLabel()
         configureTextView()
-    }
-    
-    private func configureTitleLabel() {
-        contentView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor)
-            ])
+        configureStackView()
     }
     
     private func configureTextView() {
-        contentView.addSubview(textView)
-        textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isEditable = true
         textView.isScrollEnabled = false
+    }
+    
+    private func configureStackView() {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, textView])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        
+        contentView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            textView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-            textView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor)
+            stackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.layoutMarginsGuide.bottomAnchor)
             ])
     }
 
