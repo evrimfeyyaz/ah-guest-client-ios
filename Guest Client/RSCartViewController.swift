@@ -46,6 +46,17 @@ class RSCartViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @objc private func quantityStepperValueChanged(sender: UIStepper) {
+        let stepperCenterPoint = sender.center
+        let rootViewPoint = sender.superview?.convert(stepperCenterPoint, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: rootViewPoint!)!
+        
+        RSCart.shared.cartItems[indexPath.row].quantity = Int(sender.value)
+        
+        let cell = tableView.cellForRow(at: indexPath) as! RSCartItemTableViewCell
+        cell.itemPriceLabel.text = RSCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
+    }
+    
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,6 +64,8 @@ class RSCartViewController: UITableViewController {
         cell.itemTitleLabel.text = RSCart.shared.cartItems[indexPath.row].rsItem.title
         cell.itemPriceLabel.text = RSCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
         cell.itemOptionsAndChoicesLabel.text = RSCart.shared.cartItems[indexPath.row].choicesAndOptionsAsString()
+        
+        cell.quantityStepper.addTarget(self, action: #selector(quantityStepperValueChanged(sender:)), for: .valueChanged)
         
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         cell.selectionStyle = .none
