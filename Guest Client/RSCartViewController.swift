@@ -37,14 +37,14 @@ class RSCartViewController: UITableViewController {
     }
     
     private func configureNavigationBar() {
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBarButtonTapped))
+        let addMoreItemsBarButton = UIBarButtonItem(title: "Add More Items", style: .plain, target: self, action: #selector(addMoreItemsBarButtonTapped))
         
-        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.leftBarButtonItem = addMoreItemsBarButton
     }
     
     // MARK: - Actions
     
-    @objc private func cancelBarButtonTapped() {
+    @objc private func addMoreItemsBarButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -64,10 +64,14 @@ class RSCartViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cartItem = RSCart.shared.cartItems[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cartItemTableViewCell) as! RSCartItemTableViewCell
-        cell.itemTitleLabel.text = RSCart.shared.cartItems[indexPath.row].rsItem.title
-        cell.itemPriceLabel.text = RSCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
-        cell.itemOptionsAndChoicesLabel.text = RSCart.shared.cartItems[indexPath.row].choicesAndOptionsAsString()
+        cell.itemTitleLabel.text = cartItem.rsItem.title
+        cell.itemPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
+        cell.itemOptionsAndChoicesLabel.text = cartItem.choicesAndOptionsAsString()
+        cell.quantityStepper.value = Double(cartItem.quantity)
+        cell.quantityStepper.sendActions(for: .valueChanged)
         
         cell.quantityStepper.addTarget(self, action: #selector(quantityStepperValueChanged(sender:)), for: .valueChanged)
         
