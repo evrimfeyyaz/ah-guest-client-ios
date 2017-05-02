@@ -11,6 +11,8 @@ class RSCartViewController: UITableViewController {
     
     private let cartItemTableViewCell = "cartItem"
     private let tableViewHeaderViewIdentifier = "tableViewHeader"
+    
+    private let footerView = RSCartFooterView()
 
     // MARK: - View configuration
     
@@ -34,12 +36,19 @@ class RSCartViewController: UITableViewController {
         
         tableView.register(RSCartItemTableViewCell.self, forCellReuseIdentifier: cartItemTableViewCell)
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: tableViewHeaderViewIdentifier)
+        
+        tableView.tableFooterView = footerView
+        updateTotalPriceLabel()
+        footerView.addMoreItemsButton.addTarget(self, action: #selector(addMoreItemsButtonTapped), for: .touchUpInside)
+        footerView.checkoutButton.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
+        tableView.layoutTableHeaderOrFooterView(location: .footer)
     }
     
     private func configureNavigationBar() {
         let addMoreItemsBarButton = UIBarButtonItem(title: "Add More Items", style: .plain, target: self, action: #selector(addMoreItemsBarButtonTapped))
         
         navigationItem.leftBarButtonItem = addMoreItemsBarButton
+        navigationItem.title = "Cart"
     }
     
     // MARK: - Actions
@@ -59,6 +68,16 @@ class RSCartViewController: UITableViewController {
         
         let cell = tableView.cellForRow(at: indexPath) as! RSCartItemTableViewCell
         cell.itemPriceLabel.text = RSCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
+        
+        updateTotalPriceLabel()
+    }
+    
+    @objc private func addMoreItemsButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func checkoutButtonTapped() {
+        print("Checkout")
     }
     
     // MARK: - Table view data source
@@ -101,6 +120,12 @@ class RSCartViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
+    }
+    
+    // MARK: - Private instance methods
+    
+    private func updateTotalPriceLabel() {
+        footerView.totalPriceLabel.text = RSCart.shared.total.stringInBahrainiDinars
     }
 
 }

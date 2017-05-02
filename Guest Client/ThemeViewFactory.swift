@@ -19,7 +19,7 @@ class ThemeViewFactory {
     }
     
     static func hollowButton() -> UIButton {
-        return RoundedButton(cornerRadius: 5, borderWidth: 2,
+        return RoundedButton(cornerRadius: 5, borderWidth: 1,
                              backgroundColor: .clear,
                              borderColor: .white, tintColor: .white)
     }

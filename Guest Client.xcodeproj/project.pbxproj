@@ -13,6 +13,7 @@
 		91137BE51E951B2000B21CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE41E951B2000B21CE6 /* Assets.xcassets */; };
 		91137BE81E951B2000B21CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */; };
 		911B2E611EB7B3E700745C66 /* RSCartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */; };
+		911B2E631EB892A600745C66 /* RSCartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911B2E621EB892A600745C66 /* RSCartFooterView.swift */; };
 		913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC01EA6446600B1B3CD /* ThemeImages.swift */; };
 		913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */; };
 		913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */; };
@@ -81,6 +82,7 @@
 		91137BF91E951B2000B21CE6 /* Guest ClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Guest ClientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91137BFF1E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartItemTableViewCell.swift; sourceTree = "<group>"; };
+		911B2E621EB892A600745C66 /* RSCartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartFooterView.swift; sourceTree = "<group>"; };
 		913D8FC01EA6446600B1B3CD /* ThemeImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImages.swift; sourceTree = "<group>"; };
 		913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeFonts.swift; sourceTree = "<group>"; };
 		913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				915298571EAB69CB005CB637 /* RSItemDetailView.swift */,
 				918FC98D1EAF907F00CFC01C /* RSCartItemFooterView.swift */,
 				911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */,
+				911B2E621EB892A600745C66 /* RSCartFooterView.swift */,
 			);
 			name = "Room Service";
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RSItemsViewController.swift in Sources */,
+				911B2E631EB892A600745C66 /* RSCartFooterView.swift in Sources */,
 				9152982E1EA880F2005CB637 /* TableViewHeader.swift in Sources */,
 				915298521EAAA4AD005CB637 /* RSItemAttribute.swift in Sources */,
 				91BDBEDA1E9F9EEC009CABE8 /* RSItem.swift in Sources */,
