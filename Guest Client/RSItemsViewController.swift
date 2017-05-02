@@ -109,7 +109,7 @@ class RSItemsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = sections[indexPath.section].items[indexPath.row]
-        let itemDetailVC = RSItemDetailViewController(rsItem: item)
+        let itemDetailVC = RSCartItemViewController(rsItem: item)
         let navigationVC = UINavigationController(rootViewController: itemDetailVC)
         
         present(navigationVC, animated: true, completion: nil)

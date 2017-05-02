@@ -12,7 +12,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
     
     // MARK: - Public properties
     
-    var itemViewController: RSItemDetailViewController?
+    var itemViewController: RSCartItemViewController?
     
     // MARK: - Private properties
 

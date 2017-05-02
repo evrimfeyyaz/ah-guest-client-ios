@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RSItemDetailViewController: UITableViewController, UITextViewDelegate {
+class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Private properties
     
