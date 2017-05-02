@@ -53,7 +53,10 @@ class RSItemsViewController: UITableViewController {
     // MARK: - Actions
     
     @objc private func cartBarButtonTapped() {
-        print("Go to cart")
+        let cartVC = RSCartViewController(style: .grouped)
+        let navigationVC = UINavigationController(rootViewController: cartVC)
+        
+        show(navigationVC, sender: self)
     }
 
     // MARK: - Table view data source

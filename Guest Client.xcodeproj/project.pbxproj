@@ -12,6 +12,7 @@
 		91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91137BDD1E951B2000B21CE6 /* AppDelegate.swift */; };
 		91137BE51E951B2000B21CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE41E951B2000B21CE6 /* Assets.xcassets */; };
 		91137BE81E951B2000B21CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91137BE61E951B2000B21CE6 /* LaunchScreen.storyboard */; };
+		911B2E611EB7B3E700745C66 /* RSCartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */; };
 		913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC01EA6446600B1B3CD /* ThemeImages.swift */; };
 		913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */; };
 		913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */; };
@@ -79,6 +80,7 @@
 		91137BF41E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91137BF91E951B2000B21CE6 /* Guest ClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Guest ClientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91137BFF1E951B2000B21CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartItemTableViewCell.swift; sourceTree = "<group>"; };
 		913D8FC01EA6446600B1B3CD /* ThemeImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImages.swift; sourceTree = "<group>"; };
 		913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeFonts.swift; sourceTree = "<group>"; };
 		913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */,
 				915298571EAB69CB005CB637 /* RSItemDetailView.swift */,
 				918FC98D1EAF907F00CFC01C /* RSCartItemFooterView.swift */,
+				911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */,
 			);
 			name = "Room Service";
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				918FC9861EADF4D600CFC01C /* RSCart.swift in Sources */,
 				915298301EA906E9005CB637 /* TableViewCell.swift in Sources */,
 				918FC98C1EAF69FC00CFC01C /* QuantityTableViewCell.swift in Sources */,
+				911B2E611EB7B3E700745C66 /* RSCartItemTableViewCell.swift in Sources */,
 				918FC9821EADEF4600CFC01C /* RSCartItem.swift in Sources */,
 				918FC9841EADF2E700CFC01C /* RSItemChoicesForOption.swift in Sources */,
 				9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */,

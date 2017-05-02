@@ -58,7 +58,6 @@ class QuantityTableViewCell: UITableViewCell {
     
     private func configureQuantityStepper() {
         quantityStepper.addTarget(self, action: #selector(quantityStepperValueChanged), for: .valueChanged)
-        quantityStepper.tintColor = .white
         quantityStepper.minimumValue = 1
     }
     

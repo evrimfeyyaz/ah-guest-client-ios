@@ -1,24 +1,24 @@
 //
-//  RSItemTableViewCell.swift
-//  Guest Client
-//
-//  Created by Evrim Persembe on 4/13/17.
+//  Created by Evrim Persembe on 5/1/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import UIKit
 
-class RSItemTableViewCell: UITableViewCell {
-    
+class RSCartItemTableViewCell: UITableViewCell {
+
     // MARK: - Public properties
     
     let itemTitleLabel = StyledLabel(withStyle: .cellTitle)
-    let itemDescriptionLabel = StyledLabel(withStyle: .cellDescription)
+    let itemOptionsAndChoicesLabel = StyledLabel(withStyle: .cellDescription)
     let itemPriceLabel = StyledLabel(withStyle: .cellPrice)
+    let quantityStepper = UIStepper()
     
     // MARK: - Private properties
     
     private let innerStackView = UIStackView()
+    private let quantityLabel = StyledLabel(withStyle: .cellDescription)
+    private let lowerStackView = UIStackView()
     
     // MARK: - Initializers
     
@@ -37,7 +37,11 @@ class RSItemTableViewCell: UITableViewCell {
     private func configureView() {
         configureTitleLabel()
         configurePriceLabel()
-        configureInnerStackView()
+        configureItemOptionsAndChoicesLabel()
+        configureUpperStackView()
+        configureQuantityLabel()
+        configureQuantityStepper()
+        configureLowerStackView()
         configureOuterStackView()
     }
     
@@ -51,17 +55,38 @@ class RSItemTableViewCell: UITableViewCell {
         itemPriceLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
     }
     
-    private func configureInnerStackView() {
+    private func  configureItemOptionsAndChoicesLabel() {
+        itemOptionsAndChoicesLabel.numberOfLines = 0
+    }
+    
+    private func configureUpperStackView() {
         innerStackView.addArrangedSubview(itemTitleLabel)
         innerStackView.addArrangedSubview(itemPriceLabel)
         innerStackView.distribution = .fill
         innerStackView.alignment = .firstBaseline
     }
     
+    private func configureQuantityLabel() {
+        quantityLabel.textAlignment = .right
+    }
+    
+    private func configureQuantityStepper() {
+        quantityStepper.addTarget(self, action: #selector(quantityStepperValueChanged), for: .valueChanged)
+        quantityStepper.minimumValue = 1
+        quantityStepper.sendActions(for: .valueChanged)
+    }
+    
+    private func configureLowerStackView() {
+        lowerStackView.addArrangedSubview(quantityLabel)
+        lowerStackView.addArrangedSubview(quantityStepper)
+        
+        lowerStackView.spacing = 10
+    }
+    
     private func configureOuterStackView() {
-        let outerStackView = UIStackView(arrangedSubviews: [innerStackView, itemDescriptionLabel])
+        let outerStackView = UIStackView(arrangedSubviews: [innerStackView, itemOptionsAndChoicesLabel, lowerStackView])
         outerStackView.axis = .vertical
-        outerStackView.distribution = .equalSpacing
+        outerStackView.distribution = .equalCentering
         
         contentView.addSubview(outerStackView)
         outerStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,4 +98,16 @@ class RSItemTableViewCell: UITableViewCell {
             ])
     }
     
+    // MARK: - Actions
+    
+    @objc private func quantityStepperValueChanged() {
+        updateQuantityLabel(withQuantity: Int(quantityStepper.value))
+    }
+    
+    // MARK: - Private instance methods
+    
+    private func updateQuantityLabel(withQuantity quantity: Int) {
+        quantityLabel.text = "Quantity: \(quantity)"
+    }
+
 }

@@ -25,6 +25,9 @@ class ThemeManager {
             NSFontAttributeName: ThemeFonts.latoLight.withSize(17),
             NSForegroundColorAttributeName: UIColor.white
             ], for: .normal)
+        
+        let stepper = UIStepper.appearance()
+        stepper.tintColor = UIColor.white
     }
     
 }

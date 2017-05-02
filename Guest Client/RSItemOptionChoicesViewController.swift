@@ -82,7 +82,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
         }
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
-        if choicesForOption.isSelected(choice: possibleChoice) {
+        if choicesForOption.isChoiceSelected(possibleChoice) {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
             cell.accessoryType = .checkmark
         }
@@ -110,7 +110,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
         
         if (choicesForOption.option.allowsMultipleChoices) {
             let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
-            choicesForMultipleChoiceOption.addSelectedChoice(choice: choice)
+            choicesForMultipleChoiceOption.addSelectedChoice(choice)
         } else {
             let choicesForSingleChoiceOption = choicesForOption as! RSItemChoicesForSingleChoiceOption
             choicesForSingleChoiceOption.makeSelectedChoice(choice: choice)
@@ -123,7 +123,7 @@ class RSItemOptionChoicesViewController: UITableViewController {
         if (choicesForOption.option.allowsMultipleChoices) {
             let choice = choicesForOption.option.possibleChoices[indexPath.row]
             let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
-            choicesForMultipleChoiceOption.removeSelectedChoice(choice: choice)
+            choicesForMultipleChoiceOption.removeSelectedChoice(choice)
         }
         
         tableView.cellForRow(at: indexPath)?.accessoryType = .none

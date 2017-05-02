@@ -10,13 +10,19 @@ import Foundation
 
 class RSItemChoicesForOption: Equatable {
     
-    let option: RSItemOption
+    // MARK: - Public properties
     
-    fileprivate(set) public var selectedChoices: [RSItemOptionChoice] = []
+    let option: RSItemOption
     
     var numberOfPossibleChoices: Int {
         get { return option.possibleChoices.count }
     }
+    
+    // MARK: - Private properties
+    
+    fileprivate(set) public var selectedChoices: [RSItemOptionChoice] = []
+    
+    // MARK: - Initializers
     
     init(option: RSItemOption) {
         self.option = option
@@ -26,11 +32,15 @@ class RSItemChoicesForOption: Equatable {
         }
     }
     
+    // MARK: - Equatable
+    
     static func == (lhs: RSItemChoicesForOption, rhs: RSItemChoicesForOption) -> Bool {
         return lhs.option == rhs.option
     }
     
-    func isSelected(choice: RSItemOptionChoice) -> Bool {
+    // MARK: - Public instance methods
+    
+    func isChoiceSelected(_ choice: RSItemOptionChoice) -> Bool {
         return selectedChoices.contains(choice)
     }
     
@@ -42,7 +52,9 @@ class RSItemChoicesForOption: Equatable {
 
 class RSItemChoicesForMultipleChoiceOption: RSItemChoicesForOption {
     
-    func addSelectedChoice(choice: RSItemOptionChoice) {
+    // MARK: - Public instance methods
+    
+    func addSelectedChoice(_ choice: RSItemOptionChoice) {
         if (selectedChoices.contains(choice)) {
             return
         }
@@ -50,7 +62,7 @@ class RSItemChoicesForMultipleChoiceOption: RSItemChoicesForOption {
         selectedChoices.append(choice)
     }
     
-    func removeSelectedChoice(choice: RSItemOptionChoice) {
+    func removeSelectedChoice(_ choice: RSItemOptionChoice) {
         if let index = selectedChoices.index(of: choice) {
             selectedChoices.remove(at: index)
         }
@@ -59,6 +71,8 @@ class RSItemChoicesForMultipleChoiceOption: RSItemChoicesForOption {
 }
 
 class RSItemChoicesForSingleChoiceOption: RSItemChoicesForOption {
+    
+    // MARK: - Public instance methods
     
     func makeSelectedChoice(choice: RSItemOptionChoice) {
         selectedChoices.removeAll()

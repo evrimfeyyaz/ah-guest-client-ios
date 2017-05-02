@@ -10,6 +10,8 @@ import Foundation
 
 class RSCartItem {
     
+    // MARK: - Public properties
+    
     var id: Int?
     let rsItem: RSItem
     var quantity: Int
@@ -28,9 +30,12 @@ class RSCartItem {
         }
     }
     
+    // MARK: - Initializers
+    
     init(id: Int? = nil, rsItem: RSItem, quantity: Int = 1,
          choices: [RSItemChoicesForOption] = [],
          specialRequest: String? = nil) {
+        
         self.rsItem = rsItem
         self.quantity = quantity
         self.choicesForOptions = choices
@@ -45,12 +50,18 @@ class RSCartItem {
         }
     }
     
+    // MARK: - Public instance methods
+    
     func choices(for option: RSItemOption) -> RSItemChoicesForOption? {
         if let index = choicesForOptions.index(where: { $0.option == option }) {
             return choicesForOptions[index]
         }
         
         return nil
+    }
+    
+    func choicesAndOptionsAsString() -> String {
+        return choicesForOptions.map({ "\($0.option.title): \($0.selectedChoicesAsString())" }).joined(separator: "\n")
     }
     
 }
