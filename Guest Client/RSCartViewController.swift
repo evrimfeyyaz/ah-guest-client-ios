@@ -10,6 +10,7 @@ class RSCartViewController: UITableViewController {
     // MARK: - Private properties
     
     private let cartItemTableViewCell = "cartItem"
+    private let tableViewHeaderViewIdentifier = "tableViewHeader"
 
     // MARK: - View configuration
     
@@ -32,6 +33,7 @@ class RSCartViewController: UITableViewController {
         tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
         
         tableView.register(RSCartItemTableViewCell.self, forCellReuseIdentifier: cartItemTableViewCell)
+        tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: tableViewHeaderViewIdentifier)
     }
     
     private func configureNavigationBar() {
@@ -47,6 +49,8 @@ class RSCartViewController: UITableViewController {
     }
     
     @objc private func quantityStepperValueChanged(sender: UIStepper) {
+        // TODO: This is really hacky, find a better way to do this.
+        // From: http://stackoverflow.com/a/19000484
         let stepperCenterPoint = sender.center
         let rootViewPoint = sender.superview?.convert(stepperCenterPoint, to: tableView)
         let indexPath = tableView.indexPathForRow(at: rootViewPoint!)!
@@ -57,7 +61,7 @@ class RSCartViewController: UITableViewController {
         cell.itemPriceLabel.text = RSCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
     }
     
-    // MARK: - Table view delegate
+    // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cartItemTableViewCell) as! RSCartItemTableViewCell
@@ -75,6 +79,24 @@ class RSCartViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RSCart.shared.cartItems.count
+    }
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: tableViewHeaderViewIdentifier) as! TableViewHeader
+            headerView.titleLabel.text = "Items in Your Cart"
+            headerView.contentView.backgroundColor = .clear
+            
+            return headerView
+        }
+        
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
     }
 
 }
