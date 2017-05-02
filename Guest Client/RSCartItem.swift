@@ -61,7 +61,10 @@ class RSCartItem {
     }
     
     func choicesAndOptionsAsString() -> String {
-        return choicesForOptions.map({ "\($0.option.title): \($0.selectedChoicesAsString())" }).joined(separator: "\n")
+        return choicesForOptions
+            .filter({ $0.selectedChoices.count > 0 })
+            .map({ "\($0.option.title): \($0.selectedChoicesAsString())" })
+            .joined(separator: "\n")
     }
     
 }
