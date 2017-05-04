@@ -12,7 +12,7 @@ class RSCategoryTableViewCell: UITableViewCell {
     
     // MARK: - Public properties
     
-    let categoryTitleLabel = StyledLabel(withStyle: .title1)
+    let categoryTitleLabel = StyledLabel(withStyle: .title2)
     let categoryDescriptionLabel = StyledLabel(withStyle: .cellDescription)
     
     var categoryImage: UIImage? {
@@ -94,7 +94,7 @@ class RSCategoryTableViewCell: UITableViewCell {
         let titleStackView = UIStackView(arrangedSubviews: [categoryTitleLabel, categoryDescriptionLabel])
         titleStackView.axis = .vertical
         titleStackView.distribution = .fillProportionally
-        titleStackView.spacing = -10
+        titleStackView.spacing = -5
         
         contentView.addSubview(titleStackView)
         titleStackView.translatesAutoresizingMaskIntoConstraints = false

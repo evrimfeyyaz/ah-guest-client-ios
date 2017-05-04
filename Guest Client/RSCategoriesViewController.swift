@@ -10,11 +10,17 @@ import UIKit
 
 class RSCategoriesViewController: UITableViewController {
     
+    // MARK: - Public properties
+    
+    var dataTask: URLSessionDataTask?
+    
     // MARK: - Private properties
     
-    private let rsCategories = RSCategory.getAll()
+    private let defaultSession = URLSession(configuration: .default)
     
     private let categoryCellIdentifier = "category"
+    
+    private var rsCategories: [RSCategory]? = nil
 
     // MARK: - View configuration
     
@@ -22,6 +28,7 @@ class RSCategoriesViewController: UITableViewController {
         super.viewDidLoad()
         
         configureView()
+        fetchRSCategories()
     }
     
     private func configureView() {
@@ -59,11 +66,26 @@ class RSCategoriesViewController: UITableViewController {
         print("Go to cart")
     }
     
+    // MARK: - Private instance methods
+    
+    private func fetchRSCategories() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        RSCategory.all() { rsCategories in
+            self.rsCategories = rsCategories
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier) as! RSCategoryTableViewCell
-        let rsCategory = rsCategories[indexPath.row]
+        let rsCategory = rsCategories![indexPath.row]
         
         categoryCell.categoryTitleLabel.text = rsCategory.title
         categoryCell.categoryDescriptionLabel.text = rsCategory.description
@@ -73,7 +95,7 @@ class RSCategoriesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rsCategories.count
+        return rsCategories?.count ?? 0
     }
     
     // MARK: - Table view delegate

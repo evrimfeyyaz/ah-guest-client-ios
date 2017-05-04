@@ -55,7 +55,7 @@ class StyledLabel: UILabel {
             font = ThemeFonts.oswaldRegular.withSize(36)
             textColor = .white
         case .title2:
-            attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .center)
+            attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .left)
             font = ThemeFonts.oswaldRegular.withSize(24)
             textColor = .white
         case .body:
