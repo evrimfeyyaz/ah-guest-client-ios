@@ -23,12 +23,15 @@ class RSCategory {
     init?(json: [String: Any]) {
         guard
             let attributes = json["attributes"] as? [String: Any],
-            let title = attributes["title"] as? String
+            let title = attributes["title"] as? String,
+            let description = attributes["description"] as? String?,
+            let imageURLs = attributes["image_urls"] as? [String: Any]
             else { return nil }
         
         self.title = title
-        self.description = attributes["description"] as? String
-        self.image = nil
+        self.description = description
+        
+        self.image = 
     }
     
     init(title: String, description: String?, image: UIImage?) {
