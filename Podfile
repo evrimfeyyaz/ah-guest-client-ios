@@ -5,6 +5,7 @@ target 'Guest Client' do
 
   # Pods for Guest Client
   pod 'AlamofireImage', '~> 3.1'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.0'
 
   target 'Guest ClientTests' do
     inherit! :search_paths
