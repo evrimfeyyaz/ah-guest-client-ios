@@ -89,7 +89,6 @@ class RSCategoriesViewController: UITableViewController {
         
         categoryCell.categoryTitleLabel.text = rsCategory.title
         categoryCell.categoryDescriptionLabel.text = rsCategory.description
-        categoryCell.categoryImageView.image = nil
         categoryCell.categoryImageURL = rsCategory.imageURL
             
         return categoryCell

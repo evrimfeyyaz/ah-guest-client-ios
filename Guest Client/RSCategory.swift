@@ -15,7 +15,7 @@ class RSCategory {
     
     // MARK: - Private static properties
     
-    private static let urlString = "http://guest-api-app.dev"
+    private static let urlString = "https://dry-dawn-66033.herokuapp.com"
     private static let urlComponents = URLComponents(string: urlString)!
     private static let session = URLSession.shared
     
@@ -31,17 +31,12 @@ class RSCategory {
         self.description = attributes["description"] as? String
         
         if let imageURLStrings = attributes["image-urls"] as? [String: String?] {
-            var imageURLComponents: URLComponents
-            
             if UIScreen.main.scale == 1.0, let oneXImageURLString = imageURLStrings["@1x"] as? String {
-                imageURLComponents = URLComponents(string: "\(RSCategory.urlString)/\(oneXImageURLString)")!
-                imageURL = imageURLComponents.url
+                imageURL = URL(string: oneXImageURLString)
             } else if UIScreen.main.scale == 2.0, let twoXImageURLString = imageURLStrings["@2x"] as? String {
-                imageURLComponents = URLComponents(string: "\(RSCategory.urlString)/\(twoXImageURLString)")!
-                imageURL = imageURLComponents.url
+                imageURL = URL(string: twoXImageURLString)
             } else if let threeXImageURLString = imageURLStrings["@3x"] as? String {
-                imageURLComponents = URLComponents(string: "\(RSCategory.urlString)/\(threeXImageURLString)")!
-                imageURL = imageURLComponents.url
+                imageURL = URL(string: threeXImageURLString)
             }
         }
     }

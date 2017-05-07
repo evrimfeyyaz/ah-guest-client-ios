@@ -75,8 +75,10 @@ class RSCategoryTableViewCell: UITableViewCell {
     }
     
     private func configureImageViewImage() {
+        categoryImageView.image = nil
+        
         if let url = categoryImageURL {
-            categoryImageView.af_setImage(withURL: url)
+            categoryImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.2))
         }
     }
     
