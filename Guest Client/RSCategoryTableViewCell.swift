@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class RSCategoryTableViewCell: UITableViewCell {
     
@@ -11,30 +12,17 @@ class RSCategoryTableViewCell: UITableViewCell {
     
     let categoryTitleLabel = StyledLabel(withStyle: .title2)
     let categoryDescriptionLabel = StyledLabel(withStyle: .cellDescription)
+    var categoryImageView = ImageViewWithGradient(frame: CGRect.zero)
     
-    var categoryImage: UIImage? {
-        get { return categoryImageView?.image }
-        set {
-            if (newValue == nil) {
-                categoryImageView?.removeFromSuperview()
-                categoryImageView = nil
-                
-                return
-            }
-            
-            if (categoryImageView == nil) {
-                categoryImageView = ImageViewWithGradient(image: newValue)
-                configureImageView()
-            } else {
-                categoryImageView?.image = newValue
-            }
+    var categoryImageURL: URL? {
+        didSet {
+            configureImageViewImage()
         }
     }
     
     // MARK: - Private properties
     
     private let containerView = UIView() // To add a pseudo-margin below the cell.
-    private var categoryImageView: ImageViewWithGradient? = nil
     
     // MARK: - Initializers
     
@@ -56,6 +44,7 @@ class RSCategoryTableViewCell: UITableViewCell {
         
         configureContainerView()
         configureImageView()
+        configureImageViewImage()
         configureTitleStackView()
     }
     
@@ -73,17 +62,21 @@ class RSCategoryTableViewCell: UITableViewCell {
     }
     
     private func configureImageView() {
-        if let categoryImageView = categoryImageView {
-            containerView.addSubview(categoryImageView)
-            categoryImageView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                categoryImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                categoryImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                categoryImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
-                categoryImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-                ])
-            
-            containerView.sendSubview(toBack: categoryImageView)
+        containerView.addSubview(categoryImageView)
+        categoryImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            categoryImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            categoryImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            categoryImageView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            categoryImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            ])
+        
+        containerView.sendSubview(toBack: categoryImageView)
+    }
+    
+    private func configureImageViewImage() {
+        if let url = categoryImageURL {
+            categoryImageView.af_setImage(withURL: url)
         }
     }
     

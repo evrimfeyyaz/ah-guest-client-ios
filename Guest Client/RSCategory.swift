@@ -11,11 +11,12 @@ class RSCategory {
     
     let title: String
     let description: String?
-    let image: UIImage?
+    var imageURL: URL?
     
     // MARK: - Private static properties
     
-    private static let urlCompontents = URLComponents(string: "http://guest-api-app.dev")!
+    private static let urlString = "http://guest-api-app.dev"
+    private static let urlComponents = URLComponents(string: urlString)!
     private static let session = URLSession.shared
     
     // MARK: - Initializers
@@ -23,27 +24,38 @@ class RSCategory {
     init?(json: [String: Any]) {
         guard
             let attributes = json["attributes"] as? [String: Any],
-            let title = attributes["title"] as? String,
-            let description = attributes["description"] as? String?,
-            let imageURLs = attributes["image_urls"] as? [String: Any]
+            let title = attributes["title"] as? String
             else { return nil }
         
         self.title = title
-        self.description = description
+        self.description = attributes["description"] as? String
         
-        self.image = 
+        if let imageURLStrings = attributes["image-urls"] as? [String: String?] {
+            var imageURLComponents: URLComponents
+            
+            if UIScreen.main.scale == 1.0, let oneXImageURLString = imageURLStrings["@1x"] as? String {
+                imageURLComponents = URLComponents(string: "\(RSCategory.urlString)/\(oneXImageURLString)")!
+                imageURL = imageURLComponents.url
+            } else if UIScreen.main.scale == 2.0, let twoXImageURLString = imageURLStrings["@2x"] as? String {
+                imageURLComponents = URLComponents(string: "\(RSCategory.urlString)/\(twoXImageURLString)")!
+                imageURL = imageURLComponents.url
+            } else if let threeXImageURLString = imageURLStrings["@3x"] as? String {
+                imageURLComponents = URLComponents(string: "\(RSCategory.urlString)/\(threeXImageURLString)")!
+                imageURL = imageURLComponents.url
+            }
+        }
     }
     
-    init(title: String, description: String?, image: UIImage?) {
+    init(title: String, description: String?, imageURL: URL?) {
         self.title = title
         self.description = description
-        self.image = image
+        self.imageURL = imageURL
     }
     
     // MARK: - Public static methods
     
     static func all(completion: @escaping ([RSCategory]) -> Void) {
-        var rsCategoryURLComponents = urlCompontents
+        var rsCategoryURLComponents = urlComponents
         rsCategoryURLComponents.path = "/v0/room-service/categories"
         
         let rsCategoryURL = rsCategoryURLComponents.url!
