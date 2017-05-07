@@ -21,6 +21,8 @@ class RSCategoriesViewController: UITableViewController {
     private let categoryCellIdentifier = "category"
     
     private var rsCategories: [RSCategory]? = nil
+    
+    private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     // MARK: - View configuration
     
@@ -34,8 +36,15 @@ class RSCategoriesViewController: UITableViewController {
     private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
+        configureActivityIndicator()
         configureTableView()
         configureNavigationBar()
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicatorView.center = view.center
+        
+        view.addSubview(activityIndicatorView)
     }
     
     private func configureTableView() {
@@ -70,12 +79,15 @@ class RSCategoriesViewController: UITableViewController {
     
     private func fetchRSCategories() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        activityIndicatorView.startAnimating()
         
         RSCategory.all() { rsCategories in
             self.rsCategories = rsCategories
             
             DispatchQueue.main.async {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.activityIndicatorView.stopAnimating()
+                
                 self.tableView.reloadData()
             }
         }
