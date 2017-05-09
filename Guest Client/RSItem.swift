@@ -1,7 +1,4 @@
 //
-//  RSItem.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/13/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
@@ -29,7 +26,6 @@ class RSItem {
         }
     }
     let price: Decimal
-    var image: UIImage?
     var attributes: [RSItemAttribute] = []
     var options: [RSItemOption] = []
     
