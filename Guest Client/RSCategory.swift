@@ -9,6 +9,7 @@ class RSCategory {
     
     // MARK: - Public properties
     
+    let id: Int
     let title: String
     let description: String?
     var imageURL: URL?
@@ -23,10 +24,12 @@ class RSCategory {
     
     init?(json: [String: Any]) {
         guard
+            let idString = json["id"] as? String,
             let attributes = json["attributes"] as? [String: Any],
             let title = attributes["title"] as? String
             else { return nil }
         
+        self.id = Int(idString)!
         self.title = title
         self.description = attributes["description"] as? String
         
@@ -39,12 +42,6 @@ class RSCategory {
                 imageURL = URL(string: threeXImageURLString)
             }
         }
-    }
-    
-    init(title: String, description: String?, imageURL: URL?) {
-        self.title = title
-        self.description = description
-        self.imageURL = imageURL
     }
     
     // MARK: - Public static methods

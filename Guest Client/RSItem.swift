@@ -10,7 +10,7 @@ import UIKit
 
 class RSItem {
     
-    private var _longDescription: String?
+    // MARK: - Public properties
     
     let id: Int
     let title: String
@@ -29,44 +29,39 @@ class RSItem {
         }
     }
     let price: Decimal
-    let image: UIImage?
-    let attributes: [RSItemAttribute]
-    let options: [RSItemOption]
-    let sectionId: Int
+    var image: UIImage?
+    var attributes: [RSItemAttribute] = []
+    var options: [RSItemOption] = []
     
-    init(id: Int, title: String, shortDescription: String? = nil,
-         longDescription: String? = nil, price: Decimal, image: UIImage? = nil,
-         attributes: [RSItemAttribute], options: [RSItemOption],
-         sectionId: Int) {
-        self.id = id
+    // MARK: - Private properties
+    
+    private var _longDescription: String?
+    
+    // MARK: - Initializers
+    
+    init?(jsonData: [String: Any], jsonIncluded: [[String: Any]]? = nil) {
+        guard
+            let idString = jsonData["id"] as? String,
+            let attributes = jsonData["attributes"] as? [String: Any],
+            let title = attributes["title"] as? String,
+            let priceString = attributes["price"] as? String
+            else { return nil }
+        
+        self.id = Int(idString)!
         self.title = title
-        self.shortDescription = shortDescription
+        self.shortDescription = attributes["short-description"] as? String
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.generatesDecimalNumbers = true
+        
+        guard let price = formatter.number(from: priceString) as? Decimal else { return nil }
         self.price = price
-        self.image = image
-        self.attributes = attributes
-        self.options = options
-        self.sectionId = sectionId
-        self.longDescription = longDescription
     }
+
     
     static func getItem(itemId id: Int) -> RSItem? {
-        let porkAttribute = RSItemAttribute(id: 0, title: "Pork", rgbColorInHex: "EB6277", icon: UIImage())
-        let alcoholAttribute = RSItemAttribute(id: 1, title: "Alcohol", rgbColorInHex: "DEDEDE", icon: UIImage())
-        
-        let choice1 = RSItemOptionChoice(id: 0, title: "Regular")
-        let choice2 = RSItemOptionChoice(id: 1, title: "Large", price: 0.200)
-        
-        let options = RSItemOption(id: 0, title: "Size", isOptional: false,
-                                                    allowsMultipleChoices: false, possibleChoices: [choice1, choice2],
-                                                    defaultChoice: choice1)
-        
-        return RSItem(id: 0, title: "Starbucks Table-Side French Press",
-                               shortDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                               longDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas laoreet quis lacus sed vestibulum. Sed auctor auctor ex eu ullamcorper.",
-                               price: 6.000,
-                               image: nil,
-                               attributes: [porkAttribute, alcoholAttribute],
-                               options: [options], sectionId: 0)
+        return nil
     }
     
 }

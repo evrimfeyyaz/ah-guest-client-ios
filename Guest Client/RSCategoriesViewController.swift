@@ -10,17 +10,13 @@ import UIKit
 
 class RSCategoriesViewController: UITableViewController {
     
-    // MARK: - Public properties
-    
-    var dataTask: URLSessionDataTask?
-    
     // MARK: - Private properties
     
     private let defaultSession = URLSession(configuration: .default)
     
     private let categoryCellIdentifier = "category"
     
-    private var rsCategories: [RSCategory]? = nil
+    private var rsCategories: [RSCategory] = []
     
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
@@ -97,7 +93,7 @@ class RSCategoriesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier) as! RSCategoryTableViewCell
-        let rsCategory = rsCategories![indexPath.row]
+        let rsCategory = rsCategories[indexPath.row]
         
         categoryCell.categoryTitleLabel.text = rsCategory.title
         categoryCell.categoryDescriptionLabel.text = rsCategory.description
@@ -107,7 +103,7 @@ class RSCategoriesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rsCategories?.count ?? 0
+        return rsCategories.count
     }
     
     // MARK: - Table view delegate

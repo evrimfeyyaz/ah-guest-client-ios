@@ -10,23 +10,29 @@ import UIKit
 
 class RSItemsViewController: UITableViewController {
     
-    // MARK: - Public properties
-    
-    let sections: [RSItemSection] = {
-        RSItemSection.getAll()
-    }()
-    
     // MARK: - Private properties
     
     private let itemCellIdentifier = "item"
     private let tableViewHeaderViewIdentifier = "tableViewHeader"
+    
+    private var sections: [RSSection] = []
+    
+    private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     // MARK: - View configuration
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureActivityIndicator()
         configureView()
+        fetchRSSectionsAndItemSummaries()
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicatorView.center = view.center
+        
+        view.addSubview(activityIndicatorView)
     }
     
     private func configureView() {
@@ -58,6 +64,24 @@ class RSItemsViewController: UITableViewController {
         
         show(navigationVC, sender: self)
     }
+    
+    // MARK: - Private instance methods
+    
+    private func fetchRSSectionsAndItemSummaries() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        activityIndicatorView.startAnimating()
+        
+        RSSection.all(byCategoryId: 57) { sections in
+            self.sections = sections
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.activityIndicatorView.stopAnimating()
+                
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -66,7 +90,7 @@ class RSItemsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].numberOfItems
+        return sections[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,6 +115,8 @@ class RSItemsViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if sections[section].isDefault { return nil }
+        
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: tableViewHeaderViewIdentifier) as! TableViewHeader
         headerView.titleLabel.text = sections[section].title
         // TODO: Find a way to set this globally.
