@@ -1,12 +1,10 @@
 //
-//  RSItemViewController.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/14/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import UIKit
+import Alamofire
 
 class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     
@@ -15,11 +13,14 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     private let itemDetailView = RSItemDetailView()
     private let footerView = RSCartItemFooterView()
     
+    private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
     private let tableViewCellIdentifier = "tableViewCell"
     private let textEntryTableViewCellIdentifier = "textEntry"
     private let quantityTableViewCellIdentifier = "quantity"
     
-    private let cartItem: RSCartItem
+    private var cartItem: RSCartItem!
+    private var rsItem: RSItem
     
     private let itemOptionsSectionIndex = 0
     private let specialRequestSectionIndex = 1
@@ -28,7 +29,7 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     // MARK: - Initializers
     
     init(rsItem: RSItem) {
-        self.cartItem = RSCartItem(rsItem: rsItem)
+        self.rsItem = rsItem
         
         super.init(style: .grouped)
     }
@@ -48,10 +49,22 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
         
+        configureActivityIndicator()
         configureNavigationBar()
-        configureTableView()
-        configureItemDetailView()
-        configureTableFooterView()
+        
+        fetchRSItemDetails {
+            self.cartItem = RSCartItem(rsItem: self.rsItem)
+            
+            self.configureTableView()
+            self.configureItemDetailView()
+            self.configureTableFooterView()
+        }
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicatorView.center = view.center
+        
+        view.addSubview(activityIndicatorView)
     }
     
     private func configureNavigationBar() {
@@ -79,7 +92,7 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
         itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription
         itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInBahrainiDinars
         
-        for attribute in cartItem.rsItem.attributes {
+        for attribute in cartItem.rsItem.itemAttributes {
             let attributeView = AttributeView(title: attribute.title)
             
             itemDetailView.itemAttributesStackView.addArrangedSubview(attributeView)
@@ -118,6 +131,22 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     func optionChanged() {
         tableView.reloadData()
         updatePriceLabels()
+    }
+    
+    // MARK: - Private instance methods
+    
+    private func fetchRSItemDetails(completion: @escaping () -> Void) {
+        activityIndicatorView.startAnimating()
+        
+        rsItem.fetchItemDetails {
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+                
+                self.tableView.reloadData()
+            }
+            
+            completion()
+        }
     }
     
     // MARK: - Table view data source
@@ -176,8 +205,10 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard (cartItem != nil) else { return 0 }
+        
         if section == 0 {
-            return cartItem.rsItem.options.count
+            return rsItem.options.count
         } else {
             return 1
         }

@@ -4,8 +4,9 @@ target 'Guest Client' do
   use_frameworks!
 
   # Pods for Guest Client
-  pod 'AlamofireImage', '~> 3.1'
-  pod 'AlamofireNetworkActivityIndicator', '~> 2.0'
+  pod 'Alamofire', '~> 4.4'
+  pod 'AlamofireImage', '~> 3.2'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.1'
 
   target 'Guest ClientTests' do
     inherit! :search_paths

@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class RSCategory {
     
@@ -50,14 +51,11 @@ class RSCategory {
         var rsCategoryURLComponents = urlComponents
         rsCategoryURLComponents.path = "/v0/room-service/categories"
         
-        let rsCategoryURL = rsCategoryURLComponents.url!
-        
-        session.dataTask(with: rsCategoryURL) { data, response, error in
+        Alamofire.request(rsCategoryURLComponents.url!).responseJSON { response in
             var rsCategories: [RSCategory] = []
             
-            if let data = data,
-                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                let jsonData = json!["data"] as? [[String: Any]] {
+            if let JSON = response.result.value as? [String: Any],
+                let jsonData = JSON["data"] as? [[String: Any]] {
                 
                 for rsCategoryData in jsonData {
                     if let rsCategory = RSCategory(json: rsCategoryData) {
@@ -67,7 +65,7 @@ class RSCategory {
             }
             
             completion(rsCategories)
-        }.resume()
+        }
 
     }
 }

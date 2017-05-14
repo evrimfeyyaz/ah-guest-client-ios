@@ -10,6 +10,10 @@ import UIKit
 
 class RSItemsViewController: UITableViewController {
     
+    // MARK: - Public properties
+    
+    var categoryID: Int?
+    
     // MARK: - Private properties
     
     private let itemCellIdentifier = "item"
@@ -68,14 +72,12 @@ class RSItemsViewController: UITableViewController {
     // MARK: - Private instance methods
     
     private func fetchRSSectionsAndItemSummaries() {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         activityIndicatorView.startAnimating()
         
-        RSSection.all(byCategoryId: 57) { sections in
+        RSSection.all(byCategoryId: categoryID!) { sections in
             self.sections = sections
             
             DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.activityIndicatorView.stopAnimating()
                 
                 self.tableView.reloadData()

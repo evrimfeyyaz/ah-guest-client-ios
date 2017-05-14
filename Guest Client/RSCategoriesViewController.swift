@@ -74,14 +74,12 @@ class RSCategoriesViewController: UITableViewController {
     // MARK: - Private instance methods
     
     private func fetchRSCategories() {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         activityIndicatorView.startAnimating()
         
         RSCategory.all() { rsCategories in
             self.rsCategories = rsCategories
             
             DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.activityIndicatorView.stopAnimating()
                 
                 self.tableView.reloadData()
@@ -112,6 +110,7 @@ class RSCategoriesViewController: UITableViewController {
         let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
         let rsItemsVC = RSItemsViewController(style: .grouped)
+        rsItemsVC.categoryID = rsCategories[indexPath.row].id
         rsItemsVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         
         show(rsItemsVC, sender: self)

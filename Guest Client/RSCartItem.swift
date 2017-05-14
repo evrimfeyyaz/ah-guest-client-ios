@@ -1,7 +1,4 @@
 //
-//  RSCartItem.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/24/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
@@ -13,7 +10,7 @@ class RSCartItem {
     // MARK: - Public properties
     
     var id: Int?
-    let rsItem: RSItem
+    var rsItem: RSItem
     var quantity: Int
     var choicesForOptions: [RSItemChoicesForOption]
     var specialRequest: String?

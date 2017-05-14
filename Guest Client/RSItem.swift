@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class RSItem {
     
@@ -26,12 +27,18 @@ class RSItem {
         }
     }
     let price: Decimal
-    var attributes: [RSItemAttribute] = []
+    var itemAttributes: [RSItemAttribute] = []
     var options: [RSItemOption] = []
     
     // MARK: - Private properties
     
     private var _longDescription: String?
+    
+    // MARK: - Private static properties
+    
+    private static let urlString = "https://dry-dawn-66033.herokuapp.com"
+    private static let urlComponents = URLComponents(string: urlString)!
+    private static let session = URLSession.shared
     
     // MARK: - Initializers
     
@@ -54,10 +61,45 @@ class RSItem {
         guard let price = formatter.number(from: priceString) as? Decimal else { return nil }
         self.price = price
     }
-
     
-    static func getItem(itemId id: Int) -> RSItem? {
-        return nil
+    // MARK: - Public instance methods
+    
+    func fetchItemDetails(completion: @escaping () -> Void) {
+        var rsItemURLComponents = RSItem.urlComponents
+        rsItemURLComponents.path = "/v0/room-service/items/\(id)"
+        
+        Alamofire.request(rsItemURLComponents.url!).responseJSON { response in
+            if let JSON = response.result.value as? [String: Any],
+                let jsonData = JSON["data"] as? [String: Any],
+                let jsonIncludedArray = JSON["included"] as? [[String: Any]],
+                let attributes = jsonData["attributes"] as? [String: Any] {
+                
+                self.longDescription = attributes["long-description"] as? String
+                
+                for jsonInclude in jsonIncludedArray {
+                    if let objectType = jsonInclude["type"] as? String,
+                        objectType == "room-service-item-attributes",
+                        let itemAttribute = RSItemAttribute(jsonData: jsonInclude) {
+                        self.itemAttributes.append(itemAttribute)
+                    } else if let objectType = jsonInclude["type"] as? String,
+                        objectType == "room-service-item-options",
+                        let itemOption = RSItemOption(jsonData: jsonInclude, jsonIncluded: jsonIncludedArray) {
+                        self.options.append(itemOption)
+                    }
+                }
+            }
+            
+            completion()
+        }
     }
     
 }
+
+
+
+
+
+
+
+
+

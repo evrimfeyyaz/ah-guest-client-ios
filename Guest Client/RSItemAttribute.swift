@@ -7,12 +7,23 @@ import UIKit
 
 class RSItemAttribute {
     
+    // MARK: - Public properties
+    
     let id: Int
     let title: String
     
-    init(id: Int, title: String) {
-        self.id = id
+    // MARK: - Initializers
+    
+    init?(jsonData: [String: Any], jsonIncluded: [[String: Any]]? = nil) {
+        guard
+            let idString = jsonData["id"] as? String,
+            let attributes = jsonData["attributes"] as? [String: Any],
+            let title = attributes["title"] as? String
+            else { return nil }
+        
+        self.id = Int(idString)!
         self.title = title
     }
+
     
 }
