@@ -58,6 +58,12 @@ class RSCategory {
                 let jsonData = JSON["data"] as? [[String: Any]] {
                 
                 for rsCategoryData in jsonData {
+                    if let attributes = rsCategoryData["attributes"] as? [String: Any],
+                        let title = attributes["title"] as? String,
+                        title == "Arabic Mezzeh Selection" || title == "Main Fares" || title == "Kids Choice" {
+                        continue
+                    }
+                    
                     if let rsCategory = RSCategory(json: rsCategoryData) {
                         rsCategories.append(rsCategory)
                     }

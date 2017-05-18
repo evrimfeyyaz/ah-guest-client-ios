@@ -30,11 +30,24 @@ class ThemeViewFactory {
         let textView = UITextView()
         
         textView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
-        textView.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 17)
+        textView.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 15)
         textView.textColor = .white
         textView.tintColor = ThemeColors.maroon
         
         return textView
+    }
+    
+    static func textField() -> UITextField {
+        let textField = UITextField()
+        
+        textField.backgroundColor = UIColor.white.withAlphaComponent(0.08)
+        textField.font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 15)
+        textField.textColor = .white
+        textField.borderStyle = .roundedRect
+        
+        textField.tintColor = ThemeColors.maroon
+        
+        return textField
     }
     
     // MARK: - Navigation Bar

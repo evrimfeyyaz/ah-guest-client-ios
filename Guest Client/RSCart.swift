@@ -12,7 +12,9 @@ class RSCart {
     
     static let shared = RSCart()
     
-    private(set) public var cartItems: [RSCartItem] = []
+    public var cartItems: [RSCartItem] = []
+    
+    var isSignedIn: Bool = false
     
     var total: Decimal {
         get { return cartItems.reduce(0, { result, cartItem in result + cartItem.totalPrice }) }

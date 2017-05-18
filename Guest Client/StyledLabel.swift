@@ -24,12 +24,6 @@ class StyledLabel: UILabel {
         }
     }
     
-    override var textAlignment: NSTextAlignment {
-        didSet {
-            styleLabel()
-        }
-    }
-    
     // MARK: Initializers
     
     init(withStyle style: LabelStyle) {
@@ -54,13 +48,25 @@ class StyledLabel: UILabel {
             attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8)
             font = ThemeFonts.oswaldRegular.withSize(36)
             textColor = .white
+        case .title1Centered:
+            attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .center)
+            font = ThemeFonts.oswaldRegular.withSize(36)
+            textColor = .white
         case .title2:
             attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .left)
+            font = ThemeFonts.oswaldRegular.withSize(24)
+            textColor = .white
+        case .title2Centered:
+            attributedText = getAttributedString(withLineSpacing: 1.0, withLineHeightMultiple: 0.8, withTextAlignment: .center)
             font = ThemeFonts.oswaldRegular.withSize(24)
             textColor = .white
         case .body:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 17)
             textColor = .white
+        case .bodyCentered:
+            font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLight, withSize: 17)
+            textColor = .white
+            textAlignment = .center
         case .bodySmall:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 14)
             textColor = .white
@@ -114,8 +120,11 @@ class StyledLabel: UILabel {
 
 enum LabelStyle {
     case title1
+    case title1Centered
     case title2
+    case title2Centered
     case body
+    case bodyCentered
     case bodySmall
     case cellTitle
     case cellDescription

@@ -13,26 +13,10 @@ class RSItem {
     let id: Int
     let title: String
     let shortDescription: String?
-    var longDescription: String? {
-        get {
-            if let longDescription = _longDescription {
-                return longDescription
-            } else {
-                return shortDescription
-            }
-        }
-        
-        set {
-            _longDescription = newValue
-        }
-    }
+    var longDescription: String?
     let price: Decimal
     var itemAttributes: [RSItemAttribute] = []
     var options: [RSItemOption] = []
-    
-    // MARK: - Private properties
-    
-    private var _longDescription: String?
     
     // MARK: - Private static properties
     

@@ -89,7 +89,7 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     
     private func configureItemDetailView() {
         itemDetailView.itemTitleLabel.text = cartItem.rsItem.title
-        itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription
+        itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription?.capitalizingFirstLetter()
         itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInBahrainiDinars
         
         for attribute in cartItem.rsItem.itemAttributes {

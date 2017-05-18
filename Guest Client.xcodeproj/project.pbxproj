@@ -51,6 +51,11 @@
 		91BDBED31E9F96D1009CABE8 /* RSItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED21E9F96D1009CABE8 /* RSItemTableViewCell.swift */; };
 		91BDBEDA1E9F9EEC009CABE8 /* RSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED91E9F9EEC009CABE8 /* RSItem.swift */; };
 		91BDBEDC1E9FA6C6009CABE8 /* RSSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEDB1E9FA6C6009CABE8 /* RSSection.swift */; };
+		91F1F51D1ECD2B8600D425FD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F51C1ECD2B8600D425FD /* SignUpViewController.swift */; };
+		91F1F5201ECD325200D425FD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F51F1ECD325200D425FD /* SignInViewController.swift */; };
+		91F1F5221ECD55F800D425FD /* AddStayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F5211ECD55F800D425FD /* AddStayViewController.swift */; };
+		91F1F5241ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F5231ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift */; };
+		91F1F5261ECD773500D425FD /* String+CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F5251ECD773500D425FD /* String+CapitalizeFirstLetter.swift */; };
 		91F660B51E9E218700DE4D11 /* RSCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F660B41E9E218700DE4D11 /* RSCategoriesViewController.swift */; };
 		A90AD1CFBE877A36D20AE145 /* Pods_Guest_ClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30C8B493F4A502099B667C2 /* Pods_Guest_ClientUITests.framework */; };
 /* End PBXBuildFile section */
@@ -125,6 +130,11 @@
 		91BDBED21E9F96D1009CABE8 /* RSItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBED91E9F9EEC009CABE8 /* RSItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItem.swift; sourceTree = "<group>"; };
 		91BDBEDB1E9FA6C6009CABE8 /* RSSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSection.swift; sourceTree = "<group>"; };
+		91F1F51C1ECD2B8600D425FD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		91F1F51F1ECD325200D425FD /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		91F1F5211ECD55F800D425FD /* AddStayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStayViewController.swift; sourceTree = "<group>"; };
+		91F1F5231ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSOrderSuccessfulViewController.swift; sourceTree = "<group>"; };
+		91F1F5251ECD773500D425FD /* String+CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalizeFirstLetter.swift"; sourceTree = "<group>"; };
 		91F660B41E9E218700DE4D11 /* RSCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCategoriesViewController.swift; sourceTree = "<group>"; };
 		A0F2DECD05463231687E5B34 /* Pods-Guest ClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guest ClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guest ClientTests/Pods-Guest ClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		B0371569DA1141188967C000 /* Pods-Guest ClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guest ClientUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guest ClientUITests/Pods-Guest ClientUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +222,7 @@
 				9145A7431EA0E0C900D33911 /* RSCartItemViewController.swift */,
 				918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */,
 				910F72661EB4C15C003286D9 /* RSCartViewController.swift */,
+				91F1F5231ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift */,
 			);
 			name = "Room Service";
 			sourceTree = "<group>";
@@ -323,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				910F72701EB63449003286D9 /* Onboarding */,
+				91F1F51E1ECD321200D425FD /* User */,
 				910F726F1EB63442003286D9 /* Room Service */,
 			);
 			name = "View Controllers";
@@ -341,6 +353,7 @@
 			children = (
 				9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */,
 				918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */,
+				91F1F5251ECD773500D425FD /* String+CapitalizeFirstLetter.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -376,6 +389,16 @@
 				9189F6DC1E9B512100DFA856 /* Lato 300.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		91F1F51E1ECD321200D425FD /* User */ = {
+			isa = PBXGroup;
+			children = (
+				91F1F51C1ECD2B8600D425FD /* SignUpViewController.swift */,
+				91F1F51F1ECD325200D425FD /* SignInViewController.swift */,
+				91F1F5211ECD55F800D425FD /* AddStayViewController.swift */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		9411BF1B0EB2284A2817D469 /* Pods */ = {
@@ -691,7 +714,10 @@
 				913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */,
 				91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */,
 				918FC9801EACF55900CFC01C /* RSItemOptionChoicesViewController.swift in Sources */,
+				91F1F5261ECD773500D425FD /* String+CapitalizeFirstLetter.swift in Sources */,
+				91F1F5201ECD325200D425FD /* SignInViewController.swift in Sources */,
 				918FC9901EAFDCA900CFC01C /* RoundedButton.swift in Sources */,
+				91F1F5221ECD55F800D425FD /* AddStayViewController.swift in Sources */,
 				918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift in Sources */,
 				910F726B1EB4D93D003286D9 /* ThemeViewFactory.swift in Sources */,
 				91BDBED31E9F96D1009CABE8 /* RSItemTableViewCell.swift in Sources */,
@@ -707,11 +733,13 @@
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
 				915298581EAB69CB005CB637 /* RSItemDetailView.swift in Sources */,
 				915298541EAAA6D0005CB637 /* RSItemOption.swift in Sources */,
+				91F1F5241ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift in Sources */,
 				913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */,
 				9145A7441EA0E0C900D33911 /* RSCartItemViewController.swift in Sources */,
 				913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */,
 				91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */,
+				91F1F51D1ECD2B8600D425FD /* SignUpViewController.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RSItemsViewController.swift in Sources */,
 				911B2E631EB892A600745C66 /* RSCartFooterView.swift in Sources */,

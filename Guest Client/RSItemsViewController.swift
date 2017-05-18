@@ -104,7 +104,8 @@ class RSItemsViewController: UITableViewController {
         let item = sections[section].items[row]
         
         itemCell.itemTitleLabel.text = item.title
-        itemCell.itemDescriptionLabel.text = item.shortDescription
+        // TODO: Change this to a conditional later that decides between short and long descriptions.
+        itemCell.itemDescriptionLabel.text = item.longDescription?.capitalizingFirstLetter()
         itemCell.itemPriceLabel.text = item.price.stringInBahrainiDinars ?? ""
         // TODO: Find a way to set this globally.
         itemCell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)

@@ -77,7 +77,16 @@ class RSCartViewController: UITableViewController {
     }
     
     @objc private func checkoutButtonTapped() {
-        print("Checkout")
+        if RSCart.shared.isSignedIn {
+            let orderSuccessfulVC = RSOrderSuccessfulViewController()
+            
+            show(orderSuccessfulVC, sender: self)
+        } else {
+            let signInVC = SignInViewController()
+            let navigationController = UINavigationController(rootViewController: signInVC)
+            
+            show(navigationController, sender: self)
+        }
     }
     
     // MARK: - Table view data source

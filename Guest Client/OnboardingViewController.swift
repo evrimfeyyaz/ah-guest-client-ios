@@ -92,8 +92,9 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLa
     private func configureNavigationBar() {
         let skipBarButton = UIBarButtonItem(title: "Skip", style: .plain,
                                             target: self, action: #selector(skipBarButtonTapped))
-        let nextBarButton = UIBarButtonItem(title: "Next", style: .plain,
-                                            target: self, action: #selector(nextBarButtonTapped))
+        let nextBarButton = ThemeViewFactory.doneStyleBarButton(title: "Next",
+                                                                target: self,
+                                                                action: #selector(nextBarButtonTapped))
         
         navigationItem.leftBarButtonItem = skipBarButton
         navigationItem.rightBarButtonItem = nextBarButton
@@ -108,7 +109,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLa
     // MARK: - Actions
     
     @objc private func nextBarButtonTapped() {
-        showNextInfoPage()
+        showNextInfoPageOrFinishOnboarding()
     }
     
     @objc private func skipBarButtonTapped() {
@@ -117,12 +118,14 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLa
     
     // MARK: - Private instance methods
     
-    private func showNextInfoPage() {
+    private func showNextInfoPageOrFinishOnboarding() {
         if let currentItem = onboardingInformationCollectionView.indexPathsForVisibleItems.first {
             let nextItemIndexPath = IndexPath(row: currentItem.row + 1, section: currentItem.section)
             
             if (nextItemIndexPath.row < onboardingInformationCollectionView.numberOfItems(inSection: 0)) {
                 onboardingInformationCollectionView.scrollToItem(at: nextItemIndexPath, at: .centeredHorizontally, animated: true)
+            } else {
+                finishOnboarding()
             }
         }
     }

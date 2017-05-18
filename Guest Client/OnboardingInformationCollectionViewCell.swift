@@ -12,7 +12,7 @@ class OnboardingInformationCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public properties
     
-    let informationTitleLabel = StyledLabel(withStyle: .title2)
+    let informationTitleLabel = StyledLabel(withStyle: .title2Centered)
     let informationLabel = StyledLabel(withStyle: .body)
     
     // MARK: - Initializers
