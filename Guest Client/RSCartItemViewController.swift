@@ -22,7 +22,7 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     private var cartItem: RSCartItem!
     private var rsItem: RSItem
     
-    private let itemOptionsSectionIndex = 0
+    private let optionsSectionIndex = 0
     private let specialRequestSectionIndex = 1
     private let quantitySectionIndex = 2
 
@@ -92,10 +92,10 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
         itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription?.capitalizingFirstLetter()
         itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInBahrainiDinars
         
-        for attribute in cartItem.rsItem.itemAttributes {
-            let attributeView = AttributeView(title: attribute.title)
+        for tag in cartItem.rsItem.tags {
+            let tagView = TagView(title: tag.title)
             
-            itemDetailView.itemAttributesStackView.addArrangedSubview(attributeView)
+            itemDetailView.tagsStackView.addArrangedSubview(tagView)
         }
         
         tableView.tableHeaderView = itemDetailView
@@ -156,7 +156,7 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == itemOptionsSectionIndex {
+        if indexPath.section == optionsSectionIndex {
             let choicesForOption = cartItem.choicesForOptions[indexPath.row]
             
             let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
@@ -223,9 +223,9 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
         
         let option = cartItem.rsItem.options[indexPath.row]
         
-        let optionVC: RSItemOptionChoicesViewController
+        let optionVC: RSChoicesViewController
         if let choicesForOption = cartItem.choices(for: option) {
-            optionVC = RSItemOptionChoicesViewController(choicesForOption: choicesForOption)
+            optionVC = RSChoicesViewController(choicesForOption: choicesForOption)
             optionVC.itemViewController = self
             show(optionVC, sender: nil)
         }

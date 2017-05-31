@@ -97,7 +97,7 @@ class RSCartViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cartItemTableViewCell) as! RSCartItemTableViewCell
         cell.itemTitleLabel.text = cartItem.rsItem.title
         cell.itemPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
-        cell.itemOptionsAndChoicesLabel.text = cartItem.choicesAndOptionsAsString()
+        cell.optionsAndChoicesLabel.text = cartItem.choicesAndOptionsAsString()
         cell.quantityStepper.value = Double(cartItem.quantity)
         cell.quantityStepper.sendActions(for: .valueChanged)
         

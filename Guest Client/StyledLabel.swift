@@ -88,7 +88,7 @@ class StyledLabel: UILabel {
         case .tableHeader:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 13)
             textColor = UIColor.white.withAlphaComponent(0.4)
-        case .attribute:
+        case .tag:
             font = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
             textColor = ThemeColors.darkBlue
         }
@@ -132,5 +132,5 @@ enum LabelStyle {
     case cellPrice
     case price
     case tableHeader
-    case attribute
+    case tag
 }

@@ -12,7 +12,7 @@ class RSCartItem {
     var id: Int?
     var rsItem: RSItem
     var quantity: Int
-    var choicesForOptions: [RSItemChoicesForOption]
+    var choicesForOptions: [RSChoicesForOption]
     var specialRequest: String?
     
     var totalPrice: Decimal {
@@ -30,7 +30,7 @@ class RSCartItem {
     // MARK: - Initializers
     
     init(id: Int? = nil, rsItem: RSItem, quantity: Int = 1,
-         choices: [RSItemChoicesForOption] = [],
+         choices: [RSChoicesForOption] = [],
          specialRequest: String? = nil) {
         
         self.rsItem = rsItem
@@ -49,7 +49,7 @@ class RSCartItem {
     
     // MARK: - Public instance methods
     
-    func choices(for option: RSItemOption) -> RSItemChoicesForOption? {
+    func choices(for option: RSOption) -> RSChoicesForOption? {
         if let index = choicesForOptions.index(where: { $0.option == option }) {
             return choicesForOptions[index]
         }

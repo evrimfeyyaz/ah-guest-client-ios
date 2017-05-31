@@ -1,5 +1,5 @@
 //
-//  RSItemChoicesForOption.swift
+//  RSChoicesForOption.swift
 //  Guest Client
 //
 //  Created by Evrim Persembe on 4/24/17.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-class RSItemChoicesForOption: Equatable {
+class RSChoicesForOption: Equatable {
     
     // MARK: - Public properties
     
-    let option: RSItemOption
+    let option: RSOption
     
     var numberOfPossibleChoices: Int {
         get { return option.possibleChoices.count }
@@ -20,11 +20,11 @@ class RSItemChoicesForOption: Equatable {
     
     // MARK: - Private properties
     
-    fileprivate(set) public var selectedChoices: [RSItemOptionChoice] = []
+    fileprivate(set) public var selectedChoices: [RSChoice] = []
     
     // MARK: - Initializers
     
-    init(option: RSItemOption) {
+    init(option: RSOption) {
         self.option = option
         
         if let defaultChoice = option.defaultChoice {
@@ -34,13 +34,13 @@ class RSItemChoicesForOption: Equatable {
     
     // MARK: - Equatable
     
-    static func == (lhs: RSItemChoicesForOption, rhs: RSItemChoicesForOption) -> Bool {
+    static func == (lhs: RSChoicesForOption, rhs: RSChoicesForOption) -> Bool {
         return lhs.option == rhs.option
     }
     
     // MARK: - Public instance methods
     
-    func isChoiceSelected(_ choice: RSItemOptionChoice) -> Bool {
+    func isChoiceSelected(_ choice: RSChoice) -> Bool {
         return selectedChoices.contains(choice)
     }
     
@@ -50,11 +50,11 @@ class RSItemChoicesForOption: Equatable {
     
 }
 
-class RSItemChoicesForMultipleChoiceOption: RSItemChoicesForOption {
+class RSItemChoicesForMultipleChoiceOption: RSChoicesForOption {
     
     // MARK: - Public instance methods
     
-    func addSelectedChoice(_ choice: RSItemOptionChoice) {
+    func addSelectedChoice(_ choice: RSChoice) {
         if (selectedChoices.contains(choice)) {
             return
         }
@@ -62,7 +62,7 @@ class RSItemChoicesForMultipleChoiceOption: RSItemChoicesForOption {
         selectedChoices.append(choice)
     }
     
-    func removeSelectedChoice(_ choice: RSItemOptionChoice) {
+    func removeSelectedChoice(_ choice: RSChoice) {
         if let index = selectedChoices.index(of: choice) {
             selectedChoices.remove(at: index)
         }
@@ -70,11 +70,11 @@ class RSItemChoicesForMultipleChoiceOption: RSItemChoicesForOption {
     
 }
 
-class RSItemChoicesForSingleChoiceOption: RSItemChoicesForOption {
+class RSItemChoicesForSingleChoiceOption: RSChoicesForOption {
     
     // MARK: - Public instance methods
     
-    func makeSelectedChoice(choice: RSItemOptionChoice) {
+    func makeSelectedChoice(choice: RSChoice) {
         selectedChoices.removeAll()
         selectedChoices.append(choice)
     }

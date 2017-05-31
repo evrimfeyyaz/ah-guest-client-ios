@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AttributeView: UIView {
+class TagView: UIView {
     
     // MARK: - Public properties
     

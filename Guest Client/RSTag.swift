@@ -5,7 +5,7 @@
 
 import UIKit
 
-class RSItemAttribute {
+class RSTag {
     
     // MARK: - Public properties
     

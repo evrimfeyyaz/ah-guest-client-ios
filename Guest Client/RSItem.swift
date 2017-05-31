@@ -15,8 +15,8 @@ class RSItem {
     let shortDescription: String?
     var longDescription: String?
     let price: Decimal
-    var itemAttributes: [RSItemAttribute] = []
-    var options: [RSItemOption] = []
+    var tags: [RSTag] = []
+    var options: [RSOption] = []
     
     // MARK: - Private static properties
     
@@ -63,12 +63,12 @@ class RSItem {
                 for jsonInclude in jsonIncludedArray {
                     if let objectType = jsonInclude["type"] as? String,
                         objectType == "room-service-item-attributes",
-                        let itemAttribute = RSItemAttribute(jsonData: jsonInclude) {
-                        self.itemAttributes.append(itemAttribute)
+                        let itemAttribute = RSTag(jsonData: jsonInclude) {
+                        self.tags.append(itemAttribute)
                     } else if let objectType = jsonInclude["type"] as? String,
                         objectType == "room-service-item-options",
-                        let itemOption = RSItemOption(jsonData: jsonInclude, jsonIncluded: jsonIncludedArray) {
-                        self.options.append(itemOption)
+                        let option = RSOption(jsonData: jsonInclude, jsonIncluded: jsonIncludedArray) {
+                        self.options.append(option)
                     }
                 }
             }

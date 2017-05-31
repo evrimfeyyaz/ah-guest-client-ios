@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RSItemOptionChoice: Equatable {
+class RSChoice: Equatable {
     
     // MARK: - Public properties
     
@@ -40,7 +40,7 @@ class RSItemOptionChoice: Equatable {
     
     // MARK: - Equatable
     
-    static func == (lhs: RSItemOptionChoice, rhs: RSItemOptionChoice) -> Bool {
+    static func == (lhs: RSChoice, rhs: RSChoice) -> Bool {
         return lhs.id == rhs.id
     }
     

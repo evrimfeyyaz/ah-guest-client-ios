@@ -24,11 +24,11 @@
 		9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */; };
 		9152982E1EA880F2005CB637 /* TableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152982D1EA880F2005CB637 /* TableViewHeader.swift */; };
 		915298301EA906E9005CB637 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152982F1EA906E9005CB637 /* TableViewCell.swift */; };
-		915298521EAAA4AD005CB637 /* RSItemAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298511EAAA4AD005CB637 /* RSItemAttribute.swift */; };
-		915298541EAAA6D0005CB637 /* RSItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298531EAAA6D0005CB637 /* RSItemOption.swift */; };
-		915298561EAAA7AF005CB637 /* RSItemOptionChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298551EAAA7AF005CB637 /* RSItemOptionChoice.swift */; };
+		915298521EAAA4AD005CB637 /* RSTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298511EAAA4AD005CB637 /* RSTag.swift */; };
+		915298541EAAA6D0005CB637 /* RSOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298531EAAA6D0005CB637 /* RSOption.swift */; };
+		915298561EAAA7AF005CB637 /* RSChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298551EAAA7AF005CB637 /* RSChoice.swift */; };
 		915298581EAB69CB005CB637 /* RSItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298571EAB69CB005CB637 /* RSItemDetailView.swift */; };
-		91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* AttributeView.swift */; };
+		91724ED41EA292CD00FD7240 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* TagView.swift */; };
 		91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F441E9D106100AE4672 /* OnboardingViewController.swift */; };
 		91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91868F611EA51CE400B589BC /* StyledLabel.swift */; };
 		9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DC1E9B512100DFA856 /* Lato 300.ttf */; };
@@ -38,7 +38,7 @@
 		918FC97C1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */; };
 		918FC9801EACF55900CFC01C /* RSItemOptionChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */; };
 		918FC9821EADEF4600CFC01C /* RSCartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9811EADEF4600CFC01C /* RSCartItem.swift */; };
-		918FC9841EADF2E700CFC01C /* RSItemChoicesForOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9831EADF2E700CFC01C /* RSItemChoicesForOption.swift */; };
+		918FC9841EADF2E700CFC01C /* RSChoicesForOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9831EADF2E700CFC01C /* RSChoicesForOption.swift */; };
 		918FC9861EADF4D600CFC01C /* RSCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9851EADF4D600CFC01C /* RSCart.swift */; };
 		918FC9881EAF39D700CFC01C /* TextEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */; };
 		918FC98C1EAF69FC00CFC01C /* QuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */; };
@@ -103,11 +103,11 @@
 		9152982B1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Decimal+CurrencyHelpers.swift"; sourceTree = "<group>"; };
 		9152982D1EA880F2005CB637 /* TableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		9152982F1EA906E9005CB637 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		915298511EAAA4AD005CB637 /* RSItemAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemAttribute.swift; sourceTree = "<group>"; };
-		915298531EAAA6D0005CB637 /* RSItemOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemOption.swift; sourceTree = "<group>"; };
-		915298551EAAA7AF005CB637 /* RSItemOptionChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemOptionChoice.swift; sourceTree = "<group>"; };
+		915298511EAAA4AD005CB637 /* RSTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTag.swift; sourceTree = "<group>"; };
+		915298531EAAA6D0005CB637 /* RSOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSOption.swift; sourceTree = "<group>"; };
+		915298551EAAA7AF005CB637 /* RSChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSChoice.swift; sourceTree = "<group>"; };
 		915298571EAB69CB005CB637 /* RSItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemDetailView.swift; sourceTree = "<group>"; };
-		91724ED31EA292CD00FD7240 /* AttributeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeView.swift; sourceTree = "<group>"; };
+		91724ED31EA292CD00FD7240 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		91860F441E9D106100AE4672 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		91868F611EA51CE400B589BC /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		9189F6DC1E9B512100DFA856 /* Lato 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300.ttf"; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 		918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+TableHeaderFooterViewAutoLayout.swift"; sourceTree = "<group>"; };
 		918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemOptionChoicesViewController.swift; sourceTree = "<group>"; };
 		918FC9811EADEF4600CFC01C /* RSCartItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartItem.swift; sourceTree = "<group>"; };
-		918FC9831EADF2E700CFC01C /* RSItemChoicesForOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemChoicesForOption.swift; sourceTree = "<group>"; };
+		918FC9831EADF2E700CFC01C /* RSChoicesForOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSChoicesForOption.swift; sourceTree = "<group>"; };
 		918FC9851EADF4D600CFC01C /* RSCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCart.swift; sourceTree = "<group>"; };
 		918FC9871EAF39D700CFC01C /* TextEntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEntryTableViewCell.swift; sourceTree = "<group>"; };
 		918FC98B1EAF69FC00CFC01C /* QuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityTableViewCell.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 				9152982D1EA880F2005CB637 /* TableViewHeader.swift */,
 				91868F611EA51CE400B589BC /* StyledLabel.swift */,
 				918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */,
-				91724ED31EA292CD00FD7240 /* AttributeView.swift */,
+				91724ED31EA292CD00FD7240 /* TagView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -204,11 +204,11 @@
 				91BDBECB1E9E8426009CABE8 /* RSCategory.swift */,
 				91BDBED91E9F9EEC009CABE8 /* RSItem.swift */,
 				91BDBEDB1E9FA6C6009CABE8 /* RSSection.swift */,
-				915298511EAAA4AD005CB637 /* RSItemAttribute.swift */,
-				915298531EAAA6D0005CB637 /* RSItemOption.swift */,
-				915298551EAAA7AF005CB637 /* RSItemOptionChoice.swift */,
+				915298511EAAA4AD005CB637 /* RSTag.swift */,
+				915298531EAAA6D0005CB637 /* RSOption.swift */,
+				915298551EAAA7AF005CB637 /* RSChoice.swift */,
 				918FC9811EADEF4600CFC01C /* RSCartItem.swift */,
-				918FC9831EADF2E700CFC01C /* RSItemChoicesForOption.swift */,
+				918FC9831EADF2E700CFC01C /* RSChoicesForOption.swift */,
 				918FC9851EADF4D600CFC01C /* RSCart.swift */,
 			);
 			name = "Room Service";
@@ -710,7 +710,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91BDBECC1E9E8426009CABE8 /* RSCategory.swift in Sources */,
-				915298561EAAA7AF005CB637 /* RSItemOptionChoice.swift in Sources */,
+				915298561EAAA7AF005CB637 /* RSChoice.swift in Sources */,
 				913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */,
 				91137BDE1E951B2000B21CE6 /* AppDelegate.swift in Sources */,
 				918FC9801EACF55900CFC01C /* RSItemOptionChoicesViewController.swift in Sources */,
@@ -727,24 +727,24 @@
 				918FC98C1EAF69FC00CFC01C /* QuantityTableViewCell.swift in Sources */,
 				911B2E611EB7B3E700745C66 /* RSCartItemTableViewCell.swift in Sources */,
 				918FC9821EADEF4600CFC01C /* RSCartItem.swift in Sources */,
-				918FC9841EADF2E700CFC01C /* RSItemChoicesForOption.swift in Sources */,
+				918FC9841EADF2E700CFC01C /* RSChoicesForOption.swift in Sources */,
 				9152982C1EA87B9F005CB637 /* Decimal+CurrencyHelpers.swift in Sources */,
 				91BDBEDC1E9FA6C6009CABE8 /* RSSection.swift in Sources */,
 				91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */,
 				915298581EAB69CB005CB637 /* RSItemDetailView.swift in Sources */,
-				915298541EAAA6D0005CB637 /* RSItemOption.swift in Sources */,
+				915298541EAAA6D0005CB637 /* RSOption.swift in Sources */,
 				91F1F5241ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift in Sources */,
 				913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */,
 				9145A7441EA0E0C900D33911 /* RSCartItemViewController.swift in Sources */,
 				913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */,
-				91724ED41EA292CD00FD7240 /* AttributeView.swift in Sources */,
+				91724ED41EA292CD00FD7240 /* TagView.swift in Sources */,
 				91F1F51D1ECD2B8600D425FD /* SignUpViewController.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RSItemsViewController.swift in Sources */,
 				911B2E631EB892A600745C66 /* RSCartFooterView.swift in Sources */,
 				9152982E1EA880F2005CB637 /* TableViewHeader.swift in Sources */,
-				915298521EAAA4AD005CB637 /* RSItemAttribute.swift in Sources */,
+				915298521EAAA4AD005CB637 /* RSTag.swift in Sources */,
 				91BDBEDA1E9F9EEC009CABE8 /* RSItem.swift in Sources */,
 				913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */,
 				918FC98E1EAF907F00CFC01C /* RSCartItemFooterView.swift in Sources */,

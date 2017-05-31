@@ -13,7 +13,7 @@ class RSItemDetailView: UIView {
     // MARK: - Public properties
 
     let itemTitleLabel = StyledLabel(withStyle: .title1)
-    let itemAttributesStackView = UIStackView()
+    let tagsStackView = UIStackView()
     let itemPriceLabel = StyledLabel(withStyle: .price)
     let itemDescriptionLabel = StyledLabel(withStyle: .body)
     
@@ -44,13 +44,13 @@ class RSItemDetailView: UIView {
     }
     
     private func configureItemAttributesStackView() {
-        itemAttributesStackView.alignment = .center
-        itemAttributesStackView.distribution = .equalSpacing
-        itemAttributesStackView.spacing = 10
+        tagsStackView.alignment = .center
+        tagsStackView.distribution = .equalSpacing
+        tagsStackView.spacing = 10
     }
     
     private func configureCenterStackView() {
-        centerStackView.addArrangedSubview(itemAttributesStackView)
+        centerStackView.addArrangedSubview(tagsStackView)
         centerStackView.addArrangedSubview(itemPriceLabel)
         centerStackView.distribution = .equalSpacing
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RSItemOptionChoicesViewController: UITableViewController {
+class RSChoicesViewController: UITableViewController {
     
     // MARK: - Public properties
     
@@ -16,14 +16,14 @@ class RSItemOptionChoicesViewController: UITableViewController {
     
     // MARK: - Private properties
 
-    private let choicesForOption: RSItemChoicesForOption
+    private let choicesForOption: RSChoicesForOption
     
     private let tableViewCellIdentifier = "tableViewCell"
     private let tableViewHeaderIdentifier = "tableViewHeader"
     
     // MARK: - Initializers
     
-    init(choicesForOption: RSItemChoicesForOption) {
+    init(choicesForOption: RSChoicesForOption) {
         self.choicesForOption = choicesForOption
         
         super.init(style: .grouped)

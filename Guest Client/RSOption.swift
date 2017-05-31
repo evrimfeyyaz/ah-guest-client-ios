@@ -5,7 +5,7 @@
 
 import Foundation
 
-class RSItemOption: Equatable {
+class RSOption: Equatable {
     
     // MARK: - Public properties
     
@@ -13,10 +13,10 @@ class RSItemOption: Equatable {
     let title: String
     let isOptional: Bool
     let allowsMultipleChoices: Bool
-    var possibleChoices: [RSItemOptionChoice]
+    var possibleChoices: [RSChoice]
     var defaultChoiceID: Int?
     
-    var defaultChoice: RSItemOptionChoice? {
+    var defaultChoice: RSChoice? {
         get {
             guard let defaultChoiceID = self.defaultChoiceID else { return nil }
             
@@ -63,7 +63,7 @@ class RSItemOption: Equatable {
                         })
                         
                         if let choiceJSON = choiceJSON,
-                            let choice = RSItemOptionChoice(jsonData: choiceJSON) {
+                            let choice = RSChoice(jsonData: choiceJSON) {
                             self.possibleChoices.append(choice)
                         }
                     }
@@ -75,7 +75,7 @@ class RSItemOption: Equatable {
     
     // MARK: - Equatable
     
-    static func == (lhs: RSItemOption, rhs: RSItemOption) -> Bool {
+    static func == (lhs: RSOption, rhs: RSOption) -> Bool {
         return lhs.id == rhs.id
     }
     
