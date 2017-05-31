@@ -14,6 +14,7 @@ class RSCart {
     
     public var cartItems: [RSCartItem] = []
     
+    // TODO: Remove this.
     var isSignedIn: Bool = false
     
     var total: Decimal {

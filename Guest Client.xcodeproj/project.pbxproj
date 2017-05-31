@@ -51,6 +51,7 @@
 		91BDBED31E9F96D1009CABE8 /* RSItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED21E9F96D1009CABE8 /* RSItemTableViewCell.swift */; };
 		91BDBEDA1E9F9EEC009CABE8 /* RSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED91E9F9EEC009CABE8 /* RSItem.swift */; };
 		91BDBEDC1E9FA6C6009CABE8 /* RSSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEDB1E9FA6C6009CABE8 /* RSSection.swift */; };
+		91BFA56B1EDF18DA009624C7 /* APIHeadersAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFA56A1EDF18DA009624C7 /* APIHeadersAdapter.swift */; };
 		91F1F51D1ECD2B8600D425FD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F51C1ECD2B8600D425FD /* SignUpViewController.swift */; };
 		91F1F5201ECD325200D425FD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F51F1ECD325200D425FD /* SignInViewController.swift */; };
 		91F1F5221ECD55F800D425FD /* AddStayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F5211ECD55F800D425FD /* AddStayViewController.swift */; };
@@ -130,6 +131,7 @@
 		91BDBED21E9F96D1009CABE8 /* RSItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBED91E9F9EEC009CABE8 /* RSItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItem.swift; sourceTree = "<group>"; };
 		91BDBEDB1E9FA6C6009CABE8 /* RSSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSection.swift; sourceTree = "<group>"; };
+		91BFA56A1EDF18DA009624C7 /* APIHeadersAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHeadersAdapter.swift; sourceTree = "<group>"; };
 		91F1F51C1ECD2B8600D425FD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		91F1F51F1ECD325200D425FD /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		91F1F5211ECD55F800D425FD /* AddStayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStayViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				910F726E1EB63430003286D9 /* Room Service */,
+				91BFA56A1EDF18DA009624C7 /* APIHeadersAdapter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */,
 				91724ED41EA292CD00FD7240 /* TagView.swift in Sources */,
+				91BFA56B1EDF18DA009624C7 /* APIHeadersAdapter.swift in Sources */,
 				91F1F51D1ECD2B8600D425FD /* SignUpViewController.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RSItemsViewController.swift in Sources */,

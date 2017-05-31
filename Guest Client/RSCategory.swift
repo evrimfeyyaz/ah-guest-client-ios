@@ -5,6 +5,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class RSCategory {
     
@@ -23,56 +24,47 @@ class RSCategory {
     
     // MARK: - Initializers
     
-    init?(json: [String: Any]) {
-        guard
-            let idString = json["id"] as? String,
-            let attributes = json["attributes"] as? [String: Any],
-            let title = attributes["title"] as? String
-            else { return nil }
+    init?(json: JSON) {
+        id = json["id"].intValue
+        title = json["title"].stringValue
+        description = json["description"].stringValue
         
-        self.id = Int(idString)!
-        self.title = title
-        self.description = attributes["description"] as? String
+        let imageURLs = json["image_urls"].dictionaryValue
         
-        if let imageURLStrings = attributes["image-urls"] as? [String: String?] {
-            if UIScreen.main.scale == 1.0, let oneXImageURLString = imageURLStrings["@1x"] as? String {
-                imageURL = URL(string: oneXImageURLString)
-            } else if UIScreen.main.scale == 2.0, let twoXImageURLString = imageURLStrings["@2x"] as? String {
-                imageURL = URL(string: twoXImageURLString)
-            } else if let threeXImageURLString = imageURLStrings["@3x"] as? String {
-                imageURL = URL(string: threeXImageURLString)
-            }
+        if UIScreen.main.scale == 1.0, let oneXImageURLString = imageURLs["@1x"]?.stringValue {
+            imageURL = URL(string: oneXImageURLString)
+        } else if UIScreen.main.scale == 2.0, let twoXImageURLString = imageURLs["@2x"]?.stringValue {
+            imageURL = URL(string: twoXImageURLString)
+        } else if let threeXImageURLString = imageURLs["@3x"]?.stringValue {
+            imageURL = URL(string: threeXImageURLString)
         }
     }
     
     // MARK: - Public static methods
     
     static func all(completion: @escaping ([RSCategory]) -> Void) {
-        var rsCategoryURLComponents = urlComponents
-        rsCategoryURLComponents.path = "/v0/room-service/categories"
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.adapter = APIHeadersAdapter()
         
-        Alamofire.request(rsCategoryURLComponents.url!).responseJSON { response in
+        var rsCategoryURLComponents = urlComponents
+        rsCategoryURLComponents.path = "/api/v0/room_service/categories"
+        
+        sessionManager.request(rsCategoryURLComponents.url!).responseJSON { response in
             var rsCategories: [RSCategory] = []
             
-            if let JSON = response.result.value as? [String: Any],
-                let jsonData = JSON["data"] as? [[String: Any]] {
+            let json = JSON(response.result.value!)
+            
+            for (_, subJSON):(String, JSON) in json {
+                let category = RSCategory(json: subJSON)
                 
-                for rsCategoryData in jsonData {
-                    if let attributes = rsCategoryData["attributes"] as? [String: Any],
-                        let title = attributes["title"] as? String,
-                        title == "Arabic Mezzeh Selection" || title == "Main Fares" || title == "Kids Choice" {
-                        continue
-                    }
-                    
-                    if let rsCategory = RSCategory(json: rsCategoryData) {
-                        rsCategories.append(rsCategory)
-                    }
+                if let category = category {
+                    rsCategories.append(category)
                 }
             }
             
             completion(rsCategories)
         }
-
+        
     }
 }
 
