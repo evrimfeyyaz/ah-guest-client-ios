@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class RSSection {
     
@@ -15,7 +16,9 @@ class RSSection {
     
     let id: Int
     let title: String
-    let isDefault: Bool
+    var isDefault: Bool {
+        get { return title == "__default" }
+    }
     
     private(set) var items: [RSItem] = []
     
@@ -23,43 +26,19 @@ class RSSection {
     
     private static let urlString = "https://dry-dawn-66033.herokuapp.com"
     private static let urlComponents = URLComponents(string: urlString)!
-    private static let session = URLSession.shared
     
     // MARK: - Initializers
     
-    init?(json: [String: Any], jsonIncluded: [[String: Any]]? = nil) {
-        guard
-            let idString = json["id"] as? String,
-            let attributes = json["attributes"] as? [String: Any],
-            let title = attributes["title"] as? String,
-            let isDefault = attributes["default"] as? Bool
-            else { return nil }
+    init?(json: JSON) {
+        self.id = json["id"].intValue
+        self.title = json["title"].stringValue
         
-        self.id = Int(idString)!
-        self.title = title
-        self.isDefault = isDefault
-        
-        if let relationships = json["relationships"] as? [String: Any],
-            let itemReferencesJSON = relationships["items"] as? [String: Any],
-            let itemReferencesDataJSON = itemReferencesJSON["data"] as? [[String: Any]] {
+        let itemsJSON = json["items"].arrayValue
+        for itemJSON in itemsJSON {
+            let item = RSItem(json: itemJSON)
             
-            if let jsonIncluded = jsonIncluded {
-                for itemReferenceDataJSON in itemReferencesDataJSON {
-                    if let itemIDString = itemReferenceDataJSON["id"] as? String {
-                        let itemJSON = jsonIncluded.first(where: {
-                            if let includedItemID = $0["id"] as? String {
-                                return includedItemID == itemIDString
-                            }
-                            
-                            return false
-                        })
-                        
-                        if let itemJSON = itemJSON,
-                            let item = RSItem(jsonData: itemJSON) {
-                            items.append(item)
-                        }
-                    }
-                }
+            if let item = item {
+                self.items.append(item)
             }
         }
     }
@@ -67,20 +46,22 @@ class RSSection {
     // MARK: - Public static methods
     
     static func all(byCategoryId categoryId: Int, completion: @escaping ([RSSection]) -> Void) {
-        var rsSectionURLComponents = urlComponents
-        rsSectionURLComponents.path = "/v0/room-service/categories/\(categoryId)/sections"
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.adapter = APIHeadersAdapter()
         
-        Alamofire.request(rsSectionURLComponents.url!).responseJSON { response in
+        var rsSectionURLComponents = urlComponents
+        rsSectionURLComponents.path = "/api/v0/room_service/categories/\(categoryId)/sections"
+        
+        sessionManager.request(rsSectionURLComponents.url!).responseJSON { response in
             var sections: [RSSection] = []
             
-            if let JSON = response.result.value as? [String: Any],
-                let jsonDataArray = JSON["data"] as? [[String: Any]],
-                let jsonIncludedArray = JSON["included"] as? [[String: Any]] {
+            let json = JSON(response.result.value!)
+            
+            for (_, subJSON):(String, JSON) in json {
+                let section = RSSection(json: subJSON)
                 
-                for jsonData in jsonDataArray {
-                    if let section = RSSection(json: jsonData, jsonIncluded: jsonIncludedArray) {
-                        sections.append(section)
-                    }
+                if let section = section {
+                    sections.append(section)
                 }
             }
             

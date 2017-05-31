@@ -5,6 +5,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class RSItem {
     
@@ -26,18 +27,12 @@ class RSItem {
     
     // MARK: - Initializers
     
-    init?(jsonData: [String: Any], jsonIncluded: [[String: Any]]? = nil) {
-        guard
-            let idString = jsonData["id"] as? String,
-            let attributes = jsonData["attributes"] as? [String: Any],
-            let title = attributes["title"] as? String,
-            let priceString = attributes["price"] as? String
-            else { return nil }
+    init?(json: JSON) {
+        self.id = json["id"].intValue
+        self.title = json["title"].stringValue
+        self.shortDescription = json["short_description"].stringValue
         
-        self.id = Int(idString)!
-        self.title = title
-        self.shortDescription = attributes["short-description"] as? String
-        
+        let priceString = json["price"].stringValue
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.generatesDecimalNumbers = true

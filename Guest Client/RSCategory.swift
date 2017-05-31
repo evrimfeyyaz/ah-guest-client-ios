@@ -20,23 +20,22 @@ class RSCategory {
     
     private static let urlString = "https://dry-dawn-66033.herokuapp.com"
     private static let urlComponents = URLComponents(string: urlString)!
-    private static let session = URLSession.shared
     
     // MARK: - Initializers
     
     init?(json: JSON) {
-        id = json["id"].intValue
-        title = json["title"].stringValue
-        description = json["description"].stringValue
+        self.id = json["id"].intValue
+        self.title = json["title"].stringValue
+        self.description = json["description"].stringValue
         
         let imageURLs = json["image_urls"].dictionaryValue
         
         if UIScreen.main.scale == 1.0, let oneXImageURLString = imageURLs["@1x"]?.stringValue {
-            imageURL = URL(string: oneXImageURLString)
+            self.imageURL = URL(string: oneXImageURLString)
         } else if UIScreen.main.scale == 2.0, let twoXImageURLString = imageURLs["@2x"]?.stringValue {
-            imageURL = URL(string: twoXImageURLString)
+            self.imageURL = URL(string: twoXImageURLString)
         } else if let threeXImageURLString = imageURLs["@3x"]?.stringValue {
-            imageURL = URL(string: threeXImageURLString)
+            self.imageURL = URL(string: threeXImageURLString)
         }
     }
     
