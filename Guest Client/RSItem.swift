@@ -44,27 +44,28 @@ class RSItem {
     // MARK: - Public instance methods
     
     func fetchItemDetails(completion: @escaping () -> Void) {
-        var rsItemURLComponents = RSItem.urlComponents
-        rsItemURLComponents.path = "/v0/room-service/items/\(id)"
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.adapter = APIHeadersAdapter()
         
-        Alamofire.request(rsItemURLComponents.url!).responseJSON { response in
-            if let JSON = response.result.value as? [String: Any],
-                let jsonData = JSON["data"] as? [String: Any],
-                let jsonIncludedArray = JSON["included"] as? [[String: Any]],
-                let attributes = jsonData["attributes"] as? [String: Any] {
-                
-                self.longDescription = attributes["long-description"] as? String
-                
-                for jsonInclude in jsonIncludedArray {
-                    if let objectType = jsonInclude["type"] as? String,
-                        objectType == "room-service-item-attributes",
-                        let itemAttribute = RSTag(jsonData: jsonInclude) {
-                        self.tags.append(itemAttribute)
-                    } else if let objectType = jsonInclude["type"] as? String,
-                        objectType == "room-service-item-options",
-                        let option = RSOption(jsonData: jsonInclude, jsonIncluded: jsonIncludedArray) {
-                        self.options.append(option)
-                    }
+        var rsItemURLComponents = RSItem.urlComponents
+        rsItemURLComponents.path = "/api/v0/room_service/items/\(id)"
+        
+        sessionManager.request(rsItemURLComponents.url!).responseJSON { response in
+            let json = JSON(response.result.value!)
+            
+            self.longDescription = json["long_description"].stringValue
+            
+            let tagsJSON = json["tags"].arrayValue
+            for tagJSON in tagsJSON {
+                if let tag = RSTag(json: tagJSON) {
+                    self.tags.append(tag)
+                }
+            }
+            
+            let optionsJSON = json["options"].arrayValue
+            for optionJSON in optionsJSON {
+                if let option = RSOption(json: optionJSON) {
+                    self.options.append(option)
                 }
             }
             

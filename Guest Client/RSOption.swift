@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class RSOption: Equatable {
     
@@ -13,7 +14,7 @@ class RSOption: Equatable {
     let title: String
     let isOptional: Bool
     let allowsMultipleChoices: Bool
-    var possibleChoices: [RSChoice]
+    var possibleChoices: [RSChoice] = []
     var defaultChoiceID: Int?
     
     var defaultChoice: RSChoice? {
@@ -26,48 +27,17 @@ class RSOption: Equatable {
     
     // MARK: - Initializers
     
-    init?(jsonData: [String: Any], jsonIncluded: [[String: Any]]? = nil) {
-        guard
-            let idString = jsonData["id"] as? String,
-            let attributes = jsonData["attributes"] as? [String: Any],
-            let title = attributes["title"] as? String,
-            let isOptional = attributes["optional"] as? Bool,
-            let allowsMultipleChoices = attributes["allows-multiple-choices"] as? Bool
-            else { return nil }
+    init?(json: JSON) {
+        self.id = json["id"].intValue
+        self.title = json["title"].stringValue
+        self.isOptional = json["optional"].boolValue
+        self.allowsMultipleChoices = json["allows_multiple_choices"].boolValue
+        self.defaultChoiceID = json["default_room_service_choice_id"].intValue
         
-        self.id = Int(idString)!
-        self.title = title
-        self.isOptional = isOptional
-        self.allowsMultipleChoices = allowsMultipleChoices
-        
-        if let defaultChoiceIDString = attributes["default-choice-id"] as? String {
-            self.defaultChoiceID = Int(defaultChoiceIDString)!
-        }
-        
-        self.possibleChoices = []
-        if let relationships = jsonData["relationships"] as? [String: Any],
-            let choiceReferencesJSON = relationships["possible-choices"] as? [String: Any],
-            let choicesDataJSON = choiceReferencesJSON["data"] as? [[String: Any]] {
-            
-            if let jsonIncluded = jsonIncluded {
-                for choiceDataJSON in choicesDataJSON {
-                    if let choiceIDString = choiceDataJSON["id"] as? String {
-                        let choiceJSON = jsonIncluded.first(where: {
-                            if let includedID = $0["id"] as? String,
-                                let includedType = $0["type"] as? String {
-                                return includedID == choiceIDString &&
-                                    includedType == "room-service-item-option-choices"
-                            }
-                            
-                            return false
-                        })
-                        
-                        if let choiceJSON = choiceJSON,
-                            let choice = RSChoice(jsonData: choiceJSON) {
-                            self.possibleChoices.append(choice)
-                        }
-                    }
-                }
+        let possibleChoicesJSON = json["possible_choices"].arrayValue
+        for possibleChoiceJSON in possibleChoicesJSON {
+            if let choice = RSChoice(json: possibleChoiceJSON) {
+                self.possibleChoices.append(choice)
             }
         }
     }

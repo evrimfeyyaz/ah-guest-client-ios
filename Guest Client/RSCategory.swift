@@ -49,19 +49,17 @@ class RSCategory {
         rsCategoryURLComponents.path = "/api/v0/room_service/categories"
         
         sessionManager.request(rsCategoryURLComponents.url!).responseJSON { response in
-            var rsCategories: [RSCategory] = []
+            var categories: [RSCategory] = []
             
             let json = JSON(response.result.value!)
             
             for (_, subJSON):(String, JSON) in json {
-                let category = RSCategory(json: subJSON)
-                
-                if let category = category {
-                    rsCategories.append(category)
+                if let category = RSCategory(json: subJSON) {
+                    categories.append(category)
                 }
             }
             
-            completion(rsCategories)
+            completion(categories)
         }
         
     }

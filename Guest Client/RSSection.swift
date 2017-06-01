@@ -35,9 +35,7 @@ class RSSection {
         
         let itemsJSON = json["items"].arrayValue
         for itemJSON in itemsJSON {
-            let item = RSItem(json: itemJSON)
-            
-            if let item = item {
+            if let item = RSItem(json: itemJSON) {
                 self.items.append(item)
             }
         }
@@ -58,9 +56,7 @@ class RSSection {
             let json = JSON(response.result.value!)
             
             for (_, subJSON):(String, JSON) in json {
-                let section = RSSection(json: subJSON)
-                
-                if let section = section {
+                if let section = RSSection(json: subJSON) {
                     sections.append(section)
                 }
             }

@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RSTag {
     
@@ -14,16 +15,9 @@ class RSTag {
     
     // MARK: - Initializers
     
-    init?(jsonData: [String: Any], jsonIncluded: [[String: Any]]? = nil) {
-        guard
-            let idString = jsonData["id"] as? String,
-            let attributes = jsonData["attributes"] as? [String: Any],
-            let title = attributes["title"] as? String
-            else { return nil }
-        
-        self.id = Int(idString)!
-        self.title = title
+    init?(json: JSON) {
+        self.id = json["id"].intValue
+        self.title = json["title"].stringValue
     }
-
     
 }
