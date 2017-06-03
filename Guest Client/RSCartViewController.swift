@@ -77,7 +77,7 @@ class RSCartViewController: UITableViewController {
     }
     
     @objc private func checkoutButtonTapped() {
-        if RSCart.shared.isSignedIn {
+        if User.shared != nil {
             let orderSuccessfulVC = RSOrderSuccessfulViewController()
             
             show(orderSuccessfulVC, sender: self)

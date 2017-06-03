@@ -14,9 +14,6 @@ class RSCart {
     
     public var cartItems: [RSCartItem] = []
     
-    // TODO: Remove this.
-    var isSignedIn: Bool = false
-    
     var total: Decimal {
         get { return cartItems.reduce(0, { result, cartItem in result + cartItem.totalPrice }) }
     }

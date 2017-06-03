@@ -23,7 +23,6 @@ class RSItem {
     
     private static let urlString = "https://dry-dawn-66033.herokuapp.com"
     private static let urlComponents = URLComponents(string: urlString)!
-    private static let session = URLSession.shared
     
     // MARK: - Initializers
     

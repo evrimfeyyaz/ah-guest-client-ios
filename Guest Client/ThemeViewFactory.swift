@@ -50,6 +50,17 @@ class ThemeViewFactory {
         return textField
     }
     
+    // MARK: - Date
+    
+    static func datePicker() -> UIDatePicker {
+        let datePicker = UIDatePicker()
+        
+        datePicker.setValue(UIColor.white, forKey: "textColor")
+        datePicker.sendAction(Selector(("setHighlightsToday:")), to: nil, for: nil)
+        
+        return datePicker
+    }
+    
     // MARK: - Navigation Bar
     
     static func doneStyleBarButton(title: String?, target: Any?, action: Selector?) -> UIBarButtonItem {

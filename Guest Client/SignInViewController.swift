@@ -16,6 +16,8 @@ class SignInViewController: UIViewController {
     private let signInButton = ThemeViewFactory.filledButton()
     private let signUpButton = ThemeViewFactory.hollowButton()
     
+    private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
     // MARK: - View configuration
     
     override func viewDidLoad() {
@@ -34,6 +36,7 @@ class SignInViewController: UIViewController {
         configureSignInButton()
         configureSignUpButton()
         configureStackView()
+        configureActivityIndicator()
     }
     
     private func configureNavigationBar() {
@@ -119,6 +122,12 @@ class SignInViewController: UIViewController {
             ])
     }
     
+    private func configureActivityIndicator() {
+        activityIndicatorView.center = view.center
+        
+        view.addSubview(activityIndicatorView)
+    }
+    
     // MARK: - Actions
     
     @objc private func cancelBarButtonItemTapped() {
@@ -126,9 +135,31 @@ class SignInViewController: UIViewController {
     }
     
     @objc private func signInButtonTapped() {
-        let addStayVC = AddStayViewController()
-        
-        show(addStayVC, sender: self)
+        signIn() { didSucceed in
+            if !didSucceed {
+                let alertController = UIAlertController(title: "Sign-in Failed", message: "Please make sure your e-mail and password are correct.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                let user = User.shared!
+                if User.shared?.currentOrUpcomingReservationID != nil {
+                    let alertController = UIAlertController(title: "Sign-in Successful", message: "Welcome \(user.firstName).", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                } else {
+                    self.show(ReservationAssociationByCheckInDateViewController(), sender: nil)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+            }
+            
+        }
     }
     
     @objc private func signUpBarButtonItemTapped() {
@@ -145,6 +176,16 @@ class SignInViewController: UIViewController {
         let signUpVC = SignUpViewController()
         
         show(signUpVC, sender: self)
+    }
+    
+    private func signIn(completion: @escaping (Bool) -> Void) {
+        activityIndicatorView.startAnimating()
+        
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            User.authenticate(email: email, password: password) { didSucceed in
+                completion(didSucceed)
+            }
+        }
     }
     
 }
