@@ -131,7 +131,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegateFlowLa
     }
     
     private func finishOnboarding() {
-        let rsCategoriesVC = RSCategoriesViewController()
+        let rsCategoriesVC = RoomServiceCategoriesViewController()
         let navigationController = UINavigationController(rootViewController: rsCategoriesVC)
         
         show(navigationController, sender: self)

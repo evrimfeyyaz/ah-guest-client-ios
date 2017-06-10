@@ -8,25 +8,19 @@
 
 import UIKit
 
-class RSCategoriesViewController: UITableViewController {
+class RoomServiceCategoriesViewController: UITableViewController {
     
     // MARK: - Private properties
-    
-    private let defaultSession = URLSession(configuration: .default)
-    
     private let categoryCellIdentifier = "category"
-    
-    private var rsCategories: [RSCategory] = []
-    
+    private var categories = [RoomServiceCategory]()
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     // MARK: - View configuration
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
-        fetchRSCategories()
+        fetchRoomServiceCategories()
     }
     
     private func configureView() {
@@ -62,7 +56,6 @@ class RSCategoriesViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    
     @objc private func ordersBarButtonTapped() {
         print("Go to orders")
     }
@@ -72,26 +65,26 @@ class RSCategoriesViewController: UITableViewController {
     }
     
     // MARK: - Private instance methods
-    
-    private func fetchRSCategories() {
+    private func fetchRoomServiceCategories() {
         activityIndicatorView.startAnimating()
         
-        RSCategory.all() { rsCategories in
-            self.rsCategories = rsCategories
+        APIManager.sharedInstance.indexRoomServiceCategories { result in
+            self.activityIndicatorView.stopAnimating()
             
-            DispatchQueue.main.async {
-                self.activityIndicatorView.stopAnimating()
-                
+            switch result {
+            case .success(let categories):
+                self.categories = categories
                 self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
             }
         }
     }
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier) as! RSCategoryTableViewCell
-        let rsCategory = rsCategories[indexPath.row]
+        let rsCategory = categories[indexPath.row]
         
         categoryCell.categoryTitleLabel.text = rsCategory.title
         categoryCell.categoryDescriptionLabel.text = rsCategory.description
@@ -101,7 +94,7 @@ class RSCategoriesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rsCategories.count
+        return categories.count
     }
     
     // MARK: - Table view delegate
@@ -110,10 +103,9 @@ class RSCategoriesViewController: UITableViewController {
         let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
         let rsItemsVC = RSItemsViewController(style: .grouped)
-        rsItemsVC.categoryID = rsCategories[indexPath.row].id
+        rsItemsVC.categoryID = categories[indexPath.row].id
         rsItemsVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         
         show(rsItemsVC, sender: self)
     }
-
 }

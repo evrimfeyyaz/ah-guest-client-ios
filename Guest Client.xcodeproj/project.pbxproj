@@ -29,6 +29,9 @@
 		915298561EAAA7AF005CB637 /* RSChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298551EAAA7AF005CB637 /* RSChoice.swift */; };
 		915298581EAB69CB005CB637 /* RSItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298571EAB69CB005CB637 /* RSItemDetailView.swift */; };
 		91724ED41EA292CD00FD7240 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* TagView.swift */; };
+		9185A9391EEC0DA900872E4A /* RoomServiceCategoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185A9381EEC0DA900872E4A /* RoomServiceCategoryRouter.swift */; };
+		9185A93B1EEC321300872E4A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185A93A1EEC321300872E4A /* APIManager.swift */; };
+		9185A93D1EEC391F00872E4A /* APIManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185A93C1EEC391F00872E4A /* APIManagerError.swift */; };
 		91860F451E9D106100AE4672 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91860F441E9D106100AE4672 /* OnboardingViewController.swift */; };
 		91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91868F611EA51CE400B589BC /* StyledLabel.swift */; };
 		9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9189F6DC1E9B512100DFA856 /* Lato 300.ttf */; };
@@ -46,7 +49,7 @@
 		918FC9901EAFDCA900CFC01C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */; };
 		919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A417D1E9E445300C4CB7C /* ThemeManager.swift */; };
 		91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */; };
-		91BDBECC1E9E8426009CABE8 /* RSCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBECB1E9E8426009CABE8 /* RSCategory.swift */; };
+		91BDBECC1E9E8426009CABE8 /* RoomServiceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */; };
 		91BDBED11E9EB607009CABE8 /* RSItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED01E9EB607009CABE8 /* RSItemsViewController.swift */; };
 		91BDBED31E9F96D1009CABE8 /* RSItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED21E9F96D1009CABE8 /* RSItemTableViewCell.swift */; };
 		91BDBEDA1E9F9EEC009CABE8 /* RSItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED91E9F9EEC009CABE8 /* RSItem.swift */; };
@@ -60,7 +63,7 @@
 		91F1F5221ECD55F800D425FD /* ReservationAssociationByCheckInDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F5211ECD55F800D425FD /* ReservationAssociationByCheckInDateViewController.swift */; };
 		91F1F5241ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F5231ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift */; };
 		91F1F5261ECD773500D425FD /* String+CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F1F5251ECD773500D425FD /* String+CapitalizeFirstLetter.swift */; };
-		91F660B51E9E218700DE4D11 /* RSCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F660B41E9E218700DE4D11 /* RSCategoriesViewController.swift */; };
+		91F660B51E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */; };
 		A90AD1CFBE877A36D20AE145 /* Pods_Guest_ClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30C8B493F4A502099B667C2 /* Pods_Guest_ClientUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +115,9 @@
 		915298551EAAA7AF005CB637 /* RSChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSChoice.swift; sourceTree = "<group>"; };
 		915298571EAB69CB005CB637 /* RSItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemDetailView.swift; sourceTree = "<group>"; };
 		91724ED31EA292CD00FD7240 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		9185A9381EEC0DA900872E4A /* RoomServiceCategoryRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoryRouter.swift; sourceTree = "<group>"; };
+		9185A93A1EEC321300872E4A /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		9185A93C1EEC391F00872E4A /* APIManagerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManagerError.swift; sourceTree = "<group>"; };
 		91860F441E9D106100AE4672 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		91868F611EA51CE400B589BC /* StyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledLabel.swift; sourceTree = "<group>"; };
 		9189F6DC1E9B512100DFA856 /* Lato 300.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato 300.ttf"; sourceTree = "<group>"; };
@@ -129,7 +135,7 @@
 		918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		919A417D1E9E445300C4CB7C /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCategoryTableViewCell.swift; sourceTree = "<group>"; };
-		91BDBECB1E9E8426009CABE8 /* RSCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCategory.swift; sourceTree = "<group>"; };
+		91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategory.swift; sourceTree = "<group>"; };
 		91BDBED01E9EB607009CABE8 /* RSItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		91BDBED21E9F96D1009CABE8 /* RSItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBED91E9F9EEC009CABE8 /* RSItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItem.swift; sourceTree = "<group>"; };
@@ -143,7 +149,7 @@
 		91F1F5211ECD55F800D425FD /* ReservationAssociationByCheckInDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationAssociationByCheckInDateViewController.swift; sourceTree = "<group>"; };
 		91F1F5231ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSOrderSuccessfulViewController.swift; sourceTree = "<group>"; };
 		91F1F5251ECD773500D425FD /* String+CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalizeFirstLetter.swift"; sourceTree = "<group>"; };
-		91F660B41E9E218700DE4D11 /* RSCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCategoriesViewController.swift; sourceTree = "<group>"; };
+		91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategoriesViewController.swift; sourceTree = "<group>"; };
 		A0F2DECD05463231687E5B34 /* Pods-Guest ClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guest ClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guest ClientTests/Pods-Guest ClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		B0371569DA1141188967C000 /* Pods-Guest ClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guest ClientUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guest ClientUITests/Pods-Guest ClientUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D5051E76711442DAA2F37CB1 /* Pods-Guest Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guest Client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guest Client/Pods-Guest Client.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,7 +215,7 @@
 		910F726E1EB63430003286D9 /* Room Service */ = {
 			isa = PBXGroup;
 			children = (
-				91BDBECB1E9E8426009CABE8 /* RSCategory.swift */,
+				91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */,
 				91BDBED91E9F9EEC009CABE8 /* RSItem.swift */,
 				91BDBEDB1E9FA6C6009CABE8 /* RSSection.swift */,
 				915298511EAAA4AD005CB637 /* RSTag.swift */,
@@ -227,7 +233,7 @@
 		910F726F1EB63442003286D9 /* Room Service */ = {
 			isa = PBXGroup;
 			children = (
-				91F660B41E9E218700DE4D11 /* RSCategoriesViewController.swift */,
+				91F660B41E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift */,
 				91BDBED01E9EB607009CABE8 /* RSItemsViewController.swift */,
 				9145A7431EA0E0C900D33911 /* RSCartItemViewController.swift */,
 				918FC97F1EACF55900CFC01C /* RSItemOptionChoicesViewController.swift */,
@@ -270,6 +276,7 @@
 		91137BDC1E951B2000B21CE6 /* Guest Client */ = {
 			isa = PBXGroup;
 			children = (
+				9185A9371EEC0D6000872E4A /* Networking */,
 				913D8FBD1EA6348E00B1B3CD /* Models */,
 				913D8FBE1EA6349E00B1B3CD /* View Controllers */,
 				913D8FBC1EA52FBB00B1B3CD /* Views */,
@@ -336,7 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				910F726E1EB63430003286D9 /* Room Service */,
-				91BFA56A1EDF18DA009624C7 /* APIHeadersAdapter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -367,6 +373,17 @@
 				91F1F5251ECD773500D425FD /* String+CapitalizeFirstLetter.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		9185A9371EEC0D6000872E4A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				91BFA56A1EDF18DA009624C7 /* APIHeadersAdapter.swift */,
+				9185A9381EEC0DA900872E4A /* RoomServiceCategoryRouter.swift */,
+				9185A93A1EEC321300872E4A /* APIManager.swift */,
+				9185A93C1EEC391F00872E4A /* APIManagerError.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		91860F4B1E9D466A00AE4672 /* Theme */ = {
@@ -721,7 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91BDBECC1E9E8426009CABE8 /* RSCategory.swift in Sources */,
+				91BDBECC1E9E8426009CABE8 /* RoomServiceCategory.swift in Sources */,
 				915298561EAAA7AF005CB637 /* RSChoice.swift in Sources */,
 				91BFA56F1EE19ABD009624C7 /* Reservation.swift in Sources */,
 				913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */,
@@ -754,6 +771,7 @@
 				91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */,
 				91724ED41EA292CD00FD7240 /* TagView.swift in Sources */,
 				91BFA56B1EDF18DA009624C7 /* APIHeadersAdapter.swift in Sources */,
+				9185A9391EEC0DA900872E4A /* RoomServiceCategoryRouter.swift in Sources */,
 				91F1F51D1ECD2B8600D425FD /* SignUpViewController.swift in Sources */,
 				919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */,
 				91BDBED11E9EB607009CABE8 /* RSItemsViewController.swift in Sources */,
@@ -765,7 +783,9 @@
 				918FC98E1EAF907F00CFC01C /* RSCartItemFooterView.swift in Sources */,
 				910F72671EB4C15C003286D9 /* RSCartViewController.swift in Sources */,
 				91868F621EA51CE400B589BC /* StyledLabel.swift in Sources */,
-				91F660B51E9E218700DE4D11 /* RSCategoriesViewController.swift in Sources */,
+				91F660B51E9E218700DE4D11 /* RoomServiceCategoriesViewController.swift in Sources */,
+				9185A93B1EEC321300872E4A /* APIManager.swift in Sources */,
+				9185A93D1EEC391F00872E4A /* APIManagerError.swift in Sources */,
 				91BFA56D1EE01135009624C7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,12 +872,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -897,10 +918,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
