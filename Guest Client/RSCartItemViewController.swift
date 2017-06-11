@@ -20,7 +20,7 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     private let quantityTableViewCellIdentifier = "quantity"
     
     private var cartItem: RSCartItem!
-    private var rsItem: RSItem
+    private var rsItem: RoomServiceItem
     
     private let optionsSectionIndex = 0
     private let specialRequestSectionIndex = 1
@@ -28,7 +28,7 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
 
     // MARK: - Initializers
     
-    init(rsItem: RSItem) {
+    init(rsItem: RoomServiceItem) {
         self.rsItem = rsItem
         
         super.init(style: .grouped)
@@ -138,15 +138,15 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     private func fetchRSItemDetails(completion: @escaping () -> Void) {
         activityIndicatorView.startAnimating()
         
-        rsItem.fetchItemDetails {
-            DispatchQueue.main.async {
-                self.activityIndicatorView.stopAnimating()
-                
-                self.tableView.reloadData()
-            }
-            
-            completion()
-        }
+//        rsItem.fetchItemDetails {
+//            DispatchQueue.main.async {
+//                self.activityIndicatorView.stopAnimating()
+//                
+//                self.tableView.reloadData()
+//            }
+//            
+//            completion()
+//        }
     }
     
     // MARK: - Table view data source

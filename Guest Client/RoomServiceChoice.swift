@@ -1,29 +1,26 @@
 //
-//  RSItemPreferenceChoice.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/21/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import Foundation
-import SwiftyJSON
 
-class RSChoice: Equatable {
-    
+class RoomServiceChoice: Equatable {
     // MARK: - Public properties
-    
     let id: Int
     let title: String
     let price: Decimal
     
     // MARK: - Initializers
-    
-    init?(json: JSON) {
-        self.id = json["id"].intValue
-        self.title = json["title"].stringValue
+    init?(json: [String: Any]) {
+        guard let id = json["id"] as? Int,
+            let title = json["title"] as? String,
+            let priceString = json["price"] as? String
+            else { return nil }
         
-        let priceString = json["price"].stringValue
+        self.id = id
+        self.title = title
+        
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.generatesDecimalNumbers = true
@@ -31,12 +28,9 @@ class RSChoice: Equatable {
         guard let price = formatter.number(from: priceString) as? Decimal else { return nil }
         self.price = price
     }
-
     
     // MARK: - Equatable
-    
-    static func == (lhs: RSChoice, rhs: RSChoice) -> Bool {
+    static func == (lhs: RoomServiceChoice, rhs: RoomServiceChoice) -> Bool {
         return lhs.id == rhs.id
     }
-    
 }

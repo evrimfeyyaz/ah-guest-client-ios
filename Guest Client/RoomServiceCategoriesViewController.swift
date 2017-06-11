@@ -1,7 +1,4 @@
 //
-//  RSCategoriesViewController.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/12/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
@@ -76,7 +73,10 @@ class RoomServiceCategoriesViewController: UITableViewController {
                 self.categories = categories
                 self.tableView.reloadData()
             case .failure(let error):
-                print(error)
+                let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
             }
         }
     }
@@ -102,7 +102,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
-        let rsItemsVC = RSItemsViewController(style: .grouped)
+        let rsItemsVC = RoomServiceItemsViewController(style: .grouped)
         rsItemsVC.categoryID = categories[indexPath.row].id
         rsItemsVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         

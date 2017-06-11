@@ -1,36 +1,27 @@
 //
-//  RSItemsViewController.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/12/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import UIKit
 
-class RSItemsViewController: UITableViewController {
-    
+class RoomServiceItemsViewController: UITableViewController {
     // MARK: - Public properties
-    
     var categoryID: Int?
     
     // MARK: - Private properties
-    
     private let itemCellIdentifier = "item"
     private let tableViewHeaderViewIdentifier = "tableViewHeader"
-    
-    private var sections: [RSSection] = []
-    
+    private var sections: [RoomServiceSection] = []
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     // MARK: - View configuration
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureActivityIndicator()
         configureView()
-        fetchRSSectionsAndItemSummaries()
+        fetchRoomServiceSectionsAndItemSummaries()
     }
     
     private func configureActivityIndicator() {
@@ -61,7 +52,6 @@ class RSItemsViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    
     @objc private func cartBarButtonTapped() {
         let cartVC = RSCartViewController(style: .grouped)
         let navigationVC = UINavigationController(rootViewController: cartVC)
@@ -70,23 +60,26 @@ class RSItemsViewController: UITableViewController {
     }
     
     // MARK: - Private instance methods
-    
-    private func fetchRSSectionsAndItemSummaries() {
+    private func fetchRoomServiceSectionsAndItemSummaries() {
         activityIndicatorView.startAnimating()
         
-        RSSection.all(byCategoryId: categoryID!) { sections in
-            self.sections = sections
+        APIManager.sharedInstance.indexRoomServiceCategorySections(roomServiceCategoryID: categoryID!) { result in
+            self.activityIndicatorView.stopAnimating()
             
-            DispatchQueue.main.async {
-                self.activityIndicatorView.stopAnimating()
-                
+            switch result {
+            case .success(let sections):
+                self.sections = sections
                 self.tableView.reloadData()
+            case .failure(let error):
+                let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
             }
         }
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -116,7 +109,6 @@ class RSItemsViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if sections[section].isDefault { return nil }
         

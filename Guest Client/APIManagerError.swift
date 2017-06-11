@@ -6,6 +6,5 @@
 import Foundation
 
 enum APIManagerError: Error {
-    case clientAuthenticationFailed(reason: String)
     case jsonSerialization(reason: String)
 }

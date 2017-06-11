@@ -12,7 +12,7 @@ class RSChoicesForOption: Equatable {
     
     // MARK: - Public properties
     
-    let option: RSOption
+    let option: RoomServiceOption
     
     var numberOfPossibleChoices: Int {
         get { return option.possibleChoices.count }
@@ -20,11 +20,11 @@ class RSChoicesForOption: Equatable {
     
     // MARK: - Private properties
     
-    fileprivate(set) public var selectedChoices: [RSChoice] = []
+    fileprivate(set) public var selectedChoices: [RoomServiceChoice] = []
     
     // MARK: - Initializers
     
-    init(option: RSOption) {
+    init(option: RoomServiceOption) {
         self.option = option
         
         if let defaultChoice = option.defaultChoice {
@@ -40,7 +40,7 @@ class RSChoicesForOption: Equatable {
     
     // MARK: - Public instance methods
     
-    func isChoiceSelected(_ choice: RSChoice) -> Bool {
+    func isChoiceSelected(_ choice: RoomServiceChoice) -> Bool {
         return selectedChoices.contains(choice)
     }
     
@@ -54,7 +54,7 @@ class RSItemChoicesForMultipleChoiceOption: RSChoicesForOption {
     
     // MARK: - Public instance methods
     
-    func addSelectedChoice(_ choice: RSChoice) {
+    func addSelectedChoice(_ choice: RoomServiceChoice) {
         if (selectedChoices.contains(choice)) {
             return
         }
@@ -62,7 +62,7 @@ class RSItemChoicesForMultipleChoiceOption: RSChoicesForOption {
         selectedChoices.append(choice)
     }
     
-    func removeSelectedChoice(_ choice: RSChoice) {
+    func removeSelectedChoice(_ choice: RoomServiceChoice) {
         if let index = selectedChoices.index(of: choice) {
             selectedChoices.remove(at: index)
         }
@@ -74,7 +74,7 @@ class RSItemChoicesForSingleChoiceOption: RSChoicesForOption {
     
     // MARK: - Public instance methods
     
-    func makeSelectedChoice(choice: RSChoice) {
+    func makeSelectedChoice(choice: RoomServiceChoice) {
         selectedChoices.removeAll()
         selectedChoices.append(choice)
     }

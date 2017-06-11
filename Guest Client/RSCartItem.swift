@@ -10,7 +10,7 @@ class RSCartItem {
     // MARK: - Public properties
     
     var id: Int?
-    var rsItem: RSItem
+    var rsItem: RoomServiceItem
     var quantity: Int
     var choicesForOptions: [RSChoicesForOption]
     var specialRequest: String?
@@ -29,7 +29,7 @@ class RSCartItem {
     
     // MARK: - Initializers
     
-    init(id: Int? = nil, rsItem: RSItem, quantity: Int = 1,
+    init(id: Int? = nil, rsItem: RoomServiceItem, quantity: Int = 1,
          choices: [RSChoicesForOption] = [],
          specialRequest: String? = nil) {
         
@@ -49,7 +49,7 @@ class RSCartItem {
     
     // MARK: - Public instance methods
     
-    func choices(for option: RSOption) -> RSChoicesForOption? {
+    func choices(for option: RoomServiceOption) -> RSChoicesForOption? {
         if let index = choicesForOptions.index(where: { $0.option == option }) {
             return choicesForOptions[index]
         }
