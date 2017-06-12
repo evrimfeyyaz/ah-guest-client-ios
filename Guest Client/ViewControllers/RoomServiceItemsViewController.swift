@@ -53,7 +53,7 @@ class RoomServiceItemsViewController: UITableViewController {
     
     // MARK: - Actions
     @objc private func cartBarButtonTapped() {
-        let cartVC = RSCartViewController(style: .grouped)
+        let cartVC = RoomServiceCartViewController(style: .grouped)
         let navigationVC = UINavigationController(rootViewController: cartVC)
         
         show(navigationVC, sender: self)
@@ -63,8 +63,10 @@ class RoomServiceItemsViewController: UITableViewController {
     private func fetchRoomServiceSectionsAndItemSummaries() {
         activityIndicatorView.startAnimating()
         
-        APIManager.sharedInstance.indexRoomServiceCategorySections(roomServiceCategoryID: categoryID!) { result in
-            self.activityIndicatorView.stopAnimating()
+        APIManager.shared.indexRoomServiceCategorySections(categoryID: categoryID!) { result in
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+            }
             
             switch result {
             case .success(let sections):
@@ -130,7 +132,7 @@ class RoomServiceItemsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = sections[indexPath.section].items[indexPath.row]
-        let itemDetailVC = RSCartItemViewController(rsItem: item)
+        let itemDetailVC = RoomServiceCartItemViewController(roomServiceItemID: item.id)
         let navigationVC = UINavigationController(rootViewController: itemDetailVC)
         
         present(navigationVC, animated: true, completion: nil)

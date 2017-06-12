@@ -1,29 +1,23 @@
 //
-//  RSItemPreferenceChoicesTableViewController.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/23/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import UIKit
 
-class RSChoicesViewController: UITableViewController {
+class RoomServiceChoicesForOptionViewController: UITableViewController {
     
     // MARK: - Public properties
-    
-    var itemViewController: RSCartItemViewController?
+    var itemViewController: RoomServiceCartItemViewController?
     
     // MARK: - Private properties
-
-    private let choicesForOption: RSChoicesForOption
+    private let choicesForOption: RoomServiceChoicesForOption
     
     private let tableViewCellIdentifier = "tableViewCell"
     private let tableViewHeaderIdentifier = "tableViewHeader"
     
     // MARK: - Initializers
-    
-    init(choicesForOption: RSChoicesForOption) {
+    init(choicesForOption: RoomServiceChoicesForOption) {
         self.choicesForOption = choicesForOption
         
         super.init(style: .grouped)
@@ -34,7 +28,6 @@ class RSChoicesViewController: UITableViewController {
     }
     
     // MARK: - View configuration
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,7 +59,6 @@ class RSChoicesViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return choicesForOption.numberOfPossibleChoices
     }
@@ -91,7 +83,6 @@ class RSChoicesViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: tableViewHeaderIdentifier) as! TableViewHeader
         
@@ -132,5 +123,4 @@ class RSChoicesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
     }
-
 }

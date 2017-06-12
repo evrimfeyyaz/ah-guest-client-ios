@@ -1,7 +1,4 @@
 //
-//  RSOrderSuccessfulViewController.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 5/18/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
@@ -87,7 +84,7 @@ class RSOrderSuccessfulViewController: UIViewController {
     // MARK: - Private instance methods
     
     private func emptyCartAndDismiss() {
-        RSCart.shared.cartItems = []
+        RoomServiceCart.shared.cartItems = []
         dismiss(animated: true, completion: nil)
     }
     

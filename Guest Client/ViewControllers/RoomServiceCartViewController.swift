@@ -5,7 +5,7 @@
 
 import UIKit
 
-class RSCartViewController: UITableViewController {
+class RoomServiceCartViewController: UITableViewController {
     
     // MARK: - Private properties
     
@@ -64,10 +64,10 @@ class RSCartViewController: UITableViewController {
         let rootViewPoint = sender.superview?.convert(stepperCenterPoint, to: tableView)
         let indexPath = tableView.indexPathForRow(at: rootViewPoint!)!
         
-        RSCart.shared.cartItems[indexPath.row].quantity = Int(sender.value)
+        RoomServiceCart.shared.cartItems[indexPath.row].quantity = Int(sender.value)
         
         let cell = tableView.cellForRow(at: indexPath) as! RSCartItemTableViewCell
-        cell.itemPriceLabel.text = RSCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
+        cell.itemPriceLabel.text = RoomServiceCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
         
         updateTotalPriceLabel()
     }
@@ -77,25 +77,25 @@ class RSCartViewController: UITableViewController {
     }
     
     @objc private func checkoutButtonTapped() {
-        if User.shared != nil {
+        if APIManager.shared.hasAuthenticatedUser {
             let orderSuccessfulVC = RSOrderSuccessfulViewController()
             
             show(orderSuccessfulVC, sender: self)
         } else {
-            let signInVC = SignInViewController()
-            let navigationController = UINavigationController(rootViewController: signInVC)
+            let rootVC = SignInViewController()
+            let navigationVC = UINavigationController(rootViewController: rootVC)
             
-            show(navigationController, sender: self)
+            show(navigationVC, sender: self)
         }
     }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cartItem = RSCart.shared.cartItems[indexPath.row]
+        let cartItem = RoomServiceCart.shared.cartItems[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cartItemTableViewCell) as! RSCartItemTableViewCell
-        cell.itemTitleLabel.text = cartItem.rsItem.title
+        cell.itemTitleLabel.text = cartItem.item.title
         cell.itemPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
         cell.optionsAndChoicesLabel.text = cartItem.choicesAndOptionsAsString()
         cell.quantityStepper.value = Double(cartItem.quantity)
@@ -110,7 +110,7 @@ class RSCartViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RSCart.shared.cartItems.count
+        return RoomServiceCart.shared.cartItems.count
     }
     
     // MARK: - Table view delegate
@@ -134,7 +134,7 @@ class RSCartViewController: UITableViewController {
     // MARK: - Private instance methods
     
     private func updateTotalPriceLabel() {
-        footerView.totalPriceLabel.text = RSCart.shared.total.stringInBahrainiDinars
+        footerView.totalPriceLabel.text = RoomServiceCart.shared.total.stringInBahrainiDinars
     }
 
 }

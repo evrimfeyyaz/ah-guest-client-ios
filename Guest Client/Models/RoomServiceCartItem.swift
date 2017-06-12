@@ -5,21 +5,19 @@
 
 import Foundation
 
-class RSCartItem {
-    
+class RoomServiceCartItem {
     // MARK: - Public properties
-    
     var id: Int?
-    var rsItem: RoomServiceItem
+    var item: RoomServiceItem
     var quantity: Int
-    var choicesForOptions: [RSChoicesForOption]
+    var choicesForOptions: [RoomServiceChoicesForOption]
     var specialRequest: String?
     
     var totalPrice: Decimal {
         get {
             let totalPriceForOneItem = choicesForOptions.flatMap({ choicesForOption in
                 choicesForOption.selectedChoices
-            }).reduce(rsItem.price, { sum, choice in
+            }).reduce(item.price, { sum, choice in
                 sum + choice.price
             })
             
@@ -28,17 +26,16 @@ class RSCartItem {
     }
     
     // MARK: - Initializers
-    
-    init(id: Int? = nil, rsItem: RoomServiceItem, quantity: Int = 1,
-         choices: [RSChoicesForOption] = [],
+    init(id: Int? = nil, item: RoomServiceItem, quantity: Int = 1,
+         choices: [RoomServiceChoicesForOption] = [],
          specialRequest: String? = nil) {
         
-        self.rsItem = rsItem
+        self.item = item
         self.quantity = quantity
         self.choicesForOptions = choices
         self.specialRequest = specialRequest
         
-        for option in rsItem.options {
+        for option in item.options {
             if (option.allowsMultipleChoices) {
                 self.choicesForOptions.append(RSItemChoicesForMultipleChoiceOption(option: option))
             } else {
@@ -48,8 +45,7 @@ class RSCartItem {
     }
     
     // MARK: - Public instance methods
-    
-    func choices(for option: RoomServiceOption) -> RSChoicesForOption? {
+    func choices(for option: RoomServiceOption) -> RoomServiceChoicesForOption? {
         if let index = choicesForOptions.index(where: { $0.option == option }) {
             return choicesForOptions[index]
         }

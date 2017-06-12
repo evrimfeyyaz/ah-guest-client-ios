@@ -6,10 +6,8 @@
 import UIKit
 import Alamofire
 
-class RSCartItemViewController: UITableViewController, UITextViewDelegate {
-    
+class RoomServiceCartItemViewController: UITableViewController, UITextViewDelegate {
     // MARK: - Private properties
-    
     private let itemDetailView = RSItemDetailView()
     private let footerView = RSCartItemFooterView()
     
@@ -19,17 +17,16 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     private let textEntryTableViewCellIdentifier = "textEntry"
     private let quantityTableViewCellIdentifier = "quantity"
     
-    private var cartItem: RSCartItem!
-    private var rsItem: RoomServiceItem
+    private var cartItem: RoomServiceCartItem?
+    private var roomServiceItemID: Int
     
     private let optionsSectionIndex = 0
     private let specialRequestSectionIndex = 1
     private let quantitySectionIndex = 2
 
     // MARK: - Initializers
-    
-    init(rsItem: RoomServiceItem) {
-        self.rsItem = rsItem
+    init(roomServiceItemID: Int) {
+        self.roomServiceItemID = roomServiceItemID
         
         super.init(style: .grouped)
     }
@@ -39,7 +36,6 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     // MARK: - View configuration
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,13 +47,12 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
         
         configureActivityIndicator()
         configureNavigationBar()
-        
-        fetchRSItemDetails {
-            self.cartItem = RSCartItem(rsItem: self.rsItem)
-            
-            self.configureTableView()
-            self.configureItemDetailView()
-            self.configureTableFooterView()
+        fetchRoomServiceItemAndCreateRoomServiceCartItem {
+            if self.cartItem != nil {
+                self.configureTableView()
+                self.configureItemDetailView()
+                self.configureTableFooterView()
+            }
         }
     }
     
@@ -88,11 +83,13 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     private func configureItemDetailView() {
-        itemDetailView.itemTitleLabel.text = cartItem.rsItem.title
-        itemDetailView.itemDescriptionLabel.text = cartItem.rsItem.longDescription?.capitalizingFirstLetter()
-        itemDetailView.itemPriceLabel.text = cartItem.rsItem.price.stringInBahrainiDinars
+        guard let cartItem = cartItem else { return }
         
-        for tag in cartItem.rsItem.tags {
+        itemDetailView.itemTitleLabel.text = cartItem.item.title
+        itemDetailView.itemDescriptionLabel.text = cartItem.item.longDescription?.capitalizingFirstLetter()
+        itemDetailView.itemPriceLabel.text = cartItem.item.price.stringInBahrainiDinars
+        
+        for tag in cartItem.item.tags {
             let tagView = TagView(title: tag.title)
             
             itemDetailView.tagsStackView.addArrangedSubview(tagView)
@@ -103,6 +100,8 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     private func configureTableFooterView() {
+        guard let cartItem = cartItem else { return }
+        
         footerView.totalPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
         footerView.addToCartButton.addTarget(self, action: #selector(addToCartButtonTapped), for: .touchUpInside)
         tableView.tableFooterView = footerView
@@ -116,11 +115,15 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     @objc private func addToCartButtonTapped() {
-        RSCart.shared.add(item: cartItem)
+        guard let cartItem = cartItem else { return }
+        
+        RoomServiceCart.shared.add(item: cartItem)
         dismiss(animated: true, completion: nil)
     }
     
     @objc private func quantityStepperValueChanged(sender: UIStepper) {
+        guard let cartItem = cartItem else { return }
+        
         cartItem.quantity = Int(sender.value)
         
         updatePriceLabels()
@@ -135,18 +138,26 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - Private instance methods
     
-    private func fetchRSItemDetails(completion: @escaping () -> Void) {
+    private func fetchRoomServiceItemAndCreateRoomServiceCartItem(completion: @escaping () -> Void) {
         activityIndicatorView.startAnimating()
         
-//        rsItem.fetchItemDetails {
-//            DispatchQueue.main.async {
-//                self.activityIndicatorView.stopAnimating()
-//                
-//                self.tableView.reloadData()
-//            }
-//            
-//            completion()
-//        }
+        APIManager.shared.showRoomServiceItem(id: roomServiceItemID) { result in
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+            }
+            
+            switch result {
+            case .success(let item):
+                self.cartItem = RoomServiceCartItem(item: item)
+            case .failure(let error):
+                let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
+            }
+            
+            completion()
+        }
     }
     
     // MARK: - Table view data source
@@ -156,6 +167,8 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cartItem = cartItem else { return UITableViewCell() }
+        
         if indexPath.section == optionsSectionIndex {
             let choicesForOption = cartItem.choicesForOptions[indexPath.row]
             
@@ -199,16 +212,18 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     }
     
     private func updatePriceLabels() {
+        guard let cartItem = cartItem else { return }
+        
         let priceString = cartItem.totalPrice.stringInBahrainiDinars
         itemDetailView.itemPriceLabel.text = priceString
         footerView.totalPriceLabel.text = priceString
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard (cartItem != nil) else { return 0 }
+        guard let cartItem = cartItem else { return 0 }
         
         if section == 0 {
-            return rsItem.options.count
+            return cartItem.item.options.count
         } else {
             return 1
         }
@@ -217,15 +232,17 @@ class RSCartItemViewController: UITableViewController, UITextViewDelegate {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cartItem = cartItem else { return }
+        
         if indexPath.section == specialRequestSectionIndex || indexPath.section == quantitySectionIndex {
             return
         }
         
-        let option = cartItem.rsItem.options[indexPath.row]
+        let option = cartItem.item.options[indexPath.row]
         
-        let optionVC: RSChoicesViewController
+        let optionVC: RoomServiceChoicesForOptionViewController
         if let choicesForOption = cartItem.choices(for: option) {
-            optionVC = RSChoicesViewController(choicesForOption: choicesForOption)
+            optionVC = RoomServiceChoicesForOptionViewController(choicesForOption: choicesForOption)
             optionVC.itemViewController = self
             show(optionVC, sender: nil)
         }

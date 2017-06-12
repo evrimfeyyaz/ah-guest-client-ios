@@ -4,35 +4,32 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 class Reservation {
-    
-    // MARK: - Public properties
-    
     let id: Int
     var checkInDate: Date
     var checkOutDate: Date
-    var roomNumber: Int
+    var roomNumber: String?
     var confirmationCode: String
     var firstName: String
     var lastName: String
     
-    // MARK: - Initializers
-    
-    init?(json: JSON) {
-        self.id = json["id"].intValue
-        self.roomNumber = json["room_number"].intValue
-        self.confirmationCode = json["confirmation_code"].stringValue
-        self.firstName = json["first_name"].stringValue
-        self.lastName = json["last_name"].stringValue
+    init?(json: [String: Any]) {
+        guard let id = json["id"] as? Int,
+            let checkInDateString = json["check_in_date"] as? String,
+            let checkOutDateString = json["check_out_date"] as? String,
+            let confirmationCode = json["confirmation_code"] as? String,
+            let firstName = json["first_name"] as? String,
+            let lastName = json["last_name"] as? String
+            else { return nil }
+        
+        self.id = id
+        self.confirmationCode = confirmationCode
+        self.firstName = firstName
+        self.lastName = lastName
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        guard let checkInDateString = json["check_in_date"].string,
-            let checkOutDateString = json["check_out_date"].string
-            else { return nil }
         
         if let checkInDate = dateFormatter.date(from: checkInDateString),
             let checkOutDate = dateFormatter.date(from: checkOutDateString) {

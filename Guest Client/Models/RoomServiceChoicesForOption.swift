@@ -1,14 +1,11 @@
 //
-//  RSChoicesForOption.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/24/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import Foundation
 
-class RSChoicesForOption: Equatable {
+class RoomServiceChoicesForOption: Equatable {
     
     // MARK: - Public properties
     
@@ -34,7 +31,7 @@ class RSChoicesForOption: Equatable {
     
     // MARK: - Equatable
     
-    static func == (lhs: RSChoicesForOption, rhs: RSChoicesForOption) -> Bool {
+    static func == (lhs: RoomServiceChoicesForOption, rhs: RoomServiceChoicesForOption) -> Bool {
         return lhs.option == rhs.option
     }
     
@@ -50,7 +47,7 @@ class RSChoicesForOption: Equatable {
     
 }
 
-class RSItemChoicesForMultipleChoiceOption: RSChoicesForOption {
+class RSItemChoicesForMultipleChoiceOption: RoomServiceChoicesForOption {
     
     // MARK: - Public instance methods
     
@@ -70,7 +67,7 @@ class RSItemChoicesForMultipleChoiceOption: RSChoicesForOption {
     
 }
 
-class RSItemChoicesForSingleChoiceOption: RSChoicesForOption {
+class RSItemChoicesForSingleChoiceOption: RoomServiceChoicesForOption {
     
     // MARK: - Public instance methods
     

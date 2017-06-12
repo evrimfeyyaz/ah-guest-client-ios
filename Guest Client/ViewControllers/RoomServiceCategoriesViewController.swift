@@ -65,8 +65,10 @@ class RoomServiceCategoriesViewController: UITableViewController {
     private func fetchRoomServiceCategories() {
         activityIndicatorView.startAnimating()
         
-        APIManager.sharedInstance.indexRoomServiceCategories { result in
-            self.activityIndicatorView.stopAnimating()
+        APIManager.shared.indexRoomServiceCategories { result in
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+            }
             
             switch result {
             case .success(let categories):

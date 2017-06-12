@@ -13,12 +13,7 @@ class APIHeadersAdapter: RequestAdapter {
         
         urlRequest.setValue(clientSecret, forHTTPHeaderField: "ah-client-secret")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        if let user = User.shared {
-            urlRequest.setValue(user.authToken, forHTTPHeaderField: "Authorization")
-            urlRequest.setValue(user.id.description, forHTTPHeaderField: "ah-user-id")
-        }
-        
+                
         return urlRequest
     }
 }

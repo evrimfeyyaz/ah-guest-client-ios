@@ -7,23 +7,16 @@ import UIKit
 import Alamofire
 
 class ReservationAssociationByCheckInDateViewController: UIViewController {
-    
     // MARK: - Private properties
-    
     private let titleLabel = StyledLabel(withStyle: .title1Centered)
     private let explanationLabel = StyledLabel(withStyle: .bodyCentered)
     private let labelStackView = UIStackView()
     private let inputContainerView = UIView()
     private let checkInDatePicker = ThemeViewFactory.datePicker()
     private let associateReservationButton = ThemeViewFactory.filledButton()
-    
-    // MARK: - Private static properties
-    
-    private static let urlString = "https://dry-dawn-66033.herokuapp.com"
-    private static let urlComponents = URLComponents(string: urlString)!
+    private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     // MARK: - View configuration
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +33,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
         configureCheckInDatePicker()
         configureAddBookingConfirmationButton()
         configureStackView()
+        configureActivityIndicator()
     }
     
     private func configureNavigationBar() {
@@ -55,12 +49,12 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     }
     
     private func configureTitleLabel() {
-        titleLabel.text = "Welcome, \(User.shared!.firstName)."
+        titleLabel.text = "Welcome, \(APIManager.shared.currentUser!.firstName)."
         titleLabel.numberOfLines = 0
     }
     
     private func configureExplanationLabel() {
-        explanationLabel.text = "Please enter your check-in date below."
+        explanationLabel.text = "Please choose your check-in date below."
         explanationLabel.numberOfLines = 0
     }
     
@@ -105,56 +99,53 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
             ])
     }
     
-    // MARK: - Actions
+    private func configureActivityIndicator() {
+        activityIndicatorView.center = view.center
+        
+        view.addSubview(activityIndicatorView)
+    }
     
+    // MARK: - Actions
     @objc private func cancelBarButtonItemTapped() {
         dismiss(animated: true, completion: nil)
     }
     
     @objc private func doneBarButtonItemTapped() {
-        associateReservationByCheckInDate(completion: handleReservationAssociationResponse)
+        associateReservationByCheckInDate()
     }
     
     @objc private func associateReservationButtonTapped() {
-        associateReservationByCheckInDate(completion: handleReservationAssociationResponse)
+        associateReservationByCheckInDate()
     }
     
     // MARK: - Private instance methods
-    
-    private func associateReservationByCheckInDate(completion: @escaping (_ didSucceed: Bool) -> Void) {
-        let sessionManager = Alamofire.SessionManager.default
-        sessionManager.adapter = APIHeadersAdapter()
-        
-        var reservationAssociationURLComponents = ReservationAssociationByCheckInDateViewController.urlComponents
-        reservationAssociationURLComponents.path = "/api/v0/reservation_associations"
-        
-        // TODO: Handle locale issues.
-        let parameters: Parameters = [
-            "reservation": [
-                "check_in_date": checkInDatePicker.date.description
-            ]
-        ]
-        
-        sessionManager.request(reservationAssociationURLComponents.url!,
-                               method: .post,
-                               parameters: parameters,
-                               encoding: JSONEncoding.default)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    completion(true)
-                case .failure(_):
-                    completion(false)
+    private func associateReservationByCheckInDate() {
+        APIManager.shared.createReservationAssociation(byCheckInDate: checkInDatePicker.date) { result in
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+            }
+            
+            switch result {
+            case .success:
+                guard APIManager.shared.currentUser?.currentReservation != nil
+                    else {
+                        self.show(ReservationAssociationByConfirmationCodeViewController(), sender: nil)
+                        return
                 }
-        }
-    }
-    
-    private func handleReservationAssociationResponse(didSucceed: Bool) {
-        if didSucceed {
-            dismiss(animated: true, completion: nil)
-        } else {
-            show(ReservationAssociationByConfirmationCodeViewController(), sender: nil)
+                
+                self.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                switch error {
+                case APIManagerError.apiProvidedError:
+                    self.show(ReservationAssociationByConfirmationCodeViewController(), sender: nil)
+                default:
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                }
+            }
+
         }
     }
 }
