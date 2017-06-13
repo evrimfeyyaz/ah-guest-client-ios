@@ -7,7 +7,6 @@ import UIKit
 import Alamofire
 
 class ReservationAssociationByCheckInDateViewController: UIViewController {
-    // MARK: - Private properties
     private let titleLabel = StyledLabel(withStyle: .title1Centered)
     private let explanationLabel = StyledLabel(withStyle: .bodyCentered)
     private let labelStackView = UIStackView()
@@ -15,6 +14,8 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     private let checkInDatePicker = ThemeViewFactory.datePicker()
     private let associateReservationButton = ThemeViewFactory.filledButton()
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
+    var successCallback: (() -> Void)?
     
     // MARK: - View configuration
     override func viewDidLoad() {
@@ -129,15 +130,15 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
             case .success:
                 guard APIManager.shared.currentUser?.currentReservation != nil
                     else {
-                        self.show(ReservationAssociationByConfirmationCodeViewController(), sender: nil)
+                        self.showReservationAssociationByConfirmationCodeViewController()
                         return
                 }
                 
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: self.successCallback)
             case .failure(let error):
                 switch error {
                 case APIManagerError.apiProvidedError:
-                    self.show(ReservationAssociationByConfirmationCodeViewController(), sender: nil)
+                    self.showReservationAssociationByConfirmationCodeViewController()
                 default:
                     let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default)
@@ -145,7 +146,12 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
                     self.present(alertController, animated: true)
                 }
             }
-
         }
+    }
+    
+    private func showReservationAssociationByConfirmationCodeViewController() {
+        let reservationAssociationByConfirmationCodeVC = ReservationAssociationByConfirmationCodeViewController()
+        reservationAssociationByConfirmationCodeVC.successCallback = successCallback
+        self.show(reservationAssociationByConfirmationCodeVC, sender: nil)
     }
 }

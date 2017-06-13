@@ -15,6 +15,8 @@ class SignInViewController: UIViewController {
     private let signInButton = ThemeViewFactory.filledButton()
     private let signUpButton = ThemeViewFactory.hollowButton()
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
+    var successCallback: (() -> Void)?
 
     // MARK: - View configuration
     override func viewDidLoad() {
@@ -166,11 +168,12 @@ class SignInViewController: UIViewController {
                     
                     if currentUser.currentReservation != nil {
                         DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: nil)
+                            self.dismiss(animated: true, completion: self.successCallback)
                         }
                     } else {
                         DispatchQueue.main.async {
                             let reservationAssociationByCheckInDateVC = ReservationAssociationByCheckInDateViewController()
+                            reservationAssociationByCheckInDateVC.successCallback = self.successCallback
                             self.show(reservationAssociationByCheckInDateVC, sender: nil)
                         }
                     }
@@ -191,5 +194,4 @@ class SignInViewController: UIViewController {
             }
         }
     }
-    
 }

@@ -80,6 +80,25 @@ class APIManager {
             ]
         ]
         
+        createReservationAssociation(parameters: parameters, completion: completion)
+    }
+    
+    func createReservationAssociation(byConfirmationCode confirmationCode: String, completion: @escaping (Result<Reservation>) -> Void) {
+        guard hasAuthenticatedUser else {
+            completion(.failure(APIManagerError.userNotAuthenticated(reason: "User not signed in.")))
+            return
+        }
+        
+        let parameters: [String: Any] = [
+            "reservation": [
+                "confirmation_code": confirmationCode
+            ]
+        ]
+        
+        createReservationAssociation(parameters: parameters, completion: completion)
+    }
+    
+    private func createReservationAssociation(parameters: [String: Any], completion: @escaping (Result<Reservation>) -> Void) {
         sessionManager.request(APIRouter.createReservationAssociation(parameters: parameters))
             .validate(statusCode: [200])
             .responseJSON { response in

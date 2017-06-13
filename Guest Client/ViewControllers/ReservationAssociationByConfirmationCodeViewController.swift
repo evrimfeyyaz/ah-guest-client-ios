@@ -7,20 +7,15 @@ import UIKit
 import Alamofire
 
 class ReservationAssociationByConfirmationCodeViewController: UIViewController {
-    
-    // MARK: - Private properties
-    
     private let titleLabel = StyledLabel(withStyle: .title1Centered)
     private let explanationLabel = StyledLabel(withStyle: .bodyCentered)
     private let labelStackView = UIStackView()
     private let inputContainerView = UIView()
     private let confirmationCodeTextField = ThemeViewFactory.textField()
     private let associateReservationByBookingConfirmationButton = ThemeViewFactory.filledButton()
+    private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
-    // MARK: - Private static properties
-    
-    private static let urlString = "https://dry-dawn-66033.herokuapp.com"
-    private static let urlComponents = URLComponents(string: urlString)!
+    var successCallback: (() -> Void)?
     
     // MARK: - View configuration
     
@@ -40,6 +35,7 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
         configureConfirmationCodeTextField()
         configureAssociateReservationByConfirmationCodeButton()
         configureStackView()
+        configureActivityIndicator()
     }
     
     private func configureNavigationBar() {
@@ -60,7 +56,7 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
     }
     
     private func configureExplanationLabel() {
-        explanationLabel.text = "We were not able to find your reservation by the check-in date. You can still sign in using your confirmation code. Please call reception if you do not know your confirmation code, and we will be happy to help you."
+        explanationLabel.text = "We were not able to find your reservation using the check-in date you entered. You can still check-in using your confirmation code. Please call reception if you do not know your confirmation code and they will be happy to help you."
         explanationLabel.numberOfLines = 0
     }
     
@@ -110,6 +106,12 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
             ])
     }
     
+    private func configureActivityIndicator() {
+        activityIndicatorView.center = view.center
+        
+        view.addSubview(activityIndicatorView)
+    }
+    
     // MARK: - Actions
     
     @objc private func cancelBarButtonItemTapped() {
@@ -117,51 +119,45 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
     }
     
     @objc private func doneBarButtonItemTapped() {
-        associateReservationByConfirmationCode(completion: handleReservationAssociationResponse)
+        associateReservationByConfirmationCode()
     }
     
     @objc private func addBookingConfirmationButtonTapped() {
-        associateReservationByConfirmationCode(completion: handleReservationAssociationResponse)
+        associateReservationByConfirmationCode()
     }
     
     // MARK: - Private instance methods
-    
-    private func associateReservationByConfirmationCode(completion: @escaping (_ didSucceed: Bool) -> Void) {
-        let sessionManager = Alamofire.SessionManager.default
-        sessionManager.adapter = APIHeadersAdapter()
-        
-        var reservationAssociationURLComponents = ReservationAssociationByConfirmationCodeViewController.urlComponents
-        reservationAssociationURLComponents.path = "/api/v0/reservation_associations"
-        
-        let parameters: Parameters = [
-            "reservation": [
-                "confirmation_code": confirmationCodeTextField.text
-            ]
-        ]
-        
-        sessionManager.request(reservationAssociationURLComponents.url!,
-                               method: .post,
-                               parameters: parameters,
-                               encoding: JSONEncoding.default)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                switch response.result {
-                case .success:
-                    completion(true)
-                case .failure(_):
-                    completion(false)
-                }
-        }
-    }
-    
-    private func handleReservationAssociationResponse(didSucceed: Bool) {
-        if didSucceed {
-            dismiss(animated: true, completion: nil)
-        } else {
-            let alertController = UIAlertController(title: "Error Associating Reservation", message: "Please check that the confirmation code is correct.", preferredStyle: .alert)
+    private func associateReservationByConfirmationCode() {
+        guard let confirmationCode = confirmationCodeTextField.text else {
+            let alertController = UIAlertController(title: "Confirmation Code", message: "Please enter your confirmation code.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default)
             alertController.addAction(okAction)
             self.present(alertController, animated: true)
+            return
+        }
+        
+        APIManager.shared.createReservationAssociation(byConfirmationCode: confirmationCode) { result in
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+            }
+            
+            switch result {
+            case .success:
+                self.dismiss(animated: true, completion: self.successCallback)
+            case .failure(let error):
+                switch error {
+                case APIManagerError.apiProvidedError(let messages):
+                    let alertController = UIAlertController(title: "Reservation Error", message: messages.first, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                default:
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                }
+            }
         }
     }
 }

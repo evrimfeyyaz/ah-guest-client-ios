@@ -83,6 +83,9 @@ class RoomServiceCartViewController: UITableViewController {
             show(orderSuccessfulVC, sender: self)
         } else {
             let rootVC = SignInViewController()
+            rootVC.successCallback = { [weak self] in
+                self?.checkoutButtonTapped()
+            }
             let navigationVC = UINavigationController(rootViewController: rootVC)
             
             show(navigationVC, sender: self)
