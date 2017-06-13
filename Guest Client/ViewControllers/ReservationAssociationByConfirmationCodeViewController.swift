@@ -136,6 +136,8 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
             return
         }
         
+        activityIndicatorView.startAnimating()
+        
         APIManager.shared.createReservationAssociation(byConfirmationCode: confirmationCode) { result in
             DispatchQueue.main.async {
                 self.activityIndicatorView.stopAnimating()

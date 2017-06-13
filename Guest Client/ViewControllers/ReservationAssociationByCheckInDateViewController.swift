@@ -121,6 +121,8 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     
     // MARK: - Private instance methods
     private func associateReservationByCheckInDate() {
+        activityIndicatorView.startAnimating()
+        
         APIManager.shared.createReservationAssociation(byCheckInDate: checkInDatePicker.date) { result in
             DispatchQueue.main.async {
                 self.activityIndicatorView.stopAnimating()
@@ -128,12 +130,6 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
             
             switch result {
             case .success:
-                guard APIManager.shared.currentUser?.currentReservation != nil
-                    else {
-                        self.showReservationAssociationByConfirmationCodeViewController()
-                        return
-                }
-                
                 self.dismiss(animated: true, completion: self.successCallback)
             case .failure(let error):
                 switch error {

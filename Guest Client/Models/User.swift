@@ -21,6 +21,14 @@ class User {
         }
     }
     
+    var currentOrUpcomingReservation: Reservation? {
+        get {
+            return reservations.filter { $0.checkInDate > Date() }
+                .sorted { $0.0.checkInDate < $0.1.checkInDate }
+                .first
+        }
+    }
+    
     init?(json: [String: Any]) {
         guard let id = json["id"] as? Int,
             let email = json["email"] as? String,

@@ -167,7 +167,7 @@ class SignInViewController: UIViewController {
                 case .success:
                     guard let currentUser = APIManager.shared.currentUser else { return }
                     
-                    if currentUser.currentReservation != nil {
+                    if currentUser.currentOrUpcomingReservation != nil {
                         DispatchQueue.main.async {
                             self.dismiss(animated: true, completion: self.successCallback)
                         }

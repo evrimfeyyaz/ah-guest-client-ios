@@ -13,7 +13,7 @@ class RoomServiceCartViewController: UITableViewController {
     private let tableViewHeaderViewIdentifier = "tableViewHeader"
     
     private let footerView = RSCartFooterView()
-
+    
     // MARK: - View configuration
     
     override func viewDidLoad() {
@@ -77,19 +77,41 @@ class RoomServiceCartViewController: UITableViewController {
     }
     
     @objc private func checkoutButtonTapped() {
-        if APIManager.shared.hasAuthenticatedUser {
-            let orderSuccessfulVC = RSOrderSuccessfulViewController()
-            
-            show(orderSuccessfulVC, sender: self)
-        } else {
+        guard let currentUser = APIManager.shared.currentUser else {
             let rootVC = SignInViewController()
             rootVC.successCallback = { [weak self] in
                 self?.checkoutButtonTapped()
             }
-            let navigationVC = UINavigationController(rootViewController: rootVC)
             
+            let navigationVC = UINavigationController(rootViewController: rootVC)
             show(navigationVC, sender: self)
+            
+            return
         }
+        
+        guard currentUser.currentReservation != nil else {
+            if let upcomingReservation = currentUser.currentOrUpcomingReservation {
+                let alertController = UIAlertController(title: "Can't Place Order", message: "Your earliest reservation starts on \(upcomingReservation.checkInDate.iso8601FullDate).\n\nIf you have a reservation that includes today, please add it.", preferredStyle: .alert)
+                let addReservationAction = UIAlertAction(title: "Add Reservaion", style: .default) { _ in
+                    let reservationAssociationByCheckInDateVC = ReservationAssociationByCheckInDateViewController()
+                    reservationAssociationByCheckInDateVC.successCallback = { [weak self] in
+                        self?.checkoutButtonTapped()
+                    }
+                    
+                    let navigationVC = UINavigationController(rootViewController: reservationAssociationByCheckInDateVC)
+                    self.show(navigationVC, sender: self)
+                }
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+                alertController.addAction(cancelAction)
+                alertController.addAction(addReservationAction)
+                self.present(alertController, animated: true)
+            }
+            
+            return
+        }
+        
+        let orderSuccessfulVC = RSOrderSuccessfulViewController()
+        show(orderSuccessfulVC, sender: self)
     }
     
     // MARK: - Table view data source
@@ -139,5 +161,5 @@ class RoomServiceCartViewController: UITableViewController {
     private func updateTotalPriceLabel() {
         footerView.totalPriceLabel.text = RoomServiceCart.shared.total.stringInBahrainiDinars
     }
-
+    
 }

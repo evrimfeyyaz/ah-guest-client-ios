@@ -220,12 +220,18 @@ class SignUpViewController: UIViewController, UIScrollViewDelegate {
                 
                 switch result {
                 case .success:
-                    guard APIManager.shared.hasAuthenticatedUser else { return }
+                    guard let currentUser = APIManager.shared.currentUser else { return }
                     
-                    DispatchQueue.main.async {
-                        let reservationAssociationByCheckInDateVC = ReservationAssociationByCheckInDateViewController()
-                        reservationAssociationByCheckInDateVC.successCallback = self.successCallback
-                        self.show(reservationAssociationByCheckInDateVC, sender: nil)
+                    if currentUser.currentOrUpcomingReservation != nil {
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: self.successCallback)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            let reservationAssociationByCheckInDateVC = ReservationAssociationByCheckInDateViewController()
+                            reservationAssociationByCheckInDateVC.successCallback = self.successCallback
+                            self.show(reservationAssociationByCheckInDateVC, sender: nil)
+                        }
                     }
                 case .failure(let error):
                     switch error {
