@@ -10,6 +10,7 @@ enum APIRouter: URLRequestConvertible {
     static let baseURLString = "https://dry-dawn-66033.herokuapp.com/api/v0"
     
     case createAuthentication(parameters: [String: Any])
+    case createUser(parameters: [String: Any])
     case createReservationAssociation(parameters: [String: Any])
     case indexRoomServiceCategories
     case indexRoomServiceSections(categoryID: Int)
@@ -20,7 +21,7 @@ enum APIRouter: URLRequestConvertible {
             switch self {
             case .indexRoomServiceCategories, .indexRoomServiceSections, .showRoomServiceItem:
                 return .get
-            case .createAuthentication, .createReservationAssociation:
+            case .createAuthentication, .createUser, .createReservationAssociation:
                 return .post
             }
         }
@@ -31,6 +32,8 @@ enum APIRouter: URLRequestConvertible {
             switch self {
             case .createAuthentication:
                 relativePath = "authentication"
+            case .createUser:
+                relativePath = "users"
             case .createReservationAssociation:
                 relativePath = "reservation_associations"
             case .indexRoomServiceCategories:
@@ -52,6 +55,8 @@ enum APIRouter: URLRequestConvertible {
             case .indexRoomServiceCategories, .indexRoomServiceSections, .showRoomServiceItem:
                 return nil
             case .createAuthentication(let parameters):
+                return parameters
+            case .createUser(let parameters):
                 return parameters
             case .createReservationAssociation(let parameters):
                 return parameters

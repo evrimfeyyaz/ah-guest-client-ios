@@ -58,6 +58,38 @@ class APIManager {
     }
     
     // MARK: - User
+    func createUser(email: String, firstName: String, lastName: String, password: String, passwordConfirmation: String,
+                    completion: @escaping (Result<User>) -> Void) {
+        let parameters: [String: Any] = [
+            "user": [
+                "email": email,
+                "first_name": firstName,
+                "last_name": lastName,
+                "password": password,
+                "password_confirmation": passwordConfirmation
+            ]
+        ]
+        
+        sessionManager.request(APIRouter.createUser(parameters: parameters))
+            .validate(statusCode: [201])
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    let result = self.user(from: response)
+                    self.currentUser = result.value
+                    
+                    completion(result)
+                case .failure(let error):
+                    if response.response?.statusCode == 422,
+                        let apiProvidedErrorMessages = self.apiProvidedErrorMessages(from: response) {
+                        completion(.failure(APIManagerError.apiProvidedError(messages: apiProvidedErrorMessages)))
+                    } else {
+                        completion(.failure(error))
+                    }
+                }
+        }
+    }
+    
     private func user(from response: DataResponse<Any>) -> Result<User> {
         guard let json = response.result.value as? [String: Any],
             let user = User(json: json) else {

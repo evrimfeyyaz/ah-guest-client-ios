@@ -149,6 +149,7 @@ class SignInViewController: UIViewController {
     
     private func goToSignUp() {
         let signUpVC = SignUpViewController()
+        signUpVC.successCallback = successCallback
         
         show(signUpVC, sender: self)
     }
