@@ -45,6 +45,15 @@ class RoomServiceChoicesForOption: Equatable {
         return selectedChoices.map({ $0.title }).joined(separator: " / ")
     }
     
+    func toJSON() -> [String: Any] {
+        let selectedChoiceIDs = selectedChoices.map { $0.id }
+        
+        return [
+            "room_service_option_id": option.id,
+            "selected_choice_ids": selectedChoiceIDs
+        ]
+    }
+    
 }
 
 class RSItemChoicesForMultipleChoiceOption: RoomServiceChoicesForOption {

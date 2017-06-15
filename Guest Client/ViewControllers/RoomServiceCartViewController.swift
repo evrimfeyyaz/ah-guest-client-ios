@@ -5,7 +5,7 @@
 
 import UIKit
 
-class RoomServiceCartViewController: UITableViewController {
+class RoomServiceOrderViewController: UITableViewController {
     
     // MARK: - Private properties
     
@@ -64,10 +64,10 @@ class RoomServiceCartViewController: UITableViewController {
         let rootViewPoint = sender.superview?.convert(stepperCenterPoint, to: tableView)
         let indexPath = tableView.indexPathForRow(at: rootViewPoint!)!
         
-        RoomServiceCart.shared.cartItems[indexPath.row].quantity = Int(sender.value)
+        RoomServiceOrder.cart.cartItems[indexPath.row].quantity = Int(sender.value)
         
         let cell = tableView.cellForRow(at: indexPath) as! RSCartItemTableViewCell
-        cell.itemPriceLabel.text = RoomServiceCart.shared.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
+        cell.itemPriceLabel.text = RoomServiceOrder.cart.cartItems[indexPath.row].totalPrice.stringInBahrainiDinars
         
         updateTotalPriceLabel()
     }
@@ -110,14 +110,32 @@ class RoomServiceCartViewController: UITableViewController {
             return
         }
         
-        let orderSuccessfulVC = RSOrderSuccessfulViewController()
-        show(orderSuccessfulVC, sender: self)
+        APIManager.shared.createRoomServiceOrder { result in
+            switch result {
+            case .success:
+                let orderSuccessfulVC = RSOrderSuccessfulViewController()
+                self.show(orderSuccessfulVC, sender: self)
+            case .failure(let error):
+                switch error {
+                case APIManagerError.apiProvidedError(let messages):
+                    let alertController = UIAlertController(title: "Can't Place Order", message: messages.joined(separator: "\n"), preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                default:
+                    let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                }
+            }
+        }
     }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cartItem = RoomServiceCart.shared.cartItems[indexPath.row]
+        let cartItem = RoomServiceOrder.cart.cartItems[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cartItemTableViewCell) as! RSCartItemTableViewCell
         cell.itemTitleLabel.text = cartItem.item.title
@@ -135,7 +153,7 @@ class RoomServiceCartViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RoomServiceCart.shared.cartItems.count
+        return RoomServiceOrder.cart.cartItems.count
     }
     
     // MARK: - Table view delegate
@@ -159,7 +177,7 @@ class RoomServiceCartViewController: UITableViewController {
     // MARK: - Private instance methods
     
     private func updateTotalPriceLabel() {
-        footerView.totalPriceLabel.text = RoomServiceCart.shared.total.stringInBahrainiDinars
+        footerView.totalPriceLabel.text = RoomServiceOrder.cart.total.stringInBahrainiDinars
     }
     
 }

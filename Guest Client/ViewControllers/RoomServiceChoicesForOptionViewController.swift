@@ -102,12 +102,12 @@ class RoomServiceChoicesForOptionViewController: UITableViewController {
         if (choicesForOption.option.allowsMultipleChoices) {
             let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
             choicesForMultipleChoiceOption.addSelectedChoice(choice)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         } else {
             let choicesForSingleChoiceOption = choicesForOption as! RSItemChoicesForSingleChoiceOption
             choicesForSingleChoiceOption.makeSelectedChoice(choice: choice)
+            navigationController?.popViewController(animated: true)
         }
-        
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -115,9 +115,8 @@ class RoomServiceChoicesForOptionViewController: UITableViewController {
             let choice = choicesForOption.option.possibleChoices[indexPath.row]
             let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
             choicesForMultipleChoiceOption.removeSelectedChoice(choice)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
         }
-        
-        tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

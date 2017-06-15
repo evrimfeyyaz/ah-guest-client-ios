@@ -4,9 +4,10 @@
 //
 
 import UIKit
-import Alamofire
+import TPKeyboardAvoiding
 
 class ReservationAssociationByCheckInDateViewController: UIViewController {
+    private let scrollView = TPKeyboardAvoidingScrollView()
     private let titleLabel = StyledLabel(withStyle: .title1Centered)
     private let explanationLabel = StyledLabel(withStyle: .bodyCentered)
     private let labelStackView = UIStackView()
@@ -34,6 +35,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
         configureCheckInDatePicker()
         configureAddBookingConfirmationButton()
         configureStackView()
+        configureScrollView()
         configureActivityIndicator()
     }
     
@@ -85,18 +87,33 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     }
     
     private func configureStackView() {
-        let navigationBarHeight: CGFloat = navigationController?.navigationBar.frame.height ?? 0
-        
         let stackView = UIStackView(arrangedSubviews: [labelStackView, inputContainerView, associateReservationButton])
         stackView.axis = .vertical
         stackView.spacing = 15
         
-        view.addSubview(stackView)
+        scrollView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -navigationBarHeight)
+            stackView.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            ])
+    }
+    
+    private func configureScrollView() {
+        scrollView.keyboardDismissMode = .onDrag
+        scrollView.isScrollEnabled = true
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
             ])
     }
     
@@ -107,6 +124,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
     @objc private func cancelBarButtonItemTapped() {
         dismiss(animated: true, completion: nil)
     }

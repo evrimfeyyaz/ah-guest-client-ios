@@ -53,7 +53,7 @@ class RoomServiceItemsViewController: UITableViewController {
     
     // MARK: - Actions
     @objc private func cartBarButtonTapped() {
-        let cartVC = RoomServiceCartViewController(style: .grouped)
+        let cartVC = RoomServiceOrderViewController(style: .grouped)
         let navigationVC = UINavigationController(rootViewController: cartVC)
         
         show(navigationVC, sender: self)
@@ -98,9 +98,11 @@ class RoomServiceItemsViewController: UITableViewController {
         let row = indexPath.row
         let item = sections[section].items[row]
         
-        itemCell.itemTitleLabel.text = item.title
+//        itemCell.itemTitleLabel.text = item.title
+        itemCell.itemTitleLabel.text = "Lorem ipsum dolor sit amet here is a long text let's see how long this can go without getting cut off let's make it very long here to see."
         // TODO: Change this to a conditional later that decides between short and long descriptions.
-        itemCell.itemDescriptionLabel.text = item.longDescription?.capitalizingFirstLetter()
+//        itemCell.itemDescriptionLabel.text = item.longDescription?.capitalizingFirstLetter()
+        itemCell.itemDescriptionLabel.text = "Lorem ipsum dolor sit amet here is a long text let's see how long this can go without getting cut off let's make it very long here to see."
         itemCell.itemPriceLabel.text = item.price.stringInBahrainiDinars ?? ""
         // TODO: Find a way to set this globally.
         itemCell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)

@@ -60,4 +60,28 @@ class RoomServiceCartItem {
             .joined(separator: "\n")
     }
     
+    func toJSON() -> [String: Any] {
+        let choicesForOptionsAttributes = choicesForOptions.enumerated().reduce([String: Any]()) {
+            result, indexedChoicesForOption in
+            
+            var mutableResult = result
+            mutableResult["\(indexedChoicesForOption.offset)"] = indexedChoicesForOption.element.toJSON()
+            
+            return mutableResult
+        }
+        
+        return [
+            "quantity": quantity,
+            "special_request": specialRequest,
+            "room_service_item_id": item.id,
+            "choices_for_options_attributes": choicesForOptionsAttributes
+        ]
+    }
 }
+
+
+
+
+
+
+

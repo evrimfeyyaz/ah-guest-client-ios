@@ -10,6 +10,7 @@ enum APIManagerError: Error {
     case jsonSerialization(reason: String)
     case userAuthentication(reason: String)
     case userNotAuthenticated(reason: String)
+    case noCurrentReservation(reason: String)
     case apiProvidedError(messages: [String])
 }
 
@@ -76,6 +77,7 @@ class APIManager {
                 switch response.result {
                 case .success:
                     let result = self.user(from: response)
+                    
                     self.currentUser = result.value
                     
                     completion(result)
@@ -101,11 +103,6 @@ class APIManager {
     
     // MARK: - Reservations
     func createReservationAssociation(byCheckInDate checkInDate: Date, completion: @escaping (Result<Reservation>) -> Void) {
-        guard hasAuthenticatedUser else {
-            completion(.failure(APIManagerError.userNotAuthenticated(reason: "User not signed in.")))
-            return
-        }
-        
         let parameters: [String: Any] = [
             "reservation": [
                 "check_in_date": checkInDate.iso8601FullDate
@@ -116,11 +113,6 @@ class APIManager {
     }
     
     func createReservationAssociation(byConfirmationCode confirmationCode: String, completion: @escaping (Result<Reservation>) -> Void) {
-        guard hasAuthenticatedUser else {
-            completion(.failure(APIManagerError.userNotAuthenticated(reason: "User not signed in.")))
-            return
-        }
-        
         let parameters: [String: Any] = [
             "reservation": [
                 "confirmation_code": confirmationCode
@@ -131,6 +123,11 @@ class APIManager {
     }
     
     private func createReservationAssociation(parameters: [String: Any], completion: @escaping (Result<Reservation>) -> Void) {
+        guard hasAuthenticatedUser else {
+            completion(.failure(APIManagerError.userNotAuthenticated(reason: "User not signed in.")))
+            return
+        }
+        
         sessionManager.request(APIRouter.createReservationAssociation(parameters: parameters))
             .validate(statusCode: [200])
             .responseJSON { response in
@@ -239,6 +236,41 @@ class APIManager {
         }
         
         return .success(roomServiceItem)
+    }
+    
+    // MARK: - Room Service Orders
+    func createRoomServiceOrder(completion: @escaping (Result<Any>) -> Void) {
+        guard hasAuthenticatedUser else {
+            completion(.failure(APIManagerError.userNotAuthenticated(reason: "User not signed in.")))
+            return
+        }
+        
+        guard let currentUser = currentUser,
+            let currentReservation = currentUser.currentReservation
+            else {
+                completion(.failure(APIManagerError.noCurrentReservation(reason: "User does not have a current reservation.")))
+                return
+        }
+        
+        let parameters: [String: Any] = [
+            "order": RoomServiceOrder.cart.toJSON(reservation: currentReservation)
+        ]
+        
+        sessionManager.request(APIRouter.createRoomServiceOrder(userID: currentUser.id, parameters: parameters))
+            .validate(statusCode: [201])
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    completion(response.result)
+                case .failure(let error):
+                    if response.response?.statusCode == 422,
+                        let apiProvidedErrorMessages = self.apiProvidedErrorMessages(from: response) {
+                        completion(.failure(APIManagerError.apiProvidedError(messages: apiProvidedErrorMessages)))
+                    } else {
+                        completion(.failure(error))
+                    }
+                }
+        }
     }
     
     // MARK: - General

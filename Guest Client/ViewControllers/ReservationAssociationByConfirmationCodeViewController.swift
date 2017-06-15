@@ -4,9 +4,10 @@
 //
 
 import UIKit
-import Alamofire
+import TPKeyboardAvoiding
 
 class ReservationAssociationByConfirmationCodeViewController: UIViewController {
+    private let scrollView = TPKeyboardAvoidingScrollView()
     private let titleLabel = StyledLabel(withStyle: .title1Centered)
     private let explanationLabel = StyledLabel(withStyle: .bodyCentered)
     private let labelStackView = UIStackView()
@@ -35,6 +36,7 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
         configureConfirmationCodeTextField()
         configureAssociateReservationByConfirmationCodeButton()
         configureStackView()
+        configureScrollView()
         configureActivityIndicator()
     }
     
@@ -56,7 +58,7 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
     }
     
     private func configureExplanationLabel() {
-        explanationLabel.text = "We were not able to find your reservation using the check-in date you entered. You can still check-in using your confirmation code. Please call reception if you do not know your confirmation code and they will be happy to help you."
+        explanationLabel.text = "We were not able to find your reservation using the check-in date you entered. You can still check-in using your confirmation code.\n\nIf you do not know your confirmation code, please call reception and they will be happy to assist you."
         explanationLabel.numberOfLines = 0
     }
     
@@ -72,7 +74,6 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
                                                                        attributes: [
                                                                         NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.7),
                                                                         NSFontAttributeName: ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 15)])
-        confirmationCodeTextField.keyboardType = .numberPad
         
         inputContainerView.addSubview(confirmationCodeTextField)
         confirmationCodeTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -91,18 +92,33 @@ class ReservationAssociationByConfirmationCodeViewController: UIViewController {
     }
     
     private func configureStackView() {
-        let navigationBarHeight: CGFloat = navigationController?.navigationBar.frame.height ?? 0
-        
         let stackView = UIStackView(arrangedSubviews: [labelStackView, inputContainerView, associateReservationByBookingConfirmationButton])
         stackView.axis = .vertical
         stackView.spacing = 15
         
-        view.addSubview(stackView)
+        scrollView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -navigationBarHeight)
+            stackView.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            ])
+    }
+    
+    private func configureScrollView() {
+        scrollView.keyboardDismissMode = .onDrag
+        scrollView.isScrollEnabled = true
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
             ])
     }
     

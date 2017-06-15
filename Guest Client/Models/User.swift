@@ -17,15 +17,23 @@ class User {
     
     var currentReservation: Reservation? {
         get {
-            return reservations.first { $0.checkInDate <= Date() && $0.checkOutDate >= Date() }
+            return reservations.first {
+                (Calendar.current.compare($0.checkInDate, to: Date(), toGranularity: .day) == .orderedSame ||
+                    Calendar.current.compare($0.checkInDate, to: Date(), toGranularity: .day) == .orderedAscending) &&
+                    (Calendar.current.compare(Date(), to: $0.checkOutDate, toGranularity: .day) == .orderedSame ||
+                        Calendar.current.compare(Date(), to: $0.checkOutDate, toGranularity: .day) == .orderedAscending)
+            }
         }
     }
     
     var currentOrUpcomingReservation: Reservation? {
         get {
-            return reservations.filter { $0.checkInDate > Date() }
-                .sorted { $0.0.checkInDate < $0.1.checkInDate }
-                .first
+            return reservations.filter {
+                Calendar.current.compare(Date(), to: $0.checkOutDate, toGranularity: .day) == .orderedSame ||
+                    Calendar.current.compare(Date(), to: $0.checkOutDate, toGranularity: .day) == .orderedAscending
+                }.sorted {
+                    Calendar.current.compare($0.0.checkInDate, to: $0.1.checkInDate, toGranularity: .day) == .orderedAscending
+                }.first
         }
     }
     

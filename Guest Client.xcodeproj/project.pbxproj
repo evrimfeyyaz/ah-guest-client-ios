@@ -48,6 +48,7 @@
 		918FC98E1EAF907F00CFC01C /* RSCartItemFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98D1EAF907F00CFC01C /* RSCartItemFooterView.swift */; };
 		918FC9901EAFDCA900CFC01C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */; };
 		919A417E1E9E445300C4CB7C /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A417D1E9E445300C4CB7C /* ThemeManager.swift */; };
+		91B85B341EF16DD600ABB451 /* Date+StartAndEndOfDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B85B331EF16DD600ABB451 /* Date+StartAndEndOfDay.swift */; };
 		91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */; };
 		91BDBECC1E9E8426009CABE8 /* RoomServiceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */; };
 		91BDBED11E9EB607009CABE8 /* RoomServiceItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDBED01E9EB607009CABE8 /* RoomServiceItemsViewController.swift */; };
@@ -140,6 +141,7 @@
 		918FC98D1EAF907F00CFC01C /* RSCartItemFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartItemFooterView.swift; sourceTree = "<group>"; };
 		918FC98F1EAFDCA900CFC01C /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		919A417D1E9E445300C4CB7C /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		91B85B331EF16DD600ABB451 /* Date+StartAndEndOfDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+StartAndEndOfDay.swift"; sourceTree = "<group>"; };
 		91BDBEC31E9E6B58009CABE8 /* RSCategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		91BDBECB1E9E8426009CABE8 /* RoomServiceCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceCategory.swift; sourceTree = "<group>"; };
 		91BDBED01E9EB607009CABE8 /* RoomServiceItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -377,6 +379,7 @@
 				918FC97B1EAC8E7B00CFC01C /* UITableView+TableHeaderFooterViewAutoLayout.swift */,
 				91F1F5251ECD773500D425FD /* String+CapitalizeFirstLetter.swift */,
 				91152A3F1EEE8FE000C57186 /* Date+ISO8601.swift */,
+				91B85B331EF16DD600ABB451 /* Date+StartAndEndOfDay.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				918FC9881EAF39D700CFC01C /* TextEntryTableViewCell.swift in Sources */,
 				91E230C41EED6FDE0086FB33 /* APIRouter.swift in Sources */,
 				91D80CCB1EEDB00500DC359A /* StyleableButton.swift in Sources */,
+				91B85B341EF16DD600ABB451 /* Date+StartAndEndOfDay.swift in Sources */,
 				918FC9861EADF4D600CFC01C /* RoomServiceCart.swift in Sources */,
 				915298301EA906E9005CB637 /* TableViewCell.swift in Sources */,
 				91627ED91EEDABFB00E377C4 /* StyleableTextField.swift in Sources */,

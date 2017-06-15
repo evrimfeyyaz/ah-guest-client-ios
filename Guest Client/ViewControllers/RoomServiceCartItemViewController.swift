@@ -44,6 +44,7 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
 
     private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
+        tableView.keyboardDismissMode = .onDrag
         
         configureActivityIndicator()
         configureNavigationBar()
@@ -117,7 +118,7 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
     @objc private func addToCartButtonTapped() {
         guard let cartItem = cartItem else { return }
         
-        RoomServiceCart.shared.add(item: cartItem)
+        RoomServiceOrder.cart.add(item: cartItem)
         dismiss(animated: true, completion: nil)
     }
     

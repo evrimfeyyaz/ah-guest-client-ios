@@ -4,10 +4,12 @@
 //
 
 import UIKit
+import TPKeyboardAvoiding
 
 class SignInViewController: UIViewController {
     
     // MARK: - Private properties
+    private let scrollView = TPKeyboardAvoidingScrollView()
     private let titleLabel = StyledLabel(withStyle: .title1)
     private let inputContainerView = UIView()
     private let emailTextField = ThemeViewFactory.textField()
@@ -35,6 +37,7 @@ class SignInViewController: UIViewController {
         configureSignInButton()
         configureSignUpButton()
         configureStackView()
+        configureScrollView()
         configureActivityIndicator()
     }
 
@@ -112,12 +115,29 @@ class SignInViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 15
 
-        view.addSubview(stackView)
+        scrollView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -navigationBarHeight)
+            stackView.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+            stackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: -navigationBarHeight),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            ])
+    }
+    
+    private func configureScrollView() {
+        scrollView.keyboardDismissMode = .onDrag
+        scrollView.isScrollEnabled = true
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
+            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
             ])
     }
 

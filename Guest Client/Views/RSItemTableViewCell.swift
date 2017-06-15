@@ -11,17 +11,14 @@ import UIKit
 class RSItemTableViewCell: UITableViewCell {
     
     // MARK: - Public properties
-    
     let itemTitleLabel = StyledLabel(withStyle: .cellTitle)
     let itemDescriptionLabel = StyledLabel(withStyle: .cellDescription)
     let itemPriceLabel = StyledLabel(withStyle: .cellPrice)
     
     // MARK: - Private properties
-    
     private let innerStackView = UIStackView()
     
     // MARK: - Initializers
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -33,22 +30,26 @@ class RSItemTableViewCell: UITableViewCell {
     }
     
     // MARK: - View configuration
-    
     private func configureView() {
         configureTitleLabel()
         configurePriceLabel()
+        configureDescriptionLabel()
         configureInnerStackView()
         configureOuterStackView()
     }
     
     private func configureTitleLabel() {
-        itemTitleLabel.numberOfLines = 0
+        itemTitleLabel.numberOfLines = 1
         // I have absolutely no idea why, but the following is the only way to make this work.
         itemTitleLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
     }
     
     private func configurePriceLabel() {
         itemPriceLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
+    }
+    
+    private func configureDescriptionLabel() {
+        itemDescriptionLabel.numberOfLines = 2
     }
     
     private func configureInnerStackView() {

@@ -4,9 +4,10 @@
 //
 
 import UIKit
+import TPKeyboardAvoiding
 
-class SignUpViewController: UIViewController, UIScrollViewDelegate {
-    private let scrollView = UIScrollView()
+class SignUpViewController: UIViewController {
+    private let scrollView = TPKeyboardAvoidingScrollView()
     private let titleLabel = StyledLabel(withStyle: .title1)
     private let inputContainerView = UIView()
     private let firstNameTextField = ThemeViewFactory.textField()
@@ -24,10 +25,6 @@ class SignUpViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         configureView()
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
     
     private func configureView() {
@@ -165,7 +162,7 @@ class SignUpViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func configureScrollView() {
-        scrollView.keyboardDismissMode = .interactive
+        scrollView.keyboardDismissMode = .onDrag
         scrollView.isScrollEnabled = true
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         
@@ -188,22 +185,6 @@ class SignUpViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Actions
     @objc private func signUpbuttonTapped() {
         signUp()
-    }
-    
-    // Adapted from: https://www.hackingwithswift.com/example-code/uikit/how-to-adjust-a-uiscrollview-to-fit-the-keyboard
-    @objc private func adjustForKeyboard(notification: Notification) {
-        let userInfo = notification.userInfo!
-        
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == Notification.Name.UIKeyboardWillHide {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-        
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
     // MARK: - Private instance methods
@@ -246,7 +227,6 @@ class SignUpViewController: UIViewController, UIScrollViewDelegate {
                         alertController.addAction(okAction)
                         self.present(alertController, animated: true)
                     }
-
                 }
             }
         }

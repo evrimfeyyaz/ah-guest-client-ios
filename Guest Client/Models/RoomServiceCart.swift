@@ -5,8 +5,8 @@
 
 import Foundation
 
-class RoomServiceCart {
-    static let shared = RoomServiceCart()
+class RoomServiceOrder {
+    static let cart = RoomServiceOrder()
     
     public var cartItems: [RoomServiceCartItem] = []
     
@@ -16,5 +16,21 @@ class RoomServiceCart {
     
     func add(item: RoomServiceCartItem) {
         cartItems.append(item)
+    }
+    
+    func toJSON(reservation: Reservation) -> [String: Any] {
+        let cartItemsAttributes = cartItems.enumerated().reduce([String: Any]()) {
+            result, indexedCartItem in
+            
+            var mutableResult = result
+            mutableResult["\(indexedCartItem.offset)"] = indexedCartItem.element.toJSON()
+            
+            return mutableResult
+        }
+        
+        return [
+            "reservation_id": reservation.id,
+            "cart_items_attributes": cartItemsAttributes
+        ]
     }
 }

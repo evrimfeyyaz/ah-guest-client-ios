@@ -84,7 +84,7 @@ class RSOrderSuccessfulViewController: UIViewController {
     // MARK: - Private instance methods
     
     private func emptyCartAndDismiss() {
-        RoomServiceCart.shared.cartItems = []
+        RoomServiceOrder.cart.cartItems = []
         dismiss(animated: true, completion: nil)
     }
     

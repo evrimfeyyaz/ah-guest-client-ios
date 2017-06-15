@@ -15,13 +15,14 @@ enum APIRouter: URLRequestConvertible {
     case indexRoomServiceCategories
     case indexRoomServiceSections(categoryID: Int)
     case showRoomServiceItem(id: Int)
+    case createRoomServiceOrder(userID: Int, parameters: [String: Any])
     
     func asURLRequest() throws -> URLRequest {
         var method: HTTPMethod {
             switch self {
             case .indexRoomServiceCategories, .indexRoomServiceSections, .showRoomServiceItem:
                 return .get
-            case .createAuthentication, .createUser, .createReservationAssociation:
+            case .createAuthentication, .createUser, .createReservationAssociation, .createRoomServiceOrder:
                 return .post
             }
         }
@@ -42,6 +43,8 @@ enum APIRouter: URLRequestConvertible {
                 relativePath = "room_service/categories/\(categoryID)/sections"
             case .showRoomServiceItem(let id):
                 relativePath = "room_service/items/\(id)"
+            case .createRoomServiceOrder(let userID, _):
+                relativePath = "users/\(userID)/room_service/orders"
             }
             
             var url = URL(string: APIRouter.baseURLString)!
@@ -54,11 +57,8 @@ enum APIRouter: URLRequestConvertible {
             switch self {
             case .indexRoomServiceCategories, .indexRoomServiceSections, .showRoomServiceItem:
                 return nil
-            case .createAuthentication(let parameters):
-                return parameters
-            case .createUser(let parameters):
-                return parameters
-            case .createReservationAssociation(let parameters):
+            case .createAuthentication(let parameters), .createUser(let parameters),
+                 .createReservationAssociation(let parameters), .createRoomServiceOrder(_, let parameters):
                 return parameters
             }
         }()
