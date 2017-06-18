@@ -10,7 +10,7 @@ class RSCartItemTableViewCell: UITableViewCell {
     // MARK: - Public properties
     
     let itemTitleLabel = StyledLabel(withStyle: .cellTitle)
-    let optionsAndChoicesLabel = StyledLabel(withStyle: .cellDescription)
+    let selectedOptionsLabel = StyledLabel(withStyle: .cellDescription)
     let itemPriceLabel = StyledLabel(withStyle: .cellPrice)
     let quantityStepper = UIStepper()
     
@@ -56,7 +56,7 @@ class RSCartItemTableViewCell: UITableViewCell {
     }
     
     private func  configureItemOptionsAndChoicesLabel() {
-        optionsAndChoicesLabel.numberOfLines = 0
+        selectedOptionsLabel.numberOfLines = 0
     }
     
     private func configureUpperStackView() {
@@ -84,7 +84,7 @@ class RSCartItemTableViewCell: UITableViewCell {
     }
     
     private func configureOuterStackView() {
-        let outerStackView = UIStackView(arrangedSubviews: [innerStackView, optionsAndChoicesLabel, lowerStackView])
+        let outerStackView = UIStackView(arrangedSubviews: [innerStackView, selectedOptionsLabel, lowerStackView])
         outerStackView.axis = .vertical
         outerStackView.distribution = .equalCentering
         

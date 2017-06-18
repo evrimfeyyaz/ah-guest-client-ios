@@ -20,7 +20,7 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
     private var cartItem: RoomServiceCartItem?
     private var roomServiceItemID: Int
     
-    private let optionsSectionIndex = 0
+    private let choicesSectionIndex = 0
     private let specialRequestSectionIndex = 1
     private let quantitySectionIndex = 2
 
@@ -87,7 +87,7 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
         guard let cartItem = cartItem else { return }
         
         itemDetailView.itemTitleLabel.text = cartItem.item.title
-        itemDetailView.itemDescriptionLabel.text = cartItem.item.longDescription?.capitalizingFirstLetter()
+        itemDetailView.itemDescriptionLabel.text = cartItem.item.description
         itemDetailView.itemPriceLabel.text = cartItem.item.price.stringInBahrainiDinars
         
         for tag in cartItem.item.tags {
@@ -170,22 +170,22 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cartItem = cartItem else { return UITableViewCell() }
         
-        if indexPath.section == optionsSectionIndex {
-            let choicesForOption = cartItem.choicesForOptions[indexPath.row]
+        if indexPath.section == choicesSectionIndex {
+            let choice = cartItem.item.choices[indexPath.row]
             
             let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
             cell.accessoryType = .disclosureIndicator
             
-            var optionTitle = choicesForOption.option.title
-            if choicesForOption.option.isOptional {
-                optionTitle += " (optional)"
+            var choiceTitle = choice.title
+            if choice.isOptional {
+                choiceTitle += " (optional)"
             }
-            cell.titleLabel.text = optionTitle
+            cell.titleLabel.text = choiceTitle
             
-            if choicesForOption.option.allowsMultipleChoices {
-                cell.descriptionLabel.text = choicesForOption.selectedChoicesAsString()
+            if choice.allowsMultipleOptions {
+                cell.descriptionLabel.text = cartItem.selectedOptionsAsString(for: choice)
             } else {
-                cell.detailLabel.text = choicesForOption.selectedChoicesAsString()
+                cell.detailLabel.text = cartItem.selectedOptionsAsString(for: choice)
             }
             
             cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
@@ -223,8 +223,8 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let cartItem = cartItem else { return 0 }
         
-        if section == 0 {
-            return cartItem.item.options.count
+        if section == choicesSectionIndex {
+            return cartItem.item.choices.count
         } else {
             return 1
         }
@@ -239,14 +239,11 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
             return
         }
         
-        let option = cartItem.item.options[indexPath.row]
+        let choice = cartItem.item.choices[indexPath.row]
         
-        let optionVC: RoomServiceChoicesForOptionViewController
-        if let choicesForOption = cartItem.choices(for: option) {
-            optionVC = RoomServiceChoicesForOptionViewController(choicesForOption: choicesForOption)
-            optionVC.itemViewController = self
-            show(optionVC, sender: nil)
-        }
+        let optionSelectionVC = RoomServiceItemChoiceOptionSelectionViewController(itemChoice: choice, cartItem: cartItem)
+        optionSelectionVC.cartItemViewController = self
+        show(optionSelectionVC, sender: nil)
     }
     
     // MARK: - Text view delegate

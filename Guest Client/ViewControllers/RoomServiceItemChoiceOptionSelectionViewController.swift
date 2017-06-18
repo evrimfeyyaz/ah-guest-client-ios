@@ -5,20 +5,22 @@
 
 import UIKit
 
-class RoomServiceChoicesForOptionViewController: UITableViewController {
+class RoomServiceItemChoiceOptionSelectionViewController: UITableViewController {
     
     // MARK: - Public properties
-    var itemViewController: RoomServiceCartItemViewController?
+    var cartItemViewController: RoomServiceCartItemViewController?
     
     // MARK: - Private properties
-    private let choicesForOption: RoomServiceChoicesForOption
+    private let itemChoice: RoomServiceItemChoice
+    private let cartItem: RoomServiceCartItem
     
     private let tableViewCellIdentifier = "tableViewCell"
     private let tableViewHeaderIdentifier = "tableViewHeader"
     
     // MARK: - Initializers
-    init(choicesForOption: RoomServiceChoicesForOption) {
-        self.choicesForOption = choicesForOption
+    init(itemChoice: RoomServiceItemChoice, cartItem: RoomServiceCartItem) {
+        self.itemChoice = itemChoice
+        self.cartItem = cartItem
         
         super.init(style: .grouped)
     }
@@ -47,7 +49,7 @@ class RoomServiceChoicesForOptionViewController: UITableViewController {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: tableViewCellIdentifier)
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: tableViewHeaderIdentifier)
         
-        if (choicesForOption.option.allowsMultipleChoices) {
+        if (itemChoice.allowsMultipleOptions) {
             tableView.allowsMultipleSelection = true
         }
     }
@@ -55,26 +57,27 @@ class RoomServiceChoicesForOptionViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        itemViewController?.optionChanged()
+        cartItemViewController?.optionChanged()
     }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return choicesForOption.numberOfPossibleChoices
+        return itemChoice.options.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! TableViewCell
-        let possibleChoice = choicesForOption.option.possibleChoices[indexPath.row]
+        let option = itemChoice.options[indexPath.row]
         
-        cell.titleLabel.text = possibleChoice.title
+        cell.titleLabel.text = option.title
         
-        if possibleChoice.price > 0 {
-            cell.detailLabel.text = possibleChoice.price.stringInBahrainiDinars
+        if option.price > 0 {
+            cell.detailLabel.text = option.price.stringInBahrainiDinars
         }
+        
         cell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
         
-        if choicesForOption.isChoiceSelected(possibleChoice) {
+        if cartItem.selectedOptionIDs.contains(option.id) {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
             cell.accessoryType = .checkmark
         }
@@ -86,8 +89,8 @@ class RoomServiceChoicesForOptionViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: tableViewHeaderIdentifier) as! TableViewHeader
         
-        var headerTitle = choicesForOption.option.title
-        if (choicesForOption.option.isOptional) {
+        var headerTitle = itemChoice.title
+        if (itemChoice.isOptional) {
             headerTitle += " (optional)"
         }
         
@@ -97,24 +100,21 @@ class RoomServiceChoicesForOptionViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let choice = choicesForOption.option.possibleChoices[indexPath.row]
+        let option = itemChoice.options[indexPath.row]
         
-        if (choicesForOption.option.allowsMultipleChoices) {
-            let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
-            choicesForMultipleChoiceOption.addSelectedChoice(choice)
+        cartItem.addSelectedOption(withID: option.id)
+        
+        if (itemChoice.allowsMultipleOptions) {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         } else {
-            let choicesForSingleChoiceOption = choicesForOption as! RSItemChoicesForSingleChoiceOption
-            choicesForSingleChoiceOption.makeSelectedChoice(choice: choice)
             navigationController?.popViewController(animated: true)
         }
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if (choicesForOption.option.allowsMultipleChoices) {
-            let choice = choicesForOption.option.possibleChoices[indexPath.row]
-            let choicesForMultipleChoiceOption = choicesForOption as! RSItemChoicesForMultipleChoiceOption
-            choicesForMultipleChoiceOption.removeSelectedChoice(choice)
+        if (itemChoice.allowsMultipleOptions) {
+            let option = itemChoice.options[indexPath.row]
+            cartItem.removeSelectedOption(withID: option.id)
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
         }
     }

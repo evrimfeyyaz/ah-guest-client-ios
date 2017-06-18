@@ -7,20 +7,20 @@ import Foundation
 import Alamofire
 
 enum APIRouter: URLRequestConvertible {
-    static let baseURLString = "https://dry-dawn-66033.herokuapp.com/api/v0"
+    static let baseURLString = "https://khotel.automatedhotel.com/api/v0"
     
     case createAuthentication(parameters: [String: Any])
     case createUser(parameters: [String: Any])
     case createReservationAssociation(parameters: [String: Any])
     case indexRoomServiceCategories
-    case indexRoomServiceSections(categoryID: Int)
+    case indexRoomServiceSubCategories(categoryID: Int)
     case showRoomServiceItem(id: Int)
     case createRoomServiceOrder(userID: Int, parameters: [String: Any])
     
     func asURLRequest() throws -> URLRequest {
         var method: HTTPMethod {
             switch self {
-            case .indexRoomServiceCategories, .indexRoomServiceSections, .showRoomServiceItem:
+            case .indexRoomServiceCategories, .indexRoomServiceSubCategories, .showRoomServiceItem:
                 return .get
             case .createAuthentication, .createUser, .createReservationAssociation, .createRoomServiceOrder:
                 return .post
@@ -39,8 +39,8 @@ enum APIRouter: URLRequestConvertible {
                 relativePath = "reservation_associations"
             case .indexRoomServiceCategories:
                 relativePath = "room_service/categories"
-            case .indexRoomServiceSections(let categoryID):
-                relativePath = "room_service/categories/\(categoryID)/sections"
+            case .indexRoomServiceSubCategories(let categoryID):
+                relativePath = "room_service/categories/\(categoryID)/sub_categories"
             case .showRoomServiceItem(let id):
                 relativePath = "room_service/items/\(id)"
             case .createRoomServiceOrder(let userID, _):
@@ -55,7 +55,7 @@ enum APIRouter: URLRequestConvertible {
         
         let params: ([String: Any]?) = {
             switch self {
-            case .indexRoomServiceCategories, .indexRoomServiceSections, .showRoomServiceItem:
+            case .indexRoomServiceCategories, .indexRoomServiceSubCategories, .showRoomServiceItem:
                 return nil
             case .createAuthentication(let parameters), .createUser(let parameters),
                  .createReservationAssociation(let parameters), .createRoomServiceOrder(_, let parameters):

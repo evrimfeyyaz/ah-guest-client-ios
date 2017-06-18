@@ -92,7 +92,7 @@ class RoomServiceOrderViewController: UITableViewController {
         guard currentUser.currentReservation != nil else {
             if let upcomingReservation = currentUser.currentOrUpcomingReservation {
                 let alertController = UIAlertController(title: "Can't Place Order", message: "Your earliest reservation starts on \(upcomingReservation.checkInDate.iso8601FullDate).\n\nIf you have a reservation that includes today, please add it.", preferredStyle: .alert)
-                let addReservationAction = UIAlertAction(title: "Add Reservaion", style: .default) { _ in
+                let addReservationAction = UIAlertAction(title: "Add Reservation", style: .default) { _ in
                     let reservationAssociationByCheckInDateVC = ReservationAssociationByCheckInDateViewController()
                     reservationAssociationByCheckInDateVC.successCallback = { [weak self] in
                         self?.checkoutButtonTapped()
@@ -105,6 +105,14 @@ class RoomServiceOrderViewController: UITableViewController {
                 alertController.addAction(cancelAction)
                 alertController.addAction(addReservationAction)
                 self.present(alertController, animated: true)
+            } else {
+                let reservationAssociationByCheckInDateVC = ReservationAssociationByCheckInDateViewController()
+                reservationAssociationByCheckInDateVC.successCallback = { [weak self] in
+                    self?.checkoutButtonTapped()
+                }
+                
+                let navigationVC = UINavigationController(rootViewController: reservationAssociationByCheckInDateVC)
+                self.show(navigationVC, sender: self)
             }
             
             return
@@ -140,7 +148,7 @@ class RoomServiceOrderViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cartItemTableViewCell) as! RSCartItemTableViewCell
         cell.itemTitleLabel.text = cartItem.item.title
         cell.itemPriceLabel.text = cartItem.totalPrice.stringInBahrainiDinars
-        cell.optionsAndChoicesLabel.text = cartItem.choicesAndOptionsAsString()
+        cell.selectedOptionsLabel.text = cartItem.selectedOptionsAsString
         cell.quantityStepper.value = Double(cartItem.quantity)
         cell.quantityStepper.sendActions(for: .valueChanged)
         

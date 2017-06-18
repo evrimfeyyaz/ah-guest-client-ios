@@ -10,10 +10,10 @@ class RoomServiceItem {
     let id: Int
     let title: String
     let shortDescription: String?
-    var longDescription: String?
+    var description: String?
     let price: Decimal
     var tags: [RoomServiceTag] = []
-    var options: [RoomServiceOption] = []
+    var choices: [RoomServiceItemChoice] = []
     
     // MARK: - Initializers
     
@@ -26,7 +26,7 @@ class RoomServiceItem {
         self.id = id
         self.title = title
         self.shortDescription = json["short_description"] as? String
-        self.longDescription = json["long_description"] as? String
+        self.description = json["description"] as? String
         
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -39,8 +39,8 @@ class RoomServiceItem {
             self.tags = tagsJSONArray.flatMap { RoomServiceTag(json: $0) }
         }
         
-        if let optionsJSONArray = json["options"] as? [[String: Any]] {
-            self.options = optionsJSONArray.flatMap { RoomServiceOption(json: $0) }
+        if let choicesJSONArray = json["choices"] as? [[String: Any]] {
+            self.choices = choicesJSONArray.flatMap { RoomServiceItemChoice(json: $0) }
         }
     }
 }

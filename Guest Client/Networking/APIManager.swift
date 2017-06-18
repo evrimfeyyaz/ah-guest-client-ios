@@ -186,9 +186,9 @@ class APIManager {
         return .success(roomServiceCategories)
     }
     
-    // MARK: - Room Service Sections
-    func indexRoomServiceCategorySections(categoryID: Int, completion: @escaping (Result<[RoomServiceSection]>) -> Void) {
-        sessionManager.request(APIRouter.indexRoomServiceSections(categoryID: categoryID))
+    // MARK: - Room Service Sub-Categories
+    func indexRoomServiceSubCategories(categoryID: Int, completion: @escaping (Result<[RoomServiceSubCategory]>) -> Void) {
+        sessionManager.request(APIRouter.indexRoomServiceSubCategories(categoryID: categoryID))
             .validate(statusCode: [200])
             .responseJSON { response in
                 switch response.result {
@@ -202,12 +202,12 @@ class APIManager {
         }
     }
     
-    private func roomServiceCategorySectionsArray(from response: DataResponse<Any>) -> Result<[RoomServiceSection]> {
+    private func roomServiceCategorySectionsArray(from response: DataResponse<Any>) -> Result<[RoomServiceSubCategory]> {
         guard let jsonArray = response.result.value as? [[String: Any]] else {
             return .failure(APIManagerError.jsonSerialization(reason: "Received invalid JSON data."))
         }
         
-        let roomServiceSections = jsonArray.flatMap { RoomServiceSection(json: $0) }
+        let roomServiceSections = jsonArray.flatMap { RoomServiceSubCategory(json: $0) }
         
         return .success(roomServiceSections)
     }

@@ -12,7 +12,7 @@ class RoomServiceItemsViewController: UITableViewController {
     // MARK: - Private properties
     private let itemCellIdentifier = "item"
     private let tableViewHeaderViewIdentifier = "tableViewHeader"
-    private var sections: [RoomServiceSection] = []
+    private var subCategories: [RoomServiceSubCategory] = []
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     // MARK: - View configuration
@@ -21,7 +21,7 @@ class RoomServiceItemsViewController: UITableViewController {
         
         configureActivityIndicator()
         configureView()
-        fetchRoomServiceSectionsAndItemSummaries()
+        fetchRoomServiceSubCategoriesAndItemSummaries()
     }
     
     private func configureActivityIndicator() {
@@ -60,17 +60,17 @@ class RoomServiceItemsViewController: UITableViewController {
     }
     
     // MARK: - Private instance methods
-    private func fetchRoomServiceSectionsAndItemSummaries() {
+    private func fetchRoomServiceSubCategoriesAndItemSummaries() {
         activityIndicatorView.startAnimating()
         
-        APIManager.shared.indexRoomServiceCategorySections(categoryID: categoryID!) { result in
+        APIManager.shared.indexRoomServiceSubCategories(categoryID: categoryID!) { result in
             DispatchQueue.main.async {
                 self.activityIndicatorView.stopAnimating()
             }
             
             switch result {
-            case .success(let sections):
-                self.sections = sections
+            case .success(let subCategories):
+                self.subCategories = subCategories
                 self.tableView.reloadData()
             case .failure(let error):
                 let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -83,11 +83,11 @@ class RoomServiceItemsViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return subCategories.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].items.count
+        return subCategories[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,13 +96,11 @@ class RoomServiceItemsViewController: UITableViewController {
 
         let section = indexPath.section
         let row = indexPath.row
-        let item = sections[section].items[row]
+        let item = subCategories[section].items[row]
         
-//        itemCell.itemTitleLabel.text = item.title
-        itemCell.itemTitleLabel.text = "Lorem ipsum dolor sit amet here is a long text let's see how long this can go without getting cut off let's make it very long here to see."
+        itemCell.itemTitleLabel.text = item.title
         // TODO: Change this to a conditional later that decides between short and long descriptions.
-//        itemCell.itemDescriptionLabel.text = item.longDescription?.capitalizingFirstLetter()
-        itemCell.itemDescriptionLabel.text = "Lorem ipsum dolor sit amet here is a long text let's see how long this can go without getting cut off let's make it very long here to see."
+        itemCell.itemDescriptionLabel.text = item.shortDescription ?? item.description
         itemCell.itemPriceLabel.text = item.price.stringInBahrainiDinars ?? ""
         // TODO: Find a way to set this globally.
         itemCell.backgroundColor = ThemeColors.blackRock.withAlphaComponent(0.3)
@@ -114,10 +112,10 @@ class RoomServiceItemsViewController: UITableViewController {
     
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if sections[section].isDefault { return nil }
+        if subCategories[section].isDefault { return nil }
         
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: tableViewHeaderViewIdentifier) as! TableViewHeader
-        headerView.titleLabel.text = sections[section].title
+        headerView.titleLabel.text = subCategories[section].title
         // TODO: Find a way to set this globally.
         headerView.contentView.backgroundColor = .clear
         
@@ -133,7 +131,7 @@ class RoomServiceItemsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = sections[indexPath.section].items[indexPath.row]
+        let item = subCategories[indexPath.section].items[indexPath.row]
         let itemDetailVC = RoomServiceCartItemViewController(roomServiceItemID: item.id)
         let navigationVC = UINavigationController(rootViewController: itemDetailVC)
         

@@ -5,7 +5,7 @@
 
 import UIKit
 
-class RoomServiceSection {
+class RoomServiceSubCategory {
     // MARK: - Public static properties
     let id: Int
     let title: String

@@ -10,71 +10,76 @@ class RoomServiceCartItem {
     var id: Int?
     var item: RoomServiceItem
     var quantity: Int
-    var choicesForOptions: [RoomServiceChoicesForOption]
     var specialRequest: String?
+    private(set) var selectedOptionIDs: [Int]
     
-    var totalPrice: Decimal {
+    var selectedOptions: [RoomServiceItemChoiceOption] {
         get {
-            let totalPriceForOneItem = choicesForOptions.flatMap({ choicesForOption in
-                choicesForOption.selectedChoices
-            }).reduce(item.price, { sum, choice in
-                sum + choice.price
-            })
+            let possibleOptions = item.choices.flatMap { $0.options }
             
-            return totalPriceForOneItem * Decimal(quantity)
-        }
-    }
-    
-    // MARK: - Initializers
-    init(id: Int? = nil, item: RoomServiceItem, quantity: Int = 1,
-         choices: [RoomServiceChoicesForOption] = [],
-         specialRequest: String? = nil) {
-        
-        self.item = item
-        self.quantity = quantity
-        self.choicesForOptions = choices
-        self.specialRequest = specialRequest
-        
-        for option in item.options {
-            if (option.allowsMultipleChoices) {
-                self.choicesForOptions.append(RSItemChoicesForMultipleChoiceOption(option: option))
-            } else {
-                self.choicesForOptions.append(RSItemChoicesForSingleChoiceOption(option: option))
+            return selectedOptionIDs.flatMap { optionID in
+                return possibleOptions.first { $0.id == optionID }
             }
         }
     }
     
-    // MARK: - Public instance methods
-    func choices(for option: RoomServiceOption) -> RoomServiceChoicesForOption? {
-        if let index = choicesForOptions.index(where: { $0.option == option }) {
-            return choicesForOptions[index]
+    var totalPrice: Decimal {
+        get {
+            let totalPriceForOneItem = selectedOptions.reduce(item.price) { $0 + $1.price }
+            return totalPriceForOneItem * Decimal(quantity)
         }
-        
-        return nil
     }
     
-    func choicesAndOptionsAsString() -> String {
-        return choicesForOptions
-            .filter({ $0.selectedChoices.count > 0 })
-            .map({ "\($0.option.title): \($0.selectedChoicesAsString())" })
-            .joined(separator: "\n")
+    var selectedOptionsAsString: String {
+        return selectedOptions.flatMap { $0.title }.joined(separator: ", ")
+    }
+    
+    // MARK: - Initializers
+    init(id: Int? = nil, item: RoomServiceItem, quantity: Int = 1,
+         selectedOptionIDs: [Int] = [], specialRequest: String? = nil) {
+        
+        self.id = id
+        self.item = item
+        self.quantity = quantity
+        self.specialRequest = specialRequest
+        self.selectedOptionIDs = selectedOptionIDs
+    }
+    
+    // MARK: - Public instance methods
+    func options(for choice: RoomServiceItemChoice) -> [RoomServiceItemChoiceOption] {
+        return item.choices.first { $0.id == choice.id }?.options ?? []
+    }
+    
+    func addSelectedOption(withID id: Int) {
+        guard let choiceOptionBelongsTo = item.choices.first(where: { $0.options.contains { $0.id == id } }) else { return }
+        
+        if !choiceOptionBelongsTo.allowsMultipleOptions {
+            let indexesOfSelectedOptionsFromChoice = choiceOptionBelongsTo.options.flatMap { selectedOptionIDs.index(of: $0.id) }
+            
+            for optionIndex in indexesOfSelectedOptionsFromChoice {
+                selectedOptionIDs.remove(at: optionIndex)
+            }
+        }
+        
+        selectedOptionIDs.append(id)
+    }
+    
+    func selectedOptionsAsString(for choice: RoomServiceItemChoice) -> String {
+        return choice.options.filter { selectedOptionIDs.contains($0.id) }.map { $0.title }.joined(separator: ", ")
+    }
+    
+    func removeSelectedOption(withID id: Int) {
+        guard let optionIndex = selectedOptionIDs.index(of: id) else { return }
+        
+        selectedOptionIDs.remove(at: optionIndex)
     }
     
     func toJSON() -> [String: Any] {
-        let choicesForOptionsAttributes = choicesForOptions.enumerated().reduce([String: Any]()) {
-            result, indexedChoicesForOption in
-            
-            var mutableResult = result
-            mutableResult["\(indexedChoicesForOption.offset)"] = indexedChoicesForOption.element.toJSON()
-            
-            return mutableResult
-        }
-        
         return [
             "quantity": quantity,
-            "special_request": specialRequest,
+            "special_request": specialRequest ?? "",
             "room_service_item_id": item.id,
-            "choices_for_options_attributes": choicesForOptionsAttributes
+            "selected_option_ids": selectedOptionIDs
         ]
     }
 }

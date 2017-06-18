@@ -5,7 +5,7 @@
 
 import Foundation
 
-class RoomServiceChoice: Equatable {
+class RoomServiceItemChoiceOption: Equatable {
     // MARK: - Public properties
     let id: Int
     let title: String
@@ -30,7 +30,7 @@ class RoomServiceChoice: Equatable {
     }
     
     // MARK: - Equatable
-    static func == (lhs: RoomServiceChoice, rhs: RoomServiceChoice) -> Bool {
+    static func == (lhs: RoomServiceItemChoiceOption, rhs: RoomServiceItemChoiceOption) -> Bool {
         return lhs.id == rhs.id
     }
 }
