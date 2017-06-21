@@ -46,7 +46,7 @@ class RSOrderSuccessfulViewController: UIViewController {
     }
     
     private func configureExplanationLabel() {
-        explanationLabel.text = "Your order will be delivered to your room within 30 minutes."
+        explanationLabel.text = "Your order will be delivered to your room."
         explanationLabel.numberOfLines = 0
     }
     

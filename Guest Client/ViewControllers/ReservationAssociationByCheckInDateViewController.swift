@@ -150,6 +150,19 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
             case .success:
                 self.dismiss(animated: true, completion: self.successCallback)
             case .failure(let error):
+                if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
+                    let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Try Again", style: .default) { [weak self] _ in
+                        self?.associateReservationByCheckInDate()
+                    }
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    alertController.addAction(okAction)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true)
+                    
+                    break
+                }
+                
                 switch error {
                 case APIManagerError.apiProvidedError:
                     self.showReservationAssociationByConfirmationCodeViewController()

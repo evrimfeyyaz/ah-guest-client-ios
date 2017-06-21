@@ -11,6 +11,7 @@ class RoomServiceOrderViewController: UITableViewController {
     
     private let cartItemTableViewCell = "cartItem"
     private let tableViewHeaderViewIdentifier = "tableViewHeader"
+    private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     private let footerView = RSCartFooterView()
     
@@ -27,6 +28,7 @@ class RoomServiceOrderViewController: UITableViewController {
         
         configureTableView()
         configureNavigationBar()
+        configureActivityIndicator()
     }
     
     private func configureTableView() {
@@ -49,6 +51,12 @@ class RoomServiceOrderViewController: UITableViewController {
         
         navigationItem.leftBarButtonItem = addMoreItemsBarButton
         navigationItem.title = "Order"
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicatorView.center = view.center
+        
+        view.addSubview(activityIndicatorView)
     }
     
     // MARK: - Actions
@@ -118,12 +126,32 @@ class RoomServiceOrderViewController: UITableViewController {
             return
         }
         
+        activityIndicatorView.startAnimating()
+        footerView.checkoutButton.isEnabled = false
         APIManager.shared.createRoomServiceOrder { result in
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
+                self.footerView.checkoutButton.isEnabled = true
+            }
+            
             switch result {
             case .success:
                 let orderSuccessfulVC = RSOrderSuccessfulViewController()
                 self.show(orderSuccessfulVC, sender: self)
             case .failure(let error):
+                if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
+                    let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Try Again", style: .default) { [weak self] _ in
+                        self?.checkoutButtonTapped()
+                    }
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    alertController.addAction(okAction)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true)
+                    
+                    break
+                }
+                
                 switch error {
                 case APIManagerError.apiProvidedError(let messages):
                     let alertController = UIAlertController(title: "Can't Place Order", message: messages.joined(separator: "\n"), preferredStyle: .alert)

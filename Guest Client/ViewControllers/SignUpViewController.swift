@@ -215,6 +215,19 @@ class SignUpViewController: UIViewController {
                         }
                     }
                 case .failure(let error):
+                    if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
+                        let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Try Again", style: .default) { [weak self] _ in
+                            self?.signUp()
+                        }
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        alertController.addAction(okAction)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true)
+                        
+                        break
+                    }
+                    
                     switch error {
                     case APIManagerError.apiProvidedError(let messages):
                         let alertController = UIAlertController(title: "Sign Up Error", message: messages.joined(separator: "\n"), preferredStyle: .alert)

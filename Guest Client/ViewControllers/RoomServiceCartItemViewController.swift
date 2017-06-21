@@ -164,6 +164,21 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
             case .success(let item):
                 self.cartItem = RoomServiceCartItem(item: item)
             case .failure(let error):
+                if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
+                    let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Try Again", style: .default) { [weak self] _ in
+                        self?.fetchRoomServiceItemAndCreateRoomServiceCartItem {
+                            self?.configureTableView()
+                            self?.configureItemDetailView()
+                            self?.configureTableFooterView()
+                            }
+                    }
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
+                    
+                    break
+                }
+                
                 let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default)
                 alertController.addAction(okAction)

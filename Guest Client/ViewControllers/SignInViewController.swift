@@ -199,6 +199,19 @@ class SignInViewController: UIViewController {
                         }
                     }
                 case .failure(let error):
+                    if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
+                        let alertController = UIAlertController(title: "Connection Error", message: error.localizedDescription, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "Try Again", style: .default) { [weak self] _ in
+                            self?.signIn()
+                        }
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        alertController.addAction(okAction)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true)
+                        
+                        break
+                    }
+                
                     switch error {
                     case APIManagerError.userAuthentication(let reason):
                         let alertController = UIAlertController(title: "Error Signing In", message: reason, preferredStyle: .alert)
