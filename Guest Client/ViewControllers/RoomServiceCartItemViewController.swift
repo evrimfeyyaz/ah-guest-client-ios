@@ -118,6 +118,19 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
     @objc private func addToCartButtonTapped() {
         guard let cartItem = cartItem else { return }
         
+        guard cartItem.mandatoryChoicesWithoutSelection.isEmpty else {
+            let message = "Please make a selection for the following:\n" +
+                cartItem.mandatoryChoicesWithoutSelection.map { $0.title }.joined(separator: "\n")
+            
+            let alertController = UIAlertController(title: nil,
+                                                    message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true)
+            
+            return
+        }
+        
         RoomServiceOrder.cart.add(item: cartItem)
         dismiss(animated: true, completion: nil)
     }

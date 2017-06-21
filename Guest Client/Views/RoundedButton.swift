@@ -59,5 +59,4 @@ class RoundedButton: UIButton {
         
         titleLabel?.accessibilityLabel = title?.uppercased()
     }
-
 }

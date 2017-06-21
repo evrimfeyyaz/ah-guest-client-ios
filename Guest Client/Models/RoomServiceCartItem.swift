@@ -14,24 +14,34 @@ class RoomServiceCartItem {
     private(set) var selectedOptionIDs: [Int]
     
     var selectedOptions: [RoomServiceItemChoiceOption] {
-        get {
-            let possibleOptions = item.choices.flatMap { $0.options }
-            
-            return selectedOptionIDs.flatMap { optionID in
-                return possibleOptions.first { $0.id == optionID }
-            }
+        let possibleOptions = item.choices.flatMap { $0.options }
+        
+        return selectedOptionIDs.flatMap { optionID in
+            return possibleOptions.first { $0.id == optionID }
         }
     }
     
     var totalPrice: Decimal {
-        get {
-            let totalPriceForOneItem = selectedOptions.reduce(item.price) { $0 + $1.price }
-            return totalPriceForOneItem * Decimal(quantity)
-        }
+        let totalPriceForOneItem = selectedOptions.reduce(item.price) { $0 + $1.price }
+        return totalPriceForOneItem * Decimal(quantity)
     }
     
     var selectedOptionsAsString: String {
         return selectedOptions.flatMap { $0.title }.joined(separator: ", ")
+    }
+    
+    var mandatoryChoicesWithoutSelection: [RoomServiceItemChoice] {
+        var result = [RoomServiceItemChoice]()
+        
+        for choice in item.choices.filter({ $0.isMandatory }) {
+            let optionIDsSet = Set(choice.options.map { $0.id })
+            
+            if optionIDsSet.isDisjoint(with: selectedOptionIDs) {
+                result.append(choice)
+            }
+        }
+        
+        return result
     }
     
     // MARK: - Initializers

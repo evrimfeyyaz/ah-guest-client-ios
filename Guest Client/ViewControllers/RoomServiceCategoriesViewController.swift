@@ -41,11 +41,11 @@ class RoomServiceCategoriesViewController: UITableViewController {
     }
     
     private func configureNavigationBar() {
-        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(ordersBarButtonTapped))
-        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Cart", target: self, action: #selector(cartBarButtonTapped))
+//        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(ordersBarButtonTapped))
+        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Order", target: self, action: #selector(cartBarButtonTapped))
         
         navigationItem.title = "Room Service"
-        navigationItem.leftBarButtonItem = ordersBarButton
+//        navigationItem.leftBarButtonItem = ordersBarButton
         navigationItem.rightBarButtonItem = cartBarButton
         
         let backButton = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)

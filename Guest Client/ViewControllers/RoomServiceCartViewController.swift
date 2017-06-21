@@ -48,7 +48,7 @@ class RoomServiceOrderViewController: UITableViewController {
         let addMoreItemsBarButton = UIBarButtonItem(title: "Add More Items", style: .plain, target: self, action: #selector(addMoreItemsBarButtonTapped))
         
         navigationItem.leftBarButtonItem = addMoreItemsBarButton
-        navigationItem.title = "Cart"
+        navigationItem.title = "Order"
     }
     
     // MARK: - Actions
@@ -169,13 +169,28 @@ class RoomServiceOrderViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: tableViewHeaderViewIdentifier) as! TableViewHeader
-            headerView.titleLabel.text = "Items in Your Cart"
+            headerView.titleLabel.text = "Items in Your Order"
             headerView.contentView.backgroundColor = .clear
             
             return headerView
         }
         
         return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] (action, indexPath) in
+            RoomServiceOrder.cart.cartItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            if RoomServiceOrder.cart.cartItems.count == 0 {
+                self?.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        delete.backgroundColor = ThemeColors.maroon
+        
+        return [delete]
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

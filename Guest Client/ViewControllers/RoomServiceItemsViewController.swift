@@ -46,7 +46,7 @@ class RoomServiceItemsViewController: UITableViewController {
     
     private func configureNavigationBar() {
         // TODO: This is used in RSCategoriesViewController as well. Find a way to refactor this.
-        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Cart", target: self, action: #selector(cartBarButtonTapped))
+        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Order", target: self, action: #selector(cartBarButtonTapped))
         
         navigationItem.rightBarButtonItem = cartBarButton
     }

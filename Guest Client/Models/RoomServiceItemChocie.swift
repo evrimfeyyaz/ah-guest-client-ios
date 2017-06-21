@@ -14,6 +14,10 @@ class RoomServiceItemChoice: Equatable {
     var options = [RoomServiceItemChoiceOption]()
     var defaultOptionID: Int?
     
+    var isMandatory: Bool {
+        get { return !isOptional }
+    }
+    
     var defaultOption: RoomServiceItemChoiceOption? {
         get {
             guard let defaultOptionID = self.defaultOptionID else { return nil }

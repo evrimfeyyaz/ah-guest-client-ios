@@ -65,14 +65,15 @@ class RSCartFooterView: UIView {
     }
     
     private func configureCheckoutButton() {
-        checkoutButton.setTitle("Checkout", for: .normal)
+        checkoutButton.setTitle("Place Order", for: .normal)
     }
     
     private func configureLowerStackView() {
-        lowerStackView.addArrangedSubview(addMoreItemsButton)
         lowerStackView.addArrangedSubview(checkoutButton)
-        lowerStackView.distribution = .fillProportionally
-        lowerStackView.spacing = 8
+        lowerStackView.addArrangedSubview(addMoreItemsButton)
+        lowerStackView.alignment = .center
+        lowerStackView.spacing = 10
+        lowerStackView.axis = .vertical
     }
     
     private func configureOuterStackView() {

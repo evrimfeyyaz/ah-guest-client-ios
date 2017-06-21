@@ -8,6 +8,7 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     static let baseURLString = "https://khotel.automatedhotel.com/api/v0"
+//    static let baseURLString = "https://guest-api-app.dev/"
     
     case createAuthentication(parameters: [String: Any])
     case createUser(parameters: [String: Any])
