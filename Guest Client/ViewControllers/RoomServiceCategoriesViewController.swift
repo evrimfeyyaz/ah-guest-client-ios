@@ -12,7 +12,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
     private let categoryCellIdentifier = "category"
     private var categories = [RoomServiceCategory]()
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-
+    
     // MARK: - View configuration
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +42,11 @@ class RoomServiceCategoriesViewController: UITableViewController {
     }
     
     private func configureNavigationBar() {
-//        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(ordersBarButtonTapped))
+        //        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(ordersBarButtonTapped))
         let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Order", target: self, action: #selector(cartBarButtonTapped))
         
         navigationItem.title = "Room Service"
-//        navigationItem.leftBarButtonItem = ordersBarButton
+        //        navigationItem.leftBarButtonItem = ordersBarButton
         navigationItem.rightBarButtonItem = cartBarButton
         
         let backButton = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
@@ -73,7 +73,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
             
             switch result {
             case .success(let categories):
-                self.categories = categories
+                self.categories = categories.sorted { $0.0.id < $0.1.id }
                 self.tableView.reloadData()
             case .failure(let error):
                 if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {
@@ -103,7 +103,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
         categoryCell.categoryTitleLabel.text = rsCategory.title
         categoryCell.categoryDescriptionLabel.text = rsCategory.description
         categoryCell.categoryImageURL = rsCategory.imageURL
-            
+        
         return categoryCell
     }
     
@@ -116,8 +116,27 @@ class RoomServiceCategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let categoryCell = tableView.cellForRow(at: indexPath) as! RSCategoryTableViewCell
         
+        let category = categories[indexPath.row]
+        
+        let localTimeZone = TimeZone(identifier: "Asia/Riyadh")!
+        guard category.isCurrentlyAvailable else {
+            
+            let availableFromInLocalTime = category.availableFromUTC!.description(inTimeZone: localTimeZone)
+            let availableUntilInLocalTime = category.availableUntilUTC!.description(inTimeZone: localTimeZone)
+            
+            DispatchQueue.main.async {
+                let alertController = UIAlertController(title: "Not Available",
+                                                        message: "\(category.title) is only available from \(availableFromInLocalTime) until \(availableUntilInLocalTime) in local time.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
+            }
+            
+            return
+        }
+        
         let rsItemsVC = RoomServiceItemsViewController(style: .grouped)
-        rsItemsVC.categoryID = categories[indexPath.row].id
+        rsItemsVC.categoryID = category.id
         rsItemsVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         
         show(rsItemsVC, sender: self)

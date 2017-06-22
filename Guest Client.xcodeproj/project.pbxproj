@@ -29,6 +29,7 @@
 		915298541EAAA6D0005CB637 /* RoomServiceItemChocie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298531EAAA6D0005CB637 /* RoomServiceItemChocie.swift */; };
 		915298561EAAA7AF005CB637 /* RoomServiceItemChoiceOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298551EAAA7AF005CB637 /* RoomServiceItemChoiceOption.swift */; };
 		915298581EAB69CB005CB637 /* RSItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915298571EAB69CB005CB637 /* RSItemDetailView.swift */; };
+		9157A6351EFBA1E800ABFAA8 /* TimeUTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157A6341EFBA1E800ABFAA8 /* TimeUTC.swift */; };
 		91627ED91EEDABFB00E377C4 /* StyleableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91627ED81EEDABFB00E377C4 /* StyleableTextField.swift */; };
 		91724ED41EA292CD00FD7240 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91724ED31EA292CD00FD7240 /* TagView.swift */; };
 		9185A93B1EEC321300872E4A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9185A93A1EEC321300872E4A /* APIManager.swift */; };
@@ -121,6 +122,7 @@
 		915298531EAAA6D0005CB637 /* RoomServiceItemChocie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemChocie.swift; sourceTree = "<group>"; };
 		915298551EAAA7AF005CB637 /* RoomServiceItemChoiceOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomServiceItemChoiceOption.swift; sourceTree = "<group>"; };
 		915298571EAB69CB005CB637 /* RSItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSItemDetailView.swift; sourceTree = "<group>"; };
+		9157A6341EFBA1E800ABFAA8 /* TimeUTC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUTC.swift; sourceTree = "<group>"; };
 		91627ED81EEDABFB00E377C4 /* StyleableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleableTextField.swift; sourceTree = "<group>"; };
 		91724ED31EA292CD00FD7240 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		9185A93A1EEC321300872E4A /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				918FC9851EADF4D600CFC01C /* RoomServiceCart.swift */,
 				91BFA56C1EE01135009624C7 /* User.swift */,
 				91BFA56E1EE19ABD009624C7 /* Reservation.swift */,
+				9157A6341EFBA1E800ABFAA8 /* TimeUTC.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				91F1F5241ECD6E1C00D425FD /* RSOrderSuccessfulViewController.swift in Sources */,
 				913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */,
 				9145A7441EA0E0C900D33911 /* RoomServiceCartItemViewController.swift in Sources */,
+				9157A6351EFBA1E800ABFAA8 /* TimeUTC.swift in Sources */,
 				913D8FCA1EA669FC00B1B3CD /* OnboardingInformationCollectionViewCell.swift in Sources */,
 				91BDBEC41E9E6B58009CABE8 /* RSCategoryTableViewCell.swift in Sources */,
 				91724ED41EA292CD00FD7240 /* TagView.swift in Sources */,

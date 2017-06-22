@@ -70,7 +70,7 @@ class RoomServiceItemsViewController: UITableViewController {
             
             switch result {
             case .success(let subCategories):
-                self.subCategories = subCategories
+                self.subCategories = subCategories.sorted { $0.0.id < $0.1.id }
                 self.tableView.reloadData()
             case .failure(let error):
                 if let urlError = error as? URLError, urlError.code == URLError.Code.notConnectedToInternet {

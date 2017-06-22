@@ -10,7 +10,18 @@ class RoomServiceCategory {
     let id: Int
     let title: String
     let description: String?
+    var availableFromUTC: TimeUTC?
+    var availableUntilUTC: TimeUTC?
     var imageURL: URL?
+    
+    var isCurrentlyAvailable: Bool {
+        guard let availableFromUTC = availableFromUTC,
+            let availableUntilUTC = availableUntilUTC
+            else { return true }
+        
+        let currentTime = TimeUTC(date: Date())
+        return currentTime.isBetween(startingTime: availableFromUTC, endingTime: availableUntilUTC)
+    }
     
     // MARK: - Initializers
     init?(json: [String: Any]) {
@@ -22,6 +33,13 @@ class RoomServiceCategory {
         self.id = id
         self.title = title
         self.description = json["description"] as? String
+        
+        if let availableFromUTCString = json["available_from_utc"] as? String,
+            let availableUntilUTCString = json["available_until_utc"] as? String {
+            
+            self.availableFromUTC = TimeUTC(hourColonMinute: availableFromUTCString)
+            self.availableUntilUTC = TimeUTC(hourColonMinute: availableUntilUTCString)
+        }
         
         if UIScreen.main.scale == 1.0, let oneXImageURLString = imageURLs["@1x"] as? String {
             self.imageURL = URL(string: oneXImageURLString)

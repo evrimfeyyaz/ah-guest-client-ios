@@ -24,6 +24,6 @@ class RoomServiceSubCategory {
         
         self.id = id
         self.title = title
-        self.items = itemsJSONArray.flatMap { RoomServiceItem(json: $0) }
+        self.items = itemsJSONArray.flatMap { RoomServiceItem(json: $0) }.sorted { $0.0.id < $0.1.id }
     }
 }
