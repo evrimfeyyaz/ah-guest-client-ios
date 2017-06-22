@@ -66,6 +66,8 @@ class RoomServiceCategoriesViewController: UITableViewController {
     private func fetchRoomServiceCategories() {
         activityIndicatorView.startAnimating()
         
+        APIManager.shared.loadCurrentUserFromStoredAuthentication { _ in }
+        
         APIManager.shared.indexRoomServiceCategories { result in
             DispatchQueue.main.async {
                 self.activityIndicatorView.stopAnimating()

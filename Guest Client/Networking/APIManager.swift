@@ -5,6 +5,7 @@
 
 import Foundation
 import Alamofire
+import Locksmith
 
 enum APIManagerError: Error {
     case jsonSerialization(reason: String)
@@ -12,13 +13,21 @@ enum APIManagerError: Error {
     case userNotAuthenticated(reason: String)
     case noCurrentReservation(reason: String)
     case apiProvidedError(messages: [String])
+    case unableToLoadAuthenticationFromStore(reason: String)
+    case invalidAuthentication(reason: String)
 }
 
 class APIManager {
     static let shared = APIManager(requestAdapter: APIHeadersAdapter())
     
     let sessionManager = Alamofire.SessionManager.default
-    var currentUser: User?
+    var currentUser: User? {
+        didSet {
+            guard let currentUser = currentUser else { return }
+            
+            saveAuthenticationInKeychain(userID: currentUser.id, authToken: currentUser.authToken)
+        }
+    }
     
     var hasAuthenticatedUser: Bool {
         get {
@@ -56,6 +65,49 @@ class APIManager {
                     }
                 }
         }
+    }
+    
+    func loadCurrentUserFromStoredAuthentication(completion: @escaping (Result<User>) -> Void) {
+        guard let authenticationData = Locksmith.loadDataForUserAccount(userAccount: "khotel.automatedhotel.com") else {
+            completion(.failure(APIManagerError.unableToLoadAuthenticationFromStore(reason: "Can't load stored authentication data.")))
+            return
+        }
+        
+        guard let userID = authenticationData["userID"] as? Int, let authToken = authenticationData["authToken"] as? String else {
+            completion(.failure(APIManagerError.unableToLoadAuthenticationFromStore(reason: "Stored authentication data seems to be corrupt.")))
+            return
+        }
+        
+        let authenticationHeaders: HTTPHeaders = [
+            "Authorization": authToken,
+            "ah-user-id": "\(userID)"
+        ]
+        
+        sessionManager.request(APIRouter.getUser(id: userID).urlRequest!.url!, headers: authenticationHeaders)
+            .validate(statusCode: [200])
+            .responseJSON { response in
+                switch response.result {
+                case .success:
+                    let result = self.user(from: response)
+                    self.currentUser = result.value
+                    
+                    completion(result)
+                case .failure(let error):
+                    if response.response?.statusCode == 404 {
+                        try? Locksmith.deleteDataForUserAccount(userAccount: "khotel.automatedhotel.com")
+                        
+                        completion(.failure(APIManagerError.invalidAuthentication(reason: "Stored authentication data is invalid.")))
+                    } else {
+                        completion(.failure(error))
+                    }
+                }
+        }
+    }
+    
+    private func saveAuthenticationInKeychain(userID: Int, authToken: String) {
+        try? Locksmith.updateData(data: ["userID": userID,
+                                         "authToken": authToken],
+                                  forUserAccount: "khotel.automatedhotel.com")
     }
     
     // MARK: - User

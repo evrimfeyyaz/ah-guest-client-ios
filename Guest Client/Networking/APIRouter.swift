@@ -8,9 +8,9 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     static let baseURLString = "https://khotel.automatedhotel.com/api/v0"
-//    static let baseURLString = "https://guest-api-app.dev/"
     
     case createAuthentication(parameters: [String: Any])
+    case getUser(id: Int)
     case createUser(parameters: [String: Any])
     case createReservationAssociation(parameters: [String: Any])
     case indexRoomServiceCategories
@@ -21,7 +21,7 @@ enum APIRouter: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         var method: HTTPMethod {
             switch self {
-            case .indexRoomServiceCategories, .indexRoomServiceSubCategories, .showRoomServiceItem:
+            case .indexRoomServiceCategories, .indexRoomServiceSubCategories, .showRoomServiceItem, .getUser:
                 return .get
             case .createAuthentication, .createUser, .createReservationAssociation, .createRoomServiceOrder:
                 return .post
@@ -34,6 +34,8 @@ enum APIRouter: URLRequestConvertible {
             switch self {
             case .createAuthentication:
                 relativePath = "authentication"
+            case .getUser(let id):
+                relativePath = "users/\(id)"
             case .createUser:
                 relativePath = "users"
             case .createReservationAssociation:
@@ -56,7 +58,7 @@ enum APIRouter: URLRequestConvertible {
         
         let params: ([String: Any]?) = {
             switch self {
-            case .indexRoomServiceCategories, .indexRoomServiceSubCategories, .showRoomServiceItem:
+            case .indexRoomServiceCategories, .indexRoomServiceSubCategories, .showRoomServiceItem, .getUser:
                 return nil
             case .createAuthentication(let parameters), .createUser(let parameters),
                  .createReservationAssociation(let parameters), .createRoomServiceOrder(_, let parameters):

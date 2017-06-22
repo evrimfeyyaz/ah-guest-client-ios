@@ -8,6 +8,7 @@ target 'Guest Client' do
   pod 'AlamofireImage', '~> 3.2'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.1'
   pod 'TPKeyboardAvoiding', '~> 1.3'
+  pod 'Locksmith', '~> 3.0'
 
   target 'Guest ClientTests' do
     inherit! :search_paths

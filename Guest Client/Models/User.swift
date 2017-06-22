@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Locksmith
 
 class User {
     static var current: User? = nil
