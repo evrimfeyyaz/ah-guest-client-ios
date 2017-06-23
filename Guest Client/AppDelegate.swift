@@ -22,7 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let rootViewController = OnboardingViewController()
+        var rootViewController = RoomServiceCategoriesViewController() as UIViewController
+        
+        let defaults = UserDefaults.standard
+        if !defaults.bool(forKey: "HasShownOnboarding") {
+            defaults.set(true, forKey: "HasShownOnboarding")
+            rootViewController = OnboardingViewController()
+        }
+        
         let launchViewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = launchViewController
         
