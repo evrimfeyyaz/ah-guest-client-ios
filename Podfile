@@ -9,6 +9,7 @@ target 'Guest Client' do
   pod 'AlamofireNetworkActivityIndicator', '~> 2.1'
   pod 'TPKeyboardAvoiding', '~> 1.3'
   pod 'Locksmith', '~> 3.0'
+  pod 'UIBarButtonItem-Badge-Coding', '~> 0.0'
 
   target 'Guest ClientTests' do
     inherit! :search_paths

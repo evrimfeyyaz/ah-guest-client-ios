@@ -24,6 +24,14 @@ class ThemeViewFactory {
                              borderColor: .white, tintColor: .white)
     }
     
+    static func navigationBarButton() -> UIButton {
+        let button = UIButton()
+        button.titleLabel?.font = ThemeFonts.latoRegular.withSize(17)
+        button.titleLabel?.textAlignment = .right
+        
+        return button
+    }
+    
     // MARK: - Text
     
     static func textView() -> UITextView {

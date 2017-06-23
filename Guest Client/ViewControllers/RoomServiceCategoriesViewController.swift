@@ -5,6 +5,7 @@
 
 import UIKit
 import Alamofire
+import UIBarButtonItem_Badge_Coding
 
 class RoomServiceCategoriesViewController: UITableViewController {
     
@@ -12,6 +13,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
     private let categoryCellIdentifier = "category"
     private var categories = [RoomServiceCategory]()
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    private var orderBarButton: UIBarButtonItem!
     
     // MARK: - View configuration
     override func viewDidLoad() {
@@ -21,8 +23,21 @@ class RoomServiceCategoriesViewController: UITableViewController {
         fetchRoomServiceCategories()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        toggleOrderButton()
+    }
+    
     private func configureView() {
         view.backgroundColor = ThemeImages.backgroundImage
+        
+        let button = ThemeViewFactory.navigationBarButton()
+        button.setTitle("Order", for: .normal)
+        button.sizeToFit()
+        button.addTarget(self, action: #selector(cartBarButtonTapped), for: .touchUpInside)
+        
+        orderBarButton = UIBarButtonItem(customView: button)
         
         configureActivityIndicator()
         configureTableView()
@@ -42,24 +57,18 @@ class RoomServiceCategoriesViewController: UITableViewController {
     }
     
     private func configureNavigationBar() {
-        //        let ordersBarButton = UIBarButtonItem(title: "Orders", style: .plain, target: self, action: #selector(ordersBarButtonTapped))
-        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Order", target: self, action: #selector(cartBarButtonTapped))
-        
         navigationItem.title = "Room Service"
-        //        navigationItem.leftBarButtonItem = ordersBarButton
-        navigationItem.rightBarButtonItem = cartBarButton
         
         let backButton = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButton
     }
     
     // MARK: - Actions
-    @objc private func ordersBarButtonTapped() {
-        print("Go to orders")
-    }
-    
     @objc private func cartBarButtonTapped() {
-        print("Go to cart")
+        let cartVC = RoomServiceOrderViewController(style: .grouped)
+        let navigationVC = UINavigationController(rootViewController: cartVC)
+        
+        show(navigationVC, sender: self)
     }
     
     // MARK: - Private instance methods
@@ -128,7 +137,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 let alertController = UIAlertController(title: "Not Available",
-                                                        message: "\(category.title) is only available from \(availableFromInLocalTime) until \(availableUntilInLocalTime) in local time.", preferredStyle: .alert)
+                                                        message: "\(category.title) is only available from \(availableFromInLocalTime) until \(availableUntilInLocalTime).", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true)
@@ -142,5 +151,18 @@ class RoomServiceCategoriesViewController: UITableViewController {
         rsItemsVC.navigationItem.title = categoryCell.categoryTitleLabel.text
         
         show(rsItemsVC, sender: self)
+    }
+    
+    private func toggleOrderButton() {
+        let order = RoomServiceOrder.cart
+        let quantityOfAllItems = order.cartItems.reduce(0) { $0.0 + $0.1.quantity }
+        
+        if quantityOfAllItems > 0 {
+            navigationItem.rightBarButtonItem = orderBarButton
+            orderBarButton.badgeValue = "\(quantityOfAllItems)"
+            orderBarButton.badgeBGColor = ThemeColors.orange
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
 }

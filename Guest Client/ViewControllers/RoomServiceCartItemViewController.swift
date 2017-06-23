@@ -280,6 +280,7 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
         // From: http://candycode.io/self-sizing-uitextview-in-a-uitableview-using-auto-layout-like-reminders-app/
         tableView.beginUpdates()
         tableView.endUpdates()
+        cartItem?.specialRequest = textView.text
     }
     
 }

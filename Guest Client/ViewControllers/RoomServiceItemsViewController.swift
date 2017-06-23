@@ -14,14 +14,20 @@ class RoomServiceItemsViewController: UITableViewController {
     private let tableViewHeaderViewIdentifier = "tableViewHeader"
     private var subCategories: [RoomServiceSubCategory] = []
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    private var orderBarButton: UIBarButtonItem!
     
     // MARK: - View configuration
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureActivityIndicator()
         configureView()
         fetchRoomServiceSubCategoriesAndItemSummaries()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        toggleOrderButton()
     }
     
     private func configureActivityIndicator() {
@@ -31,8 +37,18 @@ class RoomServiceItemsViewController: UITableViewController {
     }
     
     private func configureView() {
-        configureTableView()
+        configureActivityIndicator()
         configureNavigationBar()
+        configureTableView()
+    }
+    
+    private func configureNavigationBar() {
+        let button = ThemeViewFactory.navigationBarButton()
+        button.setTitle("Order", for: .normal)
+        button.sizeToFit()
+        button.addTarget(self, action: #selector(cartBarButtonTapped), for: .touchUpInside)
+        
+        orderBarButton = UIBarButtonItem(customView: button)
     }
     
     private func configureTableView() {
@@ -42,13 +58,6 @@ class RoomServiceItemsViewController: UITableViewController {
         tableView.separatorColor = UIColor.white.withAlphaComponent(0.1)
         tableView.register(RSItemTableViewCell.self, forCellReuseIdentifier: itemCellIdentifier)
         tableView.register(TableViewHeader.self, forHeaderFooterViewReuseIdentifier: tableViewHeaderViewIdentifier)
-    }
-    
-    private func configureNavigationBar() {
-        // TODO: This is used in RSCategoriesViewController as well. Find a way to refactor this.
-        let cartBarButton = ThemeViewFactory.doneStyleBarButton(title: "Order", target: self, action: #selector(cartBarButtonTapped))
-        
-        navigationItem.rightBarButtonItem = cartBarButton
     }
     
     // MARK: - Actions
@@ -148,5 +157,17 @@ class RoomServiceItemsViewController: UITableViewController {
         
         present(navigationVC, animated: true, completion: nil)
     }
-
+    
+    private func toggleOrderButton() {
+        let order = RoomServiceOrder.cart
+        let quantityOfAllItems = order.cartItems.reduce(0) { $0.0 + $0.1.quantity }
+        
+        if quantityOfAllItems > 0 {
+            navigationItem.rightBarButtonItem = orderBarButton
+            orderBarButton.badgeValue = "\(quantityOfAllItems)"
+            orderBarButton.badgeBGColor = ThemeColors.orange
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
 }

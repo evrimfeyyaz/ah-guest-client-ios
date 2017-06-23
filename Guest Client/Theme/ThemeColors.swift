@@ -14,6 +14,7 @@ class ThemeColors {
     static let blackRock = uiColorFromRgb(rgbValue: 0x2B2F3D)
     static let maroon = uiColorFromRgb(rgbValue: 0x8B2131)
     static let lightPink = uiColorFromRgb(rgbValue: 0xFFE2E2)
+    static let orange = uiColorFromRgb(rgbValue: 0xf3c847)
     
     // From: http://stackoverflow.com/a/24074509
     static func uiColorFromRgb(rgbValue: UInt) -> UIColor {

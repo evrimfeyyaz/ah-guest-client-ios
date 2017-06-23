@@ -6,6 +6,7 @@ PODS:
     - Alamofire (~> 4.1)
   - Locksmith (3.0.0)
   - TPKeyboardAvoiding (1.3.1)
+  - UIBarButtonItem-Badge-Coding (0.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - AlamofireNetworkActivityIndicator (~> 2.1)
   - Locksmith (~> 3.0)
   - TPKeyboardAvoiding (~> 1.3)
+  - UIBarButtonItem-Badge-Coding (~> 0.0)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -20,7 +22,8 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 4716f6554bdfb9c7cf13b1e0e3af21163129690a
   Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
+  UIBarButtonItem-Badge-Coding: 3f8e96f75f7d7c7516c1a1706b566892bf2db134
 
-PODFILE CHECKSUM: e76540e6ce05d8051cfe3394cb9e876869c00dea
+PODFILE CHECKSUM: d02d31ff73302ba1a802e89fd92681aa6775e76d
 
 COCOAPODS: 1.2.1
