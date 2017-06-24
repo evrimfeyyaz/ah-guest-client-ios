@@ -10,6 +10,7 @@ target 'Guest Client' do
   pod 'TPKeyboardAvoiding', '~> 1.3'
   pod 'Locksmith', '~> 3.0'
   pod 'UIBarButtonItem-Badge-Coding', '~> 0.0'
+  pod 'TagListView', '~> 1.0'
 
   target 'Guest ClientTests' do
     inherit! :search_paths
@@ -19,5 +20,10 @@ target 'Guest Client' do
   target 'Guest ClientUITests' do
     inherit! :search_paths
     # Pods for testing
+  end
+  
+  post_install do | installer |
+      require 'fileutils'
+      FileUtils.cp_r('Pods/Target Support Files/Pods-Guest Client/Pods-Guest Client-acknowledgements.plist', 'Guest Client/Resources/Settings.bundle/Pods-acknowledgements.plist', :remove_destination => true)
   end
 end

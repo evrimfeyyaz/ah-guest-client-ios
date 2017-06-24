@@ -91,9 +91,7 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
         itemDetailView.itemPriceLabel.text = cartItem.item.price.stringInBahrainiDinars
         
         for tag in cartItem.item.tags {
-            let tagView = TagView(title: tag.title)
-            
-            itemDetailView.tagsStackView.addArrangedSubview(tagView)
+            itemDetailView.tagListView.addTag(tag.title.uppercased())
         }
         
         tableView.tableHeaderView = itemDetailView
@@ -282,7 +280,6 @@ class RoomServiceCartItemViewController: UITableViewController, UITextViewDelega
         tableView.endUpdates()
         cartItem?.specialRequest = textView.text
     }
-    
 }
 
 

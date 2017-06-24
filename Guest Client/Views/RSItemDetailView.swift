@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import TagListView
 
 class RSItemDetailView: UIView {
     
     // MARK: - Public properties
 
     let itemTitleLabel = StyledLabel(withStyle: .title1)
-    let tagsStackView = UIStackView()
+    let tagListView = TagListView()
+    let tagCellIdentifier = "TagCell"
     let itemPriceLabel = StyledLabel(withStyle: .price)
     let itemDescriptionLabel = StyledLabel(withStyle: .body)
     
@@ -38,21 +40,28 @@ class RSItemDetailView: UIView {
     private func configureView() {
         configureTitleLabel()
         configureDescriptionLabel()
-        configureItemAttributesStackView()
+        configureTagListView()
         configureCenterStackView()
         configureOuterStackView()
     }
     
-    private func configureItemAttributesStackView() {
-        tagsStackView.alignment = .center
-        tagsStackView.distribution = .equalSpacing
-        tagsStackView.spacing = 10
+    private func configureTagListView() {
+        tagListView.textFont = ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.oswaldRegular, withSize: 14)
+        tagListView.textColor = ThemeColors.darkBlue
+        tagListView.tagBackgroundColor = .white
+        tagListView.paddingX = 10
+        tagListView.paddingY = 5
+        tagListView.marginX = 5
+        tagListView.marginY = 10
+        tagListView.cornerRadius = tagListView.textFont.pointSize / 1.5
+        tagListView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
     }
     
     private func configureCenterStackView() {
-        centerStackView.addArrangedSubview(tagsStackView)
+        centerStackView.addArrangedSubview(tagListView)
         centerStackView.addArrangedSubview(itemPriceLabel)
-        centerStackView.distribution = .equalSpacing
+        centerStackView.distribution = .fill
+        centerStackView.alignment = .center
     }
     
     private func configureOuterStackView() {

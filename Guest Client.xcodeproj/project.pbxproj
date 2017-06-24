@@ -17,6 +17,7 @@
 		91152A401EEE8FE000C57186 /* Date+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91152A3F1EEE8FE000C57186 /* Date+ISO8601.swift */; };
 		911B2E611EB7B3E700745C66 /* RSCartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */; };
 		911B2E631EB892A600745C66 /* RSCartFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911B2E621EB892A600745C66 /* RSCartFooterView.swift */; };
+		913C34291EFF081500131362 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 913C34281EFF081500131362 /* Settings.bundle */; };
 		913D8FC11EA6446600B1B3CD /* ThemeImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC01EA6446600B1B3CD /* ThemeImages.swift */; };
 		913D8FC31EA6448500B1B3CD /* ThemeFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */; };
 		913D8FC51EA6449D00B1B3CD /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */; };
@@ -110,6 +111,7 @@
 		91152A3F1EEE8FE000C57186 /* Date+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+ISO8601.swift"; sourceTree = "<group>"; };
 		911B2E601EB7B3E700745C66 /* RSCartItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartItemTableViewCell.swift; sourceTree = "<group>"; };
 		911B2E621EB892A600745C66 /* RSCartFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSCartFooterView.swift; sourceTree = "<group>"; };
+		913C34281EFF081500131362 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		913D8FC01EA6446600B1B3CD /* ThemeImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeImages.swift; sourceTree = "<group>"; };
 		913D8FC21EA6448500B1B3CD /* ThemeFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeFonts.swift; sourceTree = "<group>"; };
 		913D8FC41EA6449D00B1B3CD /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		91E230CD1EED87630086FB33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				913C34281EFF081500131362 /* Settings.bundle */,
 				91E230CE1EED87700086FB33 /* Fonts */,
 			);
 			path = Resources;
@@ -557,6 +560,7 @@
 				9189F6E01E9B512100DFA856 /* Lato 300.ttf in Resources */,
 				9189F6E11E9B512100DFA856 /* Lato 300italic.ttf in Resources */,
 				9189F6E31E9B512100DFA856 /* Oswald regular.ttf in Resources */,
+				913C34291EFF081500131362 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
