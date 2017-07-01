@@ -137,7 +137,7 @@ class RoomServiceCategoriesViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 let alertController = UIAlertController(title: "Not Available",
-                                                        message: "\(category.title) is only available from \(availableFromInLocalTime) until \(availableUntilInLocalTime).", preferredStyle: .alert)
+                                                        message: "Items in \"\(category.title)\" are only available from \(availableFromInLocalTime) until \(availableUntilInLocalTime).", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true)

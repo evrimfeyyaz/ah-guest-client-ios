@@ -48,10 +48,10 @@ struct TimeUTC: Comparable, CustomStringConvertible {
     
     func description(inTimeZone timeZone: TimeZone) -> String {
         let localTimeInTotalSeconds = totalSeconds + timeZone.secondsFromGMT()
-        let localTimeHour = localTimeInTotalSeconds / (60*60)
+        let localTimeHour = (localTimeInTotalSeconds / (60*60)) % 24
         let localTimeMinute = (localTimeInTotalSeconds % (60*60)) / 60
         
-        return "\(localTimeHour):\(localTimeMinute)"
+        return String.init(format: "%02d:%02d", localTimeHour, localTimeMinute)
     }
     
     static func <(lhs: TimeUTC, rhs: TimeUTC) -> Bool {
