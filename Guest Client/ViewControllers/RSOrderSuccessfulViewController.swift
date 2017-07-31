@@ -46,7 +46,7 @@ class RSOrderSuccessfulViewController: UIViewController {
     }
     
     private func configureExplanationLabel() {
-        explanationLabel.text = "Your order will be delivered to your room."
+        explanationLabel.text = "Your order will be delivered to your room. If you would like to cancel your order, please call room service."
         explanationLabel.numberOfLines = 0
     }
     

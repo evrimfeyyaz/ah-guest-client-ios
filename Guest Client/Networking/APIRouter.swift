@@ -7,7 +7,7 @@ import Foundation
 import Alamofire
 
 enum APIRouter: URLRequestConvertible {
-    static let baseURLString = "https://khotel.automatedhotel.com/api/v0"
+    static let baseURLString = Bundle.main.infoDictionary!["AH_API_URL"] as! String
     
     case createAuthentication(parameters: [String: Any])
     case getUser(id: Int)
