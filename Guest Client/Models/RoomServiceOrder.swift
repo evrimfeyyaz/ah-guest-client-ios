@@ -5,10 +5,16 @@
 
 import Foundation
 
+enum PaymentType: Int {
+    case roomAccount
+    case cash
+    case creditCard
+}
+
 class RoomServiceOrder {
     static let cart = RoomServiceOrder()
     
-    public var cartItems: [RoomServiceCartItem] = []
+    var cartItems: [RoomServiceCartItem] = []
     
     var total: Decimal {
         get { return cartItems.reduce(0, { result, cartItem in result + cartItem.totalPrice }) }
