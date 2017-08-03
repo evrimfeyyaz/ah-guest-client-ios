@@ -11,22 +11,16 @@ class Reservation {
     var checkOutDate: Date
     var roomNumber: String?
     var confirmationCode: String
-    var firstName: String
-    var lastName: String
     
     init?(json: [String: Any]) {
         guard let id = json["id"] as? Int,
             let checkInDateString = json["check_in_date"] as? String,
             let checkOutDateString = json["check_out_date"] as? String,
-            let confirmationCode = json["confirmation_code"] as? String,
-            let firstName = json["first_name"] as? String,
-            let lastName = json["last_name"] as? String
+            let confirmationCode = json["confirmation_code"] as? String
             else { return nil }
         
         self.id = id
         self.confirmationCode = confirmationCode
-        self.firstName = firstName
-        self.lastName = lastName
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

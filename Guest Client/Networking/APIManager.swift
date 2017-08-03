@@ -154,10 +154,13 @@ class APIManager {
     }
     
     // MARK: - Reservations
-    func createReservationAssociation(byCheckInDate checkInDate: Date, completion: @escaping (Result<Reservation>) -> Void) {
+    func createReservationAssociation(byCheckInDate checkInDate: Date, roomNumber: String, completion: @escaping (Result<Reservation>) -> Void) {
         let parameters: [String: Any] = [
-            "reservation": [
-                "check_in_date": checkInDate.iso8601FullDate
+            "reservation_association": [
+                "reservation_attributes": [
+                    "check_in_date": checkInDate.iso8601FullDate,
+                    "room_number": roomNumber
+                ]
             ]
         ]
         
@@ -166,8 +169,10 @@ class APIManager {
     
     func createReservationAssociation(byConfirmationCode confirmationCode: String, completion: @escaping (Result<Reservation>) -> Void) {
         let parameters: [String: Any] = [
-            "reservation": [
-                "confirmation_code": confirmationCode
+            "reservation_association": [
+                "reservation_attributes": [
+                    "confirmation_code": confirmationCode
+                ]
             ]
         ]
         
@@ -175,12 +180,12 @@ class APIManager {
     }
     
     private func createReservationAssociation(parameters: [String: Any], completion: @escaping (Result<Reservation>) -> Void) {
-        guard hasAuthenticatedUser else {
+        guard let currentUser = currentUser else {
             completion(.failure(APIManagerError.userNotAuthenticated(reason: "User not signed in.")))
             return
         }
         
-        sessionManager.request(APIRouter.createReservationAssociation(parameters: parameters))
+        sessionManager.request(APIRouter.createReservationAssociation(userID: currentUser.id, parameters: parameters))
             .validate(statusCode: [200])
             .responseJSON { response in
                 switch response.result {
@@ -206,7 +211,8 @@ class APIManager {
     
     private func reservation(from response: DataResponse<Any>) -> Result<Reservation> {
         guard let json = response.result.value as? [String: Any],
-            let reservation = Reservation(json: json)
+            let reservationJSON = json["reservation"] as? [String: Any],
+            let reservation = Reservation(json: reservationJSON)
             else { return .failure(APIManagerError.jsonSerialization(reason: "Received invalid JSON data")) }
         
         return .success(reservation)
@@ -305,7 +311,7 @@ class APIManager {
         }
         
         let parameters: [String: Any] = [
-            "order": RoomServiceOrder.cart.toJSON(reservation: currentReservation)
+            "room_service_order": RoomServiceOrder.cart.toJSON(reservation: currentReservation)
         ]
         
         sessionManager.request(APIRouter.createRoomServiceOrder(userID: currentUser.id, parameters: parameters))

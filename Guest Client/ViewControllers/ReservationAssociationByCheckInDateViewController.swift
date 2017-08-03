@@ -12,6 +12,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     private let explanationLabel = StyledLabel(withStyle: .bodyCentered)
     private let labelStackView = UIStackView()
     private let inputContainerView = UIView()
+    private let roomNumberInputView = ThemeViewFactory.textField()
     private let checkInDatePicker = ThemeViewFactory.datePicker()
     private let associateReservationButton = ThemeViewFactory.filledButton()
     private let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -32,6 +33,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
         configureTitleLabel()
         configureExplanationLabel()
         configureLabelStackView()
+        configureRoomNumberTextField()
         configureCheckInDatePicker()
         configureAddBookingConfirmationButton()
         configureStackView()
@@ -43,7 +45,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
         let cancelBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain,
                                                   target: self,
                                                   action: #selector(cancelBarButtonItemTapped))
-        let doneBarButtonItem = ThemeViewFactory.doneStyleBarButton(title: "Done",
+        let doneBarButtonItem = ThemeViewFactory.doneStyleBarButton(title: "Confirmation Code",
                                                                     target: self,
                                                                     action: #selector(doneBarButtonItemTapped))
         
@@ -57,7 +59,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     }
     
     private func configureExplanationLabel() {
-        explanationLabel.text = "Please choose your check-in date below."
+        explanationLabel.text = "If you are already at the hotel, please enter your room number and check-in date below.\n\nIf you haven't yet arrived, please tap the \"Confirmation Code\" button above."
         explanationLabel.numberOfLines = 0
     }
     
@@ -68,6 +70,21 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
         labelStackView.axis = .vertical
     }
     
+    private func configureRoomNumberTextField() {
+        roomNumberInputView.attributedPlaceholder = NSAttributedString(string: "Room Number",
+                                                                       attributes: [
+                                                                        NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.7),
+                                                                        NSFontAttributeName: ThemeFonts.dynamicEquivalent(ofFont: ThemeFonts.latoLightItalic, withSize: 15)])
+        
+        inputContainerView.addSubview(roomNumberInputView)
+        roomNumberInputView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            roomNumberInputView.leadingAnchor.constraint(equalTo: inputContainerView.leadingAnchor),
+            roomNumberInputView.trailingAnchor.constraint(equalTo: inputContainerView.trailingAnchor),
+            roomNumberInputView.topAnchor.constraint(equalTo: inputContainerView.topAnchor)
+            ])
+    }
+    
     private func configureCheckInDatePicker() {
         checkInDatePicker.datePickerMode = .date
         
@@ -76,8 +93,8 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
         NSLayoutConstraint.activate([
             checkInDatePicker.leadingAnchor.constraint(equalTo: inputContainerView.leadingAnchor),
             checkInDatePicker.trailingAnchor.constraint(equalTo: inputContainerView.trailingAnchor),
-            checkInDatePicker.topAnchor.constraint(equalTo: inputContainerView.topAnchor),
-            checkInDatePicker.bottomAnchor.constraint(equalTo: inputContainerView.bottomAnchor),
+            checkInDatePicker.topAnchor.constraint(equalTo: roomNumberInputView.bottomAnchor),
+            checkInDatePicker.bottomAnchor.constraint(equalTo: inputContainerView.bottomAnchor)
             ])
     }
     
@@ -130,7 +147,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     }
     
     @objc private func doneBarButtonItemTapped() {
-        associateReservationByCheckInDate()
+        showReservationAssociationByConfirmationCodeViewController()
     }
     
     @objc private func associateReservationButtonTapped() {
@@ -141,7 +158,7 @@ class ReservationAssociationByCheckInDateViewController: UIViewController {
     private func associateReservationByCheckInDate() {
         activityIndicatorView.startAnimating()
         
-        APIManager.shared.createReservationAssociation(byCheckInDate: checkInDatePicker.date) { result in
+        APIManager.shared.createReservationAssociation(byCheckInDate: checkInDatePicker.date, roomNumber: roomNumberInputView.text!) { result in
             DispatchQueue.main.async {
                 self.activityIndicatorView.stopAnimating()
             }

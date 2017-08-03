@@ -12,7 +12,7 @@ enum APIRouter: URLRequestConvertible {
     case createAuthentication(parameters: [String: Any])
     case getUser(id: Int)
     case createUser(parameters: [String: Any])
-    case createReservationAssociation(parameters: [String: Any])
+    case createReservationAssociation(userID: Int, parameters: [String: Any])
     case indexRoomServiceCategories
     case indexRoomServiceSubCategories(categoryID: Int)
     case showRoomServiceItem(id: Int)
@@ -38,8 +38,8 @@ enum APIRouter: URLRequestConvertible {
                 relativePath = "users/\(id)"
             case .createUser:
                 relativePath = "users"
-            case .createReservationAssociation:
-                relativePath = "reservation_associations"
+            case .createReservationAssociation(let userID, _):
+                relativePath = "users/\(userID)/reservation_associations"
             case .indexRoomServiceCategories:
                 relativePath = "room_service/categories"
             case .indexRoomServiceSubCategories(let categoryID):
@@ -61,7 +61,7 @@ enum APIRouter: URLRequestConvertible {
             case .indexRoomServiceCategories, .indexRoomServiceSubCategories, .showRoomServiceItem, .getUser:
                 return nil
             case .createAuthentication(let parameters), .createUser(let parameters),
-                 .createReservationAssociation(let parameters), .createRoomServiceOrder(_, let parameters):
+                 .createReservationAssociation(_, let parameters), .createRoomServiceOrder(_, let parameters):
                 return parameters
             }
         }()
