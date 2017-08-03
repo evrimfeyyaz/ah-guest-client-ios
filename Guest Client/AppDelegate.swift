@@ -1,12 +1,11 @@
 //
-//  AppDelegate.swift
-//  Guest Client
-//
 //  Created by Evrim Persembe on 4/5/17.
 //  Copyright © 2017 Automated Hotel. All rights reserved.
 //
 
 import UIKit
+import AlamofireNetworkActivityIndicator
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        
+        ThemeManager.applyTheme()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        var rootViewController = RoomServiceCategoriesViewController() as UIViewController
+        
+        let defaults = UserDefaults.standard
+        if !defaults.bool(forKey: "HasShownOnboarding") {
+            defaults.set(true, forKey: "HasShownOnboarding")
+            rootViewController = OnboardingViewController()
+        }
+        
+        let launchViewController = UINavigationController(rootViewController: rootViewController)
+        window?.rootViewController = launchViewController
+        
         return true
     }
 
